@@ -18,7 +18,7 @@ export const SearchBar = () => {
     >
       {({ isSubmitting }) => (
         <Form>
-          <Field type="text" name="Location" label="location" />
+          <Field type="text" name="Locatidcdcdon" label="location" />
           <ErrorMessage name="text" component="div" />
           <Field type="date" name="Check in" label="check-in" />
           <ErrorMessage name="check-in" component="div" />

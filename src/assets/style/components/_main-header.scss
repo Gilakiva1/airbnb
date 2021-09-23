@@ -1,0 +1,30 @@
+.header-container {
+  height: 80px;
+
+  .hero-logo {
+    max-height: 612px;
+  }
+
+  .functions-header {
+    display: flex;
+    .nav-header {
+      &:last-child() {
+        margin-left: 10px;
+      }
+    }
+
+    .logo {
+      height: 32px;
+      width: 102px;
+    }
+
+    .logo-contunier {
+      display: flex;
+    }
+
+    .header-search {
+      height: 40px;
+      visibility: hidden;
+    }
+  }
+}

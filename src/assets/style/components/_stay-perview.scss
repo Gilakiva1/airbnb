@@ -1,0 +1,14 @@
+.stay-contuiner{
+    display: flex;
+    gap:10px;
+    .primary-image{
+      
+        & img{
+            object-fit: cover;
+            width: 301px;
+            height: 198px;
+            border-radius:10px;
+          
+        }
+    }
+}

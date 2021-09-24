@@ -3,6 +3,7 @@
 import { NavLink } from "react-router-dom";
 import HeroLogo from '../assets/img/hero.png';
 import { ReactComponent as AirbnbLogo } from '../assets/img/airbnb_logo.svg';
+import { SearchBar } from "./SearchBar";
 
 
 
@@ -24,8 +25,12 @@ export function AppHeader() {
                         <NavLink className="link-host" to={`/`} >switch to hosting</NavLink>
                         <button>=</button>
                     </div>
-                </div>
-            </header>
+            </div>
+        </header>
+        <div><SearchBar/></div>
+        <div className="main-container">
+
+            </div>
 
         </>
     )

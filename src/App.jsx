@@ -13,7 +13,7 @@ export class App extends React.Component {
                 <AppHeader />
                 <main className="main-container height">
                     <Switch>
-                        {routes.map(route => <Route key={route.path} component={route.component} path={route.path} />)}
+                        {routes.map(route => <Route key={route.path} exact component={route.component} path={route.path} />)}
                     </Switch>
                 </main>
                 <AppFooter />

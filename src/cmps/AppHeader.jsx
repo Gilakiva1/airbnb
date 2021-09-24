@@ -9,12 +9,11 @@ import HeroLogo from '../assets/img/hero.png';
 export function AppHeader() {
     return (
         <>
-        <img className="hero-logo full" src={HeroLogo} />
-        <header className="header-container">
-            
-                
+            <img className="hero-logo full" src={HeroLogo} />
+            <header className="header-container main-container">
+                <div className="header-func">
                     <div className="logo-container">
-                        <img className="logo" src={ReactLogo} alt="" />
+                        <img className="logo-img" src={ReactLogo} alt="" />
                         <h3>Airbnb</h3>
                     </div>
                     <input className='header-search' type="search" />
@@ -23,10 +22,8 @@ export function AppHeader() {
                         <NavLink to={`/`} >Become a host</NavLink>
                         <button>=</button>
                     </div>
-            
-        </header>
-        <div className="main-container">
-            </div>
+                </div>
+            </header>
 
         </>
     )

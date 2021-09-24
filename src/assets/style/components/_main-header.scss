@@ -7,33 +7,36 @@
   .header-func {
     display: flex;
     justify-content: space-between;
-    width: 100%;
-    background-color: aliceblue;
-  }
 
-  .nav-header {
-    &:last-child() {
-      margin-left: 10px;
+    a {
+      color: white;
+    }
+
+    .link-host {
+      text-decoration: none;
+      margin-inline-end: 5px;
+    }
+
+    .nav-header {
+      &:last-child() {
+        margin-left: 10px;
+      }
+    }
+
+    .logo-img {
+      width: 2.1875rem;
+      height: 2.1875rem;
+    }
+    .logo-container {
+      color: white;
+    }
+
+    .header-search {
+      height: 40px;
+      visibility: hidden;
     }
   }
-
-  .logo-img {
-    width: 2.2rem;
-  }
-  .logo-container {
-    display: flex;
-  }
-
-  .header-search {
-    height: 40px;
-    visibility: hidden;
-  }
-
-  .functions-header {
-    display: flex;
-  }
 }
-
 .hero-logo {
-  max-height: 612px;
+  max-height: 86vh;
 }

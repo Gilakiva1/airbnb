@@ -3,6 +3,7 @@
 import { NavLink } from "react-router-dom";
 import ReactLogo from '../assets/img/logo.svg';
 import HeroLogo from '../assets/img/hero.png';
+import { SearchBar } from "./SearchBar";
 
 
 
@@ -25,7 +26,9 @@ export function AppHeader() {
                     </div>
             
         </header>
+        <div><SearchBar/></div>
         <div className="main-container">
+
             </div>
 
         </>

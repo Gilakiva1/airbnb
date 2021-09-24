@@ -11,7 +11,7 @@ export class App extends React.Component {
 
             <>
                 <AppHeader />
-                <main className="main-container height">
+                <main className="main-container">
                     <Switch>
                         {routes.map(route => <Route key={route.path} component={route.component} path={route.path} />)}
                     </Switch>

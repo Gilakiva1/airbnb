@@ -1,13 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { StayPreview } from '../cmps/StayPreview.jsx'
+import { withRouter } from 'react-router'
 
 import { loadStays } from '../store/stay.action.js'
 class _StayList extends React.Component {
 
     state = {}
 
-    componentDidMount(){
+    componentDidMount() {
         this.loadStay()
     }
 
@@ -16,14 +17,15 @@ class _StayList extends React.Component {
     }
 
     render() {
-        const { stays } = this.props
-        console.log('Stays-',stays);
+        const { stays, location } = this.props
+
 
         return (
-           <div>
-               {stays.map((stay,idx) =><StayPreview key={idx} stay={stay} />)}
-           </div>
+            <section className={`stay-list ${location.pathname === '/' ? 'home' : ''}`}>
+                {stays.map((stay, idx) => <StayPreview key={idx} stay={stay} />)}
+            </section>
         )
+
     }
 
 
@@ -41,4 +43,4 @@ const mapDispatchToProps = {
 }
 
 
-export const StayList = connect(mapStateToProps, mapDispatchToProps)(_StayList)
+export const StayList = connect(mapStateToProps, mapDispatchToProps)(withRouter(_StayList))

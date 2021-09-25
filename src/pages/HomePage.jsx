@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { loadStays } from '../store/stay.action'
 import { StayPreview } from '../cmps/StayPreview'
 import HeroLogo from '../assets/img/hero.png';
+import { StayList } from "./StayList";
 class _HomePage extends React.Component {
 
     componentDidMount() {
@@ -18,18 +19,18 @@ class _HomePage extends React.Component {
     render() {
         const { stays } = this.props
         if (!stays) return <h1>loading</h1>
-        return <>
-            <section className="hero-logo ">
-                <img src={HeroLogo} alt="" />
-            </section>
 
-            <main className="home-page main-container">
+        return <>
+            <section className="hero-logo full">
+                <img className="img-logo" src={HeroLogo} alt="" />
+            </section>
+            <section className="home-page">
                 <h1>top rated</h1>
                 <section className="top-rated">
-
+                    <StayList />
                 </section>
 
-            </main>
+            </section>
         </>
 
     }

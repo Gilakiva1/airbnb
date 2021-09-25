@@ -1,5 +1,12 @@
 .home-page {
-    .hero-logo {
+    .img-logo {
         max-height: 86vh;
+    }
+    .stay-list.home {
+        display: flex;
+        .stay-container{
+            margin-inline-start: 10px;
+        }
+
     }
 }

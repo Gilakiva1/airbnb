@@ -11,9 +11,11 @@ export class App extends React.Component {
 
             <>
                 <AppHeader />
-                <Switch>
-                    {routes.map(route => <Route key={route.path} exact component={route.component} path={route.path} />)}
-                </Switch>
+                <main className="main-container">
+                    <Switch>
+                        {routes.map(route => <Route key={route.path} exact component={route.component} path={route.path} />)}
+                    </Switch>
+                </main>
                 <AppFooter />
             </>
 

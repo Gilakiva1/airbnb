@@ -1,22 +1,51 @@
 import { connect } from 'react-redux'
 import Nouislider from "nouislider-react";
-import {Component} from 'react'
-class _StayFilter extends Component{
+import { Component } from 'react'
+import PriceFilter from './PriceFilter.jsx';
+import { onSetFilter } from '../store/stay.action.js'
+class _StayFilter extends Component {
 
     state = {
-        price:{
-            minPrice:'',
-            maxPrice:''
+        filterBy: {
+            price: {
+                minPrice: '',
+                maxPrice: ''
+            },
+        },
+        isPrice: false
+    }
+
+    toggelPriceFilter = () => {
+        this.setState(prevState => ({ ...prevState, isPrice: !this.state.isPrice }))
+    }
+
+    onSavePrice = (price) => {
+        const newPrice = {
+            maxPrice:price[1],
+            minPrice:price[0],
         }
-    } 
-    
-    render(){
-        return(
-            <div>
-            <label htmlFor="price">Price</label>
-            <input type="range" id="price"></input>
-            </div>
-        )     
+        this.setState(({ filterBy: { price: newPrice }}),
+            () => {
+                this.props.onSetFilter(this.state.filterBy)
+            })
+    }
+
+    render() {
+        const { isPrice } = this.state
+
+        return (
+            // <div>
+            // <label htmlFor="price">Price</label>
+            // <input type="range" id="price"></input>
+            // </div>
+            <section className="filter-container">
+                <div>
+                    <button onClick={this.toggelPriceFilter}>Price</button>
+                    {isPrice && <PriceFilter onSavePrice={this.onSavePrice} />}
+                </div>
+            </section>
+
+        )
     }
 }
 
@@ -26,6 +55,7 @@ function mapStateToProps(state) {
     }
 }
 const mapDispatchToProps = {
+    onSetFilter
 }
 
-export const StayFilter = connect(mapStateToProps)(_StayFilter)
+export const StayFilter = connect(mapStateToProps, mapDispatchToProps)(_StayFilter)

@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 class _StayPreview extends React.Component{
     render(){
         const {stay} = this.props
-        console.log('Stay :',stay);
         return(
             <div className="stay-contuiner">
                 <div className="primary-image">

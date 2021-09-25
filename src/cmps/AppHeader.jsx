@@ -10,7 +10,6 @@ import { SearchBar } from "./SearchBar";
 export function AppHeader() {
     return (
         <>
-
             <header className="header-container main-container">
                 <div className="header-func flex">
                     <div className="logo-container flex align-center">
@@ -24,7 +23,7 @@ export function AppHeader() {
                         <button>=</button>
                     </div>
                 </div>
-                <SearchBar />
+                {/* <SearchBar /> */}
             </header>
         </>
     )

@@ -1,9 +1,8 @@
 .main-container {
   display: grid;
   column-gap: 1.6rem;
-  grid-template-columns: 0px 1fr 0px;
+  grid-template-columns: 1fr;
 
-  
   > * {
     grid-column: 2;
   }
@@ -14,23 +13,23 @@
 
   @include for-narrow-layout {
     grid-template-columns:
-      1fr
+      minmax(2rem, 1fr)
       minmax(auto, $mobile-breakpoint)
-      1fr;
+      minmax(2rem, 1fr);
   }
 
   @include for-normal-layout {
     grid-template-columns:
-      1fr
+      minmax(2rem, 1fr)
       minmax(auto, $narrow-breakpoint)
-      1fr;
+      minmax(2rem, 1fr);
   }
 
   @include for-wide-layout {
     grid-template-columns:
-      1fr
-      minmax(auto, $normal-breakpoint)
-      1fr;
+      minmax(2rem, 1fr)
+      minmax(auto, 1500px)
+      minmax(2rem, 1fr);
   }
 }
 

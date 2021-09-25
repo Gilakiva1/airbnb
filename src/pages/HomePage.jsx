@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from 'react-redux'
-import { SearchBar } from "../cmps/SearchBar.jsx";
 import { loadStays } from '../store/stay.action'
 class _HomePage extends React.Component {
 
@@ -13,7 +12,6 @@ class _HomePage extends React.Component {
         return (
             <section>
             <div>HomePage</div>
-            <div><SearchBar/></div>
             </section>
         )
     }

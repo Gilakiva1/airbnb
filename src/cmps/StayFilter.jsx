@@ -1,8 +1,5 @@
-// import noUiSlider from 'nouislider';
 import { connect } from 'react-redux'
-// import Nouislider from "nouislider-react";
-import Box from '@mui/material/Box';
-import Slider from '@mui/material/Slider';
+import Nouislider from "nouislider-react";
 import {Component} from 'react'
 class _StayFilter extends Component{
 
@@ -11,39 +8,17 @@ class _StayFilter extends Component{
             minPrice:'',
             maxPrice:''
         }
-    }
- 
+    } 
     
-
     render(){
-
         return(
-            <Box sx={{ width: 300 }}>
-            <Slider
-              getAriaLabel={() => 'Minimum distance'}
-              value={value1}
-              onChange={handleChange1}
-              valueLabelDisplay="auto"
-              getAriaValueText={valuetext}
-              disableSwap
-            />
-            <Slider
-              getAriaLabel={() => 'Minimum distance shift'}
-              value={value2}
-              onChange={handleChange2}
-              valueLabelDisplay="auto"
-              getAriaValueText={valuetext}
-              disableSwap
-            />
-          </Box>
-        )
-            
-        
+            <div>
+            <label htmlFor="price">Price</label>
+            <input type="range" id="price"></input>
+            </div>
+        )     
     }
 }
-
-
-
 
 function mapStateToProps(state) {
     return {
@@ -51,8 +26,6 @@ function mapStateToProps(state) {
     }
 }
 const mapDispatchToProps = {
-    
 }
-
 
 export const StayFilter = connect(mapStateToProps)(_StayFilter)

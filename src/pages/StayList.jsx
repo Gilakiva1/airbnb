@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { StayPreview } from '../cmps/StayPreview.jsx'
 import {StayFilter} from '../cmps/StayFilter.jsx'
 import { loadStays } from '../store/stay.action.js'
+import MinimumDistanceSlider from '../cmps/try.jsx'
 class _StayList extends React.Component {
 
     state = {}
@@ -21,7 +22,7 @@ class _StayList extends React.Component {
 
         return (
            <div>
-               <StayFilter/>
+               <MinimumDistanceSlider/>
 
                {stays.map((stay,idx) =><StayPreview key={idx} stay={stay} />)}
            </div>

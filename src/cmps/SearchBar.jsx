@@ -4,7 +4,6 @@ import { Component } from 'react'
 
 export class SearchBar extends Component {
 
-
   state = {
     criteria: {
       location: '',

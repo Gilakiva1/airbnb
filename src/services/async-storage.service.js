@@ -88,33 +88,34 @@ function postMany(entityType, newEntities) {
 }
 
 const dummyData = [{
-        _id: 10006546,
-        name: ' Ribeira Charming Duplex',
-        imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'otherImg.jpg'],
-        price: 80.00,
-        summary: ' Fantastic duplex apartment with three bedrooms, located in the historic area of Porto, Ribeira (Cube)...',
-        type: 'apretment',
-        capacity: 8,
-        amenities: [
-            'TV',
-            'Wifi',
-            'Kitchen',
-            'Smoking allowed',
-            'Pets allowed',
-            'Cooking basics'
-        ],
-        tags: [ // the tags will contain a key word which the front will use to render the full tags to the stay
-            'entire ($type of stay) to yourself',
-            'enhanced clean',
-            'self check-in',
-            'free cancellation up to 48 hours before check-in',
-        ],
-        host: {
-            _id: 51399391,
-            fullname: ' Davit Pok',
-            imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
-        },
-        avelability: [{
+    _id: 10006546,
+    name: ' Ribeira Charming Duplex',
+    imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'otherImg.jpg'],
+    price: 80.00,
+    summary: ' Fantastic duplex apartment with three bedrooms, located in the historic area of Porto, Ribeira (Cube)...',
+    type: 'apretment',
+    capacity: 8,
+    amenities: [
+        'TV',
+        'Wifi',
+        'Kitchen',
+        'Smoking allowed',
+        'Pets allowed',
+        'Cooking basics'
+    ],
+    tags: [ // the tags will contain a key word which the front will use to render the full tags to the stay
+        'entire ($type of stay) to yourself',
+        'enhanced clean',
+        'self check-in',
+        'free cancellation up to 48 hours before check-in',
+    ],
+    host: {
+        _id: 51399391,
+        fullname: ' Davit Pok',
+        imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
+    },
+    avelability: [
+        {
             _id: 'u101',
             'check-in': '21.04.2021',
             'check-out': ' 25.04.2021'

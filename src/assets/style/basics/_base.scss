@@ -8,8 +8,8 @@
 }
 
 html {
-  font-family: montserrat, sans-serif;
-  line-height: 1.75;
+  font-family: airbnb-cereal-book, sans-serif;
+  line-height: rem(18px);
   color: $clr2;
 }
 
@@ -33,10 +33,7 @@ img {
   h4,
   h5,
   h6 {
-    font-weight: 400;
-    font-family: caveat, serif;
-    text-transform: uppercase;
-    font-size: 1rem;
+    font-size: rem(14px);
     margin: 0;
   }
 

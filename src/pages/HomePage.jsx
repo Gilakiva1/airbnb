@@ -94,7 +94,6 @@ class _HomePage extends React.Component {
                 <Link to='/host'><img className="host-img" alt="" src={imgHost} /></Link>
             </section>
         </>
-
     }
 }
 

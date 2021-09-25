@@ -10,7 +10,6 @@ export const storageService = {
 function query(entityType, filterBy) {
     
     var entities = JSON.parse(localStorage.getItem(entityType)) || dummyData
-<<<<<<< HEAD
     if (!filterBy.price) {
         return new Promise((resolve, reject) => {
             resolve(entities)
@@ -24,12 +23,6 @@ function query(entityType, filterBy) {
         })
     }
     // re
-=======
-    return new Promise((resolve, reject) => {
-        resolve(entities)
-    })
-    // return Promise.resolve(entities)
->>>>>>> 1dbae5611361d635e6170bf65d4cb6a5960a129e
 }
 
 
@@ -84,14 +77,10 @@ function _makeId(length = 5) {
 function postMany(entityType, newEntities) {
     return query(entityType)
         .then(entities => {
-<<<<<<< HEAD
             newEntities = newEntities.map(entity => ({
                 ...entity,
                 _id: _makeId()
             }))
-=======
-            newEntities = newEntities.map(entity => ({ ...entity, _id: _makeId() }))
->>>>>>> 1dbae5611361d635e6170bf65d4cb6a5960a129e
             entities.push(...newEntities)
             _save(entityType, entities)
             return entities
@@ -99,35 +88,6 @@ function postMany(entityType, newEntities) {
 }
 
 const dummyData = [{
-<<<<<<< HEAD
-        _id: 10006546,
-        name: ' Ribeira Charming Duplex',
-        imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'otherImg.jpg'],
-        price: 80.00,
-        summary: ' Fantastic duplex apartment with three bedrooms, located in the historic area of Porto, Ribeira (Cube)...',
-        type: 'apretment',
-        capacity: 8,
-        amenities: [
-            'TV',
-            'Wifi',
-            'Kitchen',
-            'Smoking allowed',
-            'Pets allowed',
-            'Cooking basics'
-        ],
-        tags: [ // the tags will contain a key word which the front will use to render the full tags to the stay
-            'entire ($type of stay) to yourself',
-            'enhanced clean',
-            'self check-in',
-            'free cancellation up to 48 hours before check-in',
-        ],
-        host: {
-            _id: 51399391,
-            fullname: ' Davit Pok',
-            imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
-        },
-        avelability: [{
-=======
     _id: 10006546,
     name: ' Ribeira Charming Duplex',
     imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'otherImg.jpg'],
@@ -156,7 +116,6 @@ const dummyData = [{
     },
     avelability: [
         {
->>>>>>> 1dbae5611361d635e6170bf65d4cb6a5960a129e
             _id: 'u101',
             'check-in': '21.04.2021',
             'check-out': ' 25.04.2021'
@@ -282,11 +241,6 @@ const dummyData = [{
                 imgUrl: '/img/img2.jpg'
             },
             date: 'May 2015'
-<<<<<<< HEAD
-        }],
-        likedByUserIds: ['u101', 'u102']
-    }
-=======
         }
     ],
     likedByUserIds: ['u101', 'u102']
@@ -574,5 +528,4 @@ const dummyData = [{
 
 }
 
->>>>>>> 1dbae5611361d635e6170bf65d4cb6a5960a129e
 ]

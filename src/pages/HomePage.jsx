@@ -40,11 +40,8 @@ class _HomePage extends React.Component {
                     <Link to='/stay/madrid'><img className="destination link-3" src={imgMadrid} alt="" /></Link>
                     <Link to='/stay/london'><img className="destination link-4" src={imgLondon} alt="" /></Link>
                 </div>
-
-
             </section>
         </>
-
     }
 }
 

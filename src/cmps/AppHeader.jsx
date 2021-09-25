@@ -8,6 +8,7 @@ import { SearchBar } from "./SearchBar";
 
 
 export function AppHeader() {
+   
     return (
         <>
             <img className="hero-logo full" src={HeroLogo} />
@@ -17,16 +18,15 @@ export function AppHeader() {
                         <img className="logo-img" src={ReactLogo} alt="" />
                         <h3>Airbnb</h3>
                     </div>
-                    <input className='header-search' type="search" />
+                    <div><SearchBar /></div>
                     <div className="nav-header">
 
                         <NavLink to={`/`} >Become a host</NavLink>
                         <button>=</button>
                     </div>
-            </div>
-        </header>
-        <div><SearchBar/></div>
-        <div className="main-container">
+                </div>
+            </header>
+            <div className="main-container">
 
             </div>
 

@@ -5,24 +5,33 @@
     }
 }
 .home-page {
-    .stay-list.home {
+    .popular-img {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: repeat(2, 1fr);
+        row-gap: rem(20px);
+        margin-block-end: rem(70px);
+
         .stay-container {
             margin-inline-start: 0.625rem;
         }
-        .popular-img {
+
+        .popular {
             width: 4rem;
             height: 4rem;
+            border-radius: rem(5px);
         }
+        .popular-txt {
+            margin-inline-start: rem(10px);
+        }
+
         @include for-wide-layout {
             grid-template-columns: repeat(4, 1fr);
             grid-template-rows: repeat(2, 1fr);
         }
     }
     .title-popular {
-        margin-block-end: 1.875rem;
+        margin-block-end: rem(70px);
     }
     .title-explore {
         margin-block-end: 1.875rem;
@@ -31,5 +40,14 @@
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         column-gap: 10px;
+        margin-block-end: rem(80px);
     }
+    .host-img {
+        height: rem(480px);
+        border-radius: 5px;
+    }
+}
+a {
+    text-decoration: none;
+    color: black;
 }

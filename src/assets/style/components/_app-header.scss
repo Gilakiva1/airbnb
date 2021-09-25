@@ -1,0 +1,40 @@
+.header-container {
+  position: fixed;
+  height: 80px;
+  top: 0;
+  width: 100%;
+
+  .header-func {
+    display: flex;
+    justify-content: space-between;
+    margin-block-start: 15px;
+
+    a {
+      color: white;
+    }
+
+    .link-host {
+      text-decoration: none;
+      margin-inline-end: 5px;
+    }
+
+    .nav-header {
+      &:last-child() {
+        margin-left: 10px;
+      }
+    }
+
+    .logo-img {
+      width: 2.1875rem;
+      height: 2.1875rem;
+    }
+    .logo-container {
+      color: white;
+    }
+
+    .header-search {
+      height: 40px;
+      visibility: hidden;
+    }
+  }
+}

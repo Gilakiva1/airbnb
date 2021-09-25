@@ -1,5 +1,6 @@
 import { HomePage } from './pages/HomePage';
 import { StayList } from './pages/StayList';
+
 const routes = [
   {
     path: '/',

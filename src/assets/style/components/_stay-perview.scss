@@ -1,6 +1,8 @@
-.stay-contuiner{
+.stay-container{
     display: flex;
     gap:10px;
+    margin-top: 100px;
+    margin: 28px 0;
     .primary-image{
       
         & img{
@@ -11,4 +13,17 @@
           
         }
     }
+    h1 {
+        font-size: rem(18px);
+        line-height:rem(24px);
+        margin-bottom:rem(10px);
+    }
+    h2 {
+        color:$clr1
+    }
+}
+
+.stay-list{
+    margin-top: 100px;
+    padding: 20px;
 }

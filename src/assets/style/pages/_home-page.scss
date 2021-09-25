@@ -1,12 +1,35 @@
-.home-page {
-    .img-logo {
+.hero-logo {
+    margin-block-end: 2.5rem;
+    & > {
         max-height: 86vh;
     }
+}
+.home-page {
     .stay-list.home {
-        display: flex;
-        .stay-container{
-            margin-inline-start: 10px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        .stay-container {
+            margin-inline-start: 0.625rem;
         }
-
+        .popular-img {
+            width: 4rem;
+            height: 4rem;
+        }
+        @include for-wide-layout {
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+        }
+    }
+    .title-popular {
+        margin-block-end: 1.875rem;
+    }
+    .title-explore {
+        margin-block-end: 1.875rem;
+    }
+    .destinations-img {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        column-gap: 10px;
     }
 }

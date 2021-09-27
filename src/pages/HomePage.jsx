@@ -3,20 +3,19 @@ import { connect } from 'react-redux';
 // import { withRouter } from 'react-router';
 import { Link } from "react-router-dom";
 import { loadStays } from '../store/stay.action'
-import HeroLogo from '../assets/img/hero.png';
-import imgTelAviv from '../assets/img/img-home/tel-aviv-yafo.jpg'
-import imgLondon from '../assets/img/img-home/london.jpg'
-import imgParis from '../assets/img/img-home/paris.jpg'
-import imgAmsterdam from '../assets/img/img-home/amsterdam.jpg'
-import imgDubai from '../assets/img/img-home/dubai.jpg'
-import imgNewYork from '../assets/img/img-home/new york.jpg'
-import imgHongKong from '../assets/img/img-home/hong kong.jpg'
-import imgBangkok from '../assets/img/img-home/bangkok.jpg'
-import imgOutdoor from '../assets/img/img-home/outdoor.jpg'
-import imgPets from '../assets/img/img-home/pets.jpg'
-import imgUnique from '../assets/img/img-home/unique.jpg'
-import imgHome from '../assets/img/img-home/home.jpg'
-import imgHost from '../assets/img/img-home/host.jpg'
+import imgTelAviv from '../assets/img/home-page/tel-aviv-yafo.jpg'
+import imgLondon from '../assets/img/home-page/london.jpg'
+import imgParis from '../assets/img/home-page/paris.jpg'
+import imgAmsterdam from '../assets/img/home-page/amsterdam.jpg'
+import imgDubai from '../assets/img/home-page/dubai.jpg'
+import imgNewYork from '../assets/img/home-page/new york.jpg'
+import imgHongKong from '../assets/img/home-page/hong kong.jpg'
+import imgBangkok from '../assets/img/home-page/bangkok.jpg'
+import imgOutdoor from '../assets/img/home-page/outdoor.jpg'
+import imgPets from '../assets/img/home-page/pets.jpg'
+import imgUnique from '../assets/img/home-page/unique.jpg'
+import imgHome from '../assets/img/home-page/home.jpg'
+import imgHost from '../assets/img/home-page/host.jpg'
 import { PopularImgList } from "../cmps/home-page/PopularImgList";
 import { LabelsImgList } from "../cmps/home-page/LabelsImgList"
 
@@ -53,9 +52,9 @@ class _HomePage extends React.Component {
         return <>
             <div className="hero-logo full"></div>
             <section className="home-page">
-                <h1 className="title-popular">Popular Destinations</h1>
+                <h1 className="title-popular fs30">Popular Destinations</h1>
                 <PopularImgList links={this.onSetPopularDestinations()} />
-                <h1 className="title-labels">Live Anywhere</h1>
+                <h1 className="title-labels ">Live Anywhere</h1>
                 <LabelsImgList links={this.onSetLabelsDestinations()} />
                 <Link to='/host'>
                     <div className="host-container ">

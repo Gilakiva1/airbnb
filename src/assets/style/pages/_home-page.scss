@@ -3,13 +3,10 @@
     height: 86vh;
     background-size: cover;
     background-position-y: bottom;
-    background-image: url(../../img/hero.png);
+    background-image: url(../../img/home-page/hero.png);
 }
 
 .home-page {
-    h1 {
-        font-size: rem(32px);
-    }
     .title-popular {
         margin-block-end: rem(30px);
     }
@@ -31,9 +28,6 @@
         .popular-txt {
             margin-inline-start: rem(10px);
             line-height: rem(24px);
-            .city {
-                font-size: 20px;
-            }
             .country {
                 font-weight: 500;
             }
@@ -74,7 +68,6 @@
             .info-first {
                 font-size: rem(48px);
                 line-height: 4.875rem;
-
             }
             .info-secdone {
                 line-height: rem(15px);
@@ -86,9 +79,6 @@
             align-self: flex-start;
             font-weight: 700;
         }
-    }
-
-    .img-host-container {
     }
 }
 a {

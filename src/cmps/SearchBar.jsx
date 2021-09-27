@@ -29,28 +29,25 @@ export class _SearchBar extends React.Component {
   }
 
   componentDidMount() {
-    window.addEventListener('click', () => {
-      let { isPickingGuests } = this.state
-      isPickingGuests = false
-      this.setState({ isPickingGuests })
-    });
+    window.addEventListener('click', this.setIsPickingGuests)
 
   }
+
   componentWillUnmount() {
-    window.removeEventListener('click', () => {
-      let { isPickingGuests } = this.state
-      isPickingGuests = false
-      this.setState({ isPickingGuests })
-    });
-
+    window.removeEventListener('click', this.setIsPickingGuests)
   }
 
+  setIsPickingGuests = () => {
+    let { isPickingGuests } = this.state
+    isPickingGuests = false
+    this.setState({ isPickingGuests })
+  };
 
   handleChange = (ev) => {
     const { criteria } = this.state
     const field = ev.target.name
     const value = ev.target.value
-    console.log('field',field,'value',value);
+    console.log('field', field, 'value', value);
     this.setState({ criteria: { ...criteria, [field]: value } })
   }
 
@@ -66,11 +63,11 @@ export class _SearchBar extends React.Component {
   }
 
 
-   onSubmit = async (ev) => {
-     const {criteria} = this.state
+  onSubmit = async (ev) => {
+    const { criteria } = this.state
     ev.preventDefault()
-   await this.props.onSetFilter(criteria)
-    const query = `location=${criteria.location}&guests=${criteria.guests.adult+criteria.guests.child+criteria.guests.infant}`
+    await this.props.onSetFilter(criteria)
+    const query = `location=${criteria.location}&guests=${criteria.guests.adult + criteria.guests.child + criteria.guests.infant}`
     this.props.history.push(`/stay?${query}`)
   }
 
@@ -92,8 +89,8 @@ export class _SearchBar extends React.Component {
 
   closeInputs = () => {
     let { isPickingGuests } = this.state
-      isPickingGuests = false
-      this.setState({ isPickingGuests })
+    isPickingGuests = false
+    this.setState({ isPickingGuests })
   }
 
   // datePickerOn =() => {
@@ -112,60 +109,60 @@ export class _SearchBar extends React.Component {
     const { isPickingGuests } = this.state
     return (
       <section className="flex column">
-      <form className="search-bar-container flex" onClick={this.preventPropagation} onSubmit={this.onSubmit}>
-        <div className="input-container flex column">
-          <span>Location:</span>
-          <input
-            type="search"
-            placeholder="Where are you going?"
-            name="location"
-            style={{ border: 'none' }}
-            onChange={this.handleChange}
-            onClick={this.closeInputs}
-          />
-        </div>
-        <div className="input-container flex column">
-          <span>Check in:</span>
-          <input
-            type="date"
-            placeholder="Add dates"
-            name="checkIn"
-            style={{ border: 'none' }}
-            onChange={this.handleChange}
-            onClick={this.closeInputs}
-          // onFocus={this.datePickerOn} 
-          // onBlur={this.datePickerOff}
-          />
-          {/* {isPickingDate && <ReduxForm/>} */}
-        </div>
-        <div className="input-container flex column">
-          <span>Check out:</span>
-          <input
-            type="date"
-            placeholder="Add dates"
-            name="checkOut"
-            style={{ border: 'none' }}
-            onChange={this.handleChange}
-            onClick={this.closeInputs}
-          />
-        </div>
-        <div className="input-container flex column">
-          <span>Guests:</span>
-          <input
-            type="search"
-            placeholder="Add guests"
-            name="guests"
-            placeholder={'guests:' + this.getTotalGuests()}
-            style={{ border: 'none' }}
-            onKeyPress={this.handleKeyPress}
-            onChange={this.handleChange}
-            onClick={() => this.activeInput('guest')}
-          />
-        </div>
-        <button className="search-bar-submit flex">{<FontAwesomeIcon className='search-icon' icon={faSearch} />}</button>
-      </form>
-         <div className="picking-guest-container"> {isPickingGuests && <GuestsPicking handleGuestsChanege={this.handleGuestsChanege} />} </div>
-          </section>
+        <form className="search-bar-container flex" onClick={this.preventPropagation} onSubmit={this.onSubmit}>
+          <div className="input-container flex column">
+            <span>Location:</span>
+            <input
+              type="search"
+              placeholder="Where are you going?"
+              name="location"
+              style={{ border: 'none' }}
+              onChange={this.handleChange}
+              onClick={this.closeInputs}
+            />
+          </div>
+          <div className="input-container flex column">
+            <span>Check in:</span>
+            <input
+              type="date"
+              placeholder="Add dates"
+              name="checkIn"
+              style={{ border: 'none' }}
+              onChange={this.handleChange}
+              onClick={this.closeInputs}
+            // onFocus={this.datePickerOn} 
+            // onBlur={this.datePickerOff}
+            />
+            {/* {isPickingDate && <ReduxForm/>} */}
+          </div>
+          <div className="input-container flex column">
+            <span>Check out:</span>
+            <input
+              type="date"
+              placeholder="Add dates"
+              name="checkOut"
+              style={{ border: 'none' }}
+              onChange={this.handleChange}
+              onClick={this.closeInputs}
+            />
+          </div>
+          <div className="input-container flex column">
+            <span>Guests:</span>
+            <input
+              type="search"
+              placeholder="Add guests"
+              name="guests"
+              placeholder={'guests:' + this.getTotalGuests()}
+              style={{ border: 'none' }}
+              onKeyPress={this.handleKeyPress}
+              onChange={this.handleChange}
+              onClick={() => this.activeInput('guest')}
+            />
+          </div>
+          <button className="search-bar-submit flex">{<FontAwesomeIcon className='search-icon' icon={faSearch} />}</button>
+        </form>
+        <div className="picking-guest-container"> {isPickingGuests && <GuestsPicking handleGuestsChanege={this.handleGuestsChanege} />} </div>
+      </section>
     )
   }
 }

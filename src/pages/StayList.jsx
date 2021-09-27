@@ -10,19 +10,20 @@ class _StayList extends React.Component {
 
     state = {}
 
-    componentDidMount(){
+    componentDidMount() {
         this.props.loadStays()
     }
+    
     render() {
         const { stays } = this.props
-        if(!stays) return <div>loading...</div>
+        if (!stays) return <div>loading...</div>
 
         return (
-          
-           <div className="stay-list full">
-               <StayFilter/>
-               {stays.map((stay,idx) =><StayPreview key={stay._id} stay={stay} />)}
-           </div>
+
+            <div className="stay-list full">
+                <StayFilter />
+                {stays.map((stay, idx) => <StayPreview key={stay._id} stay={stay} />)}
+            </div>
         )
     }
 }

@@ -29,14 +29,14 @@ class _HomePage extends React.Component {
     }
     onSetPopularDestinations = () => {
         return [
-            { city: 'tel-aviv', country: 'Israel', img: imgTelAviv, },
-            { city: 'london', country: 'England', img: imgLondon },
-            { city: 'bangkok', country: 'Thailand', img: imgBangkok },
-            { city: 'paris', country: 'France', img: imgParis },
-            { city: 'dubai', country: 'United Arab Emirates', img: imgDubai },
-            { city: 'new-york', country: 'United States of America', img: imgNewYork },
-            { city: 'amsterdam', country: 'Netherlands', img: imgAmsterdam },
-            { city: 'hong-kong', country: 'China', img: imgHongKong }
+            { city: 'Tel-aviv', country: 'Israel', img: imgTelAviv, },
+            { city: 'London', country: 'England', img: imgLondon },
+            { city: 'Bangkok', country: 'Thailand', img: imgBangkok },
+            { city: 'Paris', country: 'France', img: imgParis },
+            { city: 'Dubai', country: 'United Arab Emirates', img: imgDubai },
+            { city: 'New-york', country: 'United States of America', img: imgNewYork },
+            { city: 'Amsterdam', country: 'Netherlands', img: imgAmsterdam },
+            { city: 'Hong-kong', country: 'China', img: imgHongKong }
         ]
     }
     onSetLabelsDestinations = () => {
@@ -51,9 +51,7 @@ class _HomePage extends React.Component {
     render() {
 
         return <>
-            <div className="hero-logo full">
-                {/* <img className="img-logo" src={HeroLogo} alt="" /> */}
-            </div>
+            <div className="hero-logo full"></div>
             <section className="home-page">
                 <h1 className="title-popular">Popular Destinations</h1>
                 <PopularImgList links={this.onSetPopularDestinations()} />
@@ -63,8 +61,8 @@ class _HomePage extends React.Component {
                     <div className="host-container ">
                         <img className="round-edge" src={imgHost} />
                         <div className="host-info flex column justify-center align-center  ">
-                            <h1 className="info-first wide">Try Hosting</h1>
-                            <span className="info-seconde">Earn extra income and unlock new opportunities by sharing your space.</span>
+                            <h1 className="info-first wide">Try hosting</h1>
+                            <p className="info-seconde">Earn extra income and unlock new opportunities by sharing your space.</p>
                             <button className="host-btn flex round-edge">Learn more</button>
                         </div>
                     </div>

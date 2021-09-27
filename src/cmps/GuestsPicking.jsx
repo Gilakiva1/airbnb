@@ -8,7 +8,8 @@ export class GuestsPicking extends React.Component {
         infant: 0
     }
 
-    updateCount = (action) => {
+    updateCount = (ev,action) => {
+        ev.stopPropagation()
         let { adult, child, infant } = this.state
         let field
         let value
@@ -57,19 +58,22 @@ export class GuestsPicking extends React.Component {
         this.props.handleGuestsChanege(field,value)
     }
 
+    preventPropagation = event => {
+        event.stopPropagation()
+      }
     render() {
         const { adult, child, infant } = this.state
         return (
-            <section className="guests-container flex column">
+            <section className="guests-container flex column" onClick={this.preventPropagation} >
                 <div className="guest-card flex">
                     <div className="flex column">
                         <span>Adults:</span>
                         Aged 13 or above
                     </div>
                     <div className="counter-container flex">
-                        <button onClick={() => this.updateCount('subtract adult')} className={adult === 0 ? "btn-counter fade" : "btn-counter"}>-</button>
+                        <button onClick={(event) => this.updateCount(event,'subtract adult')} className={adult === 0 ? "btn-counter fade" : "btn-counter"}>-</button>
                         <span>{adult}</span>
-                        <button onClick={() => this.updateCount('add adult')} className="btn-counter">+</button>
+                        <button onClick={(event) => this.updateCount(event,'add adult')} className="btn-counter">+</button>
                     </div>
                 </div>
                 <div className="guest-card flex">
@@ -78,9 +82,9 @@ export class GuestsPicking extends React.Component {
                         Ages 2-12
                     </div>
                     <div className="counter-container flex">
-                        <button onClick={() => this.updateCount('subtract child')} className={child === 0 ? "btn-counter fade" : "btn-counter"}>-</button>
+                        <button onClick={(event) => this.updateCount(event,'subtract child')} className={child === 0 ? "btn-counter fade" : "btn-counter"}>-</button>
                         <span>{child}</span>
-                        <button onClick={() => this.updateCount('add child')} className="btn-counter">+</button>
+                        <button onClick={(event) => this.updateCount(event,'add child')} className="btn-counter">+</button>
                     </div>
                 </div>
                 <div className="guest-card flex">
@@ -89,9 +93,9 @@ export class GuestsPicking extends React.Component {
                         Under 2
                     </div>
                     <div className="counter-container flex">
-                        <button onClick={() => this.updateCount('subtract infant')} className={infant === 0 ? "btn-counter fade" : "btn-counter"}>-</button>
+                        <button onClick={(event) => this.updateCount(event,'subtract infant')} className={infant === 0 ? "btn-counter fade" : "btn-counter"}>-</button>
                         <span>{infant}</span>
-                        <button onClick={() => this.updateCount('add infant')} className="btn-counter">+</button>
+                        <button onClick={(event) => this.updateCount(event,'add infant')} className="btn-counter">+</button>
                     </div>
                 </div>
             </section>

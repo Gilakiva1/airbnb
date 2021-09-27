@@ -1,6 +1,6 @@
 import React from "react";
 import { Switch, Route } from 'react-router-dom';
-import { AppHeader } from "./cmps/AppHeader";
+import { AppHeader } from "./cmps/header/AppHeader";
 import { AppFooter } from "./cmps/AppFooter";
 import routes from './routes.js'
 import './assets/style/style.scss'

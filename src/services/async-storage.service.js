@@ -158,6 +158,7 @@ const dummyData = [{
         },
         date: ' May 2015'
     }],
+    rating: '4.8',
     likedByUserIds: ['u101', 'u102']
 },
 {
@@ -199,6 +200,7 @@ const dummyData = [{
         lat: 39.466667,
         lng: -0.375000
     },
+    rating: '4.6',
     reviews: [{
         id: 'madeId1',
         txt: ' Very helpful hosts. Cooked traditional...',
@@ -263,6 +265,7 @@ const dummyData = [{
         date: 'May 2015'
     }
     ],
+    rating: '3.5',
     likedByUserIds: ['u101', 'u102']
 },
 {
@@ -319,6 +322,7 @@ const dummyData = [{
             date: 'May 2015'
         }
     ],
+    rating: '3.9',
     likedByUserIds: ['u101', 'u102']
 
 },
@@ -376,6 +380,7 @@ const dummyData = [{
             date: 'May 2015'
         }
     ],
+    rating: '4.4',
     likedByUserIds: ['u101', 'u102']
 
 },
@@ -433,6 +438,7 @@ const dummyData = [{
             date: 'May 2015'
         }
     ],
+    rating: '2',
     likedByUserIds: ['u101', 'u102']
 },
 {
@@ -489,6 +495,7 @@ const dummyData = [{
             date: ' May 2015'
         }
     ],
+    rating: '4',
     likedByUserIds: ['u101', 'u102']
 }, {
     _id: 100065299,
@@ -544,6 +551,7 @@ const dummyData = [{
             date: ' May 2015'
         }
     ],
+    rating: '4',
     likedByUserIds: ['u101', 'u102']
 
 }

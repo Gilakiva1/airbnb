@@ -2,7 +2,7 @@
 
 import { NavLink } from "react-router-dom";
 
-import { ReactComponent as AirbnbLogo } from '../assets/img/airbnb_logo.svg';
+import { ReactComponent as AirbnbLogo } from '../../assets/img/airbnb_logo.svg';
 import { SearchBar } from "./SearchBar";
 
 
@@ -20,7 +20,7 @@ export function AppHeader() {
                     <div className="logo-container flex align-center">
 
                         <AirbnbLogo className="logo-img" fill='white' />
-                        <h3>Airbnb</h3>
+                        <h3>Home<span style={{color:" rgb(255, 56, 92);"}}>away</span></h3>
                     </div>
                     <div className="nav-header">
                         <div className="nav-header flex align-center">

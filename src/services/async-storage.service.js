@@ -1,3 +1,5 @@
+
+
 export const storageService = {
     query,
     get,
@@ -102,7 +104,7 @@ function postMany(entityType, newEntities) {
 const dummyData = [{
     _id: '10006546',
     name: ' Ribeira Charming Duplex',
-    imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'otherImg.jpg'],
+    imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large','https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large','https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large','https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large'],
     price: 80.00,
     summary: ' Fantastic duplex apartment with three bedrooms, located in the historic area of Porto, Ribeira (Cube)...',
     type: 'apretment',
@@ -155,7 +157,7 @@ const dummyData = [{
 {
     _id: 192838329,
     name: 'La villa - the best villa in Valencia',
-    imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'otherImg.jpg'],
+    imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large','https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large','https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large','https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large'],
     price: 70.00,
     summary: 'An amazing villa located right by the bitch',
     type: 'Villa',
@@ -207,7 +209,7 @@ const dummyData = [{
 {
     _id: 10006236,
     name: 'New York super apartment',
-    imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'otherImg.jpg'],
+    imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large'],
     price: 80.00,
     summary: 'A big studio apartment, located right by the Times Saquare',
     type: 'apratment',
@@ -260,7 +262,7 @@ const dummyData = [{
 {
     _id: 10006100,
     name: 'New York super apartment',
-    imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'otherImg.jpg'],
+    imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large'],
     price: 80.00,
     summary: 'A big studio apartment, located right by the Times Saquare',
     type: 'apratment',
@@ -317,7 +319,7 @@ const dummyData = [{
 {
     _id: 10006212,
     name: 'New York super apartment',
-    imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'otherImg.jpg'],
+    imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large'],
     price: 80.00,
     summary: 'A big studio apartment, located right by the Times Saquare',
     type: 'apratment',
@@ -374,7 +376,7 @@ const dummyData = [{
 {
     _id: 10006219,
     name: 'New York super apartment',
-    imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'otherImg.jpg'],
+    imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large'],
     price: 80.00,
     summary: 'A big studio apartment, located right by the Times Saquare',
     type: 'apratment',
@@ -430,7 +432,7 @@ const dummyData = [{
 {
     _id: 10006528,
     name: ' Ribeira Charming Duplex',
-    imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'otherImg.jpg'],
+    imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large'],
     price: 80.00,
     summary: ' Fantastic duplex apartment with three bedrooms, located in the historic area of Porto, Ribeira (Cube)...',
     type: 'apretment',
@@ -485,7 +487,7 @@ const dummyData = [{
 }, {
     _id: 100065299,
     name: ' Ribeira Charming Duplex',
-    imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'otherImg.jpg'],
+    imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large'],
     price: 80.00,
     summary: ' Fantastic duplex apartment with three bedrooms, located in the historic area of Porto, Ribeira (Cube)...',
     type: 'apretment',

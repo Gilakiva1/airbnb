@@ -109,7 +109,7 @@ function postMany(entityType, newEntities) {
 
 const dummyData = [{
     _id: '10006546',
-    name: ' Ribeira Charming Duplex',
+    name: 'Ribeira Charming Duplex',
     imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large','https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large','https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large','https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large'],
     price: 80.00,
     summary: ' Fantastic duplex apartment with three bedrooms, located in the historic area of Porto, Ribeira (Cube)...',
@@ -158,6 +158,7 @@ const dummyData = [{
         },
         date: ' May 2015'
     }],
+    rating: '4.8',
     likedByUserIds: ['u101', 'u102']
 },
 {
@@ -199,6 +200,7 @@ const dummyData = [{
         lat: 39.466667,
         lng: -0.375000
     },
+    rating: '4.6',
     reviews: [{
         id: 'madeId1',
         txt: ' Very helpful hosts. Cooked traditional...',
@@ -263,6 +265,7 @@ const dummyData = [{
         date: 'May 2015'
     }
     ],
+    rating: '3.5',
     likedByUserIds: ['u101', 'u102']
 },
 {
@@ -319,6 +322,7 @@ const dummyData = [{
             date: 'May 2015'
         }
     ],
+    rating: '3.9',
     likedByUserIds: ['u101', 'u102']
 
 },
@@ -376,6 +380,7 @@ const dummyData = [{
             date: 'May 2015'
         }
     ],
+    rating: '4.4',
     likedByUserIds: ['u101', 'u102']
 
 },
@@ -433,6 +438,7 @@ const dummyData = [{
             date: 'May 2015'
         }
     ],
+    rating: '2',
     likedByUserIds: ['u101', 'u102']
 },
 {
@@ -489,6 +495,7 @@ const dummyData = [{
             date: ' May 2015'
         }
     ],
+    rating: '4',
     likedByUserIds: ['u101', 'u102']
 }, {
     _id: 100065299,
@@ -544,6 +551,7 @@ const dummyData = [{
             date: ' May 2015'
         }
     ],
+    rating: '4',
     likedByUserIds: ['u101', 'u102']
 
 }

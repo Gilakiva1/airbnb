@@ -7,8 +7,8 @@ import React from 'react'
 // import 'react-dates/lib/css/_datepicker.css';
 import { GuestsPicking } from './GuestsPicking.jsx'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import { onSetFilter } from '../store/stay.action.js'
+import { faSearch, faStar } from '@fortawesome/free-solid-svg-icons'
+import { onSetFilter } from '../../store/stay.action.js'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 

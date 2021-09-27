@@ -18,7 +18,6 @@ export function AppHeader() {
             <header className="header-container main-container">
                 <div className="header-func flex">
                     <div className="logo-container flex align-center">
-
                       <LogoSvg/>
                         <h3>Airbnb</h3>
                     </div>

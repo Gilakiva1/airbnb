@@ -9,12 +9,16 @@ import { SearchBar } from "./SearchBar";
 
 export function AppHeader() {
 
+    const showHomePage = () => {
+        // this.props.
+    }
+
     return (
         <>
             <header className="header-container main-container">
                 <div className="header-func flex">
                     <div className="logo-container flex align-center">
-                        <AirbnbLogo className="logo-img" fill='white' />
+                        <button onClick={showHomePage}><AirbnbLogo className="logo-img" fill='white' /></button>
                         <h3>Airbnb</h3>
                     </div>
                     <div className="nav-header">
@@ -24,11 +28,8 @@ export function AppHeader() {
                         </div>
                     </div>
                 </div>
-                    <div><SearchBar /></div>
+                <div><SearchBar /></div>
             </header>
-            <div className="main-container">
-
-            </div>
 
         </>
     )

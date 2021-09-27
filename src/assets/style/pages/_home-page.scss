@@ -85,7 +85,12 @@ a {
 }
 .hero-logo {
     margin-block-end: 2.5rem;
-    & > {
-        max-height: 86vh;
-    }
+    height: 86vh;
+    background-size: cover;
+    background-position-y: bottom;
+   
+
+    background-image: url(../../img/hero.png);
+    // & img {
+    // }
 }

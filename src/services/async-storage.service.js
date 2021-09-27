@@ -12,6 +12,12 @@ export const storageService = {
 function query(entityType, filterBy) {
 
     var entities = JSON.parse(localStorage.getItem(entityType)) || dummyData
+
+    if(!filterBy) {
+        return new Promise((resolve, reject) => {
+            resolve(entities)
+        })
+    }
     if (filterBy.location) {
         entities = entities.filter(entitie => {
             return entitie.loc.country.toLowerCase() === filterBy.location.toLowerCase()

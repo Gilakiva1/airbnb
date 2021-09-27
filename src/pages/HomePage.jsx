@@ -51,16 +51,18 @@ class _HomePage extends React.Component {
     render() {
 
         return <>
-            <section className="hero-logo full">
-                <img className="img-logo" src={HeroLogo} alt="" />
-            </section>
+            <div className="hero-logo full">
+                {/* <img className="img-logo" src={HeroLogo} alt="" /> */}
+            </div>
             <section className="home-page">
                 <h1 className="title-popular">Popular Destinations</h1>
                 <PopularImgList links={this.onSetPopularDestinations()} />
                 <h1 className="title-labels">Live Anywhere</h1>
                 <LabelsImgList links={this.onSetLabelsDestinations()} />
                 <Link to='/host' className="host-container">
-                    <img className="host-img round-edge" src={imgHost} />
+                    <div className="img-host-container">
+                        <img className="host-img round-edge" src={imgHost} />
+                    </div>
                     <div className="host-info flex column justify-center align-center  ">
                         <h1 className="info-first wide">Try Hosting</h1>
                         <span className="info-seconde">Earn extra income and unlock new opportunities by sharing your space.</span>

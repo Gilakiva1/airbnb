@@ -5,7 +5,7 @@ import Slider from "react-slick";
 
 export default class SimpleSlider extends Component {
     render() {
-        const {stay} = this.props 
+        const { stay } = this.props
         const settings = {
             dots: true,
             infinite: true,
@@ -14,17 +14,13 @@ export default class SimpleSlider extends Component {
             slidesToScroll: 1
         };
         return (
-            <div>
-                <h2> Single Item</h2>
-                <Slider {...settings}>
-                   {stay.imgUrls.map((stayImg,idx) => {
-                       console.log('stayImg',stayImg);
-                       <div key={idx}>
-                       <img src={stayImg}/>
-                       </div>
-                   })}
-                </Slider>
-            </div>
+            <Slider {...settings}>
+                {stay.imgUrls.map((stayImg, idx) => (
+                    <div key={idx}>
+                        <img src={stayImg} />
+                    </div>
+                ))}
+            </Slider>
         );
     }
 }

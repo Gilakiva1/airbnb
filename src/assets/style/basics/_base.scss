@@ -9,8 +9,6 @@
 
 html {
   font-family: airbnb-cereal-book, sans-serif;
-  line-height: rem(18px);
-  color: $clr2;
 }
 
 body {
@@ -25,19 +23,30 @@ img {
   object-fit: cover;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: rem(14px);
+  margin: 0;
+}
 
+p {
+  margin: 0 0 2rem;
+  max-width: 46ch;
+}
+li {
+  text-decoration: none;
+}
+ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+button{
+  cursor: pointer;
+  font-family: 'airbnb-cereal-book';
+}
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-size: rem(14px);
-    margin: 0;
-  }
-
-  p {
-    margin: 0 0 2rem;
-    max-width: 46ch;
-  }

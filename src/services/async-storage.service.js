@@ -12,25 +12,31 @@ export const storageService = {
 function query(entityType, filterBy) {
 
     var entities = JSON.parse(localStorage.getItem(entityType)) || dummyData
-    if (!filterBy) {
-        return new Promise((resolve, reject) => {
-            resolve(entities)
+    if (filterBy.location) {
+        entities = entities.filter(entitie => {
+            return entitie.loc.country.toLowerCase() === filterBy.location.toLowerCase()
         })
-    } else {
     }
-    if (!filterBy.price) {
-        return new Promise((resolve, reject) => {
-            resolve(entities)
+    // if (filterBy.checkIn) {
+    //     entities = entities.filter(entitie => {
+    //        if (entitie.avelability.forEach(order=>{
+    //         if (order)
+    //        })) return entitiy
+    //     })
+    // }
+    if (filterBy.guests) {
+        entities = entities.filter(entitie => {
+            return entitie.capacity >= filterBy.guests.adult + filterBy.guests.child + filterBy.guests.infant
         })
-    } else {
-        const result = entities.filter(entitie => {
+    }
+    if (filterBy.price) {
+        entities = entities.filter(entitie => {
             return entitie.price >= filterBy.price.minPrice && entitie.price <= filterBy.price.maxPrice
         })
-        return new Promise((resolve, reject) => {
-            resolve(result)
-        })
     }
-    // re
+    return new Promise((resolve, reject) => {
+        resolve(entities)
+    })
 }
 
 
@@ -125,8 +131,8 @@ const dummyData = [{
     avelability: [
         {
             _id: 'u101',
-            'check-in': '21.04.2021',
-            'check-out': ' 25.04.2021'
+            checkIn: '21.04.2021',
+            checkOut: ' 25.04.2021'
         }],
     loc: {
         country: 'Portugal',
@@ -177,8 +183,8 @@ const dummyData = [{
     },
     avelability: [{
         _id: 'u101',
-        'check-in': '21.05.2021',
-        'check-out': ' 25.05.2021'
+        checkIn: '21.05.2021',
+        checkOut: ' 25.05.2021'
     }],
     loc: {
         country: 'Spain',
@@ -229,8 +235,8 @@ const dummyData = [{
     },
     avelability: [{
         _id: 'u101',
-        'check-in': '21.03.2021',
-        'check-out': ' 25.03.2021'
+        checkIn: '21.03.2021',
+        checkOut: ' 25.03.2021'
     }],
     loc: {
         country: 'The United States',

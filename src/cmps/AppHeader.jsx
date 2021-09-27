@@ -8,6 +8,7 @@ import { SearchBar } from "./SearchBar";
 
 
 export function AppHeader() {
+
     return (
         <>
             <header className="header-container main-container">
@@ -16,15 +17,19 @@ export function AppHeader() {
                         <AirbnbLogo className="logo-img" fill='white' />
                         <h3>Airbnb</h3>
                     </div>
-                    <input className='header-search' type="search" />
-                    <div className="nav-header flex align-center">
-
-                        <NavLink className="link-host" to={`/`} >switch to hosting</NavLink>
-                        <button>=</button>
+                    <div className="nav-header">
+                        <div className="nav-header flex align-center">
+                            <NavLink className="link-host" to={`/`} >switch to hosting</NavLink>
+                            <button>=</button>
+                        </div>
                     </div>
                 </div>
-                {/* <SearchBar /> */}
+                    <div><SearchBar /></div>
             </header>
+            <div className="main-container">
+
+            </div>
+
         </>
     )
 }

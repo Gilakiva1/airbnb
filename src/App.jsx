@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route } from 'react-router';
+import { Switch, Route } from 'react-router-dom';
 import { AppHeader } from "./cmps/AppHeader";
 import { AppFooter } from "./cmps/AppFooter";
 import routes from './routes.js'

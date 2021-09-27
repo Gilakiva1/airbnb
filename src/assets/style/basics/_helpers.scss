@@ -44,6 +44,17 @@
   min-height: calc(100vh - 612px);
 }
 
+.round-edge {
+  border-radius: rem(10px);
+}
+
+.wide {
+  width: 100%;
+}
+.high {
+  height: 100%;
+}
+
 // Media helpers
 
 .square-ratio {

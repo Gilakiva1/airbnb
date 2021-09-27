@@ -8,10 +8,18 @@
 
     .guest-card {
         justify-content: space-between;
+        align-items: center;
+        flex-grow: 1;
         .btn-counter {
             border-radius: 50%;
-            size: 20px ;
-            font-size: 1rem;
+            // size: 20px ;
+            font-size: 2rem;
+            color: grey;
+            border:none;
+            width: rem(35px);
+            height: rem(35px);
+            justify-content: center;
+            align-items: center;
         }
         .fade {
             opacity: 0.5;
@@ -24,5 +32,9 @@
             align-items: center;
             gap: 5px;
         }
+    }
+
+    .guest-card:not(:first-child) {
+        border-top: 1px solid rgba(128, 128, 128, 0.514);
     }
 }

@@ -26,13 +26,14 @@ export class _StayDetails extends Component {
         if (!stay) return <div>Loading...</div>
         console.log('stay:', stay);
         return (
-            <div>
+            <section>
+                <h1>{stay.name}</h1>
+                <div className="flex space-between">
 
-                <h2>Entire residentail {stay.type} in {stay.loc.address}</h2>
-                    <h1>{stay.name}</h1>
+                </div>
                     <h2>capacity {stay.capacity}</h2>
                     <h2>{stay.loc.address}</h2>
-            </div>
+            </section>
         )
     }
 }
@@ -46,3 +47,4 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {}
 
 export const StayDetails = connect(mapStateToProps)(withRouter(_StayDetails))
+

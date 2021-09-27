@@ -71,9 +71,9 @@ export class GuestsPicking extends React.Component {
                         Aged 13 or above
                     </div>
                     <div className="counter-container flex">
-                        <button onClick={(event) => this.updateCount(event,'subtract adult')} className={adult === 0 ? "btn-counter fade" : "btn-counter"}>-</button>
+                        <button onClick={(event) => this.updateCount(event,'subtract adult')} className={adult === 0 ? "btn-counter flex fade" : "btn-counter flex"}>-</button>
                         <span>{adult}</span>
-                        <button onClick={(event) => this.updateCount(event,'add adult')} className="btn-counter">+</button>
+                        <button onClick={(event) => this.updateCount(event,'add adult')} className="btn-counter flex">+</button>
                     </div>
                 </div>
                 <div className="guest-card flex">
@@ -82,9 +82,9 @@ export class GuestsPicking extends React.Component {
                         Ages 2-12
                     </div>
                     <div className="counter-container flex">
-                        <button onClick={(event) => this.updateCount(event,'subtract child')} className={child === 0 ? "btn-counter fade" : "btn-counter"}>-</button>
+                        <button onClick={(event) => this.updateCount(event,'subtract child')} className={child === 0 ? "btn-counter flex fade" : "btn-counter flex"}>-</button>
                         <span>{child}</span>
-                        <button onClick={(event) => this.updateCount(event,'add child')} className="btn-counter">+</button>
+                        <button onClick={(event) => this.updateCount(event,'add child')} className="btn-counter flex">+</button>
                     </div>
                 </div>
                 <div className="guest-card flex">
@@ -93,9 +93,9 @@ export class GuestsPicking extends React.Component {
                         Under 2
                     </div>
                     <div className="counter-container flex">
-                        <button onClick={(event) => this.updateCount(event,'subtract infant')} className={infant === 0 ? "btn-counter fade" : "btn-counter"}>-</button>
+                        <button onClick={(event) => this.updateCount(event,'subtract infant')} className={infant === 0 ? "btn-counter flex fade" : "btn-counter flex"}>-</button>
                         <span>{infant}</span>
-                        <button onClick={(event) => this.updateCount(event,'add infant')} className="btn-counter">+</button>
+                        <button onClick={(event) => this.updateCount(event,'add infant')} className="btn-counter flex">+</button>
                     </div>
                 </div>
             </section>

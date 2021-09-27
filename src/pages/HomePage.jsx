@@ -59,14 +59,14 @@ class _HomePage extends React.Component {
                 <PopularImgList links={this.onSetPopularDestinations()} />
                 <h1 className="title-labels">Live Anywhere</h1>
                 <LabelsImgList links={this.onSetLabelsDestinations()} />
-                <Link to='/host' className="host-container">
-                    <div className="img-host-container">
-                        <img className="host-img round-edge" src={imgHost} />
-                    </div>
-                    <div className="host-info flex column justify-center align-center  ">
-                        <h1 className="info-first wide">Try Hosting</h1>
-                        <span className="info-seconde">Earn extra income and unlock new opportunities by sharing your space.</span>
-                        <button className="host-btn flex round-edge">Learn more</button>
+                <Link to='/host'>
+                    <div className="host-container ">
+                        <img className="round-edge" src={imgHost} />
+                        <div className="host-info flex column justify-center align-center  ">
+                            <h1 className="info-first wide">Try Hosting</h1>
+                            <span className="info-seconde">Earn extra income and unlock new opportunities by sharing your space.</span>
+                            <button className="host-btn flex round-edge">Learn more</button>
+                        </div>
                     </div>
                 </Link>
 

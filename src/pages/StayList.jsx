@@ -21,7 +21,7 @@ class _StayList extends React.Component {
           
            <div className="stay-list full">
                <StayFilter/>
-               {stays.map((stay,idx) =><StayPreview key={idx} stay={stay} />)}
+               {stays.map((stay,idx) =><StayPreview key={stay._id} stay={stay} />)}
            </div>
         )
     }

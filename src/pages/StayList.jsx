@@ -4,6 +4,7 @@ import { StayPreview } from '../cmps/StayPreview.jsx'
 import { withRouter } from 'react-router'
 import { StayFilter } from '../cmps/StayFilter.jsx'
 import { loadStays } from '../store/stay.action.js'
+
 import PriceFilter from '../cmps/PriceFilter.jsx'
 class _StayList extends React.Component {
 
@@ -17,6 +18,7 @@ class _StayList extends React.Component {
         if(!stays) return <div>loading...</div>
 
         return (
+          
            <div className="stay-list full">
                <StayFilter/>
                {stays.map((stay,idx) =><StayPreview key={idx} stay={stay} />)}
@@ -32,9 +34,5 @@ function mapStateToProps(state) {
 }
 const mapDispatchToProps = {
     loadStays
-
-
 }
-
-
 export const StayList = connect(mapStateToProps, mapDispatchToProps)(withRouter(_StayList))

@@ -1,10 +1,14 @@
+import { Link } from "react-router-dom";
+import SimpleSlider from "./SliderImg.jsx";
 
 export function StayPreview({ stay }) {
-   
+        const url = `/stay/${stay._id}`
         return (
-            <li className="stay-container ">
+            <Link className="link-detail" to={url}>
+            <div className="stay-container ">
                 <div className="primary-image">
-                    <img src={stay.imgUrls[0]} />
+                    {/* <img src={stay.imgUrls[0]} /> */}
+                    <SimpleSlider stay={stay}/>
                 </div>
                 <div>
                     <h2>Entire residentail {stay.type} in {stay.loc.address}</h2>
@@ -18,7 +22,8 @@ export function StayPreview({ stay }) {
                     </div>
                     <h2>Reviews {stay.reviews.length}</h2>
                 </div>
-            </li>
+            </div>
+            </Link>
         )
     
 }

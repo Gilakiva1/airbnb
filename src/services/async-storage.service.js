@@ -1,3 +1,5 @@
+
+
 export const storageService = {
     query,
     get,
@@ -8,8 +10,14 @@ export const storageService = {
 }
 
 function query(entityType, filterBy) {
-    
+
     var entities = JSON.parse(localStorage.getItem(entityType)) || dummyData
+    if (!filterBy) {
+        return new Promise((resolve, reject) => {
+            resolve(entities)
+        })
+    } else {
+    }
     if (!filterBy.price) {
         return new Promise((resolve, reject) => {
             resolve(entities)
@@ -88,9 +96,9 @@ function postMany(entityType, newEntities) {
 }
 
 const dummyData = [{
-    _id: 10006546,
+    _id: '10006546',
     name: ' Ribeira Charming Duplex',
-    imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'otherImg.jpg'],
+    imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large','https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large','https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large','https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large'],
     price: 80.00,
     summary: ' Fantastic duplex apartment with three bedrooms, located in the historic area of Porto, Ribeira (Cube)...',
     type: 'apretment',
@@ -120,135 +128,135 @@ const dummyData = [{
             'check-in': '21.04.2021',
             'check-out': ' 25.04.2021'
         }],
-        loc: {
-            country: 'Portugal',
-            countryCode: 'PT',
-            address: ' Porto, Portugal',
-            lat: -8.61308,
-            lng: 41.1413
-        },
-        reviews: [{
-            id: 'madeId',
-            txt: ' Very helpful hosts. Cooked traditional...',
-            rate: 4,
-            by: {
-                _id: 'u102',
-                fullname: 'user2',
-                imgUrl: ' /img/img2.jpg'
-            },
-            date: ' May 2015'
-        }],
-        likedByUserIds: ['u101', 'u102']
+    loc: {
+        country: 'Portugal',
+        countryCode: 'PT',
+        address: ' Porto, Portugal',
+        lat: -8.61308,
+        lng: 41.1413
     },
-    {
-        _id: 192838329,
-        name: 'La villa - the best villa in Valencia',
-        imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'otherImg.jpg'],
-        price: 70.00,
-        summary: 'An amazing villa located right by the bitch',
-        type: 'Villa',
-        capacity: 12,
-        amenities: [
-            'TV',
-            'Wifi',
-            'Kitchen',
-            'Smoking allowed',
-            'Pets allowed',
-            'Cooking basics',
-            'pool',
-        ],
-        tags: [ // the tags will contain a key word which the front will use to render the full tags to the stay
-            'entire place to yourself',
-            'enhanced clean',
-            'super host', 'free cancellation up to 48 hours before check-in',
-        ],
-        host: {
-            _id: 51329391,
-            fullname: ' Davit puka',
-            imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
+    reviews: [{
+        id: 'madeId',
+        txt: ' Very helpful hosts. Cooked traditional...',
+        rate: 4,
+        by: {
+            _id: 'u102',
+            fullname: 'user2',
+            imgUrl: ' /img/img2.jpg'
         },
-        avelability: [{
-            _id: 'u101',
-            'check-in': '21.05.2021',
-            'check-out': ' 25.05.2021'
-        }],
-        loc: {
-            country: 'Spain',
-            countryCode: 'ES',
-            address: 'Valencia, Spain',
-            lat: 39.466667,
-            lng: -0.375000
-        },
-        reviews: [{
-            id: 'madeId1',
-            txt: ' Very helpful hosts. Cooked traditional...',
-            rate: 4,
-            by: {
-                _id: 'u102',
-                fullname: 'user2',
-                imgUrl: '/img/img2.jpg'
-            },
-            date: 'May 2015'
-        }],
-        likedByUserIds: ['u101', 'u102']
+        date: ' May 2015'
+    }],
+    likedByUserIds: ['u101', 'u102']
+},
+{
+    _id: 192838329,
+    name: 'La villa - the best villa in Valencia',
+    imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large','https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large','https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large','https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large'],
+    price: 70.00,
+    summary: 'An amazing villa located right by the bitch',
+    type: 'Villa',
+    capacity: 12,
+    amenities: [
+        'TV',
+        'Wifi',
+        'Kitchen',
+        'Smoking allowed',
+        'Pets allowed',
+        'Cooking basics',
+        'pool',
+    ],
+    tags: [ // the tags will contain a key word which the front will use to render the full tags to the stay
+        'entire place to yourself',
+        'enhanced clean',
+        'super host', 'free cancellation up to 48 hours before check-in',
+    ],
+    host: {
+        _id: 51329391,
+        fullname: ' Davit puka',
+        imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
     },
-    {
-        _id: 10006236,
-        name: 'New York super apartment',
-        imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'otherImg.jpg'],
-        price: 80.00,
-        summary: 'A big studio apartment, located right by the Times Saquare',
-        type: 'apratment',
-        capacity: 8,
-        amenities: [
-            'TV',
-            'Wifi',
-            'Kitchen',
-            'Smoking allowed',
-            'Pets allowed',
-            'Cooking basics'
-        ],
-        tags: [ // the tags will contain a key word which the front will use to render the full tags to the stay
-            'entire apartment to yourself',
-            'enhanced clean',
-            'self check-in',
-            'free cancellation up to 48 hours before check-in',
-        ],
-        host: {
-            _id: 51392291,
-            fullname: ' Davidi Pok',
-            imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
+    avelability: [{
+        _id: 'u101',
+        'check-in': '21.05.2021',
+        'check-out': ' 25.05.2021'
+    }],
+    loc: {
+        country: 'Spain',
+        countryCode: 'ES',
+        address: 'Valencia, Spain',
+        lat: 39.466667,
+        lng: -0.375000
+    },
+    reviews: [{
+        id: 'madeId1',
+        txt: ' Very helpful hosts. Cooked traditional...',
+        rate: 4,
+        by: {
+            _id: 'u102',
+            fullname: 'user2',
+            imgUrl: '/img/img2.jpg'
         },
-        avelability: [{
-            _id: 'u101',
-            'check-in': '21.03.2021',
-            'check-out': ' 25.03.2021'
-        }],
-        loc: {
-            country: 'The United States',
-            countryCode: 'USA',
-            address: 'New York, USA',
-            lat: 40.730610,
-            lng: -73.935242
+        date: 'May 2015'
+    }],
+    likedByUserIds: ['u101', 'u102']
+},
+{
+    _id: 10006236,
+    name: 'New York super apartment',
+    imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large'],
+    price: 80.00,
+    summary: 'A big studio apartment, located right by the Times Saquare',
+    type: 'apratment',
+    capacity: 8,
+    amenities: [
+        'TV',
+        'Wifi',
+        'Kitchen',
+        'Smoking allowed',
+        'Pets allowed',
+        'Cooking basics'
+    ],
+    tags: [ // the tags will contain a key word which the front will use to render the full tags to the stay
+        'entire apartment to yourself',
+        'enhanced clean',
+        'self check-in',
+        'free cancellation up to 48 hours before check-in',
+    ],
+    host: {
+        _id: 51392291,
+        fullname: ' Davidi Pok',
+        imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
+    },
+    avelability: [{
+        _id: 'u101',
+        'check-in': '21.03.2021',
+        'check-out': ' 25.03.2021'
+    }],
+    loc: {
+        country: 'The United States',
+        countryCode: 'USA',
+        address: 'New York, USA',
+        lat: 40.730610,
+        lng: -73.935242
+    },
+    reviews: [{
+        id: 'madeId3',
+        txt: 'Very helpful hosts. Cooked traditional...',
+        rate: 4,
+        by: {
+            _id: 'u102',
+            fullname: 'user2',
+            imgUrl: '/img/img2.jpg'
         },
-        reviews: [{
-            id: 'madeId3',
-            txt: 'Very helpful hosts. Cooked traditional...',
-            rate: 4,
-            by: {
-                _id: 'u102',
-                fullname: 'user2',
-                imgUrl: '/img/img2.jpg'
-            },
-            date: 'May 2015'
-        }
+        date: 'May 2015'
+    }
     ],
     likedByUserIds: ['u101', 'u102']
 },
 {
     _id: 10006100,
     name: 'New York super apartment',
-    imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'otherImg.jpg'],
+    imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large'],
     price: 80.00,
     summary: 'A big studio apartment, located right by the Times Saquare',
     type: 'apratment',
@@ -305,7 +313,7 @@ const dummyData = [{
 {
     _id: 10006212,
     name: 'New York super apartment',
-    imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'otherImg.jpg'],
+    imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large'],
     price: 80.00,
     summary: 'A big studio apartment, located right by the Times Saquare',
     type: 'apratment',
@@ -362,7 +370,7 @@ const dummyData = [{
 {
     _id: 10006219,
     name: 'New York super apartment',
-    imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'otherImg.jpg'],
+    imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large'],
     price: 80.00,
     summary: 'A big studio apartment, located right by the Times Saquare',
     type: 'apratment',
@@ -418,7 +426,7 @@ const dummyData = [{
 {
     _id: 10006528,
     name: ' Ribeira Charming Duplex',
-    imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'otherImg.jpg'],
+    imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large'],
     price: 80.00,
     summary: ' Fantastic duplex apartment with three bedrooms, located in the historic area of Porto, Ribeira (Cube)...',
     type: 'apretment',
@@ -470,10 +478,10 @@ const dummyData = [{
         }
     ],
     likedByUserIds: ['u101', 'u102']
-},{
+}, {
     _id: 100065299,
     name: ' Ribeira Charming Duplex',
-    imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'otherImg.jpg'],
+    imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large'],
     price: 80.00,
     summary: ' Fantastic duplex apartment with three bedrooms, located in the historic area of Porto, Ribeira (Cube)...',
     type: 'apretment',

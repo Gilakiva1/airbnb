@@ -1,3 +1,11 @@
+.hero-logo {
+    margin-block-end: 2.5rem;
+    height: 86vh;
+    background-size: cover;
+    background-position-y: bottom;
+    background-image: url(../../img/hero.png);
+}
+
 .home-page {
     h1 {
         font-size: rem(32px);
@@ -42,6 +50,8 @@
     }
 
     .host-container {
+        max-height: rem(480px);
+        margin-block-start: rem(75px);
         color: white;
         position: relative;
         width: 100%;
@@ -74,23 +84,10 @@
         }
     }
 
-    .host-container {
-        max-height: rem(480px);
-        margin-block-start: rem(75px);
+    .img-host-container {
     }
 }
 a {
     text-decoration: none;
     color: black;
-}
-.hero-logo {
-    margin-block-end: 2.5rem;
-    height: 86vh;
-    background-size: cover;
-    background-position-y: bottom;
-   
-
-    background-image: url(../../img/hero.png);
-    // & img {
-    // }
 }

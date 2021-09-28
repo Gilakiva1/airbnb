@@ -13,35 +13,45 @@ import { SearchBar } from "./SearchBar";
 class _AppHeader extends React.Component {
 
     state = {
-        scrollLoc: '',
+        scrollLoc: 0,
 
     }
-
     componentDidMount() {
-        if (this.props.history.location.pathname === '/') {
-            window.addEventListener('scroll', this.onToggleHeader)
-        }
+        window.addEventListener('scroll', this.onToggleHeader)
     }
-    componentWillUnmount() {
-        if (this.props.history.location.pathname === '/') {
-            window.addEventListener('scroll', this.onToggleHeader)
-        }
+
+    componentDidUpdate() {
+        this.props.history.location.pathname !== '/' ? window.removeEventListener('scroll', this.onToggleHeader) : window.addEventListener('scroll', this.onToggleHeader)
+
     }
     onToggleHeader = (ev) => {
         const scrollLocaion = ev.path[1].pageYOffset
         this.setState({ scrollLoc: scrollLocaion })
     }
+    backToHome = () => {
+        if (this.props.history.location.pathname !== '/') {
+            this.props.history.push('/')
+        } else {
+            document.documentElement.scrollTop = 0
+
+        }
+
+
+    }
+
 
     render() {
+        const { scrollLoc } = this.state
         const { pathname } = this.props.history.location
+
         return (
-            <header className={`${this.state.scrollLoc > 30 ? 'white' : ''} fixed header-container main-container`}>
+            <header className={`${scrollLoc > 40 ? 'white' : ''} ${pathname === '/' ? 'fixed ' : 'sticky-color'} header-container main-container`}>
                 <div className="header-func flex">
                     <div className="logo-container flex align-center">
-                        <LogoSvg />
+                        <button className="btn-logo" onClick={this.backToHome}><LogoSvg /></button>
                         <h3>Home<span style={{ color: "rgb(255, 56, 92)" }}>away</span></h3>
                     </div>
-                    {this.state.scrollLoc > 30 && <div> <SearchBar /></div>}
+                    {scrollLoc > 30 && <div> <SearchBar /></div>}
                     <nav className="nav-header">
                         <div className="nav-header flex align-center">
                             <NavLink className="link-host border-round fs14" to={`/`} >switch to hosting</NavLink>
@@ -58,7 +68,7 @@ class _AppHeader extends React.Component {
                         </div>
                     </nav>
                 </div>
-                {this.state.scrollLoc < 30 && <div> <SearchBar /></div>}
+                {scrollLoc < 30 && <div> <SearchBar /></div>}
             </header>
 
         )

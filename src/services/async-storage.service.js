@@ -11,10 +11,9 @@ export const storageService = {
 
 function query(entityType, filterBy, params) {
     console.log('params', params);
-    debugger
     var entities = JSON.parse(localStorage.getItem(entityType)) || dummyData
     if (params) {
-        const city = params.location.split('-').join(' ').toLowerCase()
+        const city = params.city.split('-').join(' ').toLowerCase()
         entities = entities.filter(entitie => entitie.loc.city.toLowerCase() === city.toLowerCase())
 
     }

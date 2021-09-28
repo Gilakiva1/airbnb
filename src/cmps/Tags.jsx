@@ -2,7 +2,7 @@ import { EnhancedClean } from "./svgs/EnhancedClean";
 import { FreeCancel } from "./svgs/FreeCancel";
 import { GreatCheckin } from "./svgs/GreatCheckin";
 import { HouseTag } from "./svgs/HouseTag";
-import { SelfCheckin } from "./svgs/SelfCheckin";
+import { SelfCheckIn } from "./svgs/SelfCheckIn";
 import { WiFi } from "./svgs/WiFi";
 
 export function Tags({ tag, type }) {
@@ -26,7 +26,7 @@ export function Tags({ tag, type }) {
             </div>
         case 'self check-in':
             return <div className="tag-container flex">
-                <SelfCheckin />
+                <SelfCheckIn />
                 <div className="flex column">
                    <p> <span className="tag-header">Self Check-in</span> <br/>
                    <span className="fade-font"> Check yourself in with the key safe.</span></p>

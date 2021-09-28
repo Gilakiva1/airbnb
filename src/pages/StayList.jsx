@@ -11,9 +11,9 @@ class _StayList extends React.Component {
     }
 
     componentDidMount() {
-        const  params = queryString.parse(this.props.location.search)
-        console.log('params',params);
-        console.log('this.props',this.props.location.search);
+        const params = queryString.parse(this.props.location.search)
+        console.log('params', params);
+        console.log('this.props', this.props.location.search);
         // const params = new URLSearchParams(this.props.location)
         // const city = new URLSearchParams(this.props.location.search).get("city")
         this.props.loadStays(params)
@@ -25,11 +25,12 @@ class _StayList extends React.Component {
         if (!stays.length) return <div>loading...</div>
 
         return (
-
-            <div className="stay-list">
+            <>
                 <StayFilter />
-                {stays.map((stay, idx) => <StayPreview key={stay._id} stay={stay} />)}
-            </div>
+                <div className="stay-list">
+                    {stays.map((stay, idx) => <StayPreview key={stay._id} stay={stay} />)}
+                </div>
+            </>
         )
     }
 }

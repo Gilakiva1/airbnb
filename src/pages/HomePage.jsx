@@ -48,6 +48,7 @@ class _HomePage extends React.Component {
     }
 
     render() {
+        console.log('propsss', this.props);
 
         return <>
             <div className="hero-logo full"></div>

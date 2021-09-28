@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route } from 'react-router-dom';
 import { AppHeader } from "./cmps/header/AppHeader";
-import { AppFooter } from "./cmps/AppFooter";
+import { AppFooter } from "./cmps/footer/AppFooter";
 import routes from './routes.js'
 import './assets/style/style.scss'
 export class App extends React.Component {

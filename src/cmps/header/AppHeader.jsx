@@ -18,7 +18,7 @@ export class AppHeader extends React.Component {
                 <div className="header-func flex">
                     <div className="logo-container flex align-center">
                         <LogoSvg />
-                        <h3>Airbnb</h3>
+                        <h3>Home<span style={{color: "rgb(255, 56, 92)"}}>away</span></h3>
                     </div>
                     <div className="nav-header">
                         <div className="nav-header flex align-center">

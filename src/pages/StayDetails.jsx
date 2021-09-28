@@ -4,6 +4,7 @@ import { stayService } from '../services/stay.service.js';
 import { withRouter } from 'react-router'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { ShareSvg } from '../assets/img/stay-details/ShareSvg.jsx';
 
 export class _StayDetails extends Component {
     state = {
@@ -40,8 +41,8 @@ export class _StayDetails extends Component {
                         <div>{stay.loc.address}</div>
                     </div>
                     <div>
-                        {/* {<FontAwesomeIcon className='star-icon' icon={fashare} />} <link Share/> */} <link Share />
-                        {/* {<FontAwesomeIcon className='star-icon' icon={faHeart} />} <link Save/> */} <link Save />
+                    <ShareSvg/> Share
+                    {/* {<FontAwesomeIcon className='star-icon' icon={faHeart} />} <link Save/> */} Save
                     </div>
                 </div>
                 <h2>capacity {stay.capacity}</h2>

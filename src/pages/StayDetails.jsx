@@ -46,6 +46,9 @@ export class _StayDetails extends Component {
                    <HeartSvg/> Save
                     </div>
                 </div>
+                <div className="stay-details-grid">{stay.imgUrls.map((img,idx)=>{
+                   return <div className={`grid-img${idx} radius-edge`} key={idx}><img src={img} alt="" /></div>
+                })}</div>
                 <h2>capacity {stay.capacity}</h2>
                 <h2>{stay.loc.address}</h2>
             </section>

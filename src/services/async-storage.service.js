@@ -10,9 +10,12 @@ export const storageService = {
 }
 
 function query(entityType, filterBy, params) {
-    const city = params.city.split('-').join(' ').toLowerCase()
     var entities = JSON.parse(localStorage.getItem(entityType)) || dummyData
-    entities = entities.filter(entitie => entitie.loc.city.toLowerCase() === city.toLowerCase())
+    if(params){
+        const city = params.city.split('-').join(' ').toLowerCase()
+        entities = entities.filter(entitie => entitie.loc.city.toLowerCase() === city.toLowerCase())
+
+    }
     if (!filterBy) {
         return new Promise((resolve, reject) => {
             resolve(entities)
@@ -47,6 +50,7 @@ function query(entityType, filterBy, params) {
 
 
 function get(entityType, entityId) {
+    console.log('entityType',entityType,'entityId',entityId);
     return query(entityType)
         .then(entities => entities.find(entity => entity._id === entityId))
 }

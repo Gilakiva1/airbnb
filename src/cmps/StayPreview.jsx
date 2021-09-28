@@ -11,7 +11,7 @@ export function StayPreview({ stay }) {
                     <img src={stay.imgUrls[0]} />
                     {/* <SimpleSlider stay={stay} /> */}
                 </div>
-                <div>
+                {/* <div>
                     <h2>Entire residentail {stay.type} in {stay.loc.address}</h2>
                     <h1>{stay.name}</h1>
                     <h2>capacity {stay.capacity}</h2>
@@ -21,8 +21,8 @@ export function StayPreview({ stay }) {
                             return <h2 key={amenitie}>{'  ' + amenitie}</h2>
                         })}
                     </div>
-                    <h2>Reviews {stay.reviews.length}</h2>
-                </div>
+                    <h2>Reviews {stay.reviews.length}</h2> */}
+                {/* </div> */}
             </div>
         </Link>
     )

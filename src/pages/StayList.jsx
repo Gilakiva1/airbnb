@@ -7,9 +7,7 @@ import { loadStays } from '../store/stay.action.js'
 const queryString = require('query-string');
 
 class _StayList extends React.Component {
-
     state = {}
-
     componentDidMount() {
         let params1 = queryString.parse(this.props.location.search)
         console.log(params1);
@@ -47,4 +45,4 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
     loadStays
 }
-export const StayList = connect(mapStateToProps, mapDispatchToProps)(withRouter(_StayList))
+export const StayList = connect(mapStateToProps, mapDispatchToProps)(_StayList)

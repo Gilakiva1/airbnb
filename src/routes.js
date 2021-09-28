@@ -8,12 +8,12 @@ const routes = [
     component: HomePage,
   },
   {
-    path:'/stay',
-    component:StayList
+    path: '/stay',
+    component: StayList
   },
   {
-    path:'/stay/:stayId',
-    component:StayDetails
+    path: '/stay/:stayId',
+    component: StayDetails
   }
 ];
 

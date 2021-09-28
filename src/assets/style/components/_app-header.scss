@@ -30,10 +30,17 @@
           border: none;
           padding: 10px 20px;
           border-radius: 3em;
+
+          .menu-details {
+            justify-content: space-between;
+            width: rem(50px);
+          }
         }
       }
       .user-img {
         border-radius: 3em;
+        width: rem(30px);
+
       }
     }
 

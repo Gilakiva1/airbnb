@@ -23,24 +23,21 @@ class _AppHeader extends React.Component {
                         <LogoSvg />
                         <h3>Home<span style={{ color: "rgb(255, 56, 92)" }}>away</span></h3>
                     </div>
-                    <div className="nav-header">
+                    <nav className="nav-header">
                         <div className="nav-header flex align-center">
                             <NavLink className="link-host fs14" to={`/`} >switch to hosting</NavLink>
+                            <NavLink className="link-host fs14" to={`/`} >explore</NavLink>
                             <div className="menu-container ">
-                                <div className="menu-size">
                                     <button className="menu-btn flex align-center">
                                         <div className="menu-details flex align-center">
                                             <FontAwesomeIcon className="hamburger-menu" icon={faBars} />
-                                            <div className="img">
-                                                <img src={imgUser} alt="" className="user-img" />
-                                            </div>
+                                            <img src={imgUser} alt="" className="user-img" />
                                         </div>
                                     </button>
-                                </div>
                             </div>
 
                         </div>
-                    </div>
+                    </nav>
                 </div>
                 <div><SearchBar /></div>
             </header>

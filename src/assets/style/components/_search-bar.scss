@@ -7,7 +7,8 @@
     gap: rem(15px);
     border-radius: 40px;
     background-color: white;
-    
+    cursor: pointer;
+
     .search-icon {
         color: white;
     }
@@ -35,6 +36,7 @@
         }
         input {
             background-color: inherit;
+            cursor: pointer;
         }
     }
 }

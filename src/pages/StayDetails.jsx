@@ -53,7 +53,7 @@ export class _StayDetails extends Component {
                 <div className="flex space-between">
                     <div className="flex column">
                         <h2>Entire {stay.type} hosted by {stay.host.fullname}</h2>
-                        <div>{stay.capacity} guests <span className="flex align-center">.</span> {utilService.getRandomIntInclusive(1,3)} </div>
+                        <div className="flex">{stay.capacity} guests <span className="flex align-center">.</span> {utilService.getRandomIntInclusive(stay.capacity/2,stay.capacity-stay.capacity/3)} Beds <span className="flex align-center">.</span>  </div>
                     </div>
                 </div>
                 <h2>{stay.loc.address}</h2>

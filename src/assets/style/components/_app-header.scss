@@ -24,15 +24,18 @@
       }
 
       .menu-container {
-        width: 8rem;
+        border-radius: 2em;
         background-color: whitesmoke;
         color: black;
-        padding: rem(10px);
-        
-        
+
+        .menu-btn {
+          border: none;
+          padding: 10px 20px;
+          border-radius: 3em;
+        }
       }
       .user-img {
-        border-radius: 2em;
+        border-radius: 3em;
       }
     }
 

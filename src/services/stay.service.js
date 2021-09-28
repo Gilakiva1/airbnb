@@ -10,9 +10,9 @@ export const stayService = {
 
 const STORAGE_KEY = 'stayDB';
 
-function query(filterBy={}) {
+function query(filterBy={},params) {
   const filter = {...filterBy}
-  return storageService.query(STORAGE_KEY,filter);
+  return storageService.query(STORAGE_KEY,filter,params);
 }
 
 async function getById(stayId) {

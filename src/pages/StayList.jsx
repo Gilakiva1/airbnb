@@ -7,25 +7,22 @@ import { loadStays } from '../store/stay.action.js'
 const queryString = require('query-string');
 
 class _StayList extends React.Component {
-    state = {}
+    state = {
+    }
+
     componentDidMount() {
-        let params1 = queryString.parse(this.props.location.search)
-        console.log(params1);
-        const params = new URLSearchParams(this.props.location)
-        console.log('params :',params);
-        const city = new URLSearchParams(this.props.location.search).get("city")
-        console.log('city :',city);
-        // const queryString = location.search;
-        // const urlParams = new URLSearchParams(queryString);
-        // const page_type = urlParams.get('city')
-        // console.log('city', page_type);
-        this.props.loadStays()
+        const  params = queryString.parse(this.props.location.search)
+        console.log('params',params);
+        console.log('this.props',this.props.location.search);
+        // const params = new URLSearchParams(this.props.location)
+        // const city = new URLSearchParams(this.props.location.search).get("city")
+        this.props.loadStays(params)
     }
 
     render() {
 
         const { stays } = this.props
-        if (!stays) return <div>loading...</div>
+        if (!stays.length) return <div>loading...</div>
 
         return (
 

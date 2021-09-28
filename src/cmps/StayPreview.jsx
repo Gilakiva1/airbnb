@@ -3,6 +3,7 @@ import SimpleSlider from "./SliderImg.jsx";
 
 export function StayPreview({ stay }) {
     const url = `/stay/${stay._id}`
+
     return (
         <Link className="link-detail" to={url}>
             <div className="stay-container ">

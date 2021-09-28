@@ -9,11 +9,11 @@ export const storageService = {
     postMany
 }
 
-function query(entityType, filterBy) {
-
+function query(entityType, filterBy, params) {
+    const city = params.city.split('-').join(' ').toLowerCase()
     var entities = JSON.parse(localStorage.getItem(entityType)) || dummyData
-
-    if(!filterBy) {
+    entities = entities.filter(entitie => entitie.loc.city.toLowerCase() === city.toLowerCase())
+    if (!filterBy) {
         return new Promise((resolve, reject) => {
             resolve(entities)
         })
@@ -110,7 +110,7 @@ function postMany(entityType, newEntities) {
 const dummyData = [{
     _id: '10006546',
     name: 'Ribeira Charming Duplex',
-    imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large','https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large','https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large','https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large'],
+    imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large'],
     price: 80.00,
     summary: ' Fantastic duplex apartment with three bedrooms, located in the historic area of Porto, Ribeira (Cube)...',
     type: 'apretment',
@@ -145,7 +145,8 @@ const dummyData = [{
         countryCode: 'PT',
         address: ' Porto, Portugal',
         lat: -8.61308,
-        lng: 41.1413
+        lng: 41.1413,
+        city: 'Porto'
     },
     reviews: [{
         id: 'madeId',
@@ -162,9 +163,9 @@ const dummyData = [{
     likedByUserIds: ['u101', 'u102']
 },
 {
-    _id: 192838329,
+    _id: '192838329',
     name: 'La villa - the best villa in Valencia',
-    imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large','https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large','https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large','https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large'],
+    imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large'],
     price: 70.00,
     summary: 'An amazing villa located right by the bitch',
     type: 'Villa',
@@ -198,7 +199,8 @@ const dummyData = [{
         countryCode: 'ES',
         address: 'Valencia, Spain',
         lat: 39.466667,
-        lng: -0.375000
+        lng: -0.375000,
+        city: 'Valencia'
     },
     rating: '4.6',
     reviews: [{
@@ -251,7 +253,8 @@ const dummyData = [{
         countryCode: 'USA',
         address: 'New York, USA',
         lat: 40.730610,
-        lng: -73.935242
+        lng: -73.935242,
+        city: 'New York'
     },
     reviews: [{
         id: 'madeId3',
@@ -269,7 +272,7 @@ const dummyData = [{
     likedByUserIds: ['u101', 'u102']
 },
 {
-    _id: 10006100,
+    _id: '10006100',
     name: 'New York super apartment',
     imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large'],
     price: 80.00,
@@ -307,7 +310,8 @@ const dummyData = [{
         countryCode: 'USA',
         address: 'New York, USA',
         lat: 40.730610,
-        lng: -73.935242
+        lng: -73.935242,
+        city: 'New York'
     },
     reviews: [
         {
@@ -327,7 +331,7 @@ const dummyData = [{
 
 },
 {
-    _id: 10006212,
+    _id: '10006212',
     name: 'New York super apartment',
     imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large'],
     price: 80.00,
@@ -365,7 +369,8 @@ const dummyData = [{
         countryCode: 'USA',
         address: 'New York, USA',
         lat: 40.730610,
-        lng: -73.935242
+        lng: -73.935242,
+        city: 'New York'
     },
     reviews: [
         {
@@ -385,7 +390,7 @@ const dummyData = [{
 
 },
 {
-    _id: 10006219,
+    _id: '10006219',
     name: 'New York super apartment',
     imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large'],
     price: 80.00,
@@ -423,7 +428,8 @@ const dummyData = [{
         countryCode: 'USA',
         address: 'New York, USA',
         lat: 40.730610,
-        lng: -73.935242
+        lng: -73.935242,
+        city: 'New York'
     },
     reviews: [
         {
@@ -442,7 +448,7 @@ const dummyData = [{
     likedByUserIds: ['u101', 'u102']
 },
 {
-    _id: 10006528,
+    _id: '10006528',
     name: ' Ribeira Charming Duplex',
     imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large'],
     price: 80.00,
@@ -480,7 +486,8 @@ const dummyData = [{
         countryCode: 'PT',
         address: ' Porto, Portugal',
         lat: -8.61308,
-        lng: 41.1413
+        lng: 41.1413,
+        city: 'Porto'
     },
     reviews: [
         {
@@ -498,7 +505,7 @@ const dummyData = [{
     rating: '4',
     likedByUserIds: ['u101', 'u102']
 }, {
-    _id: 100065299,
+    _id: '100065299',
     name: ' Ribeira Charming Duplex',
     imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large'],
     price: 80.00,
@@ -536,7 +543,8 @@ const dummyData = [{
         countryCode: 'PT',
         address: ' Porto, Portugal',
         lat: -8.61308,
-        lng: 41.1413
+        lng: 41.1413,
+        city: 'Porto'
     },
     reviews: [
         {

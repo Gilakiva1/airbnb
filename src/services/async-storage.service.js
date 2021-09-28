@@ -124,7 +124,7 @@ const dummyData = [{
         'Cooking basics'
     ],
     tags: [ // the tags will contain a key word which the front will use to render the full tags to the stay
-        'entire ($type of stay) to yourself',
+        'entire to yourself',
         'enhanced clean',
         'self check-in',
         'free cancellation up to 48 hours before check-in',

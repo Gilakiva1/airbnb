@@ -7,6 +7,8 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { ShareSvg } from '../assets/img/stay-details/ShareSvg.jsx';
 import { HeartSvg } from '../assets/img/stay-details/HeartSvg.jsx';
 import { utilService } from '../services/util.service.js';
+import imgUser from '../assets/img/home-page/user.jpg'
+
 
 export class _StayDetails extends Component {
     state = {
@@ -34,29 +36,37 @@ export class _StayDetails extends Component {
             <section className="stay-details-container">
                 <h1>{stay.name}</h1>
                 <div className="flex space-between">
-                    <div className="flex">
-                        <div className="flex">
+                    <div className="review-adress-container flex">
+                        <div className="flex gap5">
                             {<FontAwesomeIcon className='star-icon' icon={faStar} />}
                             {stay.rating}
-                            ({stay.reviews.length} reviews)
+                            ({utilService.getRandomIntInclusive(30, 500)} reviews) ·<span> </span>
                         </div>
                         <div>{stay.loc.address}</div>
                     </div>
                     <div className="flex gap5">
-                    <ShareSvg/> Share
-                   <HeartSvg/> Save
+                        <ShareSvg /> Share
+                        <HeartSvg /> Save
                     </div>
                 </div>
-                <div className="stay-details-grid">{stay.imgUrls.map((img,idx)=>{
-                   return <div className={`grid-img${idx} pointer`} key={idx}><img className="round-edge" src={img} alt="" /></div>
+                <div className="stay-details-grid">{stay.imgUrls.map((img, idx) => {
+                    return <div className={`grid-img${idx} pointer`} key={idx}><img className={`img${idx}`} src={img} alt="" /></div>
                 })}</div>
-                <div className="flex space-between">
-                    <div className="flex column">
-                        <h2>Entire {stay.type} hosted by {stay.host.fullname}</h2>
-                        <div className="flex">{stay.capacity} guests <span className="flex align-center">.</span> {utilService.getRandomIntInclusive(stay.capacity/2,stay.capacity-stay.capacity/3)} Beds <span className="flex align-center">.</span>  </div>
+                <div className="details-main-container flex column">
+                    <div className="flex space-between">
+                        <div className="flex column">
+                            <h2>Entire {stay.type} hosted by {stay.host.fullname}</h2>
+                            <div className="flex">{stay.capacity} guests · {stay.type} ·  {utilService.getRandomIntInclusive(2, 6)} beds · {utilService.getRandomIntInclusive(1, 5)} baths </div>
+                        </div>
+                        <div ><img className="user-profile-img" src={imgUser} alt="" /></div>
+                    </div>
+                    <div className="seperation-line"></div>
+                    <div className="tag-container flex column">
+                        {stay.tags.map(tag=>(
+                            <div>{}</div>
+                        ))}
                     </div>
                 </div>
-                <h2>{stay.loc.address}</h2>
             </section>
         )
     }

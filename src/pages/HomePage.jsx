@@ -23,15 +23,6 @@ import { LabelsImgList } from "../cmps/home-page/LabelsImgList"
 class _HomePage extends React.Component {
     state = {}
 
-    componentDidMount() {
-        window.addEventListener('scroll', this.toggleHeader)
-
-    }
-    onToggleHeader = (ev) => {
-        console.log(ev);
-
-    }
-
     PopularDestinations = [
         { city: 'Tel-aviv', country: 'Israel', img: imgTelAviv, },
         { city: 'London', country: 'England', img: imgLondon },

@@ -12,17 +12,37 @@ import { SearchBar } from "./SearchBar";
 
 class _AppHeader extends React.Component {
 
-    state = {}
+    state = {
+        scrollLoc: '',
+
+    }
+
+    componentDidMount() {
+        if (this.props.history.location.pathname === '/') {
+            window.addEventListener('scroll', this.onToggleHeader)
+        }
+    }
+    componentWillUnmount() {
+        if (this.props.history.location.pathname === '/') {
+            window.addEventListener('scroll', this.onToggleHeader)
+        }
+    }
+
+    onToggleHeader = (ev) => {
+        const scrollLocaion = ev.path[1].pageYOffset
+        this.setState({ scrollLoc: scrollLocaion })
+    }
 
     render() {
         const { pathname } = this.props.history.location
         return (
-            <header className={`${pathname === '/' ? 'fixed' : 'sticky'} header-container main-container`}>
+            <header className={`${this.state.scrollLoc > 30 ? 'white' : ''} fixed header-container main-container`}>
                 <div className="header-func flex">
                     <div className="logo-container flex align-center">
                         <LogoSvg />
                         <h3>Home<span style={{ color: "rgb(255, 56, 92)" }}>away</span></h3>
                     </div>
+                    {this.state.scrollLoc > 30 && <div> <SearchBar /></div>}
                     <nav className="nav-header">
                         <div className="nav-header flex align-center">
                             <NavLink className="link-host border-round fs14" to={`/`} >switch to hosting</NavLink>
@@ -39,7 +59,7 @@ class _AppHeader extends React.Component {
                         </div>
                     </nav>
                 </div>
-                <div><SearchBar /></div>
+                {this.state.scrollLoc < 30 && <div> <SearchBar /></div>}
             </header>
 
         )

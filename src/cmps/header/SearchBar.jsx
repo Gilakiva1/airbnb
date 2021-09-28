@@ -162,6 +162,7 @@ export class _SearchBar extends React.Component {
           <button className="search-bar-submit flex">{<FontAwesomeIcon className='search-icon' icon={faSearch} />}</button>
         </form>
         <div className={isPickingGuests ? "picking-guest-container" : "picking-guest-container none" }> {isPickingGuests && <GuestsPicking handleGuestsChanege={this.handleGuestsChanege} />} </div>
+
       </section>
     )
   }

@@ -66,6 +66,12 @@
 .sticky {
   position: sticky;
 }
+.border-round {
+  border-radius: 2em;
+}
+.white{
+  background-color: white;
+}
 
 // Display helpers
 
@@ -86,4 +92,9 @@
 }
 .hero-ratio {
   @include aspect-ratio(16, 9);
+}
+
+// other 
+.pointer {
+  cursor: pointer;
 }

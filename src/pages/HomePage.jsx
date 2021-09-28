@@ -16,47 +16,42 @@ import imgPets from '../assets/img/home-page/pets.jpg'
 import imgUnique from '../assets/img/home-page/unique.jpg'
 import imgHome from '../assets/img/home-page/home.jpg'
 import imgHost from '../assets/img/home-page/host.jpg'
+import imgHero from '../assets/img/hero-cut.jpg'
 import { PopularImgList } from "../cmps/home-page/PopularImgList";
 import { LabelsImgList } from "../cmps/home-page/LabelsImgList"
 
 class _HomePage extends React.Component {
     state = {}
 
-    componentDidMount() {
-        console.log('params?', this.props.match.params);
-        console.log('window', window.location);
-    }
-    onSetPopularDestinations = () => {
-        return [
-            { city: 'Tel-aviv', country: 'Israel', img: imgTelAviv, },
-            { city: 'London', country: 'England', img: imgLondon },
-            { city: 'Bangkok', country: 'Thailand', img: imgBangkok },
-            { city: 'Paris', country: 'France', img: imgParis },
-            { city: 'Dubai', country: 'United Arab Emirates', img: imgDubai },
-            { city: 'New-york', country: 'United States of America', img: imgNewYork },
-            { city: 'Amsterdam', country: 'Netherlands', img: imgAmsterdam },
-            { city: 'Hong-kong', country: 'China', img: imgHongKong }
-        ]
-    }
-    onSetLabelsDestinations = () => {
-        return [
-            { value: 'outdoor', label: 'Outdoor getaways', img: imgOutdoor },
-            { value: 'unique', label: 'Unique Stays', img: imgUnique },
-            { value: 'home', label: 'Entires homes', img: imgHome },
-            { value: 'pet', label: 'Pets Allowd', img: imgPets }
-        ]
-    }
+    PopularDestinations = [
+        { city: 'Tel-aviv', country: 'Israel', img: imgTelAviv, },
+        { city: 'London', country: 'England', img: imgLondon },
+        { city: 'Bangkok', country: 'Thailand', img: imgBangkok },
+        { city: 'Paris', country: 'France', img: imgParis },
+        { city: 'Dubai', country: 'United Arab Emirates', img: imgDubai },
+        { city: 'New-york', country: 'United States of America', img: imgNewYork },
+        { city: 'Amsterdam', country: 'Netherlands', img: imgAmsterdam },
+        { city: 'Hong-kong', country: 'China', img: imgHongKong }
+    ]
+    LabelsDestinations = [
+        { value: 'outdoor', label: 'Outdoor getaways', img: imgOutdoor },
+        { value: 'unique', label: 'Unique Stays', img: imgUnique },
+        { value: 'home', label: 'Entires homes', img: imgHome },
+        { value: 'pet', label: 'Pets Allowd', img: imgPets }
+    ]
+
 
     render() {
-        console.log('propsss', this.props);
 
         return <>
-            <div className="hero-logo full"></div>
+            <div className="hero-logo full">
+                <img src={imgHero} />
+            </div>
             <section className="home-page">
                 <h1 className="title-popular fs30">Popular Destinations</h1>
-                <PopularImgList links={this.onSetPopularDestinations()} />
+                <PopularImgList links={this.PopularDestinations} />
                 <h1 className="title-labels ">Live Anywhere</h1>
-                <LabelsImgList links={this.onSetLabelsDestinations()} />
+                <LabelsImgList links={this.LabelsDestinations} />
                 <Link to='/host'>
                     <div className="host-container ">
                         <img className="round-edge" src={imgHost} />

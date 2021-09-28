@@ -3,7 +3,6 @@
   width: 100%;
 
   .header-func {
-    display: flex;
     justify-content: space-between;
     margin-block-start: 15px;
 
@@ -14,6 +13,13 @@
     .link-host {
       text-decoration: none;
       margin-inline-end: 5px;
+      padding: rem(12px);
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.15);
+        transition: 0.4s;
+
+      }
     }
 
     .nav-header {
@@ -22,7 +28,6 @@
       }
 
       .menu-container {
-        border-radius: 2em;
         background-color: whitesmoke;
         color: black;
 
@@ -30,10 +35,15 @@
           border: none;
           padding: 10px 20px;
           border-radius: 3em;
+
+          .menu-details {
+            justify-content: space-between;
+            width: rem(50px);
+          }
         }
       }
       .user-img {
-        border-radius: 3em;
+        width: rem(30px);
       }
     }
 

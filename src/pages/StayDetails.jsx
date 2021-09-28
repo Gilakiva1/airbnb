@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { ShareSvg } from '../assets/img/stay-details/ShareSvg.jsx';
 import { HeartSvg } from '../assets/img/stay-details/HeartSvg.jsx';
+import { utilService } from '../services/util.service.js';
 
 export class _StayDetails extends Component {
     state = {
@@ -46,7 +47,15 @@ export class _StayDetails extends Component {
                    <HeartSvg/> Save
                     </div>
                 </div>
-                <h2>capacity {stay.capacity}</h2>
+                <div className="stay-details-grid">{stay.imgUrls.map((img,idx)=>{
+                   return <div className={`grid-img${idx} pointer`} key={idx}><img className="round-edge" src={img} alt="" /></div>
+                })}</div>
+                <div className="flex space-between">
+                    <div className="flex column">
+                        <h2>Entire {stay.type} hosted by {stay.host.fullname}</h2>
+                        <div className="flex">{stay.capacity} guests <span className="flex align-center">.</span> {utilService.getRandomIntInclusive(stay.capacity/2,stay.capacity-stay.capacity/3)} Beds <span className="flex align-center">.</span>  </div>
+                    </div>
+                </div>
                 <h2>{stay.loc.address}</h2>
             </section>
         )

@@ -3,6 +3,36 @@
         font-size: rem(26px);
         margin-bottom: 10px;
     }
+    h2 {
+        font-size: rem(22px);
+    }
+    .stay-details-grid {
+        display: grid;
+        grid-template: 1fr 1fr /2fr 1fr 1fr;
+        gap: rem(10px);
+      .grid-img0 {
+          grid-row: 1/-1;
+          grid-column: 1;
+      }
+      .grid-img1 {
+          grid-row: 1;
+          grid-column: 2;
+      }
+      .grid-img2 {
+          grid-row: 1;
+          grid-column: 3;
+      }
+      .grid-img3 {
+          grid-row: 2;
+          grid-column: 2;
+      }
+      .grid-img4 {
+          grid-row: 2;
+          grid-column: 3;
+      }
+
+    }
+   
 }
 
 .star-icon {

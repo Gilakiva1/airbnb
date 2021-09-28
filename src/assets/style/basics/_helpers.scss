@@ -90,3 +90,8 @@
 .hero-ratio {
   @include aspect-ratio(16, 9);
 }
+
+// other 
+.pointer {
+  cursor: pointer;
+}

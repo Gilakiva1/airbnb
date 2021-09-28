@@ -10,6 +10,8 @@ export const storageService = {
 }
 
 function query(entityType, filterBy, params) {
+    console.log('params',params);
+
     var entities = JSON.parse(localStorage.getItem(entityType)) || dummyData
     if(params){
         const city = params.city.split('-').join(' ').toLowerCase()
@@ -116,7 +118,7 @@ const dummyData = [{
     name: 'Ribeira Charming Duplex',
     imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large'],
     price: 80.00,
-    summary: 'Fantastic duplex apartment with three bedrooms, located in the historic area of Porto, Ribeira (Cube)...',
+    summary: ' Fantastic duplex apartment with three bedrooms, located in the historic area of Porto, Ribeira (Cube)...',
     type: 'apretment',
     capacity: 8,
     amenities: [

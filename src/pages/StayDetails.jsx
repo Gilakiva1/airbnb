@@ -8,6 +8,7 @@ import { ShareSvg } from '../assets/img/stay-details/ShareSvg.jsx';
 import { HeartSvg } from '../assets/img/stay-details/HeartSvg.jsx';
 import { utilService } from '../services/util.service.js';
 import imgUser from '../assets/img/home-page/user.jpg'
+import { Tags } from '../cmps/Tags.jsx';
 
 
 export class _StayDetails extends Component {
@@ -62,9 +63,15 @@ export class _StayDetails extends Component {
                     </div>
                     <div className="seperation-line"></div>
                     <div className="tag-container flex column">
-                        {stay.tags.map(tag=>(
-                            <div>{}</div>
+                        {stay.tags.map(tag => (
+                            <Tags tag={tag} type={stay.type} />
                         ))}
+                    </div>
+                    <div className="seperation-line"></div>
+                    <div className="description">{stay.description}</div>
+                    <div className="seperation-line"></div>
+                    <div className="amenities">
+                        <h2>What this place offers</h2>
                     </div>
                 </div>
             </section>

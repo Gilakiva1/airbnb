@@ -36,7 +36,7 @@ class _AppHeader extends React.Component {
     render() {
         const { pathname } = this.props.history.location
         return (
-            <header className={`${this.state.scrollLoc > 30 ? 'white' : ''} fixed header-container main-container`}>
+            <header className={`${this.state.scrollLoc > 30 ? 'white' : ''} header-container main-container`}>
                 <div className="header-func flex">
                     <div className="logo-container flex align-center">
                         <LogoSvg />

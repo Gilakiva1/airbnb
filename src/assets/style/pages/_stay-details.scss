@@ -57,6 +57,21 @@
     }
 }
 
+.tag-container {
+    gap: 10px;
+    .tag-santences {
+        gap: 2px;
+    }
+    .tag-header {
+        font-weight: bold;
+        height: 1rem;
+    }
+    .fade-font {
+        font-size: rem(14px);
+        color: #717171;
+    }
+}
+
 .star-icon {
     color: rgb(255, 56, 92);
 }

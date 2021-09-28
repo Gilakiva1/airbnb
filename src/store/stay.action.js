@@ -1,9 +1,9 @@
 import { stayService } from '../services/stay.service';
 
-export function loadStays() {
+export function loadStays(params) {
   return async (dispatch) => {
     try {
-      const stays = await stayService.query();
+      const stays = await stayService.query({},params);
       dispatch({ type: 'SET_STAYS', stays });
     } catch (err) {
       console.log(err, 'error is');

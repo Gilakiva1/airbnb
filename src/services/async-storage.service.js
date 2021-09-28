@@ -9,11 +9,16 @@ export const storageService = {
     postMany
 }
 
-function query(entityType, filterBy) {
+function query(entityType, filterBy, params) {
+    console.log('params',params);
 
     var entities = JSON.parse(localStorage.getItem(entityType)) || dummyData
+    if(params){
+        const city = params.city.split('-').join(' ').toLowerCase()
+        entities = entities.filter(entitie => entitie.loc.city.toLowerCase() === city.toLowerCase())
 
-    if(!filterBy) {
+    }
+    if (!filterBy) {
         return new Promise((resolve, reject) => {
             resolve(entities)
         })
@@ -47,6 +52,7 @@ function query(entityType, filterBy) {
 
 
 function get(entityType, entityId) {
+    console.log('entityType',entityType,'entityId',entityId);
     return query(entityType)
         .then(entities => entities.find(entity => entity._id === entityId))
 }
@@ -110,10 +116,14 @@ function postMany(entityType, newEntities) {
 const dummyData = [{
     _id: '10006546',
     name: 'Ribeira Charming Duplex',
-    imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large','https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large','https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large','https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large'],
+    imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large'],
     price: 80.00,
+<<<<<<< HEAD
     summary: 'Fantastic duplex apartment with three bedrooms, located in the historic area of Porto, Ribeira (Cube)...',
     description:'The apartment is literally on TOP of the river as the photos can show. It\'s really comfortable, perfectly located and with the most perfect view. It is in a recently rebuilt building, with new construction materials and with is disposal on top of the river and its great windows you will have all the quiet you will need, near the most historic zone of the city.',
+=======
+    summary: ' Fantastic duplex apartment with three bedrooms, located in the historic area of Porto, Ribeira (Cube)...',
+>>>>>>> b17971c659072c181929fea8a2f182d405503a2e
     type: 'apretment',
     capacity: 8,
     amenities: [
@@ -146,7 +156,8 @@ const dummyData = [{
         countryCode: 'PT',
         address: ' Porto, Portugal',
         lat: -8.61308,
-        lng: 41.1413
+        lng: 41.1413,
+        city: 'Porto'
     },
     reviews: [{
         id: 'madeId',
@@ -163,9 +174,9 @@ const dummyData = [{
     likedByUserIds: ['u101', 'u102']
 },
 {
-    _id: 192838329,
+    _id: '192838329',
     name: 'La villa - the best villa in Valencia',
-    imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large','https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large','https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large','https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large'],
+    imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large'],
     price: 70.00,
     summary: 'An amazing villa located right by the bitch',
     description:'The apartment is literally on TOP of the river as the photos can show. It\'s really comfortable, perfectly located and with the most perfect view. It is in a recently rebuilt building, with new construction materials and with is disposal on top of the river and its great windows you will have all the quiet you will need, near the most historic zone of the city.',
@@ -200,7 +211,8 @@ const dummyData = [{
         countryCode: 'ES',
         address: 'Valencia, Spain',
         lat: 39.466667,
-        lng: -0.375000
+        lng: -0.375000,
+        city: 'Valencia'
     },
     rating: '4.6',
     reviews: [{
@@ -254,7 +266,8 @@ const dummyData = [{
         countryCode: 'USA',
         address: 'New York, USA',
         lat: 40.730610,
-        lng: -73.935242
+        lng: -73.935242,
+        city: 'New York'
     },
     reviews: [{
         id: 'madeId3',
@@ -272,7 +285,7 @@ const dummyData = [{
     likedByUserIds: ['u101', 'u102']
 },
 {
-    _id: 10006100,
+    _id: '10006100',
     name: 'New York super apartment',
     imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large'],
     price: 80.00,
@@ -311,7 +324,8 @@ const dummyData = [{
         countryCode: 'USA',
         address: 'New York, USA',
         lat: 40.730610,
-        lng: -73.935242
+        lng: -73.935242,
+        city: 'New York'
     },
     reviews: [
         {
@@ -331,7 +345,7 @@ const dummyData = [{
 
 },
 {
-    _id: 10006212,
+    _id: '10006212',
     name: 'New York super apartment',
     imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large'],
     price: 80.00,
@@ -370,7 +384,8 @@ const dummyData = [{
         countryCode: 'USA',
         address: 'New York, USA',
         lat: 40.730610,
-        lng: -73.935242
+        lng: -73.935242,
+        city: 'New York'
     },
     reviews: [
         {
@@ -390,7 +405,7 @@ const dummyData = [{
 
 },
 {
-    _id: 10006219,
+    _id: '10006219',
     name: 'New York super apartment',
     imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large'],
     price: 80.00,
@@ -429,7 +444,8 @@ const dummyData = [{
         countryCode: 'USA',
         address: 'New York, USA',
         lat: 40.730610,
-        lng: -73.935242
+        lng: -73.935242,
+        city: 'New York'
     },
     reviews: [
         {
@@ -448,7 +464,7 @@ const dummyData = [{
     likedByUserIds: ['u101', 'u102']
 },
 {
-    _id: 10006528,
+    _id: '10006528',
     name: ' Ribeira Charming Duplex',
     imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large'],
     price: 80.00,
@@ -487,7 +503,8 @@ const dummyData = [{
         countryCode: 'PT',
         address: ' Porto, Portugal',
         lat: -8.61308,
-        lng: 41.1413
+        lng: 41.1413,
+        city: 'Porto'
     },
     reviews: [
         {
@@ -505,7 +522,7 @@ const dummyData = [{
     rating: '4',
     likedByUserIds: ['u101', 'u102']
 }, {
-    _id: 100065299,
+    _id: '100065299',
     name: ' Ribeira Charming Duplex',
     imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large'],
     price: 80.00,
@@ -544,7 +561,8 @@ const dummyData = [{
         countryCode: 'PT',
         address: ' Porto, Portugal',
         lat: -8.61308,
-        lng: 41.1413
+        lng: 41.1413,
+        city: 'Porto'
     },
     reviews: [
         {

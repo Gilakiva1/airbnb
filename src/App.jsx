@@ -4,6 +4,9 @@ import { AppHeader } from "./cmps/header/AppHeader";
 import { AppFooter } from "./cmps/footer/AppFooter";
 import routes from './routes.js'
 import './assets/style/style.scss'
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
+
 export class App extends React.Component {
 
     render() {

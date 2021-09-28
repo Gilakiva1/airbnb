@@ -27,7 +27,6 @@ class _AppHeader extends React.Component {
             window.addEventListener('scroll', this.onToggleHeader)
         }
     }
-
     onToggleHeader = (ev) => {
         const scrollLocaion = ev.path[1].pageYOffset
         this.setState({ scrollLoc: scrollLocaion })

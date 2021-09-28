@@ -24,12 +24,16 @@ export class AppHeader extends React.Component {
                         <div className="nav-header flex align-center">
                             <NavLink className="link-host fs14" to={`/`} >switch to hosting</NavLink>
                             <div className="menu-container ">
-                                <button className="menu-btn flex align-center">
-                                    <div className="menu-details">
-                                        <FontAwesomeIcon className="hamburger-menu" icon={faBars} />
-                                        <img src={imgUser} alt="" className="user-img" />
-                                    </div>
-                                </button>
+                                <div className="menu-size">
+                                    <button className="menu-btn flex align-center">
+                                        <div className="menu-details flex align-center">
+                                            <FontAwesomeIcon className="hamburger-menu" icon={faBars} />
+                                            <div className="img">
+                                                <img src={imgUser} alt="" className="user-img" />
+                                            </div>
+                                        </div>
+                                    </button>
+                                </div>
                             </div>
 
                         </div>

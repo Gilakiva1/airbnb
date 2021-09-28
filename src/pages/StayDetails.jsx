@@ -28,7 +28,7 @@ export class _StayDetails extends Component {
         if (!stay) return <div>Loading...</div>
         console.log('stay:', stay);
         return (
-            <section className="main-container">
+            <section className="details">
                 <h1>{stay.name}</h1>
                 <div className="flex space-between">
                     <div>
@@ -40,8 +40,8 @@ export class _StayDetails extends Component {
                         <div>{stay.loc.address}</div>
                     </div>
                     <div>
-                    {/* {<FontAwesomeIcon className='star-icon' icon={fashare} />} <link Share/> */} <link Share/>
-                    {/* {<FontAwesomeIcon className='star-icon' icon={faHeart} />} <link Save/> */} <link Save/>
+                        {/* {<FontAwesomeIcon className='star-icon' icon={fashare} />} <link Share/> */} <link Share />
+                        {/* {<FontAwesomeIcon className='star-icon' icon={faHeart} />} <link Save/> */} <link Save />
                     </div>
                 </div>
                 <h2>capacity {stay.capacity}</h2>

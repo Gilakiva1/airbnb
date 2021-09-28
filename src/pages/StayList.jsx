@@ -11,9 +11,11 @@ class _StayList extends React.Component {
     state = {}
 
     componentDidMount() {
+        debugger
+        console.log(this.props);
         this.props.loadStays()
     }
-    
+
     render() {
         const { stays } = this.props
         if (!stays) return <div>loading...</div>
@@ -36,4 +38,4 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
     loadStays
 }
-export const StayList = connect(mapStateToProps, mapDispatchToProps)(withRouter(_StayList))
+export const StayList = connect(mapStateToProps, mapDispatchToProps)(_StayList)

@@ -5,6 +5,7 @@ import { withRouter } from 'react-router'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { ShareSvg } from '../assets/img/stay-details/ShareSvg.jsx';
+import { HeartSvg } from '../assets/img/stay-details/HeartSvg.jsx';
 
 export class _StayDetails extends Component {
     state = {
@@ -29,20 +30,20 @@ export class _StayDetails extends Component {
         if (!stay) return <div>Loading...</div>
         console.log('stay:', stay);
         return (
-            <section className="details">
+            <section className="stay-details-container">
                 <h1>{stay.name}</h1>
                 <div className="flex space-between">
-                    <div>
-                        <div>
+                    <div className="flex">
+                        <div className="flex">
                             {<FontAwesomeIcon className='star-icon' icon={faStar} />}
                             {stay.rating}
-                            ({stay.reviews.length - 1} reviews)
+                            ({stay.reviews.length} reviews)
                         </div>
                         <div>{stay.loc.address}</div>
                     </div>
-                    <div>
+                    <div className="flex gap5">
                     <ShareSvg/> Share
-                    {/* {<FontAwesomeIcon className='star-icon' icon={faHeart} />} <link Save/> */} Save
+                   <HeartSvg/> Save
                     </div>
                 </div>
                 <h2>capacity {stay.capacity}</h2>

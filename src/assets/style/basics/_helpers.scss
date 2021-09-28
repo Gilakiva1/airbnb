@@ -41,6 +41,9 @@
   &.align-center {
     align-items: center;
   }
+  &.gap5 {
+    gap: 5px;
+  }
 }
 
 .height {
@@ -62,6 +65,12 @@
 }
 .sticky {
   position: sticky;
+}
+
+// Display helpers
+
+.none {
+  display: none;
 }
 
 // Media helpers

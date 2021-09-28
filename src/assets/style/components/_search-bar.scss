@@ -1,11 +1,11 @@
 .search-bar-container {
     align-self: center;
     justify-content: space-between;
-    max-width: 800px;
-    margin-top: 20px;
-    padding: 10px;
+    max-width: rem(800px);
+    margin-top: rem(20px);
+    padding: rem(10px);
     gap: rem(15px);
-    border-radius: 40px;
+    border-radius: rem(40px);
     background-color: white;
     cursor: pointer;
 

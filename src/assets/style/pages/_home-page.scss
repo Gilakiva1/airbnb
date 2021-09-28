@@ -1,9 +1,6 @@
 .hero-logo {
     margin-block-end: 2.5rem;
-    height: 86vh;
-    background-size: cover;
-    background-position-y: bottom;
-    background-image: url(../../img/home-page/hero.png);
+    max-height: 86vh;
 }
 
 .home-page {

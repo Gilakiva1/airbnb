@@ -25,15 +25,15 @@ class _AppHeader extends React.Component {
                     </div>
                     <nav className="nav-header">
                         <div className="nav-header flex align-center">
-                            <NavLink className="link-host fs14" to={`/`} >switch to hosting</NavLink>
-                            <NavLink className="link-host fs14" to={`/`} >explore</NavLink>
-                            <div className="menu-container ">
-                                    <button className="menu-btn flex align-center">
-                                        <div className="menu-details flex align-center">
-                                            <FontAwesomeIcon className="hamburger-menu" icon={faBars} />
-                                            <img src={imgUser} alt="" className="user-img" />
-                                        </div>
-                                    </button>
+                            <NavLink className="link-host border-round fs14" to={`/`} >switch to hosting</NavLink>
+                            <NavLink className="link-host border-round fs14" to={`/`} >explore</NavLink>
+                            <div className="menu-container border-round">
+                                <button className="menu-btn border-round flex align-center">
+                                    <div className="menu-details flex align-center">
+                                        <FontAwesomeIcon className="hamburger-menu" icon={faBars} />
+                                        <img src={imgUser} alt="" className="user-img border-round" />
+                                    </div>
+                                </button>
                             </div>
 
                         </div>

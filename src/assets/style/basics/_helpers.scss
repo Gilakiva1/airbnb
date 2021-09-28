@@ -42,6 +42,9 @@
   &.align-center {
     align-items: center;
   }
+  &.gap5 {
+    gap: 5px;
+  }
 }
 
 .height {
@@ -57,6 +60,12 @@
 }
 .high {
   height: 100%;
+}
+
+// Display helpers
+
+.none {
+  display: none;
 }
 
 // Media helpers

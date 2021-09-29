@@ -129,7 +129,6 @@ export class _SearchBar extends React.Component {
               placeholder="Where are you going?"
               name="address"
               autoComplete="off"
-              style={{ border: 'none', outline: 'none' }}
               onChange={this.handleChange}
               onClick={this.closeInputs}
             />
@@ -142,7 +141,6 @@ export class _SearchBar extends React.Component {
               name="checkIn"
               value={checkIn}
               autoComplete="off"
-              style={{ border: 'none', outline: 'none' }}
               disabled
               onChange={this.handleChange}
             // onClick={this.closeInputs}
@@ -159,7 +157,6 @@ export class _SearchBar extends React.Component {
               name="checkOut"
               value={checkOut}
               disabled
-              style={{ border: 'none', outline: 'none' }}
               onChange={this.handleChange}
 
             />
@@ -174,7 +171,6 @@ export class _SearchBar extends React.Component {
               autoComplete="off"
               name="guests"
               placeholder={'guests:' + this.getTotalGuests()}
-              style={{ border: 'none', outline: 'none' }}
               disabled
               onChange={this.handleChange}
 

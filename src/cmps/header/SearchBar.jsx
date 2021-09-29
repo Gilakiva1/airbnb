@@ -60,12 +60,10 @@ export class _SearchBar extends React.Component {
   }
 
   handlePickingDates = (start, end) => {
-    console.log('start', start, 'end', end);
     let { criteria } = this.state
     let { checkIn, checkOut } = criteria
     checkIn = ` ${start.toLocaleString('en-IL', { month: 'short', day: 'numeric' })} `
     if (end) checkOut = ` ${end.toLocaleString('en-IL', { month: 'short', day: 'numeric' })} `
-    console.log('check in:', checkIn, 'checkout', checkOut);
     this.setState({ criteria: { ...criteria, checkIn, checkOut } })
   }
 
@@ -145,7 +143,6 @@ export class _SearchBar extends React.Component {
               autoComplete="off"
               disabled
               onChange={this.handleChange}
-            // onClick={this.closeInputs}
 
             />
           </div>

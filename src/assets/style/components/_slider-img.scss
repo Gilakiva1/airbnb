@@ -1,35 +1,38 @@
 .slider-img{
     position: relative;
-    @include aspect-ratio(1,1);
+    // @include aspect-ratio(1,1);
     cursor: pointer;
+    &:hover{
+        .slick-prev{
+            opacity: 1;
+        }
+        .slick-next{
+            opacity: 1;
+        }
+    }
+
+
+    .slick-prev{
+        position: absolute;
+        left: 0px;
+        z-index: 1;
+        opacity: 0;
+
+    }
+    .slick-next{
+        position: absolute;
+        right: 0;
+        z-index: 1;
+        opacity: 0;
+        
+    }
 
     .slick-slider{
         position: relative;
         margin-bottom: 8px;
 
-        &:hover{
-            .slick-prev{
-                opacity: 1;
-            }
-            .slick-next{
-                opacity: 1;
-            }
-        }
-
-        .slick-prev{
-            position: absolute;
-            left: 10px;
-            z-index: 1;
-            opacity: 0;
-
-        }
-        .slick-next{
-            position: absolute;
-            right: 10px;
-            z-index: 1;
-            opacity: 0;
-            
-        }
+        
+        
 
 
         div{

@@ -23,12 +23,17 @@
 }
 
 .stay-list {
-   display: grid;
-   grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
-   padding: 20px;
-   grid-auto-flow: dense;
- 
+    padding: 20px;
+    grid-auto-flow: dense;
+    .stay-container {
+        img {
+            @include aspect-ratio(1, 1);
+            border-radius: 10px;
+        }
+    }
 }
 
 .link-detail {

@@ -9,7 +9,7 @@ export const storageService = {
     postMany
 }
 
-function query(entityType, params) {
+function query(entityType, params = {}) {
     var entities = JSON.parse(localStorage.getItem(entityType)) || dummyData
     console.log('params', params);
 

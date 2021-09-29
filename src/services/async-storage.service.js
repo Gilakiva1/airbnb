@@ -21,13 +21,13 @@ function query(entityType, params = {}) {
             entities = entities.filter(entitie => {
                 return regex.test(entitie.loc.address)
             })
-        } 
- 
+        }
+
         if (params.guests) {
             entities = entities.filter(entitie => {
                 return entitie.capacity >= params.guests.adult + params.guests.child + params.guests.infant
             })
-        }  
+        }
         if (params.guests) {
             entities = entities.filter(entitie => {
                 return entitie.capacity >= params.guests.adult + params.guests.child + params.guests.infant
@@ -50,6 +50,7 @@ function post(entityType, newEntity) {
     newEntity._id = _makeId()
     return query(entityType)
         .then(entities => {
+            if (entityType === 'orderDB') entities = []
             entities.push(newEntity)
             _save(entityType, entities)
             return newEntity
@@ -57,6 +58,9 @@ function post(entityType, newEntity) {
 }
 
 function put(entityType, updatedEntity) {
+    if (entityType === 'stayDB') {
+
+    }
     return query(entityType)
         .then(entities => {
             const idx = entities.findIndex(entity => entity._id === updatedEntity._id)
@@ -65,6 +69,8 @@ function put(entityType, updatedEntity) {
             return updatedEntity
         })
 }
+
+
 
 function remove(entityType, entityId) {
     return query(entityType)
@@ -79,6 +85,9 @@ function remove(entityType, entityId) {
 function _save(entityType, entities) {
     localStorage.setItem(entityType, JSON.stringify(entities))
 }
+
+ 
+
 
 function _makeId(length = 5) {
     var text = ''
@@ -135,7 +144,7 @@ const dummyData = [{
         'Pets allowed',
         'Cooking basics'
     ],
-    tags: [ 
+    tags: [
         'entire to yourself',
         'enhanced clean',
         'self check-in',
@@ -192,7 +201,7 @@ const dummyData = [{
         'Cooking basics',
         'pool',
     ],
-    tags: [ 
+    tags: [
         'entire to yourself',
         'enhanced clean',
         'wifi',
@@ -233,7 +242,7 @@ const dummyData = [{
 {
     _id: '10006236',
     name: 'New York super apartment',
-    imgUrls: ['https://a0.muscache.com/im/pictures/f31f4456-689b-484c-9921-d17d11cbba03.jpg?im_w=1200', 'https://a0.muscache.com/im/pictures/7ed58939-0f5a-4b95-9007-488b874f9bbf.jpg?im_w=720','https://a0.muscache.com/im/pictures/0c953537-c8dc-4af8-950c-f6eee116e766.jpg?im_w=720','https://a0.muscache.com/im/pictures/ca78ea26-4e61-4f2c-8842-d47469e79d88.jpg?im_w=720','https://a0.muscache.com/im/pictures/c2ab60d8-cb47-4c93-b2d0-bb1d04b709fd.jpg?im_w=720'],
+    imgUrls: ['https://a0.muscache.com/im/pictures/f31f4456-689b-484c-9921-d17d11cbba03.jpg?im_w=1200', 'https://a0.muscache.com/im/pictures/7ed58939-0f5a-4b95-9007-488b874f9bbf.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/0c953537-c8dc-4af8-950c-f6eee116e766.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/ca78ea26-4e61-4f2c-8842-d47469e79d88.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/c2ab60d8-cb47-4c93-b2d0-bb1d04b709fd.jpg?im_w=720'],
     price: 120,
     description: 'The apartment is literally on TOP of the river as the photos can show. It\'s really comfortable, perfectly located and with the most perfect view. It is in a recently rebuilt building, with new construction materials and with is disposal on top of the river and its great windows you will have all the quiet you will need, near the most historic zone of the city.',
     type: 'apratment',
@@ -247,7 +256,7 @@ const dummyData = [{
         'Pets allowed',
         'Cooking basics'
     ],
-    tags: [ 
+    tags: [
         'entire to yourself',
         'enhanced clean',
         'self check-in',
@@ -511,10 +520,10 @@ const dummyData = [{
     likedByUserIds: ['u101', 'u102']
 },
 {
-    
+
     _id: '10006100',
     name: 'Hudson River View King Bed at Higher Floor',
-    imgUrls: ['https://a0.muscache.com/im/pictures/cbdb590e-03be-4538-a07d-16156dd810df.jpg?im_w=1200', 'https://a0.muscache.com/im/pictures/2c182ba4-1ad0-4aeb-9deb-b76aaa4ebaeb.jpg?im_w=720','https://a0.muscache.com/im/pictures/06d5536d-5522-481c-93b5-68993ed93a1c.jpg?im_w=720','https://a0.muscache.com/im/pictures/e7e0ffa8-8216-4154-b9b0-d49f0ef3c799.jpg?im_w=720','https://a0.muscache.com/im/pictures/da0a5877-6291-492e-8240-6fa9be865974.jpg?im_w=720'],
+    imgUrls: ['https://a0.muscache.com/im/pictures/cbdb590e-03be-4538-a07d-16156dd810df.jpg?im_w=1200', 'https://a0.muscache.com/im/pictures/2c182ba4-1ad0-4aeb-9deb-b76aaa4ebaeb.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/06d5536d-5522-481c-93b5-68993ed93a1c.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/e7e0ffa8-8216-4154-b9b0-d49f0ef3c799.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/da0a5877-6291-492e-8240-6fa9be865974.jpg?im_w=720'],
     price: 120,
     description: 'Our newly renovated 280 sqft room can offer unparalleled comfort, and special touches make all the difference. Relax, get some work done, and take full advantage of your stay.Your room charge and taxes has been taken prior to your arrival as a deposit. The remaining balance destination fee $40.17 per night will be charged upon arrival.',
     type: 'Room in the hotel',
@@ -528,7 +537,7 @@ const dummyData = [{
         'Pets allowed',
         'Cooking basics'
     ],
-    tags: [ 
+    tags: [
         'wifi',
         'enhanced clean',
         'great check-in',
@@ -574,7 +583,7 @@ const dummyData = [{
 {
     _id: '10006212',
     name: 'Luxurious Bauhaus Suite - Carmel Market View!',
-    imgUrls: ['https://a0.muscache.com/im/pictures/b781328f-3c39-4b46-a51f-0c4d8e30a7e5.jpg?im_w=1200', 'https://a0.muscache.com/im/pictures/ba33bf6a-0193-44e5-8f8e-236281ce79a0.jpg?im_w=720','https://a0.muscache.com/im/pictures/6f0716cb-68d0-4b94-a71e-c3140b84dfe5.jpg?im_w=720','https://a0.muscache.com/im/pictures/03dd1176-a4eb-4ee5-a48e-1d9d92df5f40.jpg?im_w=720','https://a0.muscache.com/im/pictures/5f8527e6-5ac9-4b22-a500-e7f9760e44ed.jpg?im_w=720'],
+    imgUrls: ['https://a0.muscache.com/im/pictures/b781328f-3c39-4b46-a51f-0c4d8e30a7e5.jpg?im_w=1200', 'https://a0.muscache.com/im/pictures/ba33bf6a-0193-44e5-8f8e-236281ce79a0.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/6f0716cb-68d0-4b94-a71e-c3140b84dfe5.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/03dd1176-a4eb-4ee5-a48e-1d9d92df5f40.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/5f8527e6-5ac9-4b22-a500-e7f9760e44ed.jpg?im_w=720'],
     price: 100,
     description: 'Welcome to one of the most special apartments in town – a stunning, super-chic Suite, with a private balcony and hot tub, both overlooking Carmel Market, Shenkin ST and Allenby ST – TLV\'s most iconic symbols, located at the heart of the city. This brand-new, fully-equipped Suite is just 5 minutes walk from the beach, and just next to the hottest restaurants, bars and nightclubs of TLV. Our Suite is the perfect starting point to an unforgettable, one-of-a-kind Tel Aviv experience The space',
     type: 'suite',
@@ -589,7 +598,7 @@ const dummyData = [{
         'Pets allowed',
         'Cooking basics'
     ],
-    tags: [ 
+    tags: [
         'entire to yourself',
         'enhanced clean',
         'self check-in',
@@ -635,7 +644,7 @@ const dummyData = [{
 {
     _id: '10006219',
     name: 'Margutta Luxury Loft',
-    imgUrls: ['https://a0.muscache.com/im/pictures/prohost-api/Hosting-52502823/original/64662fc4-c2a9-4e40-a20e-9650c39f231c.jpeg?im_w=1200', 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-52502823/original/6bff3c69-9a11-4ff5-91b2-3c0d11ec8e62.jpeg?im_w=720','https://a0.muscache.com/im/pictures/prohost-api/Hosting-52502823/original/2921e0f2-e82a-4641-afbc-772b152f94f8.jpeg?im_w=720','https://a0.muscache.com/im/pictures/prohost-api/Hosting-52502823/original/2ddd0548-dd93-4993-b9da-aaa0b54c4023.jpeg?im_w=720','https://a0.muscache.com/im/pictures/prohost-api/Hosting-52502823/original/c505b9cc-6d90-4fd5-8975-ae5b9996b450.jpeg?im_w=720'],
+    imgUrls: ['https://a0.muscache.com/im/pictures/prohost-api/Hosting-52502823/original/64662fc4-c2a9-4e40-a20e-9650c39f231c.jpeg?im_w=1200', 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-52502823/original/6bff3c69-9a11-4ff5-91b2-3c0d11ec8e62.jpeg?im_w=720', 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-52502823/original/2921e0f2-e82a-4641-afbc-772b152f94f8.jpeg?im_w=720', 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-52502823/original/2ddd0548-dd93-4993-b9da-aaa0b54c4023.jpeg?im_w=720', 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-52502823/original/c505b9cc-6d90-4fd5-8975-ae5b9996b450.jpeg?im_w=720'],
     price: 80.00,
     description: 'At the entrance, an intimate sitting area with armchairs and lush plants make up the scene for a relaxing break. You can also to enjoy spectacular view of the well-groomed gardens. This centrally located loft stands on 2 levels. The ground floor includes an open space living and dining room, as well as a fully equipped kitchen. You will also have access to a room with a single bed. On the upper level, you’ll find an open concept bedroom with a king size bed, a small bathroom, and a lovely terrace.',
     type: 'apratment',
@@ -648,7 +657,7 @@ const dummyData = [{
         'Pets allowed',
         'Cooking basics'
     ],
-    tags: [ 
+    tags: [
         'entire to yourself',
         'enhanced clean',
         'great check-in',
@@ -670,7 +679,7 @@ const dummyData = [{
         country: 'Italy',
         countryCode: 'IT',
         address: 'Rome, Italy',
-        lat:  41.902782,
+        lat: 41.902782,
         lng: 12.496366,
         city: 'Rome'
     },
@@ -706,7 +715,7 @@ const dummyData = [{
         'Pets allowed',
         'Cooking basics'
     ],
-    tags: [ 
+    tags: [
         'entire to yourself',
         'enhanced clean',
         'self check-in',
@@ -763,7 +772,7 @@ const dummyData = [{
         'Pets allowed',
         'Cooking basics'
     ],
-    tags: [ 
+    tags: [
         'entire to yourself',
         'great check-in',
         'self check-in',

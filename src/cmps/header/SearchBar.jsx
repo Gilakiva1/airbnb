@@ -11,6 +11,9 @@ import { faSearch, faStar } from '@fortawesome/free-solid-svg-icons'
 import { onSetFilter } from '../../store/stay.action.js'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
+import { DatePicker } from './DatePicker.jsx'
+
+
 
 export class _SearchBar extends React.Component {
 
@@ -25,23 +28,19 @@ export class _SearchBar extends React.Component {
         infant: 0
       },
     },
-    isPickingGuests: false
+    isPickingGuests: false,
+    isPickingDates: false
   }
 
   componentDidMount() {
-    window.addEventListener('click', this.setIsPickingGuests)
+    window.addEventListener('click', this.closeInputs)
 
   }
 
   componentWillUnmount() {
-    window.removeEventListener('click', this.setIsPickingGuests)
+    window.removeEventListener('click', this.closeInputs)
   }
 
-  setIsPickingGuests = () => {
-    let { isPickingGuests } = this.state
-    isPickingGuests = false
-    this.setState({ isPickingGuests })
-  };
 
   handleChange = (ev) => {
     const { criteria } = this.state
@@ -55,7 +54,16 @@ export class _SearchBar extends React.Component {
     let { criteria } = this.state
     let { guests } = criteria
     this.setState({ criteria: { ...criteria, guests: { ...guests, [field]: value } } })
-    return
+  }
+
+  handlePickingDates = (start, end) => {
+    console.log('start',start,'end',end);
+    let {criteria} = this.state
+    let { checkIn, checkOut } = criteria
+    checkIn = `${start.getDay()} ${start.toLocaleString('en-us', { month: 'short' })} `
+    if (end) checkOut = `${end.getDay()} ${end.toLocaleString('en-us', { month: 'short' })}`
+    console.log('check in:', checkIn,'checkout',checkOut);
+    this.setState({criteria:{...criteria, checkIn,checkOut}})
   }
 
   handleKeyPress = () => {
@@ -72,9 +80,14 @@ export class _SearchBar extends React.Component {
   }
 
   activeInput = (input) => {
+    this.closeInputs()
     switch (input) {
       case 'guest':
         this.setState({ isPickingGuests: true })
+        break;
+      case 'check in':
+        this.setState({ isPickingDates: true })
+        break;
     }
   }
 
@@ -88,25 +101,15 @@ export class _SearchBar extends React.Component {
   }
 
   closeInputs = () => {
-    let { isPickingGuests } = this.state
+    let { isPickingGuests, isPickingDates } = this.state
     isPickingGuests = false
-    this.setState({ isPickingGuests })
+    isPickingDates = false
+    this.setState({ isPickingGuests, isPickingDates })
   }
 
-  // datePickerOn =() => {
-  //   let {isPickingDate} = this.state
-  //   isPickingDate = true
-  //   this.setState({ isPickingDate}) 
-  // }
-  // datePickerOff =() => {
-  //   return
-  //   // let {isPickingDate} = this.state
-  //   // isPickingDate = false
-  //   // this.setState({isPickingDate}) 
-  // }
-
   render() {
-    const { isPickingGuests } = this.state
+    const { isPickingGuests, isPickingDates: isPickingCheckIn,criteria } = this.state
+    const {checkIn,checkOut} = criteria
     return (
       <section className="flex column">
         <form className="search-bar-container flex" onClick={this.preventPropagation} onSubmit={this.onSubmit}>
@@ -124,23 +127,23 @@ export class _SearchBar extends React.Component {
           <div className="input-container flex column">
             <span>Check in:</span>
             <input
-              type="date"
+              type="text"
               placeholder="Add dates"
               name="checkIn"
+              value={checkIn}
               style={{ border: 'none' }}
               onChange={this.handleChange}
-              onClick={this.closeInputs}
-            // onFocus={this.datePickerOn} 
-            // onBlur={this.datePickerOff}
+              // onClick={this.closeInputs}
+              onClick={() => this.activeInput('check in')}
             />
-            {/* {isPickingDate && <ReduxForm/>} */}
           </div>
           <div className="input-container flex column">
             <span>Check out:</span>
             <input
-              type="date"
+              type="text"
               placeholder="Add dates"
               name="checkOut"
+              value={checkOut}
               style={{ border: 'none' }}
               onChange={this.handleChange}
               onClick={this.closeInputs}
@@ -161,7 +164,8 @@ export class _SearchBar extends React.Component {
           </div>
           <button className="search-bar-submit flex">{<FontAwesomeIcon className='search-icon' icon={faSearch} />}</button>
         </form>
-        <div className={isPickingGuests ? "picking-guest-container" : "picking-guest-container none" }> {isPickingGuests && <GuestsPicking handleGuestsChanege={this.handleGuestsChanege} />} </div>
+        <div className={isPickingGuests ? "picking-guest-container" : "picking-guest-container none"}> {isPickingGuests && <GuestsPicking handleGuestsChanege={this.handleGuestsChanege} />} </div>
+        <div  className={isPickingCheckIn ? "picking-dates-container" : "checkin-container none"}> {isPickingCheckIn && <DatePicker preventPropagation={this.preventPropagation}  handlePickingDates={this.handlePickingDates} />} </div>
 
       </section>
     )
@@ -181,11 +185,3 @@ const mapDispatchToProps = {
 export const SearchBar = connect(mapStateToProps, mapDispatchToProps)(withRouter(_SearchBar))
 
 
-/* <DateRangePicker
-      startDate={this.state.startDate} // momentPropTypes.momentObj or null,
-      startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
-      endDate={this.state.endDate} // momentPropTypes.momentObj or null,
-      endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
-      onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })} // PropTypes.func.isRequired,
-      focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
-      onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired, */

@@ -134,7 +134,7 @@ const dummyData = [{
         'free cancellation',
     ],
     host: {
-        _id: 51399391,
+        _id: '51399391',
         fullname: ' Davit Pok',
         imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
     },
@@ -191,7 +191,7 @@ const dummyData = [{
         'free cancellation',
     ],
     host: {
-        _id: 51329391,
+        _id: '51329391',
         fullname: ' Davit puka',
         imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
     },
@@ -246,7 +246,7 @@ const dummyData = [{
         'free cancellation',
     ],
     host: {
-        _id: 51392291,
+        _id: '51392291',
         fullname: ' Davidi Pok',
         imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
     },
@@ -302,7 +302,7 @@ const dummyData = [{
         'free cancellation',
     ],
     host: {
-        _id: 51392291,
+        _id: '51392291',
         fullname: ' Davidi Pok',
         imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
     },
@@ -362,7 +362,7 @@ const dummyData = [{
         'free cancellation',
     ],
     host: {
-        _id: 51392291,
+        _id: '51392291',
         fullname: ' Davidi Pok',
         imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
     },
@@ -422,7 +422,7 @@ const dummyData = [{
         'free cancellation',
     ],
     host: {
-        _id: 51392291,
+        _id: '51392291',
         fullname: ' Davidi Pok',
         imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
     },
@@ -481,7 +481,7 @@ const dummyData = [{
         'free cancellation',
     ],
     host: {
-        _id: 51399391,
+        _id: '51399391',
         fullname: ' Davit Pok',
         imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
     },
@@ -539,7 +539,7 @@ const dummyData = [{
         'free cancellation',
     ],
     host: {
-        _id: 51399391,
+        _id: '51399391',
         fullname: ' Davit Pok',
         imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
     },

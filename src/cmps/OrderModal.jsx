@@ -5,7 +5,9 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { utilService } from '../services/util.service';
 import { GuestsPicking } from './header/GuestsPicking';
 import { DatePicker } from './header/DatePicker';
-import { onSetOrder } from '../store/order.action'
+// import { onSetOrder } from '../store/order.action'
+import { onLoadOrder } from '../store/order.action';
+
 export class _OrderModal extends Component {
 
     state = {
@@ -25,8 +27,11 @@ export class _OrderModal extends Component {
         isPickingDates: false
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         window.addEventListener('click', this.setIsPickingGuests)
+        const order = await this.props.onLoadOrder()
+
+
     }
 
     componentWillUnmount() {
@@ -110,15 +115,13 @@ export class _OrderModal extends Component {
         else {
             this.props.onSetOrder(this.state.criteria)
         }
-    }
+    } 
 
 
     render() {
         const { isPickingDates, criteria, isPickingGuests, isReserve } = this.state
         const { checkIn, checkOut } = criteria
-        const { stay } = this.props
-        const { order } = this.props 
-        console.log('order modal',order);
+        const { stay, order } = this.props
         if (!order) return <div>loading</div>
         return (
             <div className="order-modal">
@@ -145,7 +148,7 @@ export class _OrderModal extends Component {
                                         <input
                                             type="text"
                                             placeholder="Add dates"
-                                            name="checkIn"
+                                            name="checkIn"  
                                             value={order.checkIn}
                                             disabled
                                             style={{ outline: 'none' }}
@@ -159,7 +162,7 @@ export class _OrderModal extends Component {
                                         <input
                                             type="text"
                                             placeholder="Add dates"
-                                            name="checkOut"
+                                            name="checkOut"  
                                             value={order.checkOut}
                                             disabled
                                             style={{ outline: 'none' }}
@@ -197,6 +200,6 @@ function mapStateToProps(state) {
     }
 }
 const mapDispatchToProps = {
-    onSetOrder
+    onLoadOrder
 }
 export const OrderModal = connect(mapStateToProps, mapDispatchToProps)(_OrderModal)

@@ -8,12 +8,9 @@ export function orderReducer(state = initialState, action) {
     console.log('action',action.order);
     switch (action.type) {
 
-        
-
         case 'SET_ORDER':
             newstate = { ...state, order: action.order }
-            console.log('newstate', newstate);
-            return { order: action.order }
+            return { ...state, order: action.order }
 
         default: return { ...state }
     }

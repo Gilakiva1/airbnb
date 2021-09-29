@@ -14,18 +14,17 @@ import { orderService } from '../services/order.service.js';
 
 export class _StayDetails extends Component {
     state = {
-        stay: null,
+        stay: null
     };
     componentDidMount() {
-        this.loadDetails()
+        this.loadStay()
         // this.loadOrder()
 
     }
 
-    loadDetails = async () => {
+    loadStay = async () => {
         const id = this.props.match.params.stayId;
         const stay = await stayService.getById(id)
-        const order = await orderService.query() 
         if (!stay) this.props.history.push("/")
         this.setState({ stay })
     }
@@ -33,7 +32,10 @@ export class _StayDetails extends Component {
     render() {
         const { stay } = this.state
         const { order } = this.props
+<<<<<<< HEAD
       
+=======
+>>>>>>> 861a3c60b4df3fabea35bd1083569beb71b3b369
         if (!stay) return <div>Loading...</div>
 
         return (

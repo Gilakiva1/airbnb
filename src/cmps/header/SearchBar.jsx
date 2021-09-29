@@ -49,7 +49,7 @@ export class _SearchBar extends React.Component {
     const field = ev.target.name
     const value = ev.target.value
     this.setState({ criteria: { ...criteria, [field]: value } })
-  }
+  } 
 
   handleGuestsChanege = (field, value) => {
     let { criteria } = this.state
@@ -66,22 +66,14 @@ export class _SearchBar extends React.Component {
     if (end && start !== end) this.activeInput('guest')
   }
 
-  handleKeyPress = () => {
-    return false
-  }
-
-
   onSubmit = async (ev) => {
     ev.preventDefault()
     const { criteria } = this.state
     const queryString = utilService.makeQueryParams(criteria)
-    // await this.props.onload(criteria) 
     await this.props.onSetOrder(criteria)
     this.props.history.push(`/stay?${queryString}`)
 
   }
-
-
 
   activeInput = (input) => {
     this.closeInputs()

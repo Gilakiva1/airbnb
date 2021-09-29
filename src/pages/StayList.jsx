@@ -26,7 +26,7 @@ class _StayList extends React.Component {
     }
 
     render() {
-
+        console.log('stay list');
         const { stays } = this.props
         console.log('stays', stays);
         const { params } = this.state

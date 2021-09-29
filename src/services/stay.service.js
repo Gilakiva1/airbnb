@@ -11,7 +11,6 @@ export const stayService = {
 const STORAGE_KEY = 'stayDB';
 
 function query(params) {
-
   return storageService.query(STORAGE_KEY,params);
 }
 

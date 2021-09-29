@@ -12,9 +12,9 @@ export const storageService = {
 function query(entityType, params = {}) {
     debugger
 
-
+    console.log('query');
     var entities = JSON.parse(localStorage.getItem(entityType)) || dummyData
-
+    console.log('params',params);
     if (params.address) {
         const regex = new RegExp(params.address, 'i');
         entities = entities.filter(entitie => {

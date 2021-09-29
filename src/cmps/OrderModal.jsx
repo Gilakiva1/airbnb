@@ -8,7 +8,6 @@ export class OrderModal extends Component {
 
     state = {
         criteria: {
-
             dates: {
                 chackIn: '',
                 chackOut: ''
@@ -19,13 +18,12 @@ export class OrderModal extends Component {
                 infant: 0
             }
         },
+        isReserve:false,
         isPickingGuests: false
-
     }
 
     componentDidMount() {
         window.addEventListener('click', this.setIsPickingGuests)
-
     }
 
     componentWillUnmount() {
@@ -42,7 +40,6 @@ export class OrderModal extends Component {
         const { criteria } = this.state
         const field = ev.target.name
         const value = ev.target.value
-        console.log('field', field, 'value', value);
         this.setState({ criteria: { ...criteria, [field]: value } })
     }
 
@@ -64,10 +61,12 @@ export class OrderModal extends Component {
         let { isPickingGuests } = this.state
         isPickingGuests = false
         this.setState({ isPickingGuests })
-    };
+    }
+
     preventPropagation = event => {
         event.stopPropagation()
     }
+
     getTotalGuests = () => {
         let { adult, child, infant } = this.state.criteria.guests
         var guests = `Guests:${adult + child}`
@@ -85,10 +84,25 @@ export class OrderModal extends Component {
         let { guests } = criteria
         this.setState({ criteria: { ...criteria, guests: { ...guests, [field]: value } } })
     }
+
+    onSubmit =(ev) =>{
+        console.log(ev);
+        console.log(ev.target.type === 'button');
+        if(ev.target.type === 'button'){
+            this.setState({isReserve:true})
+            ev.target.type = 'submit'
+        }
+        else {
+            
+
+        }
+
+    }
     render() {
         const { isPickingGuests } = this.state
         console.log('isPickingGuests', isPickingGuests);
         const { criteria } = this.state
+        const {isReserve} = this.state
         return (
             <div className="order-modal">
                 <div className="flex gap5">
@@ -96,8 +110,8 @@ export class OrderModal extends Component {
                     5
                     ({utilService.getRandomIntInclusive(30, 500)} reviews) <span> </span>
                 </div>
-                <div className="flex">
-                    <form className="flex" onClick={this.preventPropagation}>
+                <div className="flex " >
+                    <form className="flex column" onClick={this.preventPropagation}>
                         <div className="date-input flex column">
                             <span>Check in:</span>
                             <input
@@ -133,8 +147,10 @@ export class OrderModal extends Component {
                                 onClick={() => this.activeInput('guest')}
                             />
                         </div>
-                        <div>
+                        <div className="flex column">
                             <button type="button" onClick={() => this.activeInput('guest')}>{this.getTotalGuests()}</button>
+                            {!isReserve&&<button  type="button" onClick={this.onSubmit}>Check availability</button>}
+                            {isReserve&&<button  type="button" onClick={this.onSubmit}>Reserve</button>}
                         </div>
                     </form>
                     <div className={isPickingGuests ? "picking-guest-container" : "picking-guest-container none"}> {isPickingGuests && <GuestsPicking handleGuestsChanege={this.handleGuestsChanege} />} </div>

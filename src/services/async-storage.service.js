@@ -36,11 +36,12 @@ function query(entityType, params = {}) {
                 return entitie.capacity >= params.guests.adult + params.guests.child + params.guests.infant
             })
         }
-        return new Promise((resolve, reject) => {
-            resolve(entities)
-        })
+       
     }
-}i
+    return new Promise((resolve, reject) => {
+        resolve(entities)
+    })
+}
 function get(entityType, entityId) {
     console.log('entityType', entityType, 'entityId', entityId);
     return query(entityType)

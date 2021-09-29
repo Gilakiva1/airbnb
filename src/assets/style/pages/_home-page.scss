@@ -35,14 +35,14 @@
             grid-template-rows: repeat(2, 1fr);
         }
     }
-    .labels-img-list {
+    .amenities-img-list {
         display: grid;
         gap: rem(10px);
         grid-template-columns: repeat(4, 1fr);
         margin-block-start: rem(30px);
     }
 
-    .txt-label {
+    .amenitie-txt {
         padding-block-start: rem(10px);
     }
 

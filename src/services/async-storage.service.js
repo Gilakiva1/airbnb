@@ -21,8 +21,8 @@ function query(entityType, params = {}) {
             entities = entities.filter(entitie => {
                 return regex.test(entitie.loc.address)
             })
-        }
-
+        } 
+ 
         if (params.guests) {
             entities = entities.filter(entitie => {
                 return entitie.capacity >= params.guests.adult + params.guests.child + params.guests.infant

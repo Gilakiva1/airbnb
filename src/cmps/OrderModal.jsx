@@ -31,7 +31,6 @@ export class _OrderModal extends Component {
     async componentDidMount() {
         window.addEventListener('click', this.setIsPickingGuests)
         const order = await this.props.onLoadOrder()
-        console.log('orderrrr', order);
         this.setState({ order })
 
 
@@ -122,11 +121,8 @@ export class _OrderModal extends Component {
             debugger
             // this.props.onSetOrder(this.state.order)
             const savedOrder = await this.props.onSetOrder(order) 
-            console.log('order', savedOrder);
-            console.log(this.props)  
             const stay = await stayService.getById(this.props.match.params.stayId)
             stay.order.push(savedOrder)
-            console.log('stayyyyy', stay);
 
 
 

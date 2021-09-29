@@ -17,9 +17,8 @@ function query(params) {
 
 async function getById(stayId) {
   const stay = await storageService.get(STORAGE_KEY, stayId);
-  console.log('stay in service: ', stay);
   return stay
-}
+}   
 
 function remove(stayId) {
   return storageService.remove(stayId);

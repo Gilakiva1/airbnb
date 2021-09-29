@@ -67,11 +67,6 @@ export class _SearchBar extends React.Component {
     if (end && start !== end) this.activeInput('guest')
   }
 
-  handleKeyPress = () => {
-    return false
-  }
-
-
   onSubmit = async (ev) => {
     ev.preventDefault()
     const { criteria } = this.state
@@ -81,8 +76,6 @@ export class _SearchBar extends React.Component {
     this.props.history.push(`/stay?${queryString}`)
 
   }
-
-
 
   activeInput = (input) => {
     this.closeInputs()

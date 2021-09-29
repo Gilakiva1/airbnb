@@ -113,9 +113,9 @@ export class _OrderModal extends Component {
             ev.target.type = 'submit'
         }
         else {
-            this.props.onSetOrder(this.state.criteria)
+            this.props.onLoadOrder(this.state.criteria)
         }
-    } 
+    }
 
 
     render() {
@@ -127,7 +127,7 @@ export class _OrderModal extends Component {
             <div className="order-modal">
                 <div className="flex gap5">
                     <div>
-                        {/* ${stay.price}/Night */}
+                        ${stay.price}/Night
                     </div>
                     <div>
 
@@ -136,19 +136,19 @@ export class _OrderModal extends Component {
                         ({utilService.getRandomIntInclusive(30, 500)} reviews) <span> </span>
                     </div>
                 </div>
-                <div className="flex column" >
-                    <form className="flex column" onClick={this.preventPropagation}>
-                        <div className="input flex">
+                <div className="" >
+                    <form className="" onClick={this.preventPropagation}>
+                        <div className=" ">
                             <div className="flex column">
-                                <div className="flex">
+                                <div className="input-container flex">
 
-                                    <div className="date-input flex column"
+                                    <div className=" "
                                         onClick={() => this.activeInput('date')}>
                                         <span>Check in:</span>
                                         <input
                                             type="text"
                                             placeholder="Add dates"
-                                            name="checkIn"  
+                                            name="checkIn"
                                             value={order.checkIn}
                                             disabled
                                             style={{ outline: 'none' }}
@@ -156,13 +156,13 @@ export class _OrderModal extends Component {
                                             onClick={() => this.activeInput('date')}
                                         />
                                     </div>
-                                    <div className="input-container flex column"
+                                    <div className=""
                                         onClick={() => this.activeInput('date')}>
                                         <span>Check out:</span>
                                         <input
                                             type="text"
                                             placeholder="Add dates"
-                                            name="checkOut"  
+                                            name="checkOut"
                                             value={order.checkOut}
                                             disabled
                                             style={{ outline: 'none' }}
@@ -171,15 +171,15 @@ export class _OrderModal extends Component {
                                         />
                                     </div>
                                 </div>
-                                <div className="input-container flex column">
-                                    <span>Guests:</span>
+                                <div className="guests flex column">
+                                    <label htmlFor="confirm-guests">Guests:</label>
+                                    <button className="confirm-guests" type="button" onClick={() => this.activeInput('guest')}>{this.getTotalGuests()}</button>
                                 </div>
                             </div>
                         </div>
                         <div className="flex column">
-                            <button className="confirm-order" type="button" onClick={() => this.activeInput('guest')}>{this.getTotalGuests()}</button>
-                            {!isReserve && <button type="button" onClick={this.onSubmit}>Check availability</button>}
-                            {isReserve && <button type="button" onClick={this.onSubmit}>Reserve</button>}
+                            {!isReserve && <button className="confirm-order" type="button" onClick={this.onSubmit}>Check availability</button>}
+                            {isReserve && <button className="confirm-order" type="button" onClick={this.onSubmit}>Reserve</button>}
                         </div>
                     </form>
                     <div className={isPickingGuests ? "picking-guest-container" : "picking-guest-container none"}> {isPickingGuests && <GuestsPicking handleGuestsChanege={this.handleGuestsChanege} />} </div>
@@ -193,7 +193,7 @@ export class _OrderModal extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log('state.orderReducer.order',state.orderReducer.order);
+    console.log('state.orderReducer.order', state.orderReducer.order);
     return {
         stays: state.stayReducer.stays,
         order: state.orderReducer.order

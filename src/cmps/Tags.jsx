@@ -6,11 +6,6 @@ import { SelfCheckIn } from "./svgs/SelfCheckIn";
 import { WiFi } from "./svgs/WiFi";
 
 export function Tags({ tag, type }) {
-<<<<<<< HEAD
-    
-=======
-    console.log('tag||',tag,'||type||',type);
->>>>>>> 861a3c60b4df3fabea35bd1083569beb71b3b369
     switch (tag) {
         case 'entire to yourself':
             return <div className="tag-container flex">

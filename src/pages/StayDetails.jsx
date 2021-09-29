@@ -32,10 +32,6 @@ export class _StayDetails extends Component {
     render() {
         const { stay } = this.state
         const { order } = this.props
-<<<<<<< HEAD
-      
-=======
->>>>>>> 861a3c60b4df3fabea35bd1083569beb71b3b369
         if (!stay) return <div>Loading...</div>
 
         return (
@@ -80,7 +76,7 @@ export class _StayDetails extends Component {
                             <h2>What this place offers</h2>
                         </div>
                     </div>
-                    <OrderModal />
+                    <OrderModal stay={stay}/>
                 </div>
             </section>
         )

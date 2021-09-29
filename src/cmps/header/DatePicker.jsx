@@ -7,7 +7,7 @@ import { addDays } from 'date-fns';
 import { useState } from 'react';
 
 
-export function DatePicker({handlePickingDates,preventPropagation}) {
+export function DatePicker({ handlePickingDates, preventPropagation }) {
 
 
     const [state, setState] = useState([
@@ -17,19 +17,19 @@ export function DatePicker({handlePickingDates,preventPropagation}) {
             key: 'selection'
         }
     ]);
-// useEffect(() => {
-//     effect
-   
-// }, [input])
+    useEffect(() => {
+        effect
+
+    }, [input])
 
     return (
         <div onClick={preventPropagation}>
-        <DateRange
-            editableDateInputs={true}
-            onChange={item => setState([item.selection],handlePickingDates(state[0].startDate,state[0].endDate))}
-            moveRangeOnFirstSelection={false}
-            ranges={state}
-        />
+            <DateRange
+                editableDateInputs={true}
+                onChange={item => setState([item.selection], handlePickingDates(state[0].startDate, state[0].endDate))}
+                moveRangeOnFirstSelection={false}
+                ranges={state}
+            />
         </div>
     )
 }

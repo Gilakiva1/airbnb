@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { utilService } from '../services/util.service';
 import { GuestsPicking } from './header/GuestsPicking';
+import { DatePicker } from './header/DatePicker';
 
 export class OrderModal extends Component {
 
@@ -18,8 +19,9 @@ export class OrderModal extends Component {
                 infant: 0
             }
         },
-        isReserve:false,
-        isPickingGuests: false
+        isReserve: false,
+        isPickingGuests: false,
+        isPickingDates: false
     }
 
     componentDidMount() {
@@ -44,9 +46,10 @@ export class OrderModal extends Component {
     }
 
     closeInputs = () => {
-        let { isPickingGuests } = this.state
+        let { isPickingGuests, isPickingDates } = this.state
         isPickingGuests = false
-        this.setState({ isPickingGuests })
+        isPickingDates = false
+        this.setState({ isPickingGuests, isPickingDates })
     }
 
     activeInput = (input) => {
@@ -54,8 +57,13 @@ export class OrderModal extends Component {
         switch (input) {
             case 'guest':
                 this.setState({ isPickingGuests: true })
+                break;
+            case 'date':
+                this.setState({ isPickingDates: true })
+                break;
         }
     }
+
 
     setIsPickingGuests = () => {
         let { isPickingGuests } = this.state
@@ -70,7 +78,7 @@ export class OrderModal extends Component {
     getTotalGuests = () => {
         let { adult, child, infant } = this.state.criteria.guests
         var guests = `Guests:${adult + child}`
-        if(infant){
+        if (infant) {
             guests += ` infant: ${infant}`
         }
         return guests
@@ -85,36 +93,52 @@ export class OrderModal extends Component {
         this.setState({ criteria: { ...criteria, guests: { ...guests, [field]: value } } })
     }
 
-    onSubmit =(ev) =>{
+    handlePickingDates = (start, end) => {
+        console.log('start', start, 'end', end);
+        let { criteria } = this.state
+        let { checkIn, checkOut } = criteria
+        checkIn = ` ${start.toLocaleString('en-IL', { month: 'short', day: 'numeric' })} `
+        if (end) checkOut = ` ${end.toLocaleString('en-IL', { month: 'short', day: 'numeric' })} `
+        console.log('check in:', checkIn, 'checkout', checkOut);
+        this.setState({ criteria: { ...criteria, checkIn, checkOut } })
+    }
+
+
+
+    onSubmit = (ev) => {
         console.log(ev);
         console.log(ev.target.type === 'button');
-        if(ev.target.type === 'button'){
-            this.setState({isReserve:true})
+        if (ev.target.type === 'button') {
+            this.setState({ isReserve: true })
             ev.target.type = 'submit'
         }
         else {
-            
 
         }
 
     }
     render() {
+
         const { isPickingGuests } = this.state
+        const { isPickingDates } = this.state
+        console.log('isPickingCheckIn', isPickingDates);
         console.log('isPickingGuests', isPickingGuests);
         const { criteria } = this.state
-        const {isReserve} = this.state
-        const {stay} = this.props
+        const { checkIn, checkOut } = criteria
+        const { isReserve } = this.state
+        const { stay } = this.props
+        console.log(stay.price);
         return (
             <div className="order-modal">
                 <div className="flex gap5">
                     <div>
-                        ${stay.price}/Night
+                        {/* ${stay.price}/Night */}
                     </div>
                     <div>
 
-                    {<FontAwesomeIcon className='star-icon' icon={faStar} />}
-                    5
-                    ({utilService.getRandomIntInclusive(30, 500)} reviews) <span> </span>
+                        {<FontAwesomeIcon className='star-icon' icon={faStar} />}
+                        5
+                        ({utilService.getRandomIntInclusive(30, 500)} reviews) <span> </span>
                     </div>
                 </div>
                 <div className="flex column" >
@@ -122,47 +146,41 @@ export class OrderModal extends Component {
                         <div className="date-input flex column">
                             <span>Check in:</span>
                             <input
-                                type="date"
+                                type="text"
                                 placeholder="Add dates"
                                 name="checkIn"
-                                style={{ border: 'none' }}
+                                value={checkIn}
+                                style={{ outline: 'none' }}
                                 onChange={this.handleChange}
-                                onClick={this.closeInputs}
+                                onClick={() => this.activeInput('date')}
                             />
                         </div>
                         <div className="input-container flex column">
                             <span>Check out:</span>
                             <input
-                                type="date"
+                                type="text"
                                 placeholder="Add dates"
                                 name="checkOut"
-                                style={{ border: 'none' }}
+                                value={checkOut}
+
+                                style={{ outline: 'none' }}
                                 onChange={this.handleChange}
-                                onClick={this.closeInputs}
+                                onClick={() => this.activeInput('date')}
                             />
                         </div>
                         <div className="input-container flex column">
                             <span>Guests:</span>
-                            <input
-                                type="search"
-                                placeholder="Add guests"
-                                name="guests"
-                                placeholder={'guests:' + this.getTotalGuests()}
-                                style={{ border: 'none' }}
-                                onKeyPress={this.handleKeyPress}
-                                onChange={this.handleChange}
-                                onClick={() => this.activeInput('guest')}
-                            />
                         </div>
                         <div className="flex column">
                             <button className="confirm-order" type="button" onClick={() => this.activeInput('guest')}>{this.getTotalGuests()}</button>
-                            {!isReserve&&<button  type="button" onClick={this.onSubmit}>Check availability</button>}
-                            {isReserve&&<button  type="button" onClick={this.onSubmit}>Reserve</button>}
+                            {!isReserve && <button type="button" onClick={this.onSubmit}>Check availability</button>}
+                            {isReserve && <button type="button" onClick={this.onSubmit}>Reserve</button>}
                         </div>
                     </form>
                     <div className={isPickingGuests ? "picking-guest-container" : "picking-guest-container none"}> {isPickingGuests && <GuestsPicking handleGuestsChanege={this.handleGuestsChanege} />} </div>
-                </div>
+                    <div className={isPickingDates ? "picking-dates-container" : "checkin-container none"}> {isPickingDates && <DatePicker preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />} </div>
 
+                </div>
             </div>
         )
     }

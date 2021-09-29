@@ -75,22 +75,6 @@ export class _StayDetails extends Component {
                         <div className="amenities">
                             <h2>What this place offers</h2>
                         </div>
-
-                    </div>
-                    <div className="seperation-line"></div>
-                    <div className="tag-container flex column">
-                        <div>
-                            {stay.tags.map((tag, idx) => (
-                                <Tags key={idx} tag={tag} type={stay.type} />
-                            ))}
-                        </div>
-                        <OrderModal />
-                    </div>
-                    <div className="seperation-line"></div>
-                    <div className="description">{stay.description}</div>
-                    <div className="seperation-line"></div>
-                    <div className="amenities">
-                        <h2>What this place offers</h2>
                     </div>
                         <OrderModal stay={stay}/>
                 </div>

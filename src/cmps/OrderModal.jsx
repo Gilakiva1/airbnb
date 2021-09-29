@@ -10,10 +10,10 @@ export class _OrderModal extends Component {
 
     state = {
         criteria: {
-            dates: {
-                chackIn: '',
-                chackOut: ''
-            },
+
+            chackIn: '',
+            chackOut: '',
+
             guests: {
                 adult: 0,
                 child: 0,
@@ -108,16 +108,13 @@ export class _OrderModal extends Component {
             ev.target.type = 'submit'
         }
         else {
-            console.log('else');
             this.props.onSetOrder(this.state.criteria)
         }
     }
 
-    render() {
 
-        const { isPickingGuests } = this.state
-        const { isPickingDates } = this.state
-        const { criteria } = this.state
+    render() {
+        const { isPickingDates, criteria, isPickingGuests, isReserve } = this.state
         const { checkIn, checkOut } = criteria
         const { isReserve } = this.state
         const { stay } = this.props
@@ -149,7 +146,7 @@ export class _OrderModal extends Component {
                                             type="text"
                                             placeholder="Add dates"
                                             name="checkIn"
-                                            value={order.checkIn}
+                                            value={order.chackIn}
                                             disabled
                                             style={{ outline: 'none' }}
                                             onChange={this.handleChange}
@@ -163,7 +160,7 @@ export class _OrderModal extends Component {
                                             type="text"
                                             placeholder="Add dates"
                                             name="checkOut"
-                                            value={order.checkOut}
+                                            value={order.chackOut}
                                             disabled
                                             style={{ outline: 'none' }}
                                             onChange={this.handleChange}

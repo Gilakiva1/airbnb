@@ -18,3 +18,7 @@ function query() {
     return storageService.query(STORAGE_KEY);
 }
 
+function getOrderDetails() {
+    return storageService.get(STORAGE_KEY);
+  }
+

@@ -9,22 +9,32 @@ export const storageService = {
     postMany
 }
 
-function query(entityType, filterBy, params) {
+function query(entityType, params = {}) {
+
+
     var entities = JSON.parse(localStorage.getItem(entityType)) || dummyData
-    if (params) {
-        const city = params.city.split('-').join(' ').toLowerCase()
-        entities = entities.filter(entitie => entitie.loc.city.toLowerCase() === city.toLowerCase())
-    }
-    if (!filterBy) {
-        return new Promise((resolve, reject) => {
-            resolve(entities)
-        })
-    }
-    if (filterBy.location) {
+
+    if (params.address) {
+        const regex = new RegExp(params.address, 'i');
         entities = entities.filter(entitie => {
-            return entitie.loc.country.toLowerCase() === filterBy.location.toLowerCase()
+            return regex.test(entitie.loc.address)
+        })
+        // const regex = new RegExp(filterBy.txt, 'i');
+        // toys = toys.filter(toy => regex.test(toy.name))
+        console.log('work', entities);
+    }
+    // toys = toys.filter(toy => regex.test(toy.name))
+
+    if (params.guests) {
+        entities = entities.filter(entitie => {
+            return entitie.capacity >= params.guests.adult + params.guests.child + params.guests.infant
         })
     }
+    // if (!filterBy) {
+    //     return new Promise((resolve, reject) => {
+    //         resolve(entities)
+    //     })
+    // }
     // if (filterBy.checkIn) {
     //     entities = entities.filter(entitie => {
     //        if (entitie.avelability.forEach(order=>{
@@ -32,16 +42,12 @@ function query(entityType, filterBy, params) {
     //        })) return entitiy
     //     })
     // }
-    if (filterBy.guests) {
-        entities = entities.filter(entitie => {
-            return entitie.capacity >= filterBy.guests.adult + filterBy.guests.child + filterBy.guests.infant
-        })
-    }
-    if (filterBy.price) {
-        entities = entities.filter(entitie => {
-            return entitie.price >= filterBy.price.minPrice && entitie.price <= filterBy.price.maxPrice
-        })
-    }
+    // if (params.price) {
+    //     entities = entities.filter(entitie => {
+    //         return entitie.price >= filterBy.price.minPrice && entitie.price <= filterBy.price.maxPrice
+    //     })
+    // }
+    console.log('entities?', entities);
     return new Promise((resolve, reject) => {
         resolve(entities)
     })
@@ -134,7 +140,7 @@ const dummyData = [{
         'free cancellation',
     ],
     host: {
-        _id: 51399391,
+        _id: '51399391',
         fullname: ' Davit Pok',
         imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
     },
@@ -176,6 +182,7 @@ const dummyData = [{
     type: 'Villa',
     capacity: 12,
     amenities: [
+        'Outdoor',
         'TV',
         'Wifi',
         'Kitchen',
@@ -187,11 +194,11 @@ const dummyData = [{
     tags: [ // the tags will contain a key word which the front will use to render the full tags to the stay
         'entire to yourself',
         'enhanced clean',
-        'super host', 
+        'super host',
         'free cancellation',
     ],
     host: {
-        _id: 51329391,
+        _id: '51329391',
         fullname: ' Davit puka',
         imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
     },
@@ -226,12 +233,13 @@ const dummyData = [{
     _id: '10006236',
     name: 'New York super apartment',
     imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large'],
-    price: 80.00,
+    price: 120.00,
     summary: 'A big studio apartment, located right by the Times Saquare',
     description: 'The apartment is literally on TOP of the river as the photos can show. It\'s really comfortable, perfectly located and with the most perfect view. It is in a recently rebuilt building, with new construction materials and with is disposal on top of the river and its great windows you will have all the quiet you will need, near the most historic zone of the city.',
     type: 'apratment',
     capacity: 8,
     amenities: [
+        'Home',
         'TV',
         'Wifi',
         'Kitchen',
@@ -246,7 +254,7 @@ const dummyData = [{
         'free cancellation',
     ],
     host: {
-        _id: 51392291,
+        _id: '51392291',
         fullname: ' Davidi Pok',
         imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
     },
@@ -288,6 +296,7 @@ const dummyData = [{
     type: 'apratment',
     capacity: 8,
     amenities: [
+        'Unique',
         'TV',
         'Wifi',
         'Kitchen',
@@ -302,7 +311,7 @@ const dummyData = [{
         'free cancellation',
     ],
     host: {
-        _id: 51392291,
+        _id: '51392291',
         fullname: ' Davidi Pok',
         imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
     },
@@ -348,6 +357,8 @@ const dummyData = [{
     type: 'apratment',
     capacity: 8,
     amenities: [
+        'Outdoor',
+        'Home',
         'TV',
         'Wifi',
         'Kitchen',
@@ -362,7 +373,7 @@ const dummyData = [{
         'free cancellation',
     ],
     host: {
-        _id: 51392291,
+        _id: '51392291',
         fullname: ' Davidi Pok',
         imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
     },
@@ -422,7 +433,7 @@ const dummyData = [{
         'free cancellation',
     ],
     host: {
-        _id: 51392291,
+        _id: '51392291',
         fullname: ' Davidi Pok',
         imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
     },
@@ -481,7 +492,7 @@ const dummyData = [{
         'free cancellation',
     ],
     host: {
-        _id: 51399391,
+        _id: '51399391',
         fullname: ' Davit Pok',
         imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
     },
@@ -539,7 +550,7 @@ const dummyData = [{
         'free cancellation',
     ],
     host: {
-        _id: 51399391,
+        _id: '51399391',
         fullname: ' Davit Pok',
         imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
     },

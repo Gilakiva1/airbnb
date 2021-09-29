@@ -18,29 +18,27 @@ import imgHome from '../assets/img/home-page/home.jpg'
 import imgHost from '../assets/img/home-page/host.jpg'
 import imgHero from '../assets/img/hero-cut.jpg'
 import { PopularImgList } from "../cmps/home-page/PopularImgList";
-import { LabelsImgList } from "../cmps/home-page/LabelsImgList"
+import { AmenitiesImgList } from "../cmps/home-page/AmenitiesImgList"
 
 class _HomePage extends React.Component {
     state = {}
 
     PopularDestinations = [
-        { city: 'Tel-aviv', country: 'Israel', img: imgTelAviv, },
+        { city: 'Tel aviv', country: 'Israel', img: imgTelAviv, },
         { city: 'London', country: 'England', img: imgLondon },
         { city: 'Bangkok', country: 'Thailand', img: imgBangkok },
         { city: 'Paris', country: 'France', img: imgParis },
         { city: 'Dubai', country: 'United Arab Emirates', img: imgDubai },
-        { city: 'New-york', country: 'United States of America', img: imgNewYork },
+        { city: 'new york', country: 'United States of America', img: imgNewYork },
         { city: 'Amsterdam', country: 'Netherlands', img: imgAmsterdam },
         { city: 'Hong-kong', country: 'China', img: imgHongKong }
     ]
-    LabelsDestinations = [
+    amenities = [
         { value: 'outdoor', label: 'Outdoor getaways', img: imgOutdoor },
         { value: 'unique', label: 'Unique Stays', img: imgUnique },
         { value: 'home', label: 'Entires homes', img: imgHome },
-        { value: 'pet', label: 'Pets Allowd', img: imgPets }
-    ]
-
-
+        { value: 'pets', label: 'Pets Allowd', img: imgPets }
+    ] 
     render() {
 
         return <>
@@ -51,7 +49,7 @@ class _HomePage extends React.Component {
                 <h1 className="title-popular fs30">Popular Destinations</h1>
                 <PopularImgList links={this.PopularDestinations} />
                 <h1 className="title-labels ">Live Anywhere</h1>
-                <LabelsImgList links={this.LabelsDestinations} />
+                <AmenitiesImgList links={this.amenities} />
                 <Link to='/host'>
                     <div className="host-container ">
                         <img className="round-edge" src={imgHost} />

@@ -11,11 +11,11 @@ import { faSearch, faStar } from '@fortawesome/free-solid-svg-icons'
 import { onSetFilter } from '../../store/stay.action.js'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
+import { DatePicker } from './DatePicker.jsx'
 // import {} from ''
 // import querystring from 'querystring'
 const queryString = require('query-string');
 // const querystring = require('querystring');
-import { DatePicker } from './DatePicker.jsx'
 
 
 
@@ -61,13 +61,13 @@ export class _SearchBar extends React.Component {
   }
 
   handlePickingDates = (start, end) => {
-    console.log('start',start,'end',end);
-    let {criteria} = this.state
+    console.log('start', start, 'end', end);
+    let { criteria } = this.state
     let { checkIn, checkOut } = criteria
-    checkIn = `${start.getDay()} ${start.toLocaleString('en-us', { month: 'short' })} `
-    if (end) checkOut = `${end.getDay()} ${end.toLocaleString('en-us', { month: 'short' })}`
-    console.log('check in:', checkIn,'checkout',checkOut);
-    this.setState({criteria:{...criteria, checkIn,checkOut}})
+    checkIn = ` ${start.toLocaleString('en-IL', { month: 'short' ,day: 'numeric'})} `
+    if (end) checkOut =` ${end.toLocaleString('en-IL', { month: 'short' ,day: 'numeric'})} `
+    console.log('check in:', checkIn, 'checkout', checkOut);
+    this.setState({ criteria: { ...criteria, checkIn, checkOut } })
   }
 
   handleKeyPress = () => {
@@ -90,7 +90,7 @@ export class _SearchBar extends React.Component {
       }
       if (idx < arr.length - 1) acc += '&'
       return acc
-    },'' );
+    }, '');
     // console.log(queryString);
     await this.props.onSetFilter(criteria)
     this.props.history.push(`/stay?${queryString}`)
@@ -104,7 +104,7 @@ export class _SearchBar extends React.Component {
       case 'guest':
         this.setState({ isPickingGuests: true })
         break;
-      case 'check in':
+      case 'date':
         this.setState({ isPickingDates: true })
         break;
     }
@@ -127,8 +127,8 @@ export class _SearchBar extends React.Component {
   }
 
   render() {
-    const { isPickingGuests, isPickingDates: isPickingCheckIn,criteria } = this.state
-    const {checkIn,checkOut} = criteria
+    const { isPickingGuests, isPickingDates: isPickingCheckIn, criteria } = this.state
+    const { checkIn, checkOut } = criteria
     return (
       <section className="flex column">
         <form className="search-bar-container flex" onClick={this.preventPropagation} onSubmit={this.onSubmit}>
@@ -138,7 +138,7 @@ export class _SearchBar extends React.Component {
               type="search"
               placeholder="Where are you going?"
               name="address"
-              style={{ border: 'none' }}
+              style={{ border: 'none', outline: 'none' }}
               onChange={this.handleChange}
               onClick={this.closeInputs}
             />
@@ -150,10 +150,10 @@ export class _SearchBar extends React.Component {
               placeholder="Add dates"
               name="checkIn"
               value={checkIn}
-              style={{ border: 'none' }}
+              style={{ border: 'none', outline: 'none' }}
               onChange={this.handleChange}
               // onClick={this.closeInputs}
-              onClick={() => this.activeInput('check in')}
+              onClick={() => this.activeInput('date')}
             />
           </div>
           <div className="input-container flex column">
@@ -163,9 +163,9 @@ export class _SearchBar extends React.Component {
               placeholder="Add dates"
               name="checkOut"
               value={checkOut}
-              style={{ border: 'none' }}
+              style={{ border: 'none', outline: 'none' }}
               onChange={this.handleChange}
-              onClick={this.closeInputs}
+              onClick={() => this.activeInput('date')}
             />
           </div>
           <div className="input-container flex column">
@@ -175,7 +175,7 @@ export class _SearchBar extends React.Component {
               placeholder="Add guests"
               name="guests"
               placeholder={'guests:' + this.getTotalGuests()}
-              style={{ border: 'none' }}
+              style={{ border: 'none', outline: 'none' }}
               onKeyPress={this.handleKeyPress}
               onChange={this.handleChange}
               onClick={() => this.activeInput('guest')}
@@ -184,7 +184,7 @@ export class _SearchBar extends React.Component {
           <button className="search-bar-submit flex">{<FontAwesomeIcon className='search-icon' icon={faSearch} />}</button>
         </form>
         <div className={isPickingGuests ? "picking-guest-container" : "picking-guest-container none"}> {isPickingGuests && <GuestsPicking handleGuestsChanege={this.handleGuestsChanege} />} </div>
-        <div  className={isPickingCheckIn ? "picking-dates-container" : "checkin-container none"}> {isPickingCheckIn && <DatePicker preventPropagation={this.preventPropagation}  handlePickingDates={this.handlePickingDates} />} </div>
+        <div className={isPickingCheckIn ? "picking-dates-container" : "checkin-container none"}> {isPickingCheckIn && <DatePicker preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />} </div>
 
       </section>
     )

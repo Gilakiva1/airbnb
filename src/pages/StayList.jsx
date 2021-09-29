@@ -18,12 +18,6 @@ class _StayList extends React.Component {
 
         //Iterate the search parameters.
         console.log('params', searchParams);
-        for (let p of searchParams) {
-
-            const 
-
-
-        }
         // this.props.loadStays(params)
 
     }

@@ -111,23 +111,15 @@ export class _OrderModal extends Component {
     onSubmit = async (ev) => {
         ev.preventDefault()
         const { stay, order } = this.state
-
         if (ev.target.type === 'button') {
             this.setState({ isReserve: true })
             ev.target.type = 'submit'
         }
         else {
-            
             // this.props.onSetOrder(this.state.order)
             const savedOrder = await this.props.onSetOrder(order) 
-            console.log('order', savedOrder);
-            console.log(this.props)  
             const stay = await stayService.getById(this.props.match.params.stayId)
-            stay.order.push(savedOrder)
-            console.log('stayyyyy', stay);
-
-
-
+            stay.orders.push(savedOrder)
         }
     }
 
@@ -135,7 +127,7 @@ export class _OrderModal extends Component {
     render() {
         const { isPickingDates, isPickingGuests, isReserve } = this.state
         // const { checkIn, checkOut } = order
-        const { order } = this.props
+        const { order,stay } = this.props
 
         if (!order) return <div>loading</div>
         return (

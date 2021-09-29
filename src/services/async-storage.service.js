@@ -7,47 +7,37 @@ export const storageService = {
     put,
     remove,
     postMany
+
 }
 
 function query(entityType, params = {}) {
+    let entities;
 
-    var entities = JSON.parse(localStorage.getItem(entityType)) || dummyData
-    if (params.address) {
-        const regex = new RegExp(params.address, 'i');
-        entities = entities.filter(entitie => {
-            return regex.test(entitie.loc.address)
-        })  
-    }
+    if (entityType === 'stayDB') {
 
-    if (params.guests) {
-        entities = entities.filter(entitie => {
-            return entitie.capacity >= params.guests.adult + params.guests.child + params.guests.infant
-        })
+        entities = JSON.parse(localStorage.getItem(entityType)) || dummyData
+        if (params.address) {
+            const regex = new RegExp(params.address, 'i');
+            entities = entities.filter(entitie => {
+                return regex.test(entitie.loc.address)
+            })
+        }
+
+        if (params.guests) {
+            entities = entities.filter(entitie => {
+                return entitie.capacity >= params.guests.adult + params.guests.child + params.guests.infant
+            })
+        }
+    } else {
+        entities = JSON.parse(localStorage.getItem(entityType)) || []
+
     }
-    // if (!filterBy) {
-    //     return new Promise((resolve, reject) => {
-    //         resolve(entities)
-    //     })
-    // }
-    // if (filterBy.checkIn) {
-    //     entities = entities.filter(entitie => {
-    //        if (entitie.avelability.forEach(order=>{
-    //         if (order)
-    //        })) return entitiy
-    //     })
-    // }
-    // if (params.price) {
-    //     entities = entities.filter(entitie => {
-    //         return entitie.price >= filterBy.price.minPrice && entitie.price <= filterBy.price.maxPrice
-    //     })
-    // }
-    console.log('entities?', entities);
     return new Promise((resolve, reject) => {
         resolve(entities)
-    })  
+    })
+
+
 }
-
-
 function get(entityType, entityId) {
     console.log('entityType', entityType, 'entityId', entityId);
     return query(entityType)
@@ -96,6 +86,23 @@ function _makeId(length = 5) {
     }
     return text
 }
+// if (!filterBy) {
+//     return new Promise((resolve, reject) => {
+//         resolve(entities)
+//     })
+// }
+// if (filterBy.checkIn) {
+//     entities = entities.filter(entitie => {
+//        if (entitie.avelability.forEach(order=>{
+//         if (order)
+//        })) return entitiy
+//     })
+// }
+// if (params.price) {
+//     entities = entities.filter(entitie => {
+//         return entitie.price >= filterBy.price.minPrice && entitie.price <= filterBy.price.maxPrice
+//     })
+// }
 
 function postMany(entityType, newEntities) {
     return query(entityType)

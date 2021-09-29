@@ -21,17 +21,19 @@ export class _StayDetails extends Component {
 
     loadStay = async () => {
         const id = this.props.match.params.stayId;
-        console.log('stay id ', id);
+        console.log('stay idddd ', id);
         const stay = await stayService.getById(id)
         console.log('stay in stay details', stay);
         if (!stay) this.props.history.push("/")
         this.setState({ stay })
-
     }
 
     render() {
         const { stay } = this.state
+        const { order } = this.props
         if (!stay) return <div>Loading...</div>
+        console.log(order);
+
         console.log('stay:', stay);
         return (
             <section className="stay-details-container">
@@ -74,22 +76,8 @@ export class _StayDetails extends Component {
                         <div className="amenities">
                             <h2>What this place offers</h2>
                         </div>
-
                     </div>
-                    <div className="seperation-line"></div>
-                    <div className="tag-container flex column">
-                        <div>
-                            {stay.tags.map((tag, idx) => (
-                                <Tags key={idx} tag={tag} type={stay.type} />
-                            ))}
-                        </div>
-                    </div>
-                    <div className="seperation-line"></div>
-                    <div className="description">{stay.description}</div>
-                    <div className="seperation-line"></div>
-                    <div className="amenities">
-                        <h2>What this place offers</h2>
-                    </div>
+    
                     <OrderModal />
                 </div>
             </section>
@@ -101,6 +89,7 @@ export class _StayDetails extends Component {
 function mapStateToProps(state) {
     return {
         stays: state.stayReducer.stays,
+        order: state.orderReduce.order
     }
 }
 const mapDispatchToProps = {}

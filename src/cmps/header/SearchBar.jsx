@@ -117,7 +117,9 @@ export class _SearchBar extends React.Component {
     const { isPickingGuests, isPickingDates: isPickingCheckIn, criteria } = this.state
     const { checkIn, checkOut } = criteria
     return (
-      <section className="flex column">
+      <section className="flex column align-center">
+        <div>
+          <div className="flex column">
         <form className="search-bar-container flex" onClick={this.preventPropagation} onSubmit={this.onSubmit}>
           <div className="input-container flex column"
             onClick={() => this.inputRef.current.focus()}
@@ -129,7 +131,6 @@ export class _SearchBar extends React.Component {
               placeholder="Where are you going?"
               name="address"
               autoComplete="off"
-              style={{ border: 'none', outline: 'none' }}
               onChange={this.handleChange}
               onClick={this.closeInputs}
             />
@@ -142,7 +143,6 @@ export class _SearchBar extends React.Component {
               name="checkIn"
               value={checkIn}
               autoComplete="off"
-              style={{ border: 'none', outline: 'none' }}
               disabled
               onChange={this.handleChange}
             // onClick={this.closeInputs}
@@ -159,7 +159,6 @@ export class _SearchBar extends React.Component {
               name="checkOut"
               value={checkOut}
               disabled
-              style={{ border: 'none', outline: 'none' }}
               onChange={this.handleChange}
 
             />
@@ -174,7 +173,6 @@ export class _SearchBar extends React.Component {
               autoComplete="off"
               name="guests"
               placeholder={'guests:' + this.getTotalGuests()}
-              style={{ border: 'none', outline: 'none' }}
               disabled
               onChange={this.handleChange}
 
@@ -184,7 +182,8 @@ export class _SearchBar extends React.Component {
         </form>
         <div className={isPickingGuests ? "picking-guest-container" : "picking-guest-container none"}> {isPickingGuests && <GuestsPicking handleGuestsChanege={this.handleGuestsChanege} />} </div>
         <div className={isPickingCheckIn ? "picking-dates-container" : "checkin-container none"}> {isPickingCheckIn && <DatePicker preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />} </div>
-
+        </div>
+        </div>
       </section>
     )
   }

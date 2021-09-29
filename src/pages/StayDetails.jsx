@@ -14,7 +14,6 @@ import { stayService } from '../services/stay.service.js';
 export class _StayDetails extends Component {
     state = {
         stay: null,
- 
     };
     componentDidMount() {
         this.loadStay()
@@ -22,18 +21,20 @@ export class _StayDetails extends Component {
 
     loadStay = async () => {
         const id = this.props.match.params.stayId;
-        console.log('stay id ', id);
+        console.log('stay idddd ', id);
         const stay = await stayService.getById(id)
         console.log('stay in stay details', stay);
         if (!stay) this.props.history.push("/")
         this.setState({ stay })
-
     }
 
     render() {
         const { stay } = this.state
+        const { order } = this.props
         if (!stay) return <div>Loading...</div>
-        console.log('stay:', stay);
+        console.log(order);
+
+        console.log('stay:', stay); 
         return (
             <section className="stay-details-container">
                 <h1>{stay.name}</h1>
@@ -87,6 +88,7 @@ export class _StayDetails extends Component {
 function mapStateToProps(state) {
     return {
         stays: state.stayReducer.stays,
+        order: state.orderReducer.order
     }
 }
 const mapDispatchToProps = {}

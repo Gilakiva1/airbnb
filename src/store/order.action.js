@@ -1,15 +1,22 @@
 import { orderService } from '../services/order.service'
 
 
-export function onSetOrder(order) {
+export function onSetOrder(orderDetails) {
     try {
         return async dispath => {
-            const savedOrder = await orderService.save(order)
-            dispath({ type: 'SET_ORDER', savedOrder })
+            const order = await orderService.save(orderDetails)
+            dispath({ type: 'SET_ORDER', order })
         }
     } catch (err) {
         console.log('err', err);
         throw err
     }
 
+}
+
+export function sendOrderDetails(order) {
+    console.log('orderDetails', order);
+    return async dispatch => {
+        dispatch({ type: 'SET_ORDER', order })
+    }
 }

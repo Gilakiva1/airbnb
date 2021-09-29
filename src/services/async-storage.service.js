@@ -590,5 +590,4 @@ const dummyData = [{
     likedByUserIds: ['u101', 'u102']
 
 }
-
 ]

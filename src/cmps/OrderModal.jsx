@@ -1,11 +1,12 @@
 import { Component } from 'react'
+import { connect } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { utilService } from '../services/util.service';
 import { GuestsPicking } from './header/GuestsPicking';
 import { DatePicker } from './header/DatePicker';
-
-export class OrderModal extends Component {
+import { sendOrderDetails } from '../store/stay.action'
+export class _OrderModal extends Component {
 
     state = {
         criteria: {
@@ -77,7 +78,7 @@ export class OrderModal extends Component {
 
     getTotalGuests = () => {
         let { adult, child, infant } = this.state.criteria.guests
-        var guests = `Guests:${adult + child}`
+        var guests = `Adults:${adult + child}`
         if (infant) {
             guests += ` infant: ${infant}`
         }
@@ -94,40 +95,32 @@ export class OrderModal extends Component {
     }
 
     handlePickingDates = (start, end) => {
-        console.log('start', start, 'end', end);
         let { criteria } = this.state
         let { checkIn, checkOut } = criteria
         checkIn = ` ${start.toLocaleString('en-IL', { month: 'short', day: 'numeric' })} `
         if (end) checkOut = ` ${end.toLocaleString('en-IL', { month: 'short', day: 'numeric' })} `
-        console.log('check in:', checkIn, 'checkout', checkOut);
         this.setState({ criteria: { ...criteria, checkIn, checkOut } })
     }
 
-
-
     onSubmit = (ev) => {
-        console.log(ev);
-        console.log(ev.target.type === 'button');
         if (ev.target.type === 'button') {
             this.setState({ isReserve: true })
             ev.target.type = 'submit'
         }
         else {
-
+            console.log('else');
+            this.props.sendOrderDetails(this.state.criteria)
         }
-
     }
+
     render() {
 
         const { isPickingGuests } = this.state
         const { isPickingDates } = this.state
-        console.log('isPickingCheckIn', isPickingDates);
-        console.log('isPickingGuests', isPickingGuests);
         const { criteria } = this.state
         const { checkIn, checkOut } = criteria
         const { isReserve } = this.state
         const { stay } = this.props
-        console.log(stay.price);
         return (
             <div className="order-modal">
                 <div className="flex gap5">
@@ -143,33 +136,43 @@ export class OrderModal extends Component {
                 </div>
                 <div className="flex column" >
                     <form className="flex column" onClick={this.preventPropagation}>
-                        <div className="date-input flex column">
-                            <span>Check in:</span>
-                            <input
-                                type="text"
-                                placeholder="Add dates"
-                                name="checkIn"
-                                value={checkIn}
-                                style={{ outline: 'none' }}
-                                onChange={this.handleChange}
-                                onClick={() => this.activeInput('date')}
-                            />
-                        </div>
-                        <div className="input-container flex column">
-                            <span>Check out:</span>
-                            <input
-                                type="text"
-                                placeholder="Add dates"
-                                name="checkOut"
-                                value={checkOut}
+                        <div className="input flex">
+                            <div className="flex column">
+                            <div className="flex">
 
-                                style={{ outline: 'none' }}
-                                onChange={this.handleChange}
-                                onClick={() => this.activeInput('date')}
-                            />
-                        </div>
-                        <div className="input-container flex column">
-                            <span>Guests:</span>
+                                <div className="date-input flex column"
+                                    onClick={() => this.activeInput('date')}>
+                                    <span>Check in:</span>
+                                    <input
+                                        type="text"
+                                        placeholder="Add dates"
+                                        name="checkIn"
+                                        value={checkIn}
+                                        disabled
+                                        style={{ outline: 'none' }}
+                                        onChange={this.handleChange}
+                                        onClick={() => this.activeInput('date')}
+                                    />
+                                </div>
+                                <div className="input-container flex column"
+                                    onClick={() => this.activeInput('date')}>
+                                    <span>Check out:</span>
+                                    <input
+                                        type="text"
+                                        placeholder="Add dates"
+                                        name="checkOut"
+                                        value={checkOut}
+                                        disabled
+                                        style={{ outline: 'none' }}
+                                        onChange={this.handleChange}
+
+                                    />
+                                </div>
+                            </div>
+                            <div className="input-container flex column">
+                                <span>Guests:</span>
+                            </div>
+                            </div>
                         </div>
                         <div className="flex column">
                             <button className="confirm-order" type="button" onClick={() => this.activeInput('guest')}>{this.getTotalGuests()}</button>
@@ -185,3 +188,13 @@ export class OrderModal extends Component {
         )
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        stays: state.stayReducer.stays,
+    }
+}
+const mapDispatchToProps = {
+    sendOrderDetails
+}
+export const OrderModal = connect(mapStateToProps, mapDispatchToProps)(_OrderModal)

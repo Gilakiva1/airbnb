@@ -1,5 +1,6 @@
 const initialState = {
   stays: [],
+  order:{}
 };
 
 export function stayReducer(state = initialState, action) {
@@ -18,6 +19,7 @@ export function stayReducer(state = initialState, action) {
           })
         }
       }
+
     default:
       return { ...state };
   }

@@ -48,9 +48,8 @@ export class _SearchBar extends React.Component {
     const { criteria } = this.state
     const field = ev.target.name
     const value = ev.target.value
-    console.log('field', field, 'value', value);
     this.setState({ criteria: { ...criteria, [field]: value } })
-  }
+  } 
 
   handleGuestsChanege = (field, value) => {
     let { criteria } = this.state
@@ -76,7 +75,6 @@ export class _SearchBar extends React.Component {
     ev.preventDefault()
     const { criteria } = this.state
     const queryString = utilService.makeQueryParams(criteria)
-    // await this.props.onload(criteria) 
     await this.props.onSetOrder(criteria)
     this.props.history.push(`/stay?${queryString}`)
 

@@ -33,18 +33,15 @@ function query(entityType, params = {}) {
                 return entitie.capacity >= params.guests.adult + params.guests.child + params.guests.infant
             })
         }
-    } else {
-        debugger
+    } else {  
         entities = JSON.parse(localStorage.getItem(entityType)) || []
-        entities = [entities[entities.length - 1]]
 
-    } 
+    }
     return new Promise((resolve, reject) => {
         resolve(entities)
     })
 }
 function get(entityType, entityId) {
-    console.log('entityType', entityType, 'entityId', entityId);
     return query(entityType)
         .then(entities => entities.find(entity => entity._id === entityId))
 }

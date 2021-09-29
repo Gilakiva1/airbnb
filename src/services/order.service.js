@@ -1,3 +1,4 @@
+import { de } from "date-fns/locale";
 import { storageService } from "./async-storage.service"
 
 export const orderService = {
@@ -12,7 +13,7 @@ function save(order) {
     } else {
         // order.owner = userService.getLoggedinUser();
         return storageService.post(STORAGE_KEY, order)
-    }
+    } 
 }
 function query() {
     return storageService.query(STORAGE_KEY);

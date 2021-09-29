@@ -19,7 +19,10 @@ export function DatePicker({handlePickingDates,preventPropagation}) {
     ]);
     console.log('state:',state);
 
-
+// useEffect(() => {
+//     effect
+   
+// }, [input])
 
     return (
         <div onClick={preventPropagation}>

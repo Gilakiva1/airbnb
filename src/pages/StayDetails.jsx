@@ -11,9 +11,7 @@ import { HeartSvg } from '../assets/img/stay-details/HeartSvg.jsx';
 import { utilService } from '../services/util.service.js';
 import imgUser from '../assets/img/home-page/user.jpg'
 import { Tags } from '../cmps/Tags.jsx';
-import { stayService } from '../services/stay.service.js';
- 
-// import { GuestsPicking } from '../cmps/header/GuestsPicking.jsx';
+import { OrderModal } from '../cmps/OrderModal.jsx';
 
 
 export class _StayDetails extends Component {
@@ -62,7 +60,7 @@ export class _StayDetails extends Component {
                 <div className="details-main-container flex space-between ">
                     <div className="details-info flex column">
                         <div className="flex space-between">
-                            <div className="flex column space-between">
+                            <div className="det flex column space-between">
                                 <h2>Entire {stay.type} hosted by {stay.host.fullname}</h2>
                                 <div className="flex">{stay.capacity} guests · {stay.type} ·  {utilService.getRandomIntInclusive(2, 6)} beds · {utilService.getRandomIntInclusive(1, 5)} baths </div>
                             </div>
@@ -80,7 +78,7 @@ export class _StayDetails extends Component {
                         <div className="amenities">
                             <h2>What this place offers</h2>
                         </div>
-                        <div ><img className="user-profile-img" src={imgUser} alt="" /></div>
+                        
                     </div>
                     <div className="seperation-line"></div>
                     <div className="tag-container flex column">
@@ -97,8 +95,7 @@ export class _StayDetails extends Component {
                     <div className="amenities">
                         <h2>What this place offers</h2>
                     </div>
-                    <ReserveModal stay={stay} />
-
+                        <OrderModal/>
                 </div>
             </section>
         )

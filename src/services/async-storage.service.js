@@ -10,24 +10,16 @@ export const storageService = {
 }
 
 function query(entityType, params = {}) {
-    debugger
 
-    console.log('query');
     var entities = JSON.parse(localStorage.getItem(entityType)) || dummyData
-    console.log('params',params);
     if (params.address) {
         const regex = new RegExp(params.address, 'i');
         entities = entities.filter(entitie => {
             return regex.test(entitie.loc.address)
-        })
-        // const regex = new RegExp(filterBy.txt, 'i');
-        // toys = toys.filter(toy => regex.test(toy.name))
-        console.log('work', entities);
+        })  
     }
-    // toys = toys.filter(toy => regex.test(toy.name))
 
     if (params.guests) {
-        debugger
         entities = entities.filter(entitie => {
             return entitie.capacity >= params.guests.adult + params.guests.child + params.guests.infant
         })
@@ -52,7 +44,7 @@ function query(entityType, params = {}) {
     console.log('entities?', entities);
     return new Promise((resolve, reject) => {
         resolve(entities)
-    })
+    })  
 }
 
 

@@ -14,7 +14,6 @@ import { stayService } from '../services/stay.service.js';
 export class _StayDetails extends Component {
     state = {
         stay: null,
- 
     };
     componentDidMount() {
         this.loadStay()
@@ -84,7 +83,6 @@ export class _StayDetails extends Component {
                                 <Tags key={idx} tag={tag} type={stay.type} />
                             ))}
                         </div>
-                        <OrderModal />
                     </div>
                     <div className="seperation-line"></div>
                     <div className="description">{stay.description}</div>

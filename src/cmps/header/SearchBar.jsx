@@ -48,7 +48,6 @@ export class _SearchBar extends React.Component {
     const { criteria } = this.state
     const field = ev.target.name
     const value = ev.target.value
-    console.log('field', field, 'value', value);
     this.setState({ criteria: { ...criteria, [field]: value } })
   }
 

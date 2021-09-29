@@ -33,10 +33,9 @@ export class _StayDetails extends Component {
     render() {
         const { stay } = this.state
         const { order } = this.props
-        console.log('order', order);
+      
         if (!stay) return <div>Loading...</div>
 
-        console.log('stay:', stay);
         return (
             <section className="stay-details-container">
                 <h1>{stay.name}</h1>

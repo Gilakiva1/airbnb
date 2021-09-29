@@ -6,7 +6,6 @@ import { SelfCheckIn } from "./svgs/SelfCheckIn";
 import { WiFi } from "./svgs/WiFi";
 
 export function Tags({ tag, type }) {
-    console.log('tag||',tag,'||type||',type);
     
     switch (tag) {
         case 'entire to yourself':

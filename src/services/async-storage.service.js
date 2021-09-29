@@ -34,8 +34,11 @@ function query(entityType, params = {}) {
             })
         }
     } else {
+        console.log('entityType',entityType);
         entities = JSON.parse(localStorage.getItem(entityType)) || []
+        console.log('entities',entities);
         entities = [entities[entities.length - 1]]
+        console.log('entities',entities);
 
     } 
     return new Promise((resolve, reject) => {
@@ -49,6 +52,7 @@ function get(entityType, entityId) {
 }
 
 function post(entityType, newEntity) {
+    console.log('newEntity',newEntity);
     newEntity._id = _makeId()
     return query(entityType)
         .then(entities => {

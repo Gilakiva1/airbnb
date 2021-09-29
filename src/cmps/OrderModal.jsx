@@ -118,6 +118,7 @@ export class _OrderModal extends Component {
         const { checkIn, checkOut } = criteria
         const { stay } = this.props
         const { order } = this.props 
+        console.log('order modal',order);
         if (!order) return <div>loading</div>
         return (
             <div className="order-modal">
@@ -145,7 +146,7 @@ export class _OrderModal extends Component {
                                             type="text"
                                             placeholder="Add dates"
                                             name="checkIn"
-                                            value={order.chackIn}
+                                            value={order.checkIn}
                                             disabled
                                             style={{ outline: 'none' }}
                                             onChange={this.handleChange}
@@ -159,7 +160,7 @@ export class _OrderModal extends Component {
                                             type="text"
                                             placeholder="Add dates"
                                             name="checkOut"
-                                            value={order.chackOut}
+                                            value={order.checkOut}
                                             disabled
                                             style={{ outline: 'none' }}
                                             onChange={this.handleChange}
@@ -182,12 +183,14 @@ export class _OrderModal extends Component {
                     <div className={isPickingDates ? "picking-dates-container" : "checkin-container none"}> {isPickingDates && <DatePicker preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />} </div>
 
                 </div>
+
             </div>
         )
     }
 }
 
 function mapStateToProps(state) {
+    console.log('state.orderReducer.order',state.orderReducer.order);
     return {
         stays: state.stayReducer.stays,
         order: state.orderReducer.order

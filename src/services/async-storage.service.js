@@ -28,19 +28,18 @@ function query(entityType, params = {}) {
                 return entitie.capacity >= params.guests.adult + params.guests.child + params.guests.infant
             })
         }
-    } else {
-        entities = JSON.parse(localStorage.getItem(entityType)) || []
-
         if (params.guests) {
             entities = entities.filter(entitie => {
                 return entitie.capacity >= params.guests.adult + params.guests.child + params.guests.infant
             })
         }
-        return new Promise((resolve, reject) => {
-            resolve(entities)
-        })
+    } else {
+        entities = JSON.parse(localStorage.getItem(entityType)) || []
 
     }
+    return new Promise((resolve, reject) => {
+        resolve(entities)
+    })
 }
 function get(entityType, entityId) {
     console.log('entityType', entityType, 'entityId', entityId);

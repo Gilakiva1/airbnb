@@ -17,7 +17,7 @@ class _StayList extends React.Component {
         const searchParams = new URLSearchParams(this.props.location.search);
 
         //Iterate the search parameters.
-  
+        console.log('params', searchParams);
         // this.props.loadStays(params)
 
     }

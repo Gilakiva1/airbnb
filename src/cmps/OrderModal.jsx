@@ -103,14 +103,21 @@ export class OrderModal extends Component {
         console.log('isPickingGuests', isPickingGuests);
         const { criteria } = this.state
         const {isReserve} = this.state
+        const {stay} = this.props
         return (
             <div className="order-modal">
                 <div className="flex gap5">
+                    <div>
+                        ${stay.price}/Night
+                    </div>
+                    <div>
+
                     {<FontAwesomeIcon className='star-icon' icon={faStar} />}
                     5
                     ({utilService.getRandomIntInclusive(30, 500)} reviews) <span> </span>
+                    </div>
                 </div>
-                <div className="flex " >
+                <div className="flex column" >
                     <form className="flex column" onClick={this.preventPropagation}>
                         <div className="date-input flex column">
                             <span>Check in:</span>
@@ -148,7 +155,7 @@ export class OrderModal extends Component {
                             />
                         </div>
                         <div className="flex column">
-                            <button type="button" onClick={() => this.activeInput('guest')}>{this.getTotalGuests()}</button>
+                            <button className="confirm-order" type="button" onClick={() => this.activeInput('guest')}>{this.getTotalGuests()}</button>
                             {!isReserve&&<button  type="button" onClick={this.onSubmit}>Check availability</button>}
                             {isReserve&&<button  type="button" onClick={this.onSubmit}>Reserve</button>}
                         </div>

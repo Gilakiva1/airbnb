@@ -79,7 +79,7 @@ export class _StayDetails extends Component {
                         </div>
                         
                     </div>
-                        <OrderModal/>
+                        <OrderModal stay={stay}/>
                 </div>
             </section>
         )

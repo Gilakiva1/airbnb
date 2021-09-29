@@ -11,6 +11,7 @@ export const stayService = {
 const STORAGE_KEY = 'stayDB';
 
 function query(filterBy={},params) {
+  console.log('query serviceq');
   const filter = {...filterBy}
   return storageService.query(STORAGE_KEY,filter,params);
 }

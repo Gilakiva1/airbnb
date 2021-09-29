@@ -11,11 +11,11 @@ import { faSearch, faStar } from '@fortawesome/free-solid-svg-icons'
 import { onSetFilter } from '../../store/stay.action.js'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
+import { DatePicker } from './DatePicker.jsx'
 // import {} from ''
 // import querystring from 'querystring'
 const queryString = require('query-string');
 // const querystring = require('querystring');
-import { DatePicker } from './DatePicker.jsx'
 
 
 
@@ -61,11 +61,14 @@ export class _SearchBar extends React.Component {
   }
 
   handlePickingDates = (start, end) => {
-    console.log('start',start,'end',end);
+    console.log('start',start);
+    console.log('end',end);
     let {criteria} = this.state
+    let options = {  month: 'short', day: 'numeric' };
     let { checkIn, checkOut } = criteria
-    checkIn = `${start.getDay()} ${start.toLocaleString('en-us', { month: 'short' })} `
-    if (end) checkOut = `${end.getDay()} ${end.toLocaleString('en-us', { month: 'short' })}`
+    console.log('start.getDay()',start.getDay());
+    checkIn = ` ${start.toLocaleString('en-IL', { month: 'short' ,day: 'numeric'})} `
+    if (end) checkOut =` ${end.toLocaleString('en-IL', { month: 'short' ,day: 'numeric'})} `
     console.log('check in:', checkIn,'checkout',checkOut);
     this.setState({criteria:{...criteria, checkIn,checkOut}})
   }

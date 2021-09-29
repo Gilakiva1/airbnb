@@ -17,8 +17,6 @@ export function DatePicker({handlePickingDates,preventPropagation}) {
             key: 'selection'
         }
     ]);
-    console.log('state:',state);
-
 // useEffect(() => {
 //     effect
    

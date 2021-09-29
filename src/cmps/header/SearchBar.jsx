@@ -13,12 +13,9 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { DatePicker } from './DatePicker.jsx'
 import { utilService } from '../../services/util.service'
-// import {} from ''
-// import querystring from 'querystring'
-const queryString = require('query-string');
-// const querystring = require('querystring');
 
 
+ 
 
 export class _SearchBar extends React.Component {
 
@@ -70,7 +67,7 @@ export class _SearchBar extends React.Component {
     console.log('check in:', checkIn, 'checkout', checkOut);
     this.setState({ criteria: { ...criteria, checkIn, checkOut } })
   }
-
+  
   handleKeyPress = () => {
     return false
   }

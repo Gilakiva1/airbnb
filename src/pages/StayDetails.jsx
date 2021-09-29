@@ -1,9 +1,5 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
-// import { withRouter } from 'react-router'
-// import { Select } from '@material-ui/core';
-import { ReserveModal } from '../cmps/ReserveModal.jsx';
-import { OrderModal } from '../cmps/OrderModal.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { ShareSvg } from '../assets/img/stay-details/ShareSvg.jsx';
@@ -12,12 +8,13 @@ import { utilService } from '../services/util.service.js';
 import imgUser from '../assets/img/home-page/user.jpg'
 import { Tags } from '../cmps/Tags.jsx';
 import { OrderModal } from '../cmps/OrderModal.jsx';
+import { stayService } from '../services/stay.service.js';
 
 
 export class _StayDetails extends Component {
     state = {
         stay: null,
-
+ 
     };
     componentDidMount() {
         this.loadStay()
@@ -78,7 +75,7 @@ export class _StayDetails extends Component {
                         <div className="amenities">
                             <h2>What this place offers</h2>
                         </div>
-                        
+
                     </div>
                     <div className="seperation-line"></div>
                     <div className="tag-container flex column">
@@ -95,7 +92,7 @@ export class _StayDetails extends Component {
                     <div className="amenities">
                         <h2>What this place offers</h2>
                     </div>
-                        <OrderModal/>
+                    <OrderModal />
                 </div>
             </section>
         )

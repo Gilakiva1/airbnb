@@ -56,8 +56,5 @@ export function Tags({ tag, type }) {
                         <span className="fade-font">Guests often search for this popular amenity.</span></p>
                 </div>
             </div>
-
-        default: return <div>Daniel Debil</div>
-
     } 
 }

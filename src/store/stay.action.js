@@ -11,16 +11,11 @@ export function loadStays(params) {
   };
 }
 
-export function sendOrderDetails (orderDetails){
-  console.log(orderDetails);
-  return dispatch => {
-    dispatch({ type: 'SET_ORDER', orderDetails })
-  }
-}
+
 
 export function onSetFilter(filterBy) {
   
   return dispatch => {
-    dispatch({ type: 'FILTER_STAYS', filterBy })
+    dispatch({ type: 'UPDATE_ORDER', filterBy })
   }
 }

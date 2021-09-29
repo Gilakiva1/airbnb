@@ -1,7 +1,8 @@
 import { storageService } from "./async-storage.service"
 
 export const orderService = {
-    save
+    save,
+    query
 }
 const STORAGE_KEY = 'orderDB'
 
@@ -12,5 +13,8 @@ function save(order) {
         // order.owner = userService.getLoggedinUser();
         return storageService.post(STORAGE_KEY, order)
     }
+}
+function query() {
+    return storageService.query(STORAGE_KEY);
 }
 

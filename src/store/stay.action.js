@@ -1,7 +1,6 @@
 import { stayService } from '../services/stay.service';
 
 export function loadStays(params) {
-  console.log('loadStays');
   return async (dispatch) => {
     try {
       const stays = await stayService.query(params);
@@ -13,9 +12,10 @@ export function loadStays(params) {
 }
 
 
+
 export function onSetFilter(filterBy) {
   
   return dispatch => {
-    dispatch({ type: 'FILTER_STAYS', filterBy })
+    dispatch({ type: 'UPDATE_ORDER', filterBy })
   }
 }

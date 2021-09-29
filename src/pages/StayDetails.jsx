@@ -9,6 +9,7 @@ import imgUser from '../assets/img/home-page/user.jpg'
 import { Tags } from '../cmps/Tags.jsx';
 import { OrderModal } from '../cmps/OrderModal.jsx';
 import { stayService } from '../services/stay.service.js';
+import { orderService } from '../services/order.service.js';
 
 
 export class _StayDetails extends Component {
@@ -16,14 +17,15 @@ export class _StayDetails extends Component {
         stay: null,
     };
     componentDidMount() {
-        this.loadStay()
+        this.loadDetails()
+        // this.loadOrder()
+
     }
 
-    loadStay = async () => {
+    loadDetails = async () => {
         const id = this.props.match.params.stayId;
-        console.log('stay idddd ', id);
         const stay = await stayService.getById(id)
-        console.log('stay in stay details', stay);
+        const order = await orderService.query() 
         if (!stay) this.props.history.push("/")
         this.setState({ stay })
     }
@@ -31,10 +33,10 @@ export class _StayDetails extends Component {
     render() {
         const { stay } = this.state
         const { order } = this.props
+        console.log('order', order);
         if (!stay) return <div>Loading...</div>
-        console.log(order);
 
-        console.log('stay:', stay); 
+        console.log('stay:', stay);
         return (
             <section className="stay-details-container">
                 <h1>{stay.name}</h1>
@@ -77,8 +79,7 @@ export class _StayDetails extends Component {
                             <h2>What this place offers</h2>
                         </div>
                     </div>
-                
-                    <OrderModal />
+                    <OrderModal stay={stay} />
                 </div>
             </section>
         )
@@ -92,7 +93,9 @@ function mapStateToProps(state) {
         order: state.orderReducer.order
     }
 }
-const mapDispatchToProps = {}
+const mapDispatchToProps = {
+    // onLoadOrder
+}
 
 export const StayDetails = connect(mapStateToProps)(_StayDetails)
 

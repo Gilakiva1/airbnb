@@ -5,16 +5,15 @@ import React from 'react'
 // import 'react-dates/initialize';
 // import { DateRangePicker, SingleDatePicker, DayPickerRangeController } from 'react-dates';
 // import 'react-dates/lib/css/_datepicker.css';
-import { GuestsPicking } from './GuestsPicking.jsx'
+import { connect } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faStar } from '@fortawesome/free-solid-svg-icons'
 import { onSetFilter } from '../../store/stay.action.js'
-import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { DatePicker } from './DatePicker.jsx'
 import { utilService } from '../../services/util.service'
-
-
+import { GuestsPicking } from './GuestsPicking.jsx'
+import { onSetOrder } from '../../store/order.action'
 
 
 export class _SearchBar extends React.Component {
@@ -77,7 +76,8 @@ export class _SearchBar extends React.Component {
     ev.preventDefault()
     const { criteria } = this.state
     const queryString = utilService.makeQueryParams(criteria)
-    // await this.props.onload(criteria)
+    // await this.props.onload(criteria) 
+    await this.props.onSetOrder(criteria)
     this.props.history.push(`/stay?${queryString}`)
 
   }
@@ -193,7 +193,8 @@ function mapStateToProps(state) {
   return state
 }
 const mapDispatchToProps = {
-  onSetFilter
+  onSetFilter,
+  onSetOrder
 
 }
 

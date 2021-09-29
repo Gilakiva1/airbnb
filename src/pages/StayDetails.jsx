@@ -9,6 +9,7 @@ import { HeartSvg } from '../assets/img/stay-details/HeartSvg.jsx';
 import { utilService } from '../services/util.service.js';
 import imgUser from '../assets/img/home-page/user.jpg'
 import { Tags } from '../cmps/Tags.jsx';
+import { OrderModal } from '../cmps/OrderModal.jsx';
 
 
 export class _StayDetails extends Component {
@@ -63,9 +64,12 @@ export class _StayDetails extends Component {
                     </div>
                     <div className="seperation-line"></div>
                     <div className="tag-container flex column">
+                        <div>
                         {stay.tags.map((tag,idx) => (
                             <Tags key={idx} tag={tag} type={stay.type} />
                         ))}
+                        </div>
+                        <OrderModal/>
                     </div>
                     <div className="seperation-line"></div>
                     <div className="description">{stay.description}</div>

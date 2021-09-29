@@ -64,14 +64,20 @@ export class _SearchBar extends React.Component {
 
 
   onSubmit = async (ev) => {
-    const { criteria } = this.state
     ev.preventDefault()
+    const { criteria } = this.state
+
+    const query = queryString.stringify(
+     
+       JSON.stringify(criteria)
+    );
     await this.props.onSetFilter(criteria)
-    const query = `location=${criteria.location}&guests=${criteria.guests.adult + criteria.guests.child + criteria.guests.infant}`
+    const query = JSON.stringify(criteria)
     this.props.history.push(`/stay?${query}`)
   }
 
   activeInput = (input) => {
+    this.closeInputs()
     switch (input) {
       case 'guest':
         this.setState({ isPickingGuests: true })

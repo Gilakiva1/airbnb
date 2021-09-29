@@ -95,7 +95,7 @@ function _makeId(length = 5) {
 // }
 // if (filterBy.checkIn) {
 //     entities = entities.filter(entitie => {
-//        if (entitie.avelability.forEach(order=>{
+//        if (entitie.orders.forEach(order=>{
 //         if (order)
 //        })) return entitiy
 //     })
@@ -124,7 +124,6 @@ const dummyData = [{
     name: 'Ribeira Charming Duplex',
     imgUrls: ['https://a0.muscache.com/im/pictures/19699192/1db389e2_original.jpg?im_w=1200', 'https://a0.muscache.com/im/pictures/19699115/da835cad_original.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/19699172/fcdea060_original.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/19699165/665a1533_original.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/19699218/ea3a4033_original.jpg?im_w=720'],
     price: 70,
-    summary: 'Fantastic duplex apartment with three bedrooms, located in the historic area of Porto, Ribeira (Cube)...',
     description: 'The apartment is literally on TOP of the river as the photos can show. It\'s really comfortable, perfectly located and with the most perfect view. It is in a recently rebuilt building, with new construction materials and with is disposal on top of the river and its great windows you will have all the quiet you will need, near the most historic zone of the city.',
     type: 'apretment',
     capacity: 8,
@@ -147,7 +146,7 @@ const dummyData = [{
         fullname: ' Davit Pok',
         imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
     },
-    avelability: [
+    orders: [
         {
             _id: 'u101',
             checkIn: '21.04.2021',
@@ -180,7 +179,6 @@ const dummyData = [{
     name: 'La villa - the best villa in Valencia',
     imgUrls: ['https://a0.muscache.com/im/pictures/59d90623-93d2-4397-b00e-c154b81863e0.jpg?im_w=1200', 'https://a0.muscache.com/im/pictures/4c777b12-0d84-4dea-b9fc-8b254156df7a.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/86fff8ad-d4bd-4541-9e7d-35198ebc8a21.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/11ea6006-b72b-4ccf-904a-f372a4e4c1fe.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/337ee9b1-c85c-41cf-b35a-7dee477c7980.jpg?im_w=720'],
     price: 75,
-    summary: 'An amazing villa located right at the city center',
     description: 'The apartment is literally on TOP of the river as the photos can show. It\'s really comfortable, perfectly located and with the most perfect view. It is in a recently rebuilt building, with new construction materials and with is disposal on top of the river and its great windows you will have all the quiet you will need, near the most historic zone of the city.',
     type: 'Villa',
     capacity: 12,
@@ -205,7 +203,7 @@ const dummyData = [{
         fullname: ' Davit puka',
         imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
     },
-    avelability: [{
+    orders: [{
         _id: 'u101',
         checkIn: '21.05.2021',
         checkOut: ' 25.05.2021'
@@ -237,7 +235,6 @@ const dummyData = [{
     name: 'New York super apartment',
     imgUrls: ['https://a0.muscache.com/im/pictures/f31f4456-689b-484c-9921-d17d11cbba03.jpg?im_w=1200', 'https://a0.muscache.com/im/pictures/7ed58939-0f5a-4b95-9007-488b874f9bbf.jpg?im_w=720','https://a0.muscache.com/im/pictures/0c953537-c8dc-4af8-950c-f6eee116e766.jpg?im_w=720','https://a0.muscache.com/im/pictures/ca78ea26-4e61-4f2c-8842-d47469e79d88.jpg?im_w=720','https://a0.muscache.com/im/pictures/c2ab60d8-cb47-4c93-b2d0-bb1d04b709fd.jpg?im_w=720'],
     price: 120,
-    summary: 'A big studio apartment, located right by the Times Saquare',
     description: 'The apartment is literally on TOP of the river as the photos can show. It\'s really comfortable, perfectly located and with the most perfect view. It is in a recently rebuilt building, with new construction materials and with is disposal on top of the river and its great windows you will have all the quiet you will need, near the most historic zone of the city.',
     type: 'apratment',
     capacity: 8,
@@ -261,7 +258,231 @@ const dummyData = [{
         fullname: ' Davidi Pok',
         imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
     },
-    avelability: [{
+    orders: [{
+        _id: 'u101',
+        checkIn: '21.03.2021',
+        checkOut: ' 25.03.2021'
+    }],
+    loc: {
+        country: 'The United States',
+        countryCode: 'USA',
+        address: 'New York, USA',
+        lat: 40.730610,
+        lng: -73.935242,
+        city: 'New York'
+    },
+    reviews: [{
+        id: 'madeId3',
+        txt: 'Very helpful hosts. Cooked traditional...',
+        rate: 4,
+        by: {
+            _id: 'u102',
+            fullname: 'user2',
+            imgUrl: '/img/img2.jpg'
+        },
+        date: 'May 2015'
+    }
+    ],
+    rating: '3.5',
+    likedByUserIds: ['u101', 'u102']
+},
+{
+    _id: '10126236',
+    name: 'Steps from Times Square and Central Park',
+    imgUrls: ['https://a0.muscache.com/im/pictures/38ddd214-a354-4484-9cde-b0edf8d71d50.jpg?im_w=1200', 'https://a0.muscache.com/im/pictures/9e6a3bc3-c16c-4883-9e19-26935366d9b9.jpg?im_w=720','https://a0.muscache.com/im/pictures/515e85d3-3319-4215-8461-c06d983180bf.jpg?im_w=720','https://a0.muscache.com/im/pictures/6d8a7e20-b17a-4229-9fd0-f43c167390d6.jpg?im_w=720','https://a0.muscache.com/im/pictures/37e4fa79-c9aa-4382-bd4b-c8850342c193.jpg?im_w=720'],
+    price: 40,
+    description: '280 square feet guest room with 37" Flat Screen TV, King Size Pillow-top Mattress with large Pillows and high thread count linens, spacious Work Desk with an Ergonomic Chair and a 2-Line Phone for your convenience.',
+    type: 'room in the hotel',
+    capacity: 4,
+    amenities: [
+        'Home',
+        'TV',
+        'Wifi',
+        'Kitchen',
+        'Smoking allowed',
+        'Pets allowed',
+        'Cooking basics'
+    ],
+    tags: [ 
+        'entire to yourself',
+        'enhanced clean',
+        'great check-in',
+        'free cancellation',
+    ],
+    host: {
+        _id: '51392291',
+        fullname: ' Davidi Pok',
+        imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
+    },
+    orders: [{
+        _id: 'u101',
+        checkIn: '21.03.2021',
+        checkOut: ' 25.03.2021'
+    }],
+    loc: {
+        country: 'The United States',
+        countryCode: 'USA',
+        address: 'New York, USA',
+        lat: 40.730610,
+        lng: -73.935242,
+        city: 'New York'
+    },
+    reviews: [{
+        id: 'madeId3',
+        txt: 'Very helpful hosts. Cooked traditional...',
+        rate: 4,
+        by: {
+            _id: 'u102',
+            fullname: 'user2',
+            imgUrl: '/img/img2.jpg'
+        },
+        date: 'May 2015'
+    }
+    ],
+    rating: '3.8',
+    likedByUserIds: ['u101', 'u102']
+},
+{
+    _id: '14916236',
+    name: 'Beautiful Harlem loft off of Central Park',
+    imgUrls: ['https://a0.muscache.com/im/pictures/ff1dbcf5-3f2b-4c2e-bd33-c3ce740be548.jpg?im_w=1200', 'https://a0.muscache.com/im/pictures/18c67c27-5c09-4bc1-9f18-5afa15e97075.jpg?im_w=720','https://a0.muscache.com/im/pictures/862a8457-5fe5-4c53-9567-15528f0590f1.jpg?im_w=720','https://a0.muscache.com/im/pictures/27919374-102b-47eb-ad2f-5f94ae670a79.jpg?im_w=720','https://a0.muscache.com/im/pictures/07aa5fe1-d411-4656-9b53-496cc80e0ebd.jpg?im_w=720'],
+    price: 50,
+    description: '280 square feet guest room with 37" Flat Screen TV, King Size Pillow-top Mattress with large Pillows and high thread count linens, spacious Work Desk with an Ergonomic Chair and a 2-Line Phone for your convenience.',
+    type: 'room in the hotel',
+    capacity: 4,
+    amenities: [
+        'Home',
+        'TV',
+        'Wifi',
+        'Kitchen',
+        'Smoking allowed',
+        'Pets allowed',
+        'Cooking basics'
+    ],
+    tags: [ 
+        'entire to yourself',
+        'enhanced clean',
+        'great check-in',
+        'free cancellation',
+    ],
+    host: {
+        _id: '51392291',
+        fullname: ' Davidi Pok',
+        imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
+    },
+    orders: [{
+        _id: 'u101',
+        checkIn: '21.03.2021',
+        checkOut: ' 25.03.2021'
+    }],
+    loc: {
+        country: 'The United States',
+        countryCode: 'USA',
+        address: 'New York, USA',
+        lat: 40.730610,
+        lng: -73.935242,
+        city: 'New York'
+    },
+    reviews: [{
+        id: 'madeId3',
+        txt: 'Very helpful hosts. Cooked traditional...',
+        rate: 4,
+        by: {
+            _id: 'u102',
+            fullname: 'user2',
+            imgUrl: '/img/img2.jpg'
+        },
+        date: 'May 2015'
+    }
+    ],
+    rating: '3',
+    likedByUserIds: ['u101', 'u102']
+},
+{
+    _id: '14990336',
+    name: 'Cozy atrtist’s loft in prime Bed-stuy location',
+    imgUrls: ['https://a0.muscache.com/im/pictures/1117e5c9-80b4-4d20-9f2f-5e96fdc1de4d.jpg?im_w=1200', 'https://a0.muscache.com/im/pictures/8549e2b0-fcc3-47f0-beee-cf11c82d8632.jpg?im_w=720','https://a0.muscache.com/im/pictures/e743ea39-01a8-402e-95e6-277dbe2104ed.jpg?im_w=720','https://a0.muscache.com/im/pictures/7694a084-4b94-4f5d-a5c5-de1cc69443d5.jpg?im_w=720','https://a0.muscache.com/im/pictures/b53e39db-912d-4ade-8ecc-51eae9d20e43.jpg?im_w=720'],
+    price: 75,
+    description: 'Spacious loft with unique tin walls and high ceilings in prime Brooklyn. The apartment has a single bedroom with attached bath, an open kitchen and living area with dedicated workspace. The apartment is a cozy landing place after a long day and centrally located for anyone looking for nightlife, art or great food. Blocks from transit and 10min to Manhattan.',
+    type: 'room in the hotel',
+    capacity: 5,
+    amenities: [
+        'Home',
+        'TV',
+        'Wifi',
+        'Kitchen',
+        'Smoking allowed',
+        'Pets allowed',
+        'Cooking basics'
+    ],
+    tags: [ 
+        'entire to yourself',
+        'enhanced clean',
+        'great check-in',
+        'free cancellation',
+    ],
+    host: {
+        _id: '51392291',
+        fullname: ' Davidi Pok',
+        imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
+    },
+    orders: [{
+        _id: 'u101',
+        checkIn: '21.03.2021',
+        checkOut: ' 25.03.2021'
+    }],
+    loc: {
+        country: 'The United States',
+        countryCode: 'USA',
+        address: 'New York, USA',
+        lat: 40.730610,
+        lng: -73.935242,
+        city: 'New York'
+    },
+    reviews: [{
+        id: 'madeId3',
+        txt: 'Very helpful hosts. Cooked traditional...',
+        rate: 4,
+        by: {
+            _id: 'u102',
+            fullname: 'user2',
+            imgUrl: '/img/img2.jpg'
+        },
+        date: 'May 2015'
+    }
+    ],
+    rating: '3.5',
+    likedByUserIds: ['u101', 'u102']
+},
+{
+    _id: '14990098',
+    name: 'Bright, Private Bedroom in an NYC hot spot!',
+    imgUrls: ['https://a0.muscache.com/im/pictures/fdb16273-fd94-4962-9f1e-b1223db56909.jpg?im_w=1200', 'https://a0.muscache.com/im/pictures/940a42f6-aed5-47e1-91ff-01061c3d2806.jpg?im_w=720','https://a0.muscache.com/im/pictures/0ecf976a-0888-479e-a5e6-944db889c85f.jpg?im_w=720','https://a0.muscache.com/im/pictures/d979348d-7d14-447a-8ac6-851ca3c3e672.jpg?im_w=720','https://a0.muscache.com/im/pictures/03b7954f-f5ad-41ce-812d-21de82969608.jpg?im_w=720'],
+    price: 60,
+    description: 'Bright, private bedroom in a 3 bedroom apartment in the Heart of Harlem. Besides the convenience of 2 different train lines on either side & the Metro North 2 blocks away, you’ll be downtown in minutes! Shake Shack is 30 seconds away, CVS, TJ Maxx, Victoria’s Secret, H&M, Bath & Bodyworks, Marshall’s, Starbucks and AMC are all within walking distance. Chipotle, Wing Stop, Whole Foods, Red Lobster, IHOP and local restaurants and bars are also in very close proximity.',
+    type: 'privete room',
+    capacity: 5,
+    amenities: [
+        'Home',
+        'TV',
+        'Wifi',
+        'Kitchen',
+        'Smoking allowed',
+        'Pets allowed',
+        'Cooking basics'
+    ],
+    tags: [ 
+        'entire to yourself',
+        'enhanced clean',
+        'great check-in',
+        'free cancellation',
+    ],
+    host: {
+        _id: '51392291',
+        fullname: ' Davidi Pok',
+        imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
+    },
+    orders: [{
         _id: 'u101',
         checkIn: '21.03.2021',
         checkOut: ' 25.03.2021'
@@ -295,9 +516,8 @@ const dummyData = [{
     name: 'Hudson River View King Bed at Higher Floor',
     imgUrls: ['https://a0.muscache.com/im/pictures/cbdb590e-03be-4538-a07d-16156dd810df.jpg?im_w=1200', 'https://a0.muscache.com/im/pictures/2c182ba4-1ad0-4aeb-9deb-b76aaa4ebaeb.jpg?im_w=720','https://a0.muscache.com/im/pictures/06d5536d-5522-481c-93b5-68993ed93a1c.jpg?im_w=720','https://a0.muscache.com/im/pictures/e7e0ffa8-8216-4154-b9b0-d49f0ef3c799.jpg?im_w=720','https://a0.muscache.com/im/pictures/da0a5877-6291-492e-8240-6fa9be865974.jpg?im_w=720'],
     price: 120,
-    summary: 'Enjoy the beautiful Hudson River View from 20th Floor and above!',
     description: 'Our newly renovated 280 sqft room can offer unparalleled comfort, and special touches make all the difference. Relax, get some work done, and take full advantage of your stay.Your room charge and taxes has been taken prior to your arrival as a deposit. The remaining balance destination fee $40.17 per night will be charged upon arrival.',
-    type: 'Room in an hotel',
+    type: 'Room in the hotel',
     capacity: 4,
     amenities: [
         'Unique',
@@ -319,7 +539,7 @@ const dummyData = [{
         fullname: ' Davidi Pok',
         imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
     },
-    avelability: [
+    orders: [
         {
             _id: 'u101',
             'check-in': '21.03.2021',
@@ -356,7 +576,6 @@ const dummyData = [{
     name: 'Luxurious Bauhaus Suite - Carmel Market View!',
     imgUrls: ['https://a0.muscache.com/im/pictures/b781328f-3c39-4b46-a51f-0c4d8e30a7e5.jpg?im_w=1200', 'https://a0.muscache.com/im/pictures/ba33bf6a-0193-44e5-8f8e-236281ce79a0.jpg?im_w=720','https://a0.muscache.com/im/pictures/6f0716cb-68d0-4b94-a71e-c3140b84dfe5.jpg?im_w=720','https://a0.muscache.com/im/pictures/03dd1176-a4eb-4ee5-a48e-1d9d92df5f40.jpg?im_w=720','https://a0.muscache.com/im/pictures/5f8527e6-5ac9-4b22-a500-e7f9760e44ed.jpg?im_w=720'],
     price: 100,
-    summary: 'Luxurious Bauhaus Suite - Carmel Market View!',
     description: 'Welcome to one of the most special apartments in town – a stunning, super-chic Suite, with a private balcony and hot tub, both overlooking Carmel Market, Shenkin ST and Allenby ST – TLV\'s most iconic symbols, located at the heart of the city. This brand-new, fully-equipped Suite is just 5 minutes walk from the beach, and just next to the hottest restaurants, bars and nightclubs of TLV. Our Suite is the perfect starting point to an unforgettable, one-of-a-kind Tel Aviv experience The space',
     type: 'suite',
     capacity: 8,
@@ -381,7 +600,7 @@ const dummyData = [{
         fullname: ' Davidi Pok',
         imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
     },
-    avelability: [
+    orders: [
         {
             _id: 'u101',
             'check-in': '21.03.2021',
@@ -418,7 +637,6 @@ const dummyData = [{
     name: 'Margutta Luxury Loft',
     imgUrls: ['https://a0.muscache.com/im/pictures/prohost-api/Hosting-52502823/original/64662fc4-c2a9-4e40-a20e-9650c39f231c.jpeg?im_w=1200', 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-52502823/original/6bff3c69-9a11-4ff5-91b2-3c0d11ec8e62.jpeg?im_w=720','https://a0.muscache.com/im/pictures/prohost-api/Hosting-52502823/original/2921e0f2-e82a-4641-afbc-772b152f94f8.jpeg?im_w=720','https://a0.muscache.com/im/pictures/prohost-api/Hosting-52502823/original/2ddd0548-dd93-4993-b9da-aaa0b54c4023.jpeg?im_w=720','https://a0.muscache.com/im/pictures/prohost-api/Hosting-52502823/original/c505b9cc-6d90-4fd5-8975-ae5b9996b450.jpeg?im_w=720'],
     price: 80.00,
-    summary: 'An amazing and very romantic loft at the heart of Rome',
     description: 'At the entrance, an intimate sitting area with armchairs and lush plants make up the scene for a relaxing break. You can also to enjoy spectacular view of the well-groomed gardens. This centrally located loft stands on 2 levels. The ground floor includes an open space living and dining room, as well as a fully equipped kitchen. You will also have access to a room with a single bed. On the upper level, you’ll find an open concept bedroom with a king size bed, a small bathroom, and a lovely terrace.',
     type: 'apratment',
     capacity: 8,
@@ -441,7 +659,7 @@ const dummyData = [{
         fullname: ' Davidi Pok',
         imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
     },
-    avelability: [
+    orders: [
         {
             _id: 'u101',
             'check-in': '21.03.2021',
@@ -477,7 +695,6 @@ const dummyData = [{
     name: ' Ribeira Charming Duplex',
     imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large'],
     price: 80.00,
-    summary: ' Fantastic duplex apartment with three bedrooms, located in the historic area of Porto, Ribeira (Cube)...',
     description: 'The apartment is literally on TOP of the river as the photos can show. It\'s really comfortable, perfectly located and with the most perfect view. It is in a recently rebuilt building, with new construction materials and with is disposal on top of the river and its great windows you will have all the quiet you will need, near the most historic zone of the city.',
     type: 'apretment',
     capacity: 8,
@@ -500,7 +717,7 @@ const dummyData = [{
         fullname: ' Davit Pok',
         imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
     },
-    avelability: [
+    orders: [
         {
             _id: 'u101',
             'check-in': '21.04.2021',
@@ -535,7 +752,6 @@ const dummyData = [{
     name: ' Ribeira Charming Duplex',
     imgUrls: ['https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large', 'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large'],
     price: 80.00,
-    summary: ' Fantastic duplex apartment with three bedrooms, located in the historic area of Porto, Ribeira (Cube)...',
     description: 'The apartment is literally on TOP of the river as the photos can show. It\'s really comfortable, perfectly located and with the most perfect view. It is in a recently rebuilt building, with new construction materials and with is disposal on top of the river and its great windows you will have all the quiet you will need, near the most historic zone of the city.',
     type: 'apretment',
     capacity: 8,
@@ -558,7 +774,7 @@ const dummyData = [{
         fullname: ' Davit Pok',
         imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
     },
-    avelability: [
+    orders: [
         {
             _id: 'u101',
             'check-in': '21.04.2021',

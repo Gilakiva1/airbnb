@@ -5,13 +5,14 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { utilService } from '../services/util.service';
 import { GuestsPicking } from './header/GuestsPicking';
 import { DatePicker } from './header/DatePicker';
-// import { onSetOrder } from '../store/order.action'
-import { onLoadOrder } from '../store/order.action';
+import { stayService } from '../services/stay.service';
+import { withRouter } from 'react-router';
+import { onLoadOrder, onSetOrder } from '../store/order.action';
 
 export class _OrderModal extends Component {
 
     state = {
-        criteria: {
+        order: {
 
             chackIn: '',
             chackOut: '',
@@ -30,8 +31,8 @@ export class _OrderModal extends Component {
     async componentDidMount() {
         window.addEventListener('click', this.setIsPickingGuests)
         const order = await this.props.onLoadOrder()
-
-
+        console.log('orderrrr', order);
+        this.setState({ order })
     }
 
     componentWillUnmount() {
@@ -45,10 +46,10 @@ export class _OrderModal extends Component {
     };
 
     handleChange = (ev) => {
-        const { criteria } = this.state
+        const { order } = this.state
         const field = ev.target.name
         const value = ev.target.value
-        this.setState({ criteria: { ...criteria, [field]: value } })
+        this.setState({ order: { ...order, [field]: value } })
     }
 
     closeInputs = () => {
@@ -82,7 +83,7 @@ export class _OrderModal extends Component {
     }
 
     getTotalGuests = () => {
-        let { adult, child, infant } = this.state.criteria.guests
+        let { adult, child, infant } = this.state.order.guests
         var guests = `Adults:${adult + child}`
         if (infant) {
             guests += ` infant: ${infant}`
@@ -94,34 +95,48 @@ export class _OrderModal extends Component {
     }
 
     handleGuestsChanege = (field, value) => {
-        let { criteria } = this.state
-        let { guests } = criteria
-        this.setState({ criteria: { ...criteria, guests: { ...guests, [field]: value } } })
+        let { order } = this.state
+        let { guests } = order
+        this.setState({ order: { ...order, guests: { ...guests, [field]: value } } })
     }
 
     handlePickingDates = (start, end) => {
-        let { criteria } = this.state
-        let { checkIn, checkOut } = criteria
+        let { order } = this.state
+        let { checkIn, checkOut } = order
         checkIn = ` ${start.toLocaleString('en-IL', { month: 'short', day: 'numeric' })} `
         if (end) checkOut = ` ${end.toLocaleString('en-IL', { month: 'short', day: 'numeric' })} `
-        this.setState({ criteria: { ...criteria, checkIn, checkOut } })
+        this.setState({ order: { ...order, checkIn, checkOut } })
     }
 
-    onSubmit = (ev) => {
+    onSubmit = async (ev) => {
+        ev.preventDefault()
+        const { stay, order } = this.state
+
         if (ev.target.type === 'button') {
             this.setState({ isReserve: true })
             ev.target.type = 'submit'
         }
         else {
-            this.props.onLoadOrder(this.state.criteria)
+            
+            // this.props.onSetOrder(this.state.order)
+            const savedOrder = await this.props.onSetOrder(order) 
+            console.log('order', savedOrder);
+            console.log(this.props)  
+            const stay = await stayService.getById(this.props.match.params.stayId)
+            stay.order.push(savedOrder)
+            console.log('stayyyyy', stay);
+
+
+
         }
     }
 
 
     render() {
-        const { isPickingDates, criteria, isPickingGuests, isReserve } = this.state
-        const { checkIn, checkOut } = criteria
-        const { stay, order } = this.props
+        const { isPickingDates, isPickingGuests, isReserve } = this.state
+        // const { checkIn, checkOut } = order
+        const { order } = this.props
+
         if (!order) return <div>loading</div>
         return (
             <div className="order-modal">
@@ -200,6 +215,8 @@ function mapStateToProps(state) {
     }
 }
 const mapDispatchToProps = {
-    onLoadOrder
-}
-export const OrderModal = connect(mapStateToProps, mapDispatchToProps)(_OrderModal)
+    onLoadOrder,
+    onSetOrder
+
+} 
+export const OrderModal = connect(mapStateToProps, mapDispatchToProps)(withRouter(_OrderModal))

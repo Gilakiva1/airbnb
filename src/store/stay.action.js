@@ -9,12 +9,13 @@ export function loadStays(params) {
       console.log(err, 'error is');
     }
   };
-}
+} 
 
+  
 
 
 export function onSetFilter(filterBy) {
-  
+
   return dispatch => {
     dispatch({ type: 'UPDATE_ORDER', filterBy })
   }

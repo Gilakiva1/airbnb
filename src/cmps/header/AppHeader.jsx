@@ -21,7 +21,9 @@ class _AppHeader extends React.Component {
     }
 
     componentDidUpdate() {
-        this.props.history.location.pathname !== '/' ? window.removeEventListener('scroll', this.onToggleHeader) : window.addEventListener('scroll', this.onToggleHeader)
+        this.props.history.location.pathname !== '/' ?
+            window.removeEventListener('scroll', this.onToggleHeader) :
+            window.addEventListener('scroll', this.onToggleHeader)
 
     }
     onToggleHeader = (ev) => {
@@ -35,10 +37,7 @@ class _AppHeader extends React.Component {
             document.documentElement.scrollTop = 0
 
         }
-
-
     }
-
 
     render() {
         const { scrollLoc } = this.state

@@ -36,7 +36,7 @@ function query(entityType, params = {}) {
     } else {
         entities = JSON.parse(localStorage.getItem(entityType)) || []
 
-    }  
+    }
     return new Promise((resolve, reject) => {
         resolve(entities)
     })
@@ -58,6 +58,9 @@ function post(entityType, newEntity) {
 }
 
 function put(entityType, updatedEntity) {
+    if (entityType === 'stayDB') {
+
+    }
     return query(entityType)
         .then(entities => {
             const idx = entities.findIndex(entity => entity._id === updatedEntity._id)
@@ -66,6 +69,8 @@ function put(entityType, updatedEntity) {
             return updatedEntity
         })
 }
+
+
 
 function remove(entityType, entityId) {
     return query(entityType)
@@ -80,6 +85,9 @@ function remove(entityType, entityId) {
 function _save(entityType, entities) {
     localStorage.setItem(entityType, JSON.stringify(entities))
 }
+
+ 
+
 
 function _makeId(length = 5) {
     var text = ''
@@ -96,7 +104,7 @@ function _makeId(length = 5) {
 // }
 // if (filterBy.checkIn) {
 //     entities = entities.filter(entitie => {
-//        if (entitie.avelability.forEach(order=>{
+//        if (entitie.order.forEach(order=>{
 //         if (order)
 //        })) return entitiy
 //     })
@@ -148,7 +156,7 @@ const dummyData = [{
         fullname: ' Davit Pok',
         imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
     },
-    avelability: [
+    order: [
         {
             _id: 'u101',
             checkIn: '21.04.2021',
@@ -206,7 +214,7 @@ const dummyData = [{
         fullname: ' Davit puka',
         imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
     },
-    avelability: [{
+    order: [{
         _id: 'u101',
         checkIn: '21.05.2021',
         checkOut: ' 25.05.2021'
@@ -262,7 +270,7 @@ const dummyData = [{
         fullname: ' Davidi Pok',
         imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
     },
-    avelability: [{
+    order: [{
         _id: 'u101',
         checkIn: '21.03.2021',
         checkOut: ' 25.03.2021'
@@ -320,7 +328,7 @@ const dummyData = [{
         fullname: ' Davidi Pok',
         imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
     },
-    avelability: [
+    order: [
         {
             _id: 'u101',
             'check-in': '21.03.2021',
@@ -382,7 +390,7 @@ const dummyData = [{
         fullname: ' Davidi Pok',
         imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
     },
-    avelability: [
+    order: [
         {
             _id: 'u101',
             'check-in': '21.03.2021',
@@ -442,7 +450,7 @@ const dummyData = [{
         fullname: ' Davidi Pok',
         imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
     },
-    avelability: [
+    order: [
         {
             _id: 'u101',
             'check-in': '21.03.2021',
@@ -501,7 +509,7 @@ const dummyData = [{
         fullname: ' Davit Pok',
         imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
     },
-    avelability: [
+    order: [
         {
             _id: 'u101',
             'check-in': '21.04.2021',
@@ -559,7 +567,7 @@ const dummyData = [{
         fullname: ' Davit Pok',
         imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
     },
-    avelability: [
+    order: [
         {
             _id: 'u101',
             'check-in': '21.04.2021',

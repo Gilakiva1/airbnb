@@ -6,17 +6,18 @@ export const stayService = {
   getById,
   save,
   remove,
+  placeOrder
 };
 
 const STORAGE_KEY = 'stayDB';
 
 function query(params) {
-  return storageService.query(STORAGE_KEY,params);
+  return storageService.query(STORAGE_KEY, params);
 }
 
 async function getById(stayId) {
-  const stay = await storageService.get(STORAGE_KEY,stayId);
-  console.log('stay in service: ' , stay);
+  const stay = await storageService.get(STORAGE_KEY, stayId);
+  console.log('stay in service: ', stay);
   return stay
 }
 
@@ -28,7 +29,13 @@ function save(stay) {
   if (stay._id) {
     return storageService.put(STORAGE_KEY, stay);
   } else {
-    stay.owner = userService.getLoggedinUser();
+    // stay.owner = userService.getLoggedinUser();
     return storageService.post(STORAGE_KEY, stay);
   }
+}
+function placeOrder(stay, order) {
+  
+  
+  return storageService.put(STORAGE_KEY, stay, order)
+
 }

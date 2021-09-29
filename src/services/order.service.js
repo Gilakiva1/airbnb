@@ -14,3 +14,7 @@ function save(order) {
     }
 }
 
+function getOrderDetails() {
+    return storageService.get(STORAGE_KEY);
+  }
+

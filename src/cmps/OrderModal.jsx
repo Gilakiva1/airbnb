@@ -10,10 +10,10 @@ export class _OrderModal extends Component {
 
     state = {
         criteria: {
-            dates: {
-                chackIn: '',
-                chackOut: ''
-            },
+
+            chackIn: '',
+            chackOut: '',
+
             guests: {
                 adult: 0,
                 child: 0,
@@ -108,19 +108,16 @@ export class _OrderModal extends Component {
             ev.target.type = 'submit'
         }
         else {
-            console.log('else');
             this.props.onSetOrder(this.state.criteria)
         }
     }
 
-    render() {
 
-        const { isPickingGuests } = this.state
-        const { isPickingDates } = this.state
-        const { criteria } = this.state
+    render() {
+        const { isPickingDates, criteria, isPickingGuests, isReserve } = this.state
         const { checkIn, checkOut } = criteria
-        const { isReserve } = this.state
-        const { stay } = this.props
+        const { order } = this.props
+        console.log('order',order);
         return (
             <div className="order-modal">
                 <div className="flex gap5">
@@ -138,40 +135,40 @@ export class _OrderModal extends Component {
                     <form className="flex column" onClick={this.preventPropagation}>
                         <div className="input flex">
                             <div className="flex column">
-                            <div className="flex">
+                                <div className="flex">
 
-                                <div className="date-input flex column"
-                                    onClick={() => this.activeInput('date')}>
-                                    <span>Check in:</span>
-                                    <input
-                                        type="text"
-                                        placeholder="Add dates"
-                                        name="checkIn"
-                                        value={checkIn}
-                                        disabled
-                                        style={{ outline: 'none' }}
-                                        onChange={this.handleChange}
-                                        onClick={() => this.activeInput('date')}
-                                    />
-                                </div>
-                                <div className="input-container flex column"
-                                    onClick={() => this.activeInput('date')}>
-                                    <span>Check out:</span>
-                                    <input
-                                        type="text"
-                                        placeholder="Add dates"
-                                        name="checkOut"
-                                        value={checkOut}
-                                        disabled
-                                        style={{ outline: 'none' }}
-                                        onChange={this.handleChange}
+                                    <div className="date-input flex column"
+                                        onClick={() => this.activeInput('date')}>
+                                        <span>Check in:</span>
+                                        <input
+                                            type="text"
+                                            placeholder="Add dates"
+                                            name="checkIn"
+                                            value={order.chackIn}
+                                            disabled
+                                            style={{ outline: 'none' }}
+                                            onChange={this.handleChange}
+                                            onClick={() => this.activeInput('date')}
+                                        />
+                                    </div>
+                                    <div className="input-container flex column"
+                                        onClick={() => this.activeInput('date')}>
+                                        <span>Check out:</span>
+                                        <input
+                                            type="text"
+                                            placeholder="Add dates"
+                                            name="checkOut"
+                                            value={order.chackOut}
+                                            disabled
+                                            style={{ outline: 'none' }}
+                                            onChange={this.handleChange}
 
-                                    />
+                                        />
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="input-container flex column">
-                                <span>Guests:</span>
-                            </div>
+                                <div className="input-container flex column">
+                                    <span>Guests:</span>
+                                </div>
                             </div>
                         </div>
                         <div className="flex column">
@@ -192,6 +189,7 @@ export class _OrderModal extends Component {
 function mapStateToProps(state) {
     return {
         stays: state.stayReducer.stays,
+        order: state.orderReducer.order
     }
 }
 const mapDispatchToProps = {

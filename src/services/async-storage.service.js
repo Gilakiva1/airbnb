@@ -31,22 +31,23 @@ function query(entityType, params = {}) {
     } else {
         entities = JSON.parse(localStorage.getItem(entityType)) || []
 
-    if (params.guests) {
-        entities = entities.filter(entitie => {
-            return entitie.capacity >= params.guests.adult + params.guests.child + params.guests.infant
+        if (params.guests) {
+            entities = entities.filter(entitie => {
+                return entitie.capacity >= params.guests.adult + params.guests.child + params.guests.infant
+            })
+        }
+        return new Promise((resolve, reject) => {
+            resolve(entities)
         })
-    }
-    return new Promise((resolve, reject) => {
-        resolve(entities)
-    })
 
+    }
 }
 function get(entityType, entityId) {
     console.log('entityType', entityType, 'entityId', entityId);
     return query(entityType)
         .then(entities => entities.find(entity => entity._id === entityId))
 }
-   
+
 function post(entityType, newEntity) {
     newEntity._id = _makeId()
     return query(entityType)

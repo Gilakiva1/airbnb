@@ -34,7 +34,7 @@ export class _StayDetails extends Component {
         if (!stay) return <div>Loading...</div>
         console.log(order);
 
-        console.log('stay:', stay);
+        console.log('stay:', stay); 
         return (
             <section className="stay-details-container">
                 <h1>{stay.name}</h1>
@@ -89,7 +89,7 @@ export class _StayDetails extends Component {
 function mapStateToProps(state) {
     return {
         stays: state.stayReducer.stays,
-        order: state.orderReduce.order
+        order: state.orderReducer.order
     }
 }
 const mapDispatchToProps = {}

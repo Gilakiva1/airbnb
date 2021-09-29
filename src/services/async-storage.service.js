@@ -28,16 +28,17 @@ function query(entityType, params = {}) {
                 return entitie.capacity >= params.guests.adult + params.guests.child + params.guests.infant
             })
         }
-    } else {
-        entities = JSON.parse(localStorage.getItem(entityType)) || []
-
         if (params.guests) {
             entities = entities.filter(entitie => {
                 return entitie.capacity >= params.guests.adult + params.guests.child + params.guests.infant
             })
         }
-       
-    }
+    } else {
+        debugger
+        entities = JSON.parse(localStorage.getItem(entityType)) || []
+        entities = [entities[entities.length - 1]]
+
+    } 
     return new Promise((resolve, reject) => {
         resolve(entities)
     })

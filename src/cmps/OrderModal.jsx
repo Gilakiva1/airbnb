@@ -116,8 +116,10 @@ export class _OrderModal extends Component {
     render() {
         const { isPickingDates, criteria, isPickingGuests, isReserve } = this.state
         const { checkIn, checkOut } = criteria
-        const { order } = this.props
-        console.log('order',order);
+        const { isReserve } = this.state
+        const { stay } = this.props
+        const { order } = this.props 
+        if (!order) return <div>loading</div>
         return (
             <div className="order-modal">
                 <div className="flex gap5">

@@ -20,8 +20,8 @@ input {
         gap: 5px;
         background-color: rgb(255, 56, 92);
         border-radius: 50%;
-        width: rem(47px);
-        height: rem(47px);
+        width: rem(50px);
+        height: rem(50px);
         border: none;
     }
     .input-container {
@@ -33,7 +33,8 @@ input {
             border-radius: 30px;
         }
         span {
-            font-size: 0.6rem;
+            font-size: rem(12px);
+            font-weight: bold;
         }
         input {
             background-color: inherit;

@@ -53,7 +53,7 @@ class _HomePage extends React.Component {
                 <Link to='/host'>
                     <div className="host-container ">
                         <img className="round-edge" src={imgHost} />
-                        <div className="host-info flex column justify-center align-center  ">
+                        <div className="host-info flex column justify-center align-center">
                             <h1 className="info-first wide">Try hosting</h1>
                             <p className="info-seconde">Earn extra income and unlock new opportunities by sharing your space.</p>
                             <button className="host-btn flex round-edge">Learn more</button>

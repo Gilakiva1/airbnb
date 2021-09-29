@@ -11,11 +11,8 @@ import { faSearch, faStar } from '@fortawesome/free-solid-svg-icons'
 import { onSetFilter } from '../../store/stay.action.js'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
-// import {} from ''
-// import querystring from 'querystring'
-const queryString = require('query-string');
-// const querystring = require('querystring');
 import { DatePicker } from './DatePicker.jsx'
+const queryString = require('query-string');
 
 
 
@@ -61,13 +58,13 @@ export class _SearchBar extends React.Component {
   }
 
   handlePickingDates = (start, end) => {
-    console.log('start',start,'end',end);
-    let {criteria} = this.state
+    console.log('start', start, 'end', end);
+    let { criteria } = this.state
     let { checkIn, checkOut } = criteria
     checkIn = `${start.getDay()} ${start.toLocaleString('en-us', { month: 'short' })} `
     if (end) checkOut = `${end.getDay()} ${end.toLocaleString('en-us', { month: 'short' })}`
-    console.log('check in:', checkIn,'checkout',checkOut);
-    this.setState({criteria:{...criteria, checkIn,checkOut}})
+    console.log('check in:', checkIn, 'checkout', checkOut);
+    this.setState({ criteria: { ...criteria, checkIn, checkOut } })
   }
 
   handleKeyPress = () => {
@@ -90,10 +87,26 @@ export class _SearchBar extends React.Component {
       }
       if (idx < arr.length - 1) acc += '&'
       return acc
-    },'' );
-    // console.log(queryString);
-    await this.props.onSetFilter(criteria)
+    }, '');
+    // console.log(queryString); 
+    // await this.props.onSetFilter(criteria)
     this.props.history.push(`/stay?${queryString}`)
+  }
+  makeQueryParams = (criteria) => {
+    let queryString = Object.entries(criteria).reduce((acc, [key, value], idx, arr) => {
+      if (typeof value === 'object') {
+        acc += Object.entries(value).reduce((acc, [key, value], idx, arr) => {
+          acc += key + '=' + value
+          if (idx < arr.length - 1) acc += '&'
+          return acc
+        }, '')
+      } else {
+        acc += key + '=' + value
+      }
+      if (idx < arr.length - 1) acc += '&'
+      return acc
+    }, '');
+
   }
 
 
@@ -127,8 +140,8 @@ export class _SearchBar extends React.Component {
   }
 
   render() {
-    const { isPickingGuests, isPickingDates: isPickingCheckIn,criteria } = this.state
-    const {checkIn,checkOut} = criteria
+    const { isPickingGuests, isPickingDates: isPickingCheckIn, criteria } = this.state
+    const { checkIn, checkOut } = criteria
     return (
       <section className="flex column">
         <form className="search-bar-container flex" onClick={this.preventPropagation} onSubmit={this.onSubmit}>
@@ -184,7 +197,7 @@ export class _SearchBar extends React.Component {
           <button className="search-bar-submit flex">{<FontAwesomeIcon className='search-icon' icon={faSearch} />}</button>
         </form>
         <div className={isPickingGuests ? "picking-guest-container" : "picking-guest-container none"}> {isPickingGuests && <GuestsPicking handleGuestsChanege={this.handleGuestsChanege} />} </div>
-        <div  className={isPickingCheckIn ? "picking-dates-container" : "checkin-container none"}> {isPickingCheckIn && <DatePicker preventPropagation={this.preventPropagation}  handlePickingDates={this.handlePickingDates} />} </div>
+        <div className={isPickingCheckIn ? "picking-dates-container" : "checkin-container none"}> {isPickingCheckIn && <DatePicker preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />} </div>
 
       </section>
     )

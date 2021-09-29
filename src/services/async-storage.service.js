@@ -10,6 +10,7 @@ export const storageService = {
 }
 
 function query(entityType, params = {}) {
+    debugger
 
 
     var entities = JSON.parse(localStorage.getItem(entityType)) || dummyData
@@ -26,6 +27,7 @@ function query(entityType, params = {}) {
     // toys = toys.filter(toy => regex.test(toy.name))
 
     if (params.guests) {
+        debugger
         entities = entities.filter(entitie => {
             return entitie.capacity >= params.guests.adult + params.guests.child + params.guests.infant
         })

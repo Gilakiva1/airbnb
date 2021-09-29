@@ -1,36 +1,34 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { StayPreview } from '../cmps/StayPreview.jsx'
-import { withRouter } from 'react-router'
 import { StayFilter } from '../cmps/StayFilter.jsx'
 import { loadStays } from '../store/stay.action.js'
-// import quer
-const queryString = require('query-string');
+import { utilService } from '../services/util.service.js'
 
 class _StayList extends React.Component {
     state = {
         params: null
     }
 
-    componentDidMount() {
-
+    async componentDidMount() {
         const searchParams = new URLSearchParams(this.props.location.search);
+        let newParams = { guests: {} }
 
-        //Iterate the search parameters.
-        console.log('params', searchParams);
-        for (let params of searchParams) {
-
-            // const newParams = {params:params[]}
-
-
+        for (let [key, value] of searchParams) {
+            if (key === 'adult' || key === 'child' || key === 'infant') {
+                newParams.guests[key] = +value
+            } else {
+                newParams[key] = value
+            }
         }
-        // this.props.loadStays(params)
-
+        await this.props.loadStays(newParams)
+        this.setState({ params: utilService.makeQueryParams(newParams) })
     }
 
     render() {
 
         const { stays } = this.props
+        console.log('stays', stays);
         const { params } = this.state
 
         if (!stays.length) return <div>loading...</div>
@@ -45,6 +43,7 @@ class _StayList extends React.Component {
         )
     }
 }
+
 
 function mapStateToProps(state) {
     return {

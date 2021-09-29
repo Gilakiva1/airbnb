@@ -3,6 +3,18 @@
     margin-top: 100px;
     margin: 28px 0;
     cursor: pointer;
+
+    .slick-next {
+        left: 95.8%;
+    }
+    .slider-img::before {
+        display: initial;
+    }
+    .slick-prev {
+        z-index: 5;
+        top: 50%;
+        left: 0;
+    }
     // .primary-image {
     //     img {
     //         object-fit: cover;

@@ -118,75 +118,71 @@ export class _SearchBar extends React.Component {
     const { checkIn, checkOut } = criteria
     return (
       <section className="flex column align-center">
-        <div className="layout-contanier-form">
-          <div className="form-container flex column">
-            <form className="search-bar-container flex" onClick={this.preventPropagation} onSubmit={this.onSubmit}>
-              <div className="input-container flex column"
-                onClick={() => this.inputRef.current.focus()}
-              >
-                <span>address:</span>
-                <input
-                  type="search"
-                  ref={this.inputRef}
-                  placeholder="Where are you going?"
-                  name="address"
-                  autoComplete="off"
-                  style={{ border: 'none', outline: 'none' }}
-                  onChange={this.handleChange}
-                  onClick={this.closeInputs}
-                />
-              </div>
-              <div className="input-container flex column" onClick={() => this.activeInput('date')}>
-                <span>Check in:</span>
-                <input
-                  type="text"
-                  placeholder="Add dates"
-                  name="checkIn"
-                  value={checkIn}
-                  autoComplete="off"
-                  style={{ border: 'none', outline: 'none' }}
-                  disabled
-                  onChange={this.handleChange}
-                // onClick={this.closeInputs}
-
-                />
-              </div>
-              <div className="input-container flex column"
-                onClick={() => this.activeInput('date')}>
-                <span>Check out:</span>
-                <input
-                  type="text"
-                  placeholder="Add dates"
-                  autoComplete="off"
-                  name="checkOut"
-                  value={checkOut}
-                  disabled
-                  style={{ border: 'none', outline: 'none' }}
-                  onChange={this.handleChange}
-
-                />
-              </div>
-              <div className="input-container flex column"
-                onClick={() => this.activeInput('guest')}
-              >
-                <span>Guests:</span>
-                <input
-                  type="search"
-                  placeholder="Add guests"
-                  autoComplete="off"
-                  name="guests"
-                  placeholder={'guests:' + this.getTotalGuests()}
-                  style={{ border: 'none', outline: 'none' }}
-                  disabled
-                  onChange={this.handleChange}
-
-                />
-              </div>
-              <button className="search-bar-submit flex">{<FontAwesomeIcon className='search-icon' icon={faSearch} />}</button>
-            </form>
-            <div className={isPickingGuests ? "picking-guest-container" : "picking-guest-container none"}> {isPickingGuests && <GuestsPicking handleGuestsChanege={this.handleGuestsChanege} />} </div>
-            <div className={isPickingCheckIn ? "picking-dates-container" : "checkin-container none"}> {isPickingCheckIn && <DatePicker preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />} </div>
+        <div>
+          <div className="flex column">
+        <form className="search-bar-container flex" onClick={this.preventPropagation} onSubmit={this.onSubmit}>
+          <div className="input-container flex column"
+            onClick={() => this.inputRef.current.focus()}
+          >
+            <span>address:</span>
+            <input
+              type="search"
+              ref={this.inputRef}
+              placeholder="Where are you going?"
+              name="address"
+              autoComplete="off"
+              onChange={this.handleChange}
+              onClick={this.closeInputs}
+            />
           </div>
+          <div className="input-container flex column" onClick={() => this.activeInput('date')}>
+            <span>Check in:</span>
+            <input
+              type="text"
+              placeholder="Add dates"
+              name="checkIn"
+              value={checkIn}
+              autoComplete="off"
+              disabled
+              onChange={this.handleChange}
+            // onClick={this.closeInputs}
+
+            />
+          </div>
+          <div className="input-container flex column"
+            onClick={() => this.activeInput('date')}>
+            <span>Check out:</span>
+            <input
+              type="text"
+              placeholder="Add dates"
+              autoComplete="off"
+              name="checkOut"
+              value={checkOut}
+              disabled
+              onChange={this.handleChange}
+
+            />
+          </div>
+          <div className="input-container flex column"
+            onClick={() => this.activeInput('guest')}
+          >
+            <span>Guests:</span>
+            <input
+              type="search"
+              placeholder="Add guests"
+              autoComplete="off"
+              name="guests"
+              placeholder={'guests:' + this.getTotalGuests()}
+              disabled
+              onChange={this.handleChange}
+
+            />
+          </div>
+          <button className="search-bar-submit flex">{<FontAwesomeIcon className='search-icon' icon={faSearch} />}</button>
+        </form>
+        <div className={isPickingGuests ? "picking-guest-container" : "picking-guest-container none"}> {isPickingGuests && <GuestsPicking handleGuestsChanege={this.handleGuestsChanege} />} </div>
+        <div className={isPickingCheckIn ? "picking-dates-container" : "checkin-container none"}> {isPickingCheckIn && <DatePicker preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />} </div>
+        </div>
         </div>
       </section>
     )

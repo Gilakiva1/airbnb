@@ -77,8 +77,7 @@ export class _StayDetails extends Component {
                             <h2>What this place offers</h2>
                         </div>
                     </div>
-                
-                    <OrderModal />
+                    <OrderModal stay={stay} />
                 </div>
             </section>
         )

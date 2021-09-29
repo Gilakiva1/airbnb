@@ -31,6 +31,10 @@ function query(entityType, params = {}) {
     } else {
         entities = JSON.parse(localStorage.getItem(entityType)) || []
 
+    if (params.guests) {
+        entities = entities.filter(entitie => {
+            return entitie.capacity >= params.guests.adult + params.guests.child + params.guests.infant
+        })
     }
     return new Promise((resolve, reject) => {
         resolve(entities)

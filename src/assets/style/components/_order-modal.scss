@@ -1,8 +1,29 @@
-.order-modal{
+.order-modal {
     margin-top: 50px;
-
-    .confirm-order{
+    width: 371px;
+    gap: 5px;
+    font-size: rem(12px);
+    // box-shadow: 0px 6px 16px rgb(0 0 0 / 12%);
+    .confirm-order {
+        text-align: left;
         background-color: #fff;
         border: none;
+    }
+    input {
+        background-color: #fff;
+        height: 55px;
+        border: none;
+    }
+    .input {
+        border-radius: 8px;
+        border: 1px solid gray;
+        div {
+            > * {
+                border: 1px solid gray;
+            }
+        }
+    }
+    button {
+        height: 45px;
     }
 }

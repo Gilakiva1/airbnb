@@ -15,7 +15,7 @@ import { DatePicker } from './DatePicker.jsx'
 import { utilService } from '../../services/util.service'
 
 
- 
+
 
 export class _SearchBar extends React.Component {
 
@@ -43,6 +43,7 @@ export class _SearchBar extends React.Component {
     window.removeEventListener('click', this.closeInputs)
   }
 
+  inputRef = React.createRef(null)
 
   handleChange = (ev) => {
     const { criteria } = this.state
@@ -62,12 +63,12 @@ export class _SearchBar extends React.Component {
     console.log('start', start, 'end', end);
     let { criteria } = this.state
     let { checkIn, checkOut } = criteria
-    checkIn = ` ${start.toLocaleString('en-IL', { month: 'short' ,day: 'numeric'})} `
-    if (end) checkOut =` ${end.toLocaleString('en-IL', { month: 'short' ,day: 'numeric'})} `
+    checkIn = ` ${start.toLocaleString('en-IL', { month: 'short', day: 'numeric' })} `
+    if (end) checkOut = ` ${end.toLocaleString('en-IL', { month: 'short', day: 'numeric' })} `
     console.log('check in:', checkIn, 'checkout', checkOut);
     this.setState({ criteria: { ...criteria, checkIn, checkOut } })
   }
-  
+
   handleKeyPress = () => {
     return false
   }
@@ -76,25 +77,10 @@ export class _SearchBar extends React.Component {
   onSubmit = async (ev) => {
     ev.preventDefault()
     const { criteria } = this.state
-    let queryString = utilService.makeQueryParams(criteria)
-
+    const queryString = utilService.makeQueryParams(criteria)
     // await this.props.onload(criteria)
     this.props.history.push(`/stay?${queryString}`)
 
-    // let queryString = Object.entries(criteria).reduce((acc, [key, value], idx, arr) => {
-    //   if (typeof value === 'object') {
-    //     acc += Object.entries(value).reduce((acc, [key, value], idx, arr) => {
-    //       acc += key + '=' + value
-    //       if (idx < arr.length - 1) acc += '&'
-    //       return acc
-    //     }, '')
-    //   } else {
-    //     acc += key + '=' + value
-    //   }
-    //   if (idx < arr.length - 1) acc += '&'
-    //   return acc
-    // }, '');
-    // console.log(queryString);
   }
 
 
@@ -133,53 +119,65 @@ export class _SearchBar extends React.Component {
     return (
       <section className="flex column">
         <form className="search-bar-container flex" onClick={this.preventPropagation} onSubmit={this.onSubmit}>
-          <div className="input-container flex column">
+          <div className="input-container flex column"
+            onClick={() => this.inputRef.current.focus()}
+          >
             <span>address:</span>
             <input
               type="search"
+              ref={this.inputRef}
               placeholder="Where are you going?"
               name="address"
+              autoComplete="off"
               style={{ border: 'none', outline: 'none' }}
               onChange={this.handleChange}
               onClick={this.closeInputs}
             />
           </div>
-          <div className="input-container flex column">
+          <div className="input-container flex column" onClick={() => this.activeInput('date')}>
             <span>Check in:</span>
             <input
               type="text"
               placeholder="Add dates"
               name="checkIn"
               value={checkIn}
+              autoComplete="off"
               style={{ border: 'none', outline: 'none' }}
+              disabled
               onChange={this.handleChange}
-              // onClick={this.closeInputs}
-              onClick={() => this.activeInput('date')}
+            // onClick={this.closeInputs}
+
             />
           </div>
-          <div className="input-container flex column">
+          <div className="input-container flex column"
+            onClick={() => this.activeInput('date')}>
             <span>Check out:</span>
             <input
               type="text"
               placeholder="Add dates"
+              autoComplete="off"
               name="checkOut"
               value={checkOut}
+              disabled
               style={{ border: 'none', outline: 'none' }}
               onChange={this.handleChange}
-              onClick={() => this.activeInput('date')}
+
             />
           </div>
-          <div className="input-container flex column">
+          <div className="input-container flex column"
+            onClick={() => this.activeInput('guest')}
+          >
             <span>Guests:</span>
             <input
               type="search"
               placeholder="Add guests"
+              autoComplete="off"
               name="guests"
               placeholder={'guests:' + this.getTotalGuests()}
               style={{ border: 'none', outline: 'none' }}
-              onKeyPress={this.handleKeyPress}
+              disabled
               onChange={this.handleChange}
-              onClick={() => this.activeInput('guest')}
+
             />
           </div>
           <button className="search-bar-submit flex">{<FontAwesomeIcon className='search-icon' icon={faSearch} />}</button>

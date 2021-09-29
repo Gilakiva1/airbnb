@@ -1,34 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file\
 import { Calendar } from 'react-date-range';
 import { addDays } from 'date-fns';
-import { useState } from 'react';
 
 
-export function DatePicker({ handlePickingDates, preventPropagation }) {
+export const DatePicker = ({ handlePickingDates, preventPropagation }) => {
 
-
-    const [state, setState] = useState([
+    const [dateState, setDateState] = useState([
         {
             startDate: new Date(),
             endDate: null,
             key: 'selection'
         }
     ]);
-    useEffect(() => {
-        effect
 
-    }, [input])
+    useEffect(() => {
+        handlePickingDates(dateState[0].startDate, dateState[0].endDate)
+    }, [dateState])
 
     return (
         <div onClick={preventPropagation}>
             <DateRange
                 editableDateInputs={true}
-                onChange={item => setState([item.selection], handlePickingDates(state[0].startDate, state[0].endDate))}
+                onChange={item => setDateState([item.selection])}
                 moveRangeOnFirstSelection={false}
-                ranges={state}
+                ranges={dateState}
             />
         </div>
     )

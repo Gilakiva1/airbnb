@@ -5,7 +5,7 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { utilService } from '../services/util.service';
 import { GuestsPicking } from './header/GuestsPicking';
 import { DatePicker } from './header/DatePicker';
-import { setOrder } from '../store/order.action'
+import { onSetOrder } from '../store/order.action'
 export class _OrderModal extends Component {
 
     state = {
@@ -109,7 +109,7 @@ export class _OrderModal extends Component {
         }
         else {
             console.log('else');
-            this.props.setOrder(this.state.criteria)
+            this.props.onSetOrder(this.state.criteria)
         }
     }
 
@@ -195,6 +195,6 @@ function mapStateToProps(state) {
     }
 }
 const mapDispatchToProps = {
-    setOrder
+    onSetOrder
 }
 export const OrderModal = connect(mapStateToProps, mapDispatchToProps)(_OrderModal)

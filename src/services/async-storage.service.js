@@ -10,8 +10,9 @@ export const storageService = {
 }
 
 function query(entityType, params = {}) {
+
+
     var entities = JSON.parse(localStorage.getItem(entityType)) || dummyData
-    console.log('params', params);
 
     if (params.address) {
         const regex = new RegExp(params.address, 'i');

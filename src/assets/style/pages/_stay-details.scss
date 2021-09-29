@@ -7,7 +7,7 @@
         font-size: rem(22px);
     }
 
-    .review-adress-container {
+    .review-address-container {
         font-size: rem(14px);
         color: #717171;
         font-weight: bold;
@@ -52,8 +52,14 @@
     .img4 {
         border-radius: 0 5px 5px 0;
     }
-    .details-main-container {
-        width: rem(655px);
+
+    .details-info {
+        width: 55%;
+    }
+    .reserve-modal {
+
+        background-color: antiquewhite;
+        width: 400px;
     }
 }
 

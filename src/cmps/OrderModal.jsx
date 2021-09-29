@@ -121,6 +121,8 @@ export class _OrderModal extends Component {
         const { checkIn, checkOut } = criteria
         const { isReserve } = this.state
         const { stay } = this.props
+        const { order } = this.props 
+        if (!order) return <div>loading</div>
         return (
             <div className="order-modal">
                 <div className="flex gap5">
@@ -138,40 +140,40 @@ export class _OrderModal extends Component {
                     <form className="flex column" onClick={this.preventPropagation}>
                         <div className="input flex">
                             <div className="flex column">
-                            <div className="flex">
+                                <div className="flex">
 
-                                <div className="date-input flex column"
-                                    onClick={() => this.activeInput('date')}>
-                                    <span>Check in:</span>
-                                    <input
-                                        type="text"
-                                        placeholder="Add dates"
-                                        name="checkIn"
-                                        value={checkIn}
-                                        disabled
-                                        style={{ outline: 'none' }}
-                                        onChange={this.handleChange}
-                                        onClick={() => this.activeInput('date')}
-                                    />
-                                </div>
-                                <div className="input-container flex column"
-                                    onClick={() => this.activeInput('date')}>
-                                    <span>Check out:</span>
-                                    <input
-                                        type="text"
-                                        placeholder="Add dates"
-                                        name="checkOut"
-                                        value={checkOut}
-                                        disabled
-                                        style={{ outline: 'none' }}
-                                        onChange={this.handleChange}
+                                    <div className="date-input flex column"
+                                        onClick={() => this.activeInput('date')}>
+                                        <span>Check in:</span>
+                                        <input
+                                            type="text"
+                                            placeholder="Add dates"
+                                            name="checkIn"
+                                            value={order.checkIn}
+                                            disabled
+                                            style={{ outline: 'none' }}
+                                            onChange={this.handleChange}
+                                            onClick={() => this.activeInput('date')}
+                                        />
+                                    </div>
+                                    <div className="input-container flex column"
+                                        onClick={() => this.activeInput('date')}>
+                                        <span>Check out:</span>
+                                        <input
+                                            type="text"
+                                            placeholder="Add dates"
+                                            name="checkOut"
+                                            value={order.checkOut}
+                                            disabled
+                                            style={{ outline: 'none' }}
+                                            onChange={this.handleChange}
 
-                                    />
+                                        />
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="input-container flex column">
-                                <span>Guests:</span>
-                            </div>
+                                <div className="input-container flex column">
+                                    <span>Guests:</span>
+                                </div>
                             </div>
                         </div>
                         <div className="flex column">
@@ -192,6 +194,7 @@ export class _OrderModal extends Component {
 function mapStateToProps(state) {
     return {
         stays: state.stayReducer.stays,
+        order: state.orderReducer.order
     }
 }
 const mapDispatchToProps = {

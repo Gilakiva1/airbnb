@@ -10,7 +10,7 @@ export class _OrderStay extends Component {
     render() {
         return (
             <div>
-                your order is here!
+                
             </div>
         )
     }

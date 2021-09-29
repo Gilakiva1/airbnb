@@ -34,9 +34,11 @@ function query(entityType, params = {}) {
             })
         }
     } else {
+        debugger
         entities = JSON.parse(localStorage.getItem(entityType)) || []
+        entities = [entities[entities.length - 1]]
 
-    }
+    } 
     return new Promise((resolve, reject) => {
         resolve(entities)
     })

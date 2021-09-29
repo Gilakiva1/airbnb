@@ -10,12 +10,7 @@ import { HeartSvg } from '../assets/img/stay-details/HeartSvg.jsx';
 import { utilService } from '../services/util.service.js';
 import imgUser from '../assets/img/home-page/user.jpg'
 import { Tags } from '../cmps/Tags.jsx';
-<<<<<<< HEAD
 import { OrderModal } from '../cmps/OrderModal.jsx';
-=======
-import { ReserveModal } from '../cmps/ReserveModal.jsx';
-// import { GuestsPicking } from '../cmps/header/GuestsPicking.jsx';
->>>>>>> ee865c45ce072b94fc035f9d62f1c21fb3d77195
 
 
 export class _StayDetails extends Component {

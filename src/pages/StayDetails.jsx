@@ -24,7 +24,7 @@ export class _StayDetails extends Component {
         console.log('stay id ', id);
         const stay = await stayService.getById(id)
         console.log('stay in stay details', stay);
-        // if(!stay) this.props.history.push("/stay")
+        if(!stay) this.props.history.push("/")
         this.setState({ stay })
 
     }
@@ -63,8 +63,8 @@ export class _StayDetails extends Component {
                     </div>
                     <div className="seperation-line"></div>
                     <div className="tag-container flex column">
-                        {stay.tags.map(tag => (
-                            <Tags tag={tag} type={stay.type} />
+                        {stay.tags.map((tag,idx) => (
+                            <Tags key={idx} tag={tag} type={stay.type} />
                         ))}
                     </div>
                     <div className="seperation-line"></div>

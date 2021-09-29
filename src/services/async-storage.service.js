@@ -10,12 +10,10 @@ export const storageService = {
 }
 
 function query(entityType, filterBy, params) {
-    console.log('params', params);
     var entities = JSON.parse(localStorage.getItem(entityType)) || dummyData
     if (params) {
         const city = params.city.split('-').join(' ').toLowerCase()
         entities = entities.filter(entitie => entitie.loc.city.toLowerCase() === city.toLowerCase())
-
     }
     if (!filterBy) {
         return new Promise((resolve, reject) => {
@@ -187,9 +185,10 @@ const dummyData = [{
         'pool',
     ],
     tags: [ // the tags will contain a key word which the front will use to render the full tags to the stay
-        'entire place to yourself',
+        'entire to yourself',
         'enhanced clean',
-        'super host', 'free cancellation up to 48 hours before check-in',
+        'super host', 
+        'free cancellation',
     ],
     host: {
         _id: 51329391,
@@ -241,10 +240,10 @@ const dummyData = [{
         'Cooking basics'
     ],
     tags: [ // the tags will contain a key word which the front will use to render the full tags to the stay
-        'entire apartment to yourself',
+        'entire to yourself',
         'enhanced clean',
         'self check-in',
-        'free cancellation up to 48 hours before check-in',
+        'free cancellation',
     ],
     host: {
         _id: 51392291,
@@ -297,10 +296,10 @@ const dummyData = [{
         'Cooking basics'
     ],
     tags: [ // the tags will contain a key word which the front will use to render the full tags to the stay
-        'entire apartment to yourself',
+        'entire to yourself',
         'enhanced clean',
         'self check-in',
-        'free cancellation up to 48 hours before check-in',
+        'free cancellation',
     ],
     host: {
         _id: 51392291,
@@ -357,10 +356,10 @@ const dummyData = [{
         'Cooking basics'
     ],
     tags: [ // the tags will contain a key word which the front will use to render the full tags to the stay
-        'entire apartment to yourself',
+        'entire to yourself',
         'enhanced clean',
         'self check-in',
-        'free cancellation up to 48 hours before check-in',
+        'free cancellation',
     ],
     host: {
         _id: 51392291,
@@ -417,10 +416,10 @@ const dummyData = [{
         'Cooking basics'
     ],
     tags: [ // the tags will contain a key word which the front will use to render the full tags to the stay
-        'entire apartment to yourself',
+        'entire to yourself',
         'enhanced clean',
         'self check-in',
-        'free cancellation up to 48 hours before check-in',
+        'free cancellation',
     ],
     host: {
         _id: 51392291,
@@ -476,10 +475,10 @@ const dummyData = [{
         'Cooking basics'
     ],
     tags: [ // the tags will contain a key word which the front will use to render the full tags to the stay
-        'entire ($type of stay) to yourself',
+        'entire to yourself',
         'enhanced clean',
         'self check-in',
-        'free cancellation up to 48 hours before check-in',
+        'free cancellation',
     ],
     host: {
         _id: 51399391,
@@ -534,10 +533,10 @@ const dummyData = [{
         'Cooking basics'
     ],
     tags: [ // the tags will contain a key word which the front will use to render the full tags to the stay
-        'entire ($type of stay) to yourself',
+        'entire to yourself',
         'enhanced clean',
         'self check-in',
-        'free cancellation up to 48 hours before check-in',
+        'free cancellation',
     ],
     host: {
         _id: 51399391,

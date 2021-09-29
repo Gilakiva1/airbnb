@@ -29,7 +29,7 @@ class _HomePage extends React.Component {
         { city: 'Bangkok', country: 'Thailand', img: imgBangkok },
         { city: 'Paris', country: 'France', img: imgParis },
         { city: 'Dubai', country: 'United Arab Emirates', img: imgDubai },
-        { city: 'New york', country: 'United States of America', img: imgNewYork },
+        { city: 'new york', country: 'United States of America', img: imgNewYork },
         { city: 'Amsterdam', country: 'Netherlands', img: imgAmsterdam },
         { city: 'Hong-kong', country: 'China', img: imgHongKong }
     ]

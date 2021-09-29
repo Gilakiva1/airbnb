@@ -11,6 +11,10 @@ import { faSearch, faStar } from '@fortawesome/free-solid-svg-icons'
 import { onSetFilter } from '../../store/stay.action.js'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
+// import {} from ''
+// import querystring from 'querystring'
+const queryString = require('query-string');
+// const querystring = require('querystring');
 import { DatePicker } from './DatePicker.jsx'
 
 
@@ -19,7 +23,7 @@ export class _SearchBar extends React.Component {
 
   state = {
     criteria: {
-      location: '',
+      address: '',
       checkIn: '',
       checkOut: '',
       guests: {
@@ -72,12 +76,27 @@ export class _SearchBar extends React.Component {
 
 
   onSubmit = async (ev) => {
-    const { criteria } = this.state
     ev.preventDefault()
+    const { criteria } = this.state
+    let queryString = Object.entries(criteria).reduce((acc, [key, value], idx, arr) => {
+      if (typeof value === 'object') {
+        acc += Object.entries(value).reduce((acc, [key, value], idx, arr) => {
+          acc += key + '=' + value
+          if (idx < arr.length - 1) acc += '&'
+          return acc
+        }, '')
+      } else {
+        acc += key + '=' + value
+      }
+      if (idx < arr.length - 1) acc += '&'
+      return acc
+    },'' );
+    // console.log(queryString);
     await this.props.onSetFilter(criteria)
-    const query = `location=${criteria.location}&guests=${criteria.guests.adult + criteria.guests.child + criteria.guests.infant}`
-    this.props.history.push(`/stay?${query}`)
+    this.props.history.push(`/stay?${queryString}`)
   }
+
+
 
   activeInput = (input) => {
     this.closeInputs()
@@ -114,11 +133,11 @@ export class _SearchBar extends React.Component {
       <section className="flex column">
         <form className="search-bar-container flex" onClick={this.preventPropagation} onSubmit={this.onSubmit}>
           <div className="input-container flex column">
-            <span>Location:</span>
+            <span>address:</span>
             <input
               type="search"
               placeholder="Where are you going?"
-              name="location"
+              name="address"
               style={{ border: 'none' }}
               onChange={this.handleChange}
               onClick={this.closeInputs}

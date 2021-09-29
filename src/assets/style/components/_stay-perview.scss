@@ -3,18 +3,6 @@
     margin-top: 100px;
     margin: 28px 0;
     cursor: pointer;
-
-    .slick-next {
-        left: 95.8%;
-    }
-    .slider-img::before {
-        display: initial;
-    }
-    .slick-prev {
-        z-index: 5;
-        top: 50%;
-        left: 0;
-    }
     // .primary-image {
     //     img {
     //         object-fit: cover;
@@ -36,10 +24,16 @@
 
 .stay-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
     padding: 20px;
     grid-auto-flow: dense;
+    .stay-container {
+        img {
+            @include aspect-ratio(1, 1);
+            border-radius: 10px;
+        }
+    }
 }
 
 .link-detail {

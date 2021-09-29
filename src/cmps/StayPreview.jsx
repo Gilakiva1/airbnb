@@ -3,12 +3,11 @@ import { SimpleSlider } from "./SliderImg";
 
 
 
-export function StayPreview({ stay, params }) {
+export function StayPreview({ stay }) {
 
-    const url = `/stay/${stay._id}?${params}`
 
     return (
-        <Link className="link-detail" to={url}>
+        <Link className="link-detail" to={`/stay/${stay._id}`}>
             <div className="stay-container ">
                 <SimpleSlider stay={stay} />
             </div>

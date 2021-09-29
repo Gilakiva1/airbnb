@@ -117,7 +117,8 @@ export class _SearchBar extends React.Component {
     const { isPickingGuests, isPickingDates: isPickingCheckIn, criteria } = this.state
     const { checkIn, checkOut } = criteria
     return (
-      <section className="flex column">
+      <section className="flex column align-center">
+        <div>
         <form className="search-bar-container flex" onClick={this.preventPropagation} onSubmit={this.onSubmit}>
           <div className="input-container flex column"
             onClick={() => this.inputRef.current.focus()}
@@ -180,7 +181,7 @@ export class _SearchBar extends React.Component {
         </form>
         <div className={isPickingGuests ? "picking-guest-container" : "picking-guest-container none"}> {isPickingGuests && <GuestsPicking handleGuestsChanege={this.handleGuestsChanege} />} </div>
         <div className={isPickingCheckIn ? "picking-dates-container" : "checkin-container none"}> {isPickingCheckIn && <DatePicker preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />} </div>
-
+        </div>
       </section>
     )
   }

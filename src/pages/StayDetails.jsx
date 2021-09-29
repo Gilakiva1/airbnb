@@ -1,8 +1,5 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
-import { stayService } from '../services/stay.service.js';
-import { withRouter } from 'react-router'
-import { Select } from '@material-ui/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { ShareSvg } from '../assets/img/stay-details/ShareSvg.jsx';
@@ -11,12 +8,13 @@ import { utilService } from '../services/util.service.js';
 import imgUser from '../assets/img/home-page/user.jpg'
 import { Tags } from '../cmps/Tags.jsx';
 import { OrderModal } from '../cmps/OrderModal.jsx';
+import { stayService } from '../services/stay.service.js';
 
 
 export class _StayDetails extends Component {
     state = {
         stay: null,
-
+ 
     };
     componentDidMount() {
         this.loadStay()
@@ -77,7 +75,22 @@ export class _StayDetails extends Component {
                         <div className="amenities">
                             <h2>What this place offers</h2>
                         </div>
-                        
+
+                    </div>
+                    <div className="seperation-line"></div>
+                    <div className="tag-container flex column">
+                        <div>
+                            {stay.tags.map((tag, idx) => (
+                                <Tags key={idx} tag={tag} type={stay.type} />
+                            ))}
+                        </div>
+                        <OrderModal />
+                    </div>
+                    <div className="seperation-line"></div>
+                    <div className="description">{stay.description}</div>
+                    <div className="seperation-line"></div>
+                    <div className="amenities">
+                        <h2>What this place offers</h2>
                     </div>
                         <OrderModal stay={stay}/>
                 </div>

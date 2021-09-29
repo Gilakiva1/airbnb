@@ -2,7 +2,8 @@ export const utilService = {
     makeId,
     makeLorem,
     getRandomIntInclusive,
-    delay
+    delay,
+    makeQueryParams
 }
 
 function makeId(length = 6) {
@@ -36,5 +37,22 @@ function delay(ms = 1500) {
     return new Promise(resolve => {
         setTimeout(resolve, ms)
     })
+}
+function makeQueryParams(criteria) {
+    let queryString = Object.entries(criteria).reduce((acc, [key, value], idx, arr) => {
+        if (typeof value === 'object') {
+            acc += Object.entries(value).reduce((acc, [key, value], idx, arr) => {
+                acc += key + '=' + value
+                if (idx < arr.length - 1) acc += '&'
+                return acc
+            }, '')
+        } else {
+            acc += key + '=' + value
+        }
+        if (idx < arr.length - 1) acc += '&'
+        return acc
+    }, '');
+    return queryString
+
 }
 

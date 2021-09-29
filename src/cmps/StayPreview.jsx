@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import { SimpleSlider } from "./SliderImg";
 
+
+
 export function StayPreview({ stay, params }) {
+
     const url = `/stay/${stay._id}?${params}`
 
     return (

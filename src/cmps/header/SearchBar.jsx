@@ -12,12 +12,10 @@ import { onSetFilter } from '../../store/stay.action.js'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { DatePicker } from './DatePicker.jsx'
-// import {} from ''
-// import querystring from 'querystring'
-const queryString = require('query-string');
-// const querystring = require('querystring');
+import { utilService } from '../../services/util.service'
 
 
+ 
 
 export class _SearchBar extends React.Component {
 
@@ -69,7 +67,7 @@ export class _SearchBar extends React.Component {
     console.log('check in:', checkIn, 'checkout', checkOut);
     this.setState({ criteria: { ...criteria, checkIn, checkOut } })
   }
-
+  
   handleKeyPress = () => {
     return false
   }
@@ -78,22 +76,25 @@ export class _SearchBar extends React.Component {
   onSubmit = async (ev) => {
     ev.preventDefault()
     const { criteria } = this.state
-    let queryString = Object.entries(criteria).reduce((acc, [key, value], idx, arr) => {
-      if (typeof value === 'object') {
-        acc += Object.entries(value).reduce((acc, [key, value], idx, arr) => {
-          acc += key + '=' + value
-          if (idx < arr.length - 1) acc += '&'
-          return acc
-        }, '')
-      } else {
-        acc += key + '=' + value
-      }
-      if (idx < arr.length - 1) acc += '&'
-      return acc
-    }, '');
-    // console.log(queryString);
-    await this.props.onSetFilter(criteria)
+    let queryString = utilService.makeQueryParams(criteria)
+
+    // await this.props.onload(criteria)
     this.props.history.push(`/stay?${queryString}`)
+
+    // let queryString = Object.entries(criteria).reduce((acc, [key, value], idx, arr) => {
+    //   if (typeof value === 'object') {
+    //     acc += Object.entries(value).reduce((acc, [key, value], idx, arr) => {
+    //       acc += key + '=' + value
+    //       if (idx < arr.length - 1) acc += '&'
+    //       return acc
+    //     }, '')
+    //   } else {
+    //     acc += key + '=' + value
+    //   }
+    //   if (idx < arr.length - 1) acc += '&'
+    //   return acc
+    // }, '');
+    // console.log(queryString);
   }
 
 
@@ -196,7 +197,6 @@ function mapStateToProps(state) {
 }
 const mapDispatchToProps = {
   onSetFilter
-
 
 }
 

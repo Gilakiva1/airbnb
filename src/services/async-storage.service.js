@@ -4,7 +4,7 @@ export const storageService = {
     query,
     get,
     post,
-    put,
+    put, 
     remove,
     postMany
   

@@ -2,8 +2,9 @@
   top: 0;
   width: 100%;
   z-index: 5;
+  padding-block-end: rem(15px);
 
-  .logo-container {
+  .logo-container { 
     .btn-logo {
       border: none;
       background: inherit;

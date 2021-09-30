@@ -103,9 +103,10 @@ export class _OrderModal extends Component {
 
     onSubmit = async (ev) => {
         ev.preventDefault()
-        const { stay, order } = this.state
-        if (ev.target.type === 'button') {
+        const {  order , isReserve} = this.state
+        if (!isReserve) {
             ev.target.type = 'submit'
+            this.setState({isReserve: true})
         }
         else {
             // this.props.onSetOrder(this.state.order)

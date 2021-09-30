@@ -50,7 +50,7 @@ class _AppHeader extends React.Component {
                         <button className="btn-logo" onClick={this.backToHome}><LogoSvg /></button>
                         <h3>Home<span style={{ color: "rgb(255, 56, 92)" }}>away</span></h3>
                     </div>
-                    {scrollLoc > 30 && <SearchBar />}
+                    {scrollLoc > 30 && <SearchBar scrollLoc={scrollLoc} />}
                     <nav className="nav-header">
                         <div className="nav-header flex align-center">
                             <NavLink className="link-host border-round fs14" to={`/`} >switch to hosting</NavLink>

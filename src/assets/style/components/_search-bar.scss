@@ -1,7 +1,11 @@
 .mini-search-bar {
     align-self: center;
+    justify-self: center;
     align-items: center;
     justify-content: center;
+    width: rem(290px);
+    border-radius: 30px;
+    padding: 10px;
 
     span {
         color: $clr2;

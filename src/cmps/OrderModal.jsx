@@ -13,10 +13,8 @@ export class _OrderModal extends Component {
 
     state = {
         order: {
-
             chackIn: '',
             chackOut: '',
-
             guests: {
                 adult: 0,
                 child: 0,
@@ -25,24 +23,22 @@ export class _OrderModal extends Component {
         },
         isReserve: false,
         isPickingGuests: false,
-        isPickingDates: false
+        isPickingDates: false,
+        reviewsNumber: 0
     }
 
     async componentDidMount() {
-        window.addEventListener('click', this.setIsPickingGuests)
+        let {reviewsNumber} = this.state
+        reviewsNumber =  utilService.getRandomIntInclusive(30,500)
+        window.addEventListener('click', this.closeInputs)
         const order = await this.props.onLoadOrder()
-        this.setState({ order })
+        this.setState({ order,reviewsNumber })
     }
 
     componentWillUnmount() {
-        window.removeEventListener('click', this.setIsPickingGuests)
+        window.removeEventListener('click', this.closeInputs)
     }
 
-    setIsPickingGuests = () => {
-        let { isPickingGuests } = this.state
-        isPickingGuests = false
-        this.setState({ isPickingGuests })
-    };
 
     handleChange = (ev) => {
         const { order } = this.state
@@ -53,6 +49,7 @@ export class _OrderModal extends Component {
 
     closeInputs = () => {
         let { isPickingGuests, isPickingDates } = this.state
+        if (!isPickingGuests && !isPickingDates) return
         isPickingGuests = false
         isPickingDates = false
         this.setState({ isPickingGuests, isPickingDates })
@@ -83,10 +80,7 @@ export class _OrderModal extends Component {
 
     getTotalGuests = () => {
         let { adult, child, infant } = this.state.order.guests
-        var guests = `guests:${adult + child}`
-        if (infant) {
-            guests += ` infant: ${infant}`
-        }
+        var guests = `guests:${adult + child + infant}`
         return guests
     }
     handleKeyPress = () => {
@@ -129,9 +123,8 @@ export class _OrderModal extends Component {
 
 
     render() {
-        const { isPickingDates, isPickingGuests, isReserve } = this.state
-        // const { checkIn, checkOut } = order
-        const { order, stay } = this.props
+        const { isPickingDates, isPickingGuests, isReserve, order,reviewsNumber } = this.state
+        const {  stay } = this.props
 
         if (!order) return <div>loading</div>
         return (
@@ -142,7 +135,7 @@ export class _OrderModal extends Component {
                     <div>
                         {<FontAwesomeIcon className='star-icon' icon={faStar} />}
                         5
-                        <span className="rating"> ({utilService.getRandomIntInclusive(30, 500)} reviews)  </span>
+                        <span className="rating"> ({reviewsNumber} reviews)  </span>
                     </div>
                 </div>
                 <form className="" onClick={this.preventPropagation}>
@@ -200,7 +193,6 @@ export class _OrderModal extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log('state.orderReducer.order', state.orderReducer.order);
     return {
         stays: state.stayReducer.stays,
         order: state.orderReducer.order

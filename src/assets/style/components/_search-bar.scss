@@ -8,7 +8,7 @@
     padding: 10px;
     box-shadow: 0 0 10px;
     color: $clr2;
-
+    cursor: pointer;
     span {
         color: $clr2;
         font-size: rem(12px);
@@ -18,14 +18,13 @@
         align-items: center;
         gap: 5px;
         background-color: $clr3;
-        color:rgb(235, 235, 235);
+        color: rgb(235, 235, 235);
         border-radius: 50%;
         width: rem(30px);
         height: rem(30px);
         border: none;
     }
 }
-
 
 .search-bar-container {
     align-self: center;
@@ -35,10 +34,11 @@
     border-radius: rem(40px);
     background-color: white;
     cursor: pointer;
-input {
-    border: none;
-    outline: none;
-}
+    box-shadow: 0 0 10px;
+    input {
+        border: none;
+        outline: none;
+    }
     .search-icon {
         color: white;
     }

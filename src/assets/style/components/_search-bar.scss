@@ -6,6 +6,8 @@
     width: rem(290px);
     border-radius: 30px;
     padding: 10px;
+    box-shadow: 0 0 10px;
+    color: $clr2;
 
     span {
         color: $clr2;
@@ -15,7 +17,8 @@
         justify-content: center;
         align-items: center;
         gap: 5px;
-        background-color: rgb(255, 56, 92);
+        background-color: $clr3;
+        color:rgb(235, 235, 235);
         border-radius: 50%;
         width: rem(30px);
         height: rem(30px);

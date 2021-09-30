@@ -12,6 +12,7 @@ export const storageService = {
  
 function query(entityType, params = {}) {
     let entities;
+    debugger
     if (entityType === 'stayDB') {
 
         entities = JSON.parse(localStorage.getItem(entityType)) || dummyData

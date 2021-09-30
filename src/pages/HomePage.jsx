@@ -16,7 +16,7 @@ import imgHome from '../assets/img/home-page/home.jpg'
 import imgHost from '../assets/img/home-page/host.jpg'
 import imgHero from '../assets/img/hero-cut.jpg'
 import { PopularImgList } from "../cmps/home-page/PopularImgList";
-import { AmenitiesImgList } from "../cmps/home-page/AmenitiesImgList"
+import { LabelsImgList } from "../cmps/home-page/LabelsImgList"
 
 const popularDestinations = [
     { city: 'Tel aviv', country: 'Israel', img: imgTelAviv, },

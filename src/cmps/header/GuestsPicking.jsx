@@ -71,8 +71,6 @@ export class _GuestsPicking extends React.Component {
         event.stopPropagation()
     }
     render() {
-        cons
-        if(!order)
         const { adult, child, infant } = this.state
         return (
             <section className="guests-container flex column" onClick={this.preventPropagation} >

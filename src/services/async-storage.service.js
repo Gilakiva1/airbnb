@@ -7,12 +7,11 @@ export const storageService = {
     put,
     remove,
     postMany
-
+  
 }
-
+ 
 function query(entityType, params = {}) {
     let entities;
-
     if (entityType === 'stayDB') {
 
         entities = JSON.parse(localStorage.getItem(entityType)) || dummyData
@@ -23,11 +22,6 @@ function query(entityType, params = {}) {
             })
         }
 
-        if (params.guests) {
-            entities = entities.filter(entitie => {
-                return entitie.capacity >= params.guests.adult + params.guests.child + params.guests.infant
-            })
-        }
         if (params.guests) {
             entities = entities.filter(entitie => {
                 return entitie.capacity >= params.guests.adult + params.guests.child + params.guests.infant
@@ -47,7 +41,6 @@ function get(entityType, entityId) {
 }
 
 function post(entityType, newEntity) {
-    console.log('newEntity',newEntity);
     newEntity._id = _makeId()
     return query(entityType)
         .then(entities => {
@@ -59,9 +52,7 @@ function post(entityType, newEntity) {
 }
 
 function put(entityType, updatedEntity) {
-    if (entityType === 'stayDB') {
 
-    }
     return query(entityType)
         .then(entities => {
             const idx = entities.findIndex(entity => entity._id === updatedEntity._id)
@@ -87,7 +78,7 @@ function _save(entityType, entities) {
     localStorage.setItem(entityType, JSON.stringify(entities))
 }
 
- 
+
 
 
 function _makeId(length = 5) {
@@ -168,7 +159,7 @@ const dummyData = [{
         address: ' Porto, Portugal',
         lat: -8.61308,
         lng: 41.1413,
-        city: 'Porto'
+
     },
     reviews: [{
         id: 'madeId',
@@ -299,7 +290,7 @@ const dummyData = [{
 {
     _id: '10126236',
     name: 'Steps from Times Square and Central Park',
-    imgUrls: ['https://a0.muscache.com/im/pictures/38ddd214-a354-4484-9cde-b0edf8d71d50.jpg?im_w=1200', 'https://a0.muscache.com/im/pictures/9e6a3bc3-c16c-4883-9e19-26935366d9b9.jpg?im_w=720','https://a0.muscache.com/im/pictures/515e85d3-3319-4215-8461-c06d983180bf.jpg?im_w=720','https://a0.muscache.com/im/pictures/6d8a7e20-b17a-4229-9fd0-f43c167390d6.jpg?im_w=720','https://a0.muscache.com/im/pictures/37e4fa79-c9aa-4382-bd4b-c8850342c193.jpg?im_w=720'],
+    imgUrls: ['https://a0.muscache.com/im/pictures/38ddd214-a354-4484-9cde-b0edf8d71d50.jpg?im_w=1200', 'https://a0.muscache.com/im/pictures/9e6a3bc3-c16c-4883-9e19-26935366d9b9.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/515e85d3-3319-4215-8461-c06d983180bf.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/6d8a7e20-b17a-4229-9fd0-f43c167390d6.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/37e4fa79-c9aa-4382-bd4b-c8850342c193.jpg?im_w=720'],
     price: 40,
     description: '280 square feet guest room with 37" Flat Screen TV, King Size Pillow-top Mattress with large Pillows and high thread count linens, spacious Work Desk with an Ergonomic Chair and a 2-Line Phone for your convenience.',
     type: 'room in the hotel',
@@ -313,7 +304,7 @@ const dummyData = [{
         'Pets allowed',
         'Cooking basics'
     ],
-    tags: [ 
+    tags: [
         'entire to yourself',
         'enhanced clean',
         'great check-in',
@@ -355,7 +346,7 @@ const dummyData = [{
 {
     _id: '14916236',
     name: 'Beautiful Harlem loft off of Central Park',
-    imgUrls: ['https://a0.muscache.com/im/pictures/ff1dbcf5-3f2b-4c2e-bd33-c3ce740be548.jpg?im_w=1200', 'https://a0.muscache.com/im/pictures/18c67c27-5c09-4bc1-9f18-5afa15e97075.jpg?im_w=720','https://a0.muscache.com/im/pictures/862a8457-5fe5-4c53-9567-15528f0590f1.jpg?im_w=720','https://a0.muscache.com/im/pictures/27919374-102b-47eb-ad2f-5f94ae670a79.jpg?im_w=720','https://a0.muscache.com/im/pictures/07aa5fe1-d411-4656-9b53-496cc80e0ebd.jpg?im_w=720'],
+    imgUrls: ['https://a0.muscache.com/im/pictures/ff1dbcf5-3f2b-4c2e-bd33-c3ce740be548.jpg?im_w=1200', 'https://a0.muscache.com/im/pictures/18c67c27-5c09-4bc1-9f18-5afa15e97075.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/862a8457-5fe5-4c53-9567-15528f0590f1.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/27919374-102b-47eb-ad2f-5f94ae670a79.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/07aa5fe1-d411-4656-9b53-496cc80e0ebd.jpg?im_w=720'],
     price: 50,
     description: '280 square feet guest room with 37" Flat Screen TV, King Size Pillow-top Mattress with large Pillows and high thread count linens, spacious Work Desk with an Ergonomic Chair and a 2-Line Phone for your convenience.',
     type: 'room in the hotel',
@@ -369,7 +360,7 @@ const dummyData = [{
         'Pets allowed',
         'Cooking basics'
     ],
-    tags: [ 
+    tags: [
         'entire to yourself',
         'enhanced clean',
         'great check-in',
@@ -411,7 +402,7 @@ const dummyData = [{
 {
     _id: '14990336',
     name: 'Cozy atrtist’s loft in prime Bed-stuy location',
-    imgUrls: ['https://a0.muscache.com/im/pictures/1117e5c9-80b4-4d20-9f2f-5e96fdc1de4d.jpg?im_w=1200', 'https://a0.muscache.com/im/pictures/8549e2b0-fcc3-47f0-beee-cf11c82d8632.jpg?im_w=720','https://a0.muscache.com/im/pictures/e743ea39-01a8-402e-95e6-277dbe2104ed.jpg?im_w=720','https://a0.muscache.com/im/pictures/7694a084-4b94-4f5d-a5c5-de1cc69443d5.jpg?im_w=720','https://a0.muscache.com/im/pictures/b53e39db-912d-4ade-8ecc-51eae9d20e43.jpg?im_w=720'],
+    imgUrls: ['https://a0.muscache.com/im/pictures/1117e5c9-80b4-4d20-9f2f-5e96fdc1de4d.jpg?im_w=1200', 'https://a0.muscache.com/im/pictures/8549e2b0-fcc3-47f0-beee-cf11c82d8632.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/e743ea39-01a8-402e-95e6-277dbe2104ed.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/7694a084-4b94-4f5d-a5c5-de1cc69443d5.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/b53e39db-912d-4ade-8ecc-51eae9d20e43.jpg?im_w=720'],
     price: 75,
     description: 'Spacious loft with unique tin walls and high ceilings in prime Brooklyn. The apartment has a single bedroom with attached bath, an open kitchen and living area with dedicated workspace. The apartment is a cozy landing place after a long day and centrally located for anyone looking for nightlife, art or great food. Blocks from transit and 10min to Manhattan.',
     type: 'room in the hotel',
@@ -425,7 +416,7 @@ const dummyData = [{
         'Pets allowed',
         'Cooking basics'
     ],
-    tags: [ 
+    tags: [
         'entire to yourself',
         'enhanced clean',
         'great check-in',
@@ -467,7 +458,7 @@ const dummyData = [{
 {
     _id: '14990098',
     name: 'Bright, Private Bedroom in an NYC hot spot!',
-    imgUrls: ['https://a0.muscache.com/im/pictures/fdb16273-fd94-4962-9f1e-b1223db56909.jpg?im_w=1200', 'https://a0.muscache.com/im/pictures/940a42f6-aed5-47e1-91ff-01061c3d2806.jpg?im_w=720','https://a0.muscache.com/im/pictures/0ecf976a-0888-479e-a5e6-944db889c85f.jpg?im_w=720','https://a0.muscache.com/im/pictures/d979348d-7d14-447a-8ac6-851ca3c3e672.jpg?im_w=720','https://a0.muscache.com/im/pictures/03b7954f-f5ad-41ce-812d-21de82969608.jpg?im_w=720'],
+    imgUrls: ['https://a0.muscache.com/im/pictures/fdb16273-fd94-4962-9f1e-b1223db56909.jpg?im_w=1200', 'https://a0.muscache.com/im/pictures/940a42f6-aed5-47e1-91ff-01061c3d2806.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/0ecf976a-0888-479e-a5e6-944db889c85f.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/d979348d-7d14-447a-8ac6-851ca3c3e672.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/03b7954f-f5ad-41ce-812d-21de82969608.jpg?im_w=720'],
     price: 60,
     description: 'Bright, private bedroom in a 3 bedroom apartment in the Heart of Harlem. Besides the convenience of 2 different train lines on either side & the Metro North 2 blocks away, you’ll be downtown in minutes! Shake Shack is 30 seconds away, CVS, TJ Maxx, Victoria’s Secret, H&M, Bath & Bodyworks, Marshall’s, Starbucks and AMC are all within walking distance. Chipotle, Wing Stop, Whole Foods, Red Lobster, IHOP and local restaurants and bars are also in very close proximity.',
     type: 'privete room',
@@ -481,7 +472,7 @@ const dummyData = [{
         'Pets allowed',
         'Cooking basics'
     ],
-    tags: [ 
+    tags: [
         'entire to yourself',
         'enhanced clean',
         'great check-in',
@@ -740,7 +731,7 @@ const dummyData = [{
         address: ' Porto, Portugal',
         lat: -8.61308,
         lng: 41.1413,
-        city: 'Porto'
+
     },
     reviews: [
         {
@@ -797,7 +788,66 @@ const dummyData = [{
         address: ' Porto, Portugal',
         lat: -8.61308,
         lng: 41.1413,
-        city: 'Porto'
+
+    },
+    reviews: [
+        {
+            id: 'madeId',
+            txt: ' Very helpful hosts. Cooked traditional...',
+            rate: 4,
+            by: {
+                _id: 'u102',
+                fullname: 'user2',
+                imgUrl: ' /img/img2.jpg'
+            },
+            date: ' May 2015'
+        }
+    ],
+    rating: '4',
+    likedByUserIds: ['u101', 'u102']
+
+},
+{
+    _id: '100065220',
+    name: 'Dreamdien - walking distance to burj khalifa',
+    imgUrls: ['https://a0.muscache.com/im/pictures/2d431b27-60b4-4c74-ade8-942947c41f94.jpg?im_w=1200', 'https://a0.muscache.com/im/pictures/4e626441-bba3-4665-bce0-f9dc82de8b86.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/0beddb30-e674-44b5-bf21-4aa0e962cf23.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/c73cd677-b139-419c-bad2-cb49f43ae36a.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/15b2052c-cadb-470c-afd1-ef8353d1322a.jpg?im_w=720'],
+    price: 120.00,
+    description: 'Dreamdien - walking distance to burj khalifa',
+    type: 'apretment',
+    capacity: 8,
+    amenities: [
+        'TV',
+        'Wifi',
+        'Kitchen',
+        'Smoking allowed',
+        'Pets allowed',
+        'Cooking basics'
+    ],
+    tags: [
+        'entire to yourself',
+        'great check-in',
+        'self check-in',
+        'free cancellation',
+    ],
+    host: {
+        _id: '51399391',
+        fullname: ' Davit Pok',
+        imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
+    },
+    orders: [
+        {
+            _id: 'u101',
+            'check-in': '21.04.2021',
+            'check-out': ' 25.04.2021'
+        }
+    ],
+    loc: {
+        country: 'Dubai', 
+        countryCode: 'AE',
+        address: 'Dubai, United Arab Emirates',
+        lat: -8.61308,
+        lng: 41.1413,
+
     },
     reviews: [
         {

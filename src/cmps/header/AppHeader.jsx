@@ -49,7 +49,7 @@ class _AppHeader extends React.Component {
                         <button className="btn-logo" onClick={this.backToHome}><LogoSvg className={`${pathname === '/' && scrollLoc > 40 ? 'logo-pink' : 'logo-white'} `} /></button>
                         <h3 className={`logo-txt ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-pink'}`}>Home away</h3>
                     </div>
-                    {scrollLoc > 30 && <SearchBar />}
+                    {scrollLoc > 30 && <SearchBar scrollLoc={scrollLoc} />}
                     <nav className="nav-header">
                         <div className="nav-header flex align-center">
                             <NavLink className={`link-host border-round fs14 ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-black hover-bcg'}`} to={`/ `} >explore</NavLink>

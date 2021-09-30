@@ -8,7 +8,7 @@ import { utilService } from '../services/util.service.js'
 class _StayList extends React.Component {
     state = {
         params: null 
-    }
+    }  
 
     async componentDidMount() {
         const searchParams = new URLSearchParams(this.props.location.search);

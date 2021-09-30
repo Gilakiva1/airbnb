@@ -1,3 +1,4 @@
+import de from "date-fns/esm/locale/de/index.js"
 import React from "react"
 import { connect } from "react-redux"
 import { withRouter } from "react-router"
@@ -10,8 +11,8 @@ export class _GuestsPicking extends React.Component {
         infant: 0
     }
 
-    componentDidMount() { 
-        console.log(this.props.order.guests); 
+    componentDidMount() {
+        debugger
         this.setState(this.props.order.guests)
 
     }
@@ -70,7 +71,9 @@ export class _GuestsPicking extends React.Component {
     preventPropagation = event => {
         event.stopPropagation()
     }
-    render() {
+    render() { 
+ 
+        if (!this.props.order) return <div>loading</div>
         const { adult, child, infant } = this.state
         return (
             <section className="guests-container flex column" onClick={this.preventPropagation} >

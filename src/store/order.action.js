@@ -4,7 +4,6 @@ import { stayService } from '../services/stay.service';
 
 export function onSetOrder(orderDetails) {
     try {
-        console.log('orderDetails',orderDetails);
         return async dispath => {
             const order = await orderService.save(orderDetails)
            

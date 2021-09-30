@@ -24,7 +24,7 @@ export default function PriceFilter(props) {
         onChange={handleChange1}
         valueLabelDisplay="auto"
         min={0}
-        max={150}
+        max={500}
         disableSwap
       />
       <button onClick={()=>{props.onSavePrice(price)}}>Save</button>

@@ -815,5 +815,237 @@ const dummyData = [{
     rating: '4',
     likedByUserIds: ['u101', 'u102']
 
+},
+{
+    _id: '10006511231',
+    name: 'Stylish Studio',
+    imgUrls: ['https://a0.muscache.com/im/pictures/c56abcfe-412a-430e-b3f7-c5f987fb7cc8.jpg?im_w=960', 'https://a0.muscache.com/im/pictures/fc937112-48db-4467-addf-1b41cf53273b.jpg?im_w=720','https://a0.muscache.com/im/pictures/4d1c522f-1b1c-4890-95ae-b5234d403ad7.jpg?im_w=720','https://a0.muscache.com/im/pictures/ca51c1e4-0f51-40f0-8141-a29527b18d59.jpg?im_w=720','https://a0.muscache.com/im/pictures/8a8945ad-010e-475a-8f2e-9d192d7697e8.jpg?im_w=720'],
+    price: 120.00,
+    description: 'The Collective Canary Wharf is ideally located 10 minutes away from Canary Wharf with its cafes, pubs and bar and only a few stops away from The O2 arena. Historic Greenwich, ExCeL London, London City Airport and Central London are less than 20 minutes away via public transport.',
+    type: 'Studio',
+    capacity: 8,
+    amenities: [
+        'TV',
+        'Wifi',
+        'Kitchen',
+        'Smoking allowed',
+        'Pets allowed',
+        'Cooking basics'
+    ],
+    tags: [
+        'entire to yourself',
+        'great check-in',
+        'self check-in',
+        'free cancellation',
+    ],
+    host: {
+        _id: '51399391',
+        fullname: ' The Collective Canary Wharf',
+        imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
+    },
+    orders: [
+        {
+            _id: 'u101',
+            'check-in': '21.04.2021',
+            'check-out': ' 25.04.2021'
+        }
+    ],
+    loc: {
+        country: 'England',
+        countryCode: 'PT',
+        address: 'London, England',
+        lat: -8.61308,
+        lng: 41.1413,
+    },
+    reviews: [
+        {
+            id: 'madeId',
+            txt: ' Very helpful hosts. Cooked traditional...',
+            rate: 4,
+            by: {
+                _id: 'u102',
+                fullname: 'user2',
+                imgUrl: ' /img/img2.jpg'
+            },
+            date: ' May 2015'
+        }
+    ],
+    rating: '4',
+    likedByUserIds: ['u101', 'u102']
+
+},
+{
+    _id: '100065112312',
+    name: 'Beautiful room & private bathroom Alexandra Palace',
+    imgUrls: ['https://a0.muscache.com/im/pictures/miso/Hosting-37173666/original/0a0899ec-c2a5-4386-8a0c-3ae7073ccf50.jpeg?im_w=720', 'https://a0.muscache.com/im/pictures/miso/Hosting-37173666/original/ba48f98f-feed-4a7a-8b96-55c5c232104b.jpeg?im_w=720','https://a0.muscache.com/im/pictures/miso/Hosting-37173666/original/48c75a7e-bba7-46cd-bdc0-ab64b2357a92.jpeg?im_w=720','https://a0.muscache.com/im/pictures/miso/Hosting-37173666/original/255fc283-ab2a-4320-ab95-840e5018c00b.jpeg?im_w=720','https://a0.muscache.com/im/pictures/miso/Hosting-37173666/original/f91308cc-5c46-4697-9dcd-f25910be34bc.jpeg?im_w=1200'],
+    price: 50.00,
+    description: 'Lovely light, spacious room in our split level apartment in a Victorian property. Kingsize bed, tea/coffee facilities in the room, 32inch Smart TV. Bathroom is adjacent to the room and for the exclusive use of guests. Perfect for Alexandra Palace which is only a 12 minute walk. Fantastic transport links - 7 minutes walk to Wood Green station, plus many shops.',
+    type: 'Private room',
+    capacity: 8,
+    amenities: [
+        'TV',
+        'Wifi',
+        'Kitchen',
+        'Smoking allowed',
+        'Pets allowed',
+        'Cooking basics'
+    ],
+    tags: [
+        'entire to yourself',
+        'great check-in',
+        'self check-in',
+        'free cancellation',
+    ],
+    host: {
+        _id: '51399391',
+        fullname: 'Peta',
+        imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
+    },
+    orders: [
+        {
+            _id: 'u101',
+            'check-in': '21.04.2021',
+            'check-out': ' 25.04.2021'
+        }
+    ],
+    loc: {
+        country: 'England',
+        countryCode: 'PT',
+        address: 'London, England',
+        lat: -8.61308,
+        lng: 41.1413,
+    },
+    reviews: [
+        {
+            id: 'madeId',
+            txt: ' Very helpful hosts. Cooked traditional...',
+            rate: 4,
+            by: {
+                _id: 'u102',
+                fullname: 'user2',
+                imgUrl: ' /img/img2.jpg'
+            },
+            date: ' May 2015'
+        }
+    ],
+    rating: '4',
+    likedByUserIds: ['u101', 'u102']
+
+},
+{
+    _id: '1000651123132',
+    name: 'Luxury Penthouse Suite with Heated Rooftop Pool',
+    imgUrls: ['https://a0.muscache.com/im/pictures/b0fa86bd-45a2-442e-9cae-dd92e2861137.jpg?im_w=960','https://a0.muscache.com/im/pictures/28674585-af4f-4480-aefb-64781b33b1af.jpg?im_w=720','https://a0.muscache.com/im/pictures/5a71b408-da07-4fd5-b06c-9a021e911b34.jpg?im_w=720','https://a0.muscache.com/im/pictures/3468f0b4-3099-41d9-adb7-b98dbd757a40.jpg?im_w=720','https://a0.muscache.com/im/pictures/9380d531-d3b4-43e8-9079-d63d296fb588.jpg?im_w=720'],
+    price: 300.00,
+    description: 'Grab a drink from the trolley and head up to the heated glass bottom rooftop pool with a view in this exquisite London penthouse. Lounge around this chic open-plan space boasting skyline views, high-end designer furnishings, and floor-to-ceiling windows.',
+    type: 'Condominium ',
+    capacity: 8,
+    amenities: [
+        'TV',
+        'Wifi',
+        'Kitchen',
+        'Smoking allowed',
+        'Pets allowed',
+        'Cooking basics'
+    ],
+    tags: [
+        'entire to yourself',
+        'great check-in',
+        'self check-in',
+        'free cancellation',
+    ],
+    host: {
+        _id: '51399391',
+        fullname: 'Chris & Jackie',
+        imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
+    },
+    orders: [
+        {
+            _id: 'u101',
+            'check-in': '21.04.2021',
+            'check-out': ' 25.04.2021'
+        }
+    ],
+    loc: {
+        country: 'England',
+        countryCode: 'PT',
+        address: 'London, England',
+        lat: -8.61308,
+        lng: 41.1413,
+    },
+    reviews: [
+        {
+            id: 'madeId',
+            txt: ' Very helpful hosts. Cooked traditional...',
+            rate: 4,
+            by: {
+                _id: 'u102',
+                fullname: 'user2',
+                imgUrl: ' /img/img2.jpg'
+            },
+            date: ' May 2015'
+        }
+    ],
+    rating: '4',
+    likedByUserIds: ['u101', 'u102']
+
+},
+{
+    _id: '1000651123122',
+    name: 'Stunning Shoreditch Loft Conversion + Movie Screen',
+    imgUrls: ['https://a0.muscache.com/im/pictures/7d2e0f9f-7f35-492d-80ce-0c8a0bac03d8.jpg?im_w=720','https://a0.muscache.com/im/pictures/monet/Select-19111137/original/c1f2e786-9732-4637-a76a-af754d427b13?im_w=720','https://a0.muscache.com/im/pictures/monet/Select-19111137/original/ed2f479b-e3da-4c7c-8faf-d4d1acd1a988?im_w=720','https://a0.muscache.com/im/pictures/monet/Select-19111137/original/9a35f440-deb6-48d5-afe8-e60fe88d10d5?im_w=720','https://a0.muscache.com/im/pictures/monet/Select-19111137/original/5a9b32f6-293f-4c8a-87a5-c493f01eb4d7?im_w=720'],
+    price: 200.00,
+    description: 'Lovely light, spacious room in our split level apartment in a Victorian property. Kingsize bed, tea/coffee facilities in the room, 32inch Smart TV. Bathroom is adjacent to the room and for the exclusive use of guests. Perfect for Alexandra Palace which is only a 12 minute walk. Fantastic transport links - 7 minutes walk to Wood Green station, plus many shops.',
+    type: 'Condominium ',
+    capacity: 8,
+    amenities: [
+        'TV',
+        'Wifi',
+        'Kitchen',
+        'Smoking allowed',
+        'Pets allowed',
+        'Cooking basics'
+    ],
+    tags: [
+        'entire to yourself',
+        'great check-in',
+        'self check-in',
+        'free cancellation',
+    ],
+    host: {
+        _id: '51399391',
+        fullname: 'Peta',
+        imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
+    },
+    orders: [
+        {
+            _id: 'u101',
+            'check-in': '21.04.2021',
+            'check-out': ' 25.04.2021'
+        }
+    ],
+    loc: {
+        country: 'England',
+        countryCode: 'PT',
+        address: 'London, England',
+        lat: -8.61308,
+        lng: 41.1413,
+    },
+    reviews: [
+        {
+            id: 'madeId',
+            txt: ' Very helpful hosts. Cooked traditional...',
+            rate: 4,
+            by: {
+                _id: 'u102',
+                fullname: 'user2',
+                imgUrl: ' /img/img2.jpg'
+            },
+            date: ' May 2015'
+        }
+    ],
+    rating: '4',
+    likedByUserIds: ['u101', 'u102']
+
 }
 ]

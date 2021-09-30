@@ -11,9 +11,8 @@ export class _GuestsPicking extends React.Component {
     }
 
     componentDidMount() {
-        console.log(this.props.order.guests);
+        if (!this.props.order) return
         this.setState(this.props.order.guests)
-
     }
 
 

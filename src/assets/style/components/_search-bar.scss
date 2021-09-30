@@ -6,7 +6,9 @@
     width: rem(290px);
     border-radius: 30px;
     padding: 10px;
-    box-shadow: 0 0 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    box-shadow: inset #000000b0 0px 0px 1px;
     color: $clr2;
     cursor: pointer;
     span {
@@ -16,7 +18,6 @@
     .search-bar-submit-mini {
         justify-content: center;
         align-items: center;
-        gap: 5px;
         background-color: $clr3;
         color: rgb(235, 235, 235);
         border-radius: 50%;
@@ -29,12 +30,14 @@
 .search-bar-container {
     align-self: center;
     justify-content: space-between;
-    padding: rem(10px);
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
     gap: rem(15px);
     border-radius: rem(40px);
     background-color: white;
     cursor: pointer;
-    box-shadow: 0 0 10px;
+    box-shadow: 0 0 5px;
     input {
         border: none;
         outline: none;
@@ -45,7 +48,7 @@
     .search-bar-submit {
         justify-content: center;
         align-items: center;
-        gap: 5px;
+        align-self: center;
         background-color: rgb(255, 56, 92);
         border-radius: 50%;
         width: rem(50px);
@@ -55,7 +58,6 @@
     .input-container {
         background-color: transparent;
         padding: 10px;
-
         &:hover {
             background-color: rgb(235, 235, 235);
             border-radius: 30px;

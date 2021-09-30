@@ -3,27 +3,30 @@
   width: 100%;
   z-index: 5;
 
-  .btn-logo {
-    border: none;
-    background: inherit;
+  .logo-container {
+    .btn-logo {
+      border: none;
+      background: inherit;
+    }
+    
   }
 
   .header-func {
     justify-content: space-between;
     margin-block-start: 15px;
 
-    a {
-      color: white;
-    }
-
     .link-host {
       text-decoration: none;
       margin-inline-end: 5px;
       padding: rem(12px);
+      font-weight: 600;
 
       &:hover {
         background-color: rgba(255, 255, 255, 0.15);
         transition: 0.4s;
+      }
+      &.hover-bcg:hover {
+        background: rgb(247, 247, 247);
       }
     }
 
@@ -38,8 +41,10 @@
 
         .menu-btn {
           border: none;
+          background: $clr3;
           padding: 10px 20px;
           border-radius: 3em;
+          border: 1px solid #dad4d4;
 
           .menu-details {
             justify-content: space-between;
@@ -56,13 +61,26 @@
       width: rem(50px);
       height: rem(50px);
     }
-    .logo-container {
-      color: white;
-    }
 
     .header-search {
       height: 40px;
       visibility: hidden;
     }
   }
+  .logo-pink {
+    fill: $clr2;
+  }
+
+  .logo-white {
+    fill: $clr3;
+  }
+  .txt-white {
+    color: $clr3;
+  }
+  .txt-pink {
+    color: $clr2;
+  }
+  // .txt-black {
+  //   color: $clr1;
+  // }
 }

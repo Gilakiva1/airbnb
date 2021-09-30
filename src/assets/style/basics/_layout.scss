@@ -14,21 +14,21 @@
   @include for-narrow-layout {
     grid-template-columns:
       minmax(2rem, 1fr)
-      minmax(auto, 90vw)
+      minmax(auto, $mobile-breakpoint)
       minmax(2rem, 1fr);
   }
 
   @include for-normal-layout {
     grid-template-columns:
       minmax(2rem, 1fr)
-      minmax(auto, 90vw)
+      minmax(auto, $narrow-breakpoint)
       minmax(2rem, 1fr);
   }
 
   @include for-wide-layout {
     grid-template-columns:
       minmax(2rem, 1fr)
-      minmax(auto, 83vw)
+      minmax(auto, $wide-fill)
       minmax(2rem, 1fr);
   }
 }

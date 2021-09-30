@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { NavLink, Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
-import { LogoSvg } from "../../assets/img/home-page/LogoSvg"
+import { LogoSvg } from "../svgs/LogoSvg"
 import imgUser from '../../assets/img/home-page/user.jpg'
 import { SearchBar } from "./SearchBar";
 
@@ -35,7 +35,6 @@ class _AppHeader extends React.Component {
             this.props.history.push('/')
         } else {
             document.documentElement.scrollTop = 0
-
         }
     }
 
@@ -47,27 +46,26 @@ class _AppHeader extends React.Component {
             <header className={`${scrollLoc > 40 ? 'white' : ''} ${pathname === '/' ? 'fixed ' : 'sticky-color'} header-container main-container`}>
                 <div className="header-func flex">
                     <div className="logo-container flex align-center">
-                        <button className="btn-logo" onClick={this.backToHome}><LogoSvg /></button>
-                        <h3>Home<span style={{ color: "rgb(255, 56, 92)" }}>away</span></h3>
+                        <button className="btn-logo" onClick={this.backToHome}><LogoSvg className={`${pathname === '/' && scrollLoc > 40 ? 'logo-pink' : 'logo-white'} `} /></button>
+                        <h3 className={`logo-txt ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-pink'}`}>Home away</h3>
                     </div>
                     {scrollLoc > 30 && <SearchBar />}
                     <nav className="nav-header">
                         <div className="nav-header flex align-center">
-                            <NavLink className="link-host border-round fs14" to={`/`} >switch to hosting</NavLink>
-                            <NavLink className="link-host border-round fs14" to={`/`} >explore</NavLink>
+                            <NavLink className={`link-host border-round fs14 ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-black hover-bcg'}`} to={`/ `} >explore</NavLink>
+                            <NavLink className={`link-host border-round fs14 ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-black hover-bcg'}`} to={`/ `} >switch to hosting</NavLink>
                             <div className="menu-container border-round">
                                 <button className="menu-btn border-round flex align-center">
                                     <div className="menu-details flex align-center">
                                         <FontAwesomeIcon className="hamburger-menu" icon={faBars} />
                                         <img src={imgUser} alt="" className="user-img border-round" />
                                     </div>
-                                </button>
+                                </button> 
                             </div>
-
                         </div>
                     </nav>
                 </div>
-                {scrollLoc < 30 &&  <SearchBar />}
+                {scrollLoc < 30 && <SearchBar />}
             </header>
 
         )

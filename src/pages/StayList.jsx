@@ -15,7 +15,7 @@ class _StayList extends React.Component {
         let newParams = {}
         console.log('params');
         for (let [key, value] of searchParams) {
-            if (key === 'adult' || key === 'child' || key === 'infant') {
+            if (key === 'adult') {
                 newParams.guests = {}
             } 
             if (key === 'adult' || key === 'child' || key === 'infant') {

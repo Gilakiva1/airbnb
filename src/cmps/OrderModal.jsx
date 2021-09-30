@@ -32,6 +32,7 @@ export class _OrderModal extends Component {
         reviewsNumber =  utilService.getRandomIntInclusive(30,500)
         window.addEventListener('click', this.closeInputs)
         const order = await this.props.onLoadOrder()
+        console.log('order',order);
         this.setState({ order,reviewsNumber })
     }
 

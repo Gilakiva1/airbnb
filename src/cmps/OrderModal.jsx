@@ -31,7 +31,6 @@ export class _OrderModal extends Component {
     async componentDidMount() {
         window.addEventListener('click', this.setIsPickingGuests)
         const order = await this.props.onLoadOrder()
-        console.log('orderrrr', order);
         this.setState({ order })
     }
 

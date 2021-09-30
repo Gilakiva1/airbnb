@@ -12,12 +12,9 @@ class _StayList extends React.Component {
 
     async componentDidMount() {
         const searchParams = new URLSearchParams(this.props.location.search);
-        let newParams = {}
-        console.log('params');
+        let newParams = { guests: {} }
+
         for (let [key, value] of searchParams) {
-            if (key === 'adult' || key === 'child' || key === 'infant') {
-                newParams.guests = {}
-            } 
             if (key === 'adult' || key === 'child' || key === 'infant') {
                 newParams.guests[key] = +value
             } else {
@@ -38,7 +35,7 @@ class _StayList extends React.Component {
             <>
                 <StayFilter />
                 <div className="stay-list">
-                    {stays.map((stay, idx) => <StayPreview key={stay._id} stay={stay} />)}
+                    {stays.map((stay, idx) => <StayPreview key={stay._id} stay={stay}/>)}
                 </div>
             </>
         )

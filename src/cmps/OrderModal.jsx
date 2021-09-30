@@ -148,8 +148,8 @@ export class _OrderModal extends Component {
                                     type="text"
                                     placeholder="Add dates"
                                     name="checkIn"
-                                    value={order.checkIn}
-                                    disabled
+                                    value={order.chackIn}
+                                    
                                     style={{ outline: 'none' }}
                                     onChange={this.handleChange}
                                     onClick={() => this.activeInput('date')}
@@ -162,8 +162,8 @@ export class _OrderModal extends Component {
                                     type="text"
                                     placeholder="Add dates"
                                     name="checkOut"
-                                    value={order.checkOut}
-                                    disabled
+                                    value={order.chackOut}
+                                    
                                     style={{ outline: 'none' }}
                                     onChange={this.handleChange}
 

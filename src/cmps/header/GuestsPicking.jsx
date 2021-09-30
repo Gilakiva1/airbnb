@@ -1,6 +1,8 @@
 import React from "react"
+import { connect } from "react-redux"
+import { withRouter } from "react-router"
 
-export class GuestsPicking extends React.Component {
+export class _GuestsPicking extends React.Component {
 
     state = {
         adult: 0,
@@ -8,7 +10,14 @@ export class GuestsPicking extends React.Component {
         infant: 0
     }
 
-    updateCount = (ev,action) => {
+    componentDidMount() {
+        console.log(this.props.order.guests);
+        this.setState(this.props.order.guests)
+
+    }
+
+
+    updateCount = (ev, action) => {
         ev.stopPropagation()
         let { adult, child, infant } = this.state
         let field
@@ -55,12 +64,12 @@ export class GuestsPicking extends React.Component {
                 break;
         }
         this.setState({ [field]: value })
-        this.props.handleGuestsChanege(field,value)
+        this.props.handleGuestsChanege(field, value)
     }
 
     preventPropagation = event => {
         event.stopPropagation()
-      }
+    }
     render() {
         const { adult, child, infant } = this.state
         return (
@@ -71,9 +80,9 @@ export class GuestsPicking extends React.Component {
                         Aged 13 or above
                     </div>
                     <div className="counter-container flex">
-                        <button onClick={(event) => this.updateCount(event,'subtract adult')} className={adult === 0 ? "btn-counter flex fade" : "btn-counter flex"}>-</button>
+                        <button onClick={(event) => this.updateCount(event, 'subtract adult')} className={adult === 0 ? "btn-counter flex fade" : "btn-counter flex"}>-</button>
                         <span>{adult}</span>
-                        <button onClick={(event) => this.updateCount(event,'add adult')} className="btn-counter flex">+</button>
+                        <button onClick={(event) => this.updateCount(event, 'add adult')} className="btn-counter flex">+</button>
                     </div>
                 </div>
                 <div className="guest-card flex">
@@ -82,9 +91,9 @@ export class GuestsPicking extends React.Component {
                         Ages 2-12
                     </div>
                     <div className="counter-container flex">
-                        <button onClick={(event) => this.updateCount(event,'subtract child')} className={child === 0 ? "btn-counter flex fade" : "btn-counter flex"}>-</button>
+                        <button onClick={(event) => this.updateCount(event, 'subtract child')} className={child === 0 ? "btn-counter flex fade" : "btn-counter flex"}>-</button>
                         <span>{child}</span>
-                        <button onClick={(event) => this.updateCount(event,'add child')} className="btn-counter flex">+</button>
+                        <button onClick={(event) => this.updateCount(event, 'add child')} className="btn-counter flex">+</button>
                     </div>
                 </div>
                 <div className="guest-card flex">
@@ -93,12 +102,19 @@ export class GuestsPicking extends React.Component {
                         Under 2
                     </div>
                     <div className="counter-container flex">
-                        <button onClick={(event) => this.updateCount(event,'subtract infant')} className={infant === 0 ? "btn-counter flex fade" : "btn-counter flex"}>-</button>
+                        <button onClick={(event) => this.updateCount(event, 'subtract infant')} className={infant === 0 ? "btn-counter flex fade" : "btn-counter flex"}>-</button>
                         <span>{infant}</span>
-                        <button onClick={(event) => this.updateCount(event,'add infant')} className="btn-counter flex">+</button>
+                        <button onClick={(event) => this.updateCount(event, 'add infant')} className="btn-counter flex">+</button>
                     </div>
                 </div>
             </section>
         )
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        order: state.orderReducer.order
+    }
+}
+export const GuestsPicking = connect(mapStateToProps)(withRouter(_GuestsPicking))

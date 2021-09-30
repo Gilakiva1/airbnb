@@ -23,7 +23,7 @@ export class SimpleSlider extends Component {
             <Slider className='slider-img' {...settings}>
                 {stay.imgUrls.map((stayImg, idx) => (
                     
-                        <img className="stay-img" src={stayImg} alt="" />
+                        <img key={idx} className="stay-img" src={stayImg} alt="" />
                     
                 ))}
             </Slider>

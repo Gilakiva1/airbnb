@@ -50,7 +50,7 @@ class _AppHeader extends React.Component {
                         <button className="btn-logo" onClick={this.backToHome}><LogoSvg className={`${(pathname === '/' && scrollLoc > 40) || pathname !== '/' ? 'logo-pink' : 'logo-white'} `} /></button>
                         <h3 className={`logo-txt ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-pink'}`}>Home away</h3>
                     </div>
-                    {scrollLoc > 30 && pathname === '/'  && <MiniSearchBar/>}
+                    {scrollLoc > 40 && pathname === '/'  && <MiniSearchBar/>}
                     {pathname !== '/'  && <MiniSearchBar/>}
                     <nav className="nav-header">
                         <div className="nav-header flex align-center">
@@ -67,7 +67,7 @@ class _AppHeader extends React.Component {
                         </div>
                     </nav>
                 </div>
-                {scrollLoc < 30 && pathname === '/' && <SearchBar />}
+                {scrollLoc < 40 && pathname === '/' && <SearchBar />}
             </header>
 
         )

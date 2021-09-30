@@ -24,7 +24,7 @@ export class _SearchBar extends React.Component {
     },
     isPickingGuests: false,
     isPickingDates: false,
-    isInsideHeader: false
+    isInsideHeader: true
   }
 
   componentDidMount() {
@@ -43,7 +43,7 @@ export class _SearchBar extends React.Component {
     const field = ev.target.name
     const value = ev.target.value
     this.setState({ criteria: { ...criteria, [field]: value } })
-  } 
+  }
 
   handleGuestsChanege = (field, value) => {
     let { criteria } = this.state
@@ -98,14 +98,8 @@ export class _SearchBar extends React.Component {
   }
 
   render() {
-    const { isPickingGuests, isPickingDates, isInsideHeader, criteria } = this.state
+    const { isPickingGuests, isPickingDates, criteria } = this.state
     const { checkIn, checkOut } = criteria
-    if (isInsideHeader) return (
-      <div className="mini-search-bar flex space-between ">
-<span>Start your search</span>
-<button className="search-bar-submit-mini flex">{<FontAwesomeIcon className='search-icon' icon={faSearch} />}</button>
-      </div>
-    )
     return (
       <section className="flex column align-center">
         <div>

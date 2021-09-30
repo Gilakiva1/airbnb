@@ -2,8 +2,9 @@
   top: 0;
   width: 100%;
   z-index: 5;
+  padding-block-end: rem(15px);
 
-  .logo-container {
+  .logo-container { 
     .btn-logo {
       border: none;
       background: inherit;
@@ -17,7 +18,7 @@
 
     .link-host {
       text-decoration: none;
-      margin-inline-end: 5px;
+      margin-inline-end: 5px;  
       padding: rem(12px);
       font-weight: 600;
 
@@ -41,7 +42,7 @@
 
         .menu-btn {
           border: none;
-          background: $clr3;
+          background: $clr4;
           padding: 10px 20px;
           border-radius: 3em;
           border: 1px solid #dad4d4;
@@ -68,17 +69,17 @@
     }
   }
   .logo-pink {
-    fill: $clr2;
+    fill: $clr3;
   }
 
   .logo-white {
-    fill: $clr3;
+    fill: $clr4;
   }
   .txt-white {
-    color: $clr3;
+    color: $clr4;
   }
   .txt-pink {
-    color: $clr2;
+    color: $clr3;
   }
   // .txt-black {
   //   color: $clr1;

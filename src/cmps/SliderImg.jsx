@@ -19,7 +19,7 @@ export class SimpleSlider extends Component {
             slidesToScroll: 1
         };
         return (
-            <>
+         
             <Slider className='slider-img' {...settings}>
                 {stay.imgUrls.map((stayImg, idx) => (
                     
@@ -27,7 +27,7 @@ export class SimpleSlider extends Component {
                     
                 ))}
             </Slider>
-            </>
+            
         );
     }
 }

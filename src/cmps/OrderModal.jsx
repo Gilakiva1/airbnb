@@ -84,7 +84,7 @@ export class _OrderModal extends Component {
 
     getTotalGuests = () => {
         let { adult, child, infant } = this.state.order.guests
-        var guests = `Adults:${adult + child}`
+        var guests = `guests:${adult + child}`
         if (infant) {
             guests += ` infant: ${infant}`
         }
@@ -112,87 +112,88 @@ export class _OrderModal extends Component {
         ev.preventDefault()
         const { stay, order } = this.state
         if (ev.target.type === 'button') {
-            this.setState({ isReserve: true })
             ev.target.type = 'submit'
         }
         else {
             // this.props.onSetOrder(this.state.order)
-            const savedOrder = await this.props.onSetOrder(order) 
+            const savedOrder = await this.props.onSetOrder(order)
             const stay = await stayService.getById(this.props.match.params.stayId)
             stay.orders.push(savedOrder)
         }
     }
 
+    temp = ()=>{
+        const { stay, order } = this.state
+        const checkIn = Date.parse(order.checkIn)
+        console.log('checkIn',checkIn);
+            }
+
 
     render() {
         const { isPickingDates, isPickingGuests, isReserve } = this.state
         // const { checkIn, checkOut } = order
-        const { order,stay } = this.props
+        const { order, stay } = this.props
 
         if (!order) return <div>loading</div>
         return (
             <div className="order-modal">
-                <div className="flex gap5">
-                    <div>
-                        ${stay.price}/Night
-                    </div>
-                    <div>
+                <div className="flex space-between">
 
+                    <span><span className="price">${stay.price}</span>/Night</span>
+                    <div>
                         {<FontAwesomeIcon className='star-icon' icon={faStar} />}
                         5
-                        ({utilService.getRandomIntInclusive(30, 500)} reviews) <span> </span>
+                        <span className="rating"> ({utilService.getRandomIntInclusive(30, 500)} reviews)  </span>
                     </div>
                 </div>
-                <div className="" >
-                    <form className="" onClick={this.preventPropagation}>
-                        <div className=" ">
-                            <div className="flex column">
-                                <div className="input-container flex">
+                <form className="" onClick={this.preventPropagation}>
+                    <div className="flex column">
+                        <div className="input-container flex">
+                            <div className="check-in"
+                                onClick={() => this.activeInput('date')}>
+                                <span className="date-label">Check in:</span>
+                                <input
+                                    type="text"
+                                    placeholder="Add dates"
+                                    name="checkIn"
+                                    value={order.checkIn}
+                                    disabled
+                                    style={{ outline: 'none' }}
+                                    onChange={this.handleChange}
+                                    onClick={() => this.activeInput('date')}
+                                />
+                            </div>
+                            <div className="check-out"
+                                onClick={() => this.activeInput('date')}>
+                                <span className="date-label">Check out:</span>
+                                <input
+                                    type="text"
+                                    placeholder="Add dates"
+                                    name="checkOut"
+                                    value={order.checkOut}
+                                    disabled
+                                    style={{ outline: 'none' }}
+                                    onChange={this.handleChange}
 
-                                    <div className=" "
-                                        onClick={() => this.activeInput('date')}>
-                                        <span>Check in:</span>
-                                        <input
-                                            type="text"
-                                            placeholder="Add dates"
-                                            name="checkIn"
-                                            value={order.checkIn}
-                                            disabled
-                                            style={{ outline: 'none' }}
-                                            onChange={this.handleChange}
-                                            onClick={() => this.activeInput('date')}
-                                        />
-                                    </div>
-                                    <div className=""
-                                        onClick={() => this.activeInput('date')}>
-                                        <span>Check out:</span>
-                                        <input
-                                            type="text"
-                                            placeholder="Add dates"
-                                            name="checkOut"
-                                            value={order.checkOut}
-                                            disabled
-                                            style={{ outline: 'none' }}
-                                            onChange={this.handleChange}
-
-                                        />
-                                    </div>
-                                </div>
-                                <div className="guests flex column">
-                                    <label htmlFor="confirm-guests">Guests:</label>
-                                    <button className="confirm-guests" type="button" onClick={() => this.activeInput('guest')}>{this.getTotalGuests()}</button>
-                                </div>
+                                />
                             </div>
                         </div>
-                        <div className="flex column">
-                            {!isReserve && <button className="confirm-order" type="button" onClick={this.onSubmit}>Check availability</button>}
-                            {isReserve && <button className="confirm-order" type="button" onClick={this.onSubmit}>Reserve</button>}
+                        <div className="guests flex column">
+                            <label htmlFor="confirm-guests">Guests:</label>
+                            <button className="confirm-guests" type="button" onClick={() => this.activeInput('guest')}>{this.getTotalGuests()}</button>
                         </div>
-                    </form>
+                    </div>
+                    <div className="flex column">
+                        {!isReserve && <button className="confirm-order" type="button" onClick={this.onSubmit}>Check availability</button>}
+                        {isReserve && <button className="confirm-order" type="button" onClick={this.onSubmit}>Reserve</button>}
+                        
+                    </div>
+                    <span>You won't be charged yet </span>
                     <div className={isPickingGuests ? "picking-guest-container" : "picking-guest-container none"}> {isPickingGuests && <GuestsPicking handleGuestsChanege={this.handleGuestsChanege} />} </div>
-                    <div className={isPickingDates ? "picking-dates-container" : "checkin-container none"}> {isPickingDates && <DatePicker preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />} </div>
 
-                </div>
+                </form>
+                <div className={isPickingDates ? "picking-dates-container" : "checkin-container none"}> {isPickingDates && <DatePicker preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />} </div>
+
 
             </div>
         )
@@ -210,5 +211,5 @@ const mapDispatchToProps = {
     onLoadOrder,
     onSetOrder
 
-} 
+}
 export const OrderModal = connect(mapStateToProps, mapDispatchToProps)(withRouter(_OrderModal))

@@ -9,6 +9,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { LogoSvg } from "../svgs/LogoSvg"
 import imgUser from '../../assets/img/home-page/user.jpg'
 import { SearchBar } from "./SearchBar";
+import { MiniSearchBar } from './MiniSearchBar';
 
 class _AppHeader extends React.Component {
 
@@ -46,10 +47,11 @@ class _AppHeader extends React.Component {
             <header className={`${scrollLoc > 40 ? 'white' : ''} ${pathname === '/' ? 'fixed ' : 'sticky-color'} header-container main-container`}>
                 <div className="header-func flex">
                     <div className="logo-container flex align-center">
-                        <button className="btn-logo" onClick={this.backToHome}><LogoSvg className={`${pathname === '/' && scrollLoc > 40 ? 'logo-pink' : 'logo-white'} `} /></button>
+                        <button className="btn-logo" onClick={this.backToHome}><LogoSvg className={`${(pathname === '/' && scrollLoc > 40) || pathname !== '/' ? 'logo-pink' : 'logo-white'} `} /></button>
                         <h3 className={`logo-txt ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-pink'}`}>Home away</h3>
                     </div>
-                    {scrollLoc > 30 && <SearchBar scrollLoc={scrollLoc} />}
+                    {scrollLoc > 30 && pathname === '/'  && <MiniSearchBar/>}
+                    {pathname !== '/'  && <MiniSearchBar/>}
                     <nav className="nav-header">
                         <div className="nav-header flex align-center">
                             <NavLink className={`link-host border-round fs14 ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-black hover-bcg'}`} to={`/ `} >explore</NavLink>
@@ -65,7 +67,7 @@ class _AppHeader extends React.Component {
                         </div>
                     </nav>
                 </div>
-                {scrollLoc < 30 && <SearchBar />}
+                {scrollLoc < 30 && pathname === '/' && <SearchBar />}
             </header>
 
         )

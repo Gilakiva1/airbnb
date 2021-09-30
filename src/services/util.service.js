@@ -1,10 +1,48 @@
+import imgTelAviv from '../assets/img/home-page/tel-aviv-yafo.jpg'
+import imgLondon from '../assets/img/home-page/london.jpg'
+import imgParis from '../assets/img/home-page/paris.jpg'
+import imgAmsterdam from '../assets/img/home-page/amsterdam.jpg'
+import imgDubai from '../assets/img/home-page/dubai.jpg'
+import imgNewYork from '../assets/img/home-page/new york.jpg'
+import imgHongKong from '../assets/img/home-page/hong kong.jpg'
+import imgBangkok from '../assets/img/home-page/bangkok.jpg'
+import imgOutdoor from '../assets/img/home-page/outdoor.jpg'
+import imgPets from '../assets/img/home-page/pets.jpg'
+import imgUnique from '../assets/img/home-page/unique.jpg'
+import imgHome from '../assets/img/home-page/home.jpg'
+
+
 export const utilService = {
     makeId,
     makeLorem,
     getRandomIntInclusive,
     delay,
-    makeQueryParams
+    makeQueryParams,
+    HomePageImgPopular,
+    HomePageImgLabels
 }
+function HomePageImgPopular() {
+
+    return [
+        { city: 'Tel aviv', country: 'Israel', img: imgTelAviv, },
+        { city: 'London', country: 'England', img: imgLondon },
+        { city: 'Bangkok', country: 'Thailand', img: imgBangkok },
+        { city: 'Paris', country: 'France', img: imgParis },
+        { city: 'Dubai', country: 'United Arab Emirates', img: imgDubai },
+        { city: 'new york', country: 'United States of America', img: imgNewYork },
+        { city: 'Amsterdam', country: 'Netherlands', img: imgAmsterdam },
+        { city: 'Hong-kong', country: 'China', img: imgHongKong }
+    ]
+}
+function HomePageImgLabels() {
+    return [
+        { value: 'outdoor', label: 'Outdoor getaways', img: imgOutdoor },
+        { value: 'unique', label: 'Unique Stays', img: imgUnique },
+        { value: 'home', label: 'Entires homes', img: imgHome },
+        { value: 'pets', label: 'Pets Allowd', img: imgPets }
+    ]
+}
+
 
 function makeId(length = 6) {
     var txt = '';
@@ -15,7 +53,7 @@ function makeId(length = 6) {
     }
 
     return txt;
-} 
+}
 
 function makeLorem(size = 100) {
     var words = ['The sky', 'above', 'the port', 'was', 'the color of television', 'tuned', 'to', 'a dead channel', '.', 'All', 'this happened', 'more or less', '.', 'I', 'had', 'the story', 'bit by bit', 'from various people', 'and', 'as generally', 'happens', 'in such cases', 'each time', 'it', 'was', 'a different story', '.', 'It', 'was', 'a pleasure', 'to', 'burn'];
@@ -55,4 +93,5 @@ function makeQueryParams(criteria) {
     return queryString
 
 }
+
 

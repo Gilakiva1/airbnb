@@ -1,6 +1,7 @@
 .hero-logo {
     margin-block-end: 2.5rem;
     max-height: 86vh;
+  
 }
 
 .home-page {
@@ -40,10 +41,14 @@
         gap: rem(10px);
         grid-template-columns: repeat(4, 1fr);
         margin-block-start: rem(30px);
-    }
 
-    .label-txt {
-        padding-block-start: rem(10px);
+        .label-txt {
+            padding-block-start: rem(10px);
+            font-size: rem(18px);
+        }
+    }
+    .title-label {
+        font-size: 1.875rem;
     }
 
     .host-container {

@@ -13,8 +13,8 @@ export class _OrderModal extends Component {
 
     state = {
         order: {
-            chackIn: '',
-            chackOut: '',
+            checkIn: '',
+            checkOut: '',
             guests: {
                 adult: 0,
                 child: 0,
@@ -126,7 +126,6 @@ export class _OrderModal extends Component {
     render() {
         const { isPickingDates, isPickingGuests, isReserve, order,reviewsNumber } = this.state
         const {  stay } = this.props
-
         if (!order) return <div>loading</div>
         return (
             <div className="order-modal">
@@ -149,8 +148,8 @@ export class _OrderModal extends Component {
                                     type="text"
                                     placeholder="Add dates"
                                     name="checkIn"
-                                    value={order.chackIn}
-                                    
+                                    value={order.checkIn}
+                                    disabled
                                     style={{ outline: 'none' }}
                                     onChange={this.handleChange}
                                     onClick={() => this.activeInput('date')}
@@ -163,8 +162,8 @@ export class _OrderModal extends Component {
                                     type="text"
                                     placeholder="Add dates"
                                     name="checkOut"
-                                    value={order.chackOut}
-                                    
+                                    value={order.checkOut}
+                                    disabled
                                     style={{ outline: 'none' }}
                                     onChange={this.handleChange}
 

@@ -12,7 +12,7 @@ class _StayList extends React.Component {
 
     async componentDidMount() {
         const searchParams = new URLSearchParams(this.props.location.search);
-        let newParams = { guests: {} }
+        let newParams = {}
 
         for (let [key, value] of searchParams) {
             if (key === 'adult') {
@@ -24,6 +24,7 @@ class _StayList extends React.Component {
                 newParams[key] = value
             }
         }
+        console.log('newParams',newParams);
         await this.props.loadStays(newParams)
         this.setState({ params: utilService.makeQueryParams(newParams) })
     }
@@ -31,9 +32,7 @@ class _StayList extends React.Component {
     render() {
         const { stays } = this.props
         const { params } = this.state
-
         if (!stays.length) return <div>loading...</div>
-
         return (
             <>
                 <StayFilter />

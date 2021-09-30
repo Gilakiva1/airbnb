@@ -1,3 +1,25 @@
+.mini-search-bar {
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+
+    span {
+        color: $clr2;
+        font-size: rem(12px);
+    }
+    .search-bar-submit-mini {
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        background-color: rgb(255, 56, 92);
+        border-radius: 50%;
+        width: rem(30px);
+        height: rem(30px);
+        border: none;
+    }
+}
+
+
 .search-bar-container {
     align-self: center;
     justify-content: space-between;

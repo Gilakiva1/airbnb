@@ -1,10 +1,4 @@
-// import * as React from 'react';
-// import TextField from '@mui/material/TextField';
 import React from 'react'
-// import reactDom from 'react-dom'
-// import 'react-dates/initialize';
-// import { DateRangePicker, SingleDatePicker, DayPickerRangeController } from 'react-dates';
-// import 'react-dates/lib/css/_datepicker.css';
 import { connect } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faStar } from '@fortawesome/free-solid-svg-icons'
@@ -14,7 +8,6 @@ import { DatePicker } from './DatePicker.jsx'
 import { utilService } from '../../services/util.service'
 import { GuestsPicking } from './GuestsPicking.jsx'
 import { onSetOrder } from '../../store/order.action'
-
 
 export class _SearchBar extends React.Component {
 
@@ -30,7 +23,8 @@ export class _SearchBar extends React.Component {
       },
     },
     isPickingGuests: false,
-    isPickingDates: false
+    isPickingDates: false,
+    isInsideHeader: false
   }
 
   componentDidMount() {
@@ -104,8 +98,14 @@ export class _SearchBar extends React.Component {
   }
 
   render() {
-    const { isPickingGuests, isPickingDates: isPickingCheckIn, criteria } = this.state
+    const { isPickingGuests, isPickingDates, isInsideHeader, criteria } = this.state
     const { checkIn, checkOut } = criteria
+    if (isInsideHeader) return (
+      <div className="mini-search-bar flex space-between ">
+<span>Start your search</span>
+<button className="search-bar-submit-mini flex">{<FontAwesomeIcon className='search-icon' icon={faSearch} />}</button>
+      </div>
+    )
     return (
       <section className="flex column align-center">
         <div>
@@ -172,7 +172,7 @@ export class _SearchBar extends React.Component {
               <button className="search-bar-submit flex">{<FontAwesomeIcon className='search-icon' icon={faSearch} />}</button>
             </form>
             <div className={isPickingGuests ? "picking-guest-container" : "picking-guest-container none"}> {isPickingGuests && <GuestsPicking handleGuestsChanege={this.handleGuestsChanege} />} </div>
-            <div className={isPickingCheckIn ? "picking-dates-container" : "checkin-container none"}> {isPickingCheckIn && <DatePicker preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />} </div>
+            <div className={isPickingDates ? "picking-dates-container" : "checkin-container none"}> {isPickingDates && <DatePicker preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />} </div>
           </div>
         </div>
       </section>

@@ -102,7 +102,7 @@ export class _SearchBar extends React.Component {
     const { checkIn, checkOut } = criteria
     const { scrollLoc } = this.props
     if (scrollLoc > 30) return (
-      <div className="mini-search-bar flex space-between ">
+      <div className="mini-search-bar flex space-between  ">
         <span>Start your search</span>
         <button className="search-bar-submit-mini flex">{<FontAwesomeIcon className='search-icon' icon={faSearch} />}</button>
       </div>

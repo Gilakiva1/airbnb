@@ -7,7 +7,7 @@ import { utilService } from '../services/util.service.js'
 
 class _StayList extends React.Component {
     state = {
-        params: null
+        params: null 
     }
 
     async componentDidMount() {

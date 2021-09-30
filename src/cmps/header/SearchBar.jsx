@@ -7,7 +7,7 @@ import { withRouter } from 'react-router'
 import { DatePicker } from './DatePicker.jsx'
 import { utilService } from '../../services/util.service'
 import { GuestsPicking } from './GuestsPicking.jsx'
-import { onSetOrder } from '../../store/order.action'
+import { onAddOrder, onSetOrder } from '../../store/order.action'
 
 export class _SearchBar extends React.Component {
 
@@ -179,7 +179,8 @@ function mapStateToProps(state) {
 }
 const mapDispatchToProps = {
   onSetFilter,
-  onSetOrder
+  onSetOrder,
+  onAddOrder
 
 }
 

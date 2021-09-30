@@ -4,25 +4,25 @@ import { StayPreview } from '../cmps/StayPreview.jsx'
 import { StayFilter } from '../cmps/StayFilter.jsx'
 import { loadStays } from '../store/stay.action.js'
 import { utilService } from '../services/util.service.js'
-
+  
 class _StayList extends React.Component {
     state = {
-        params: null 
-    }  
-
+        params: null
+    }
+  
     async componentDidMount() {
         const searchParams = new URLSearchParams(this.props.location.search);
         let newParams = {}
-        for (let [key, value] of searchParams) {
-            if (key === 'adult') { 
-                newParams.guests = {}   
+        for (let [key, value] of searchParams) { 
+            if (key === 'adult') {
+                newParams.guests = {}
             }
             if (key === 'adult' || key === 'child' || key === 'infant') {
                 newParams.guests[key] = +value
             } else {
                 newParams[key] = value
             }
-        }
+        } 
         await this.props.loadStays(newParams)
         this.setState({ params: utilService.makeQueryParams(newParams) })
     }

@@ -72,7 +72,7 @@ export class _StayDetails extends Component {
                         <div className="seperation-line"></div>
                         <div className="description">{stay.description}</div>
                         <div className="seperation-line"></div>
-                        <div className="amenities">
+                        <div className="labels">
                             <h2>What this place offers</h2>
                         </div>
                     </div>

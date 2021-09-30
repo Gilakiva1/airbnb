@@ -10,9 +10,9 @@ export class _GuestsPicking extends React.Component {
         child: 0,
         infant: 0
     }
-
+ 
     componentDidMount() {
-        debugger
+        if (!this.props.order) return 
         this.setState(this.props.order.guests)
 
     }
@@ -71,9 +71,9 @@ export class _GuestsPicking extends React.Component {
     preventPropagation = event => {
         event.stopPropagation()
     }
-    render() { 
+    render() {
+        console.log('');
  
-        if (!this.props.order) return <div>loading</div>
         const { adult, child, infant } = this.state
         return (
             <section className="guests-container flex column" onClick={this.preventPropagation} >

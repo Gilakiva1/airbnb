@@ -7,7 +7,7 @@ import { GuestsPicking } from './header/GuestsPicking';
 import { DatePicker } from './header/DatePicker';
 import { stayService } from '../services/stay.service';
 import { withRouter } from 'react-router';
-import { onLoadOrder, onSetOrder } from '../store/order.action';
+import { onAddOrder, onLoadOrder } from '../store/order.action';
 
 export class _OrderModal extends Component {
 
@@ -25,20 +25,21 @@ export class _OrderModal extends Component {
         isPickingGuests: false,
         isPickingDates: false,
         reviewsNumber: 0
-    }
+
+    } 
 
     async componentDidMount() {
-        let {reviewsNumber} = this.state
-        reviewsNumber =  utilService.getRandomIntInclusive(30,500)
+        let { reviewsNumber } = this.state
+        reviewsNumber = utilService.getRandomIntInclusive(30, 500)
         window.addEventListener('click', this.closeInputs)
-        const order = await this.props.onLoadOrder()
-        this.setState({ order,reviewsNumber })
+        const order = await this.props.onLoadOrder('load')
+        console.log(this.props);
+        this.setState({ order, reviewsNumber })
     }
 
     componentWillUnmount() {
         window.removeEventListener('click', this.closeInputs)
     }
-
 
     handleChange = (ev) => {
         const { order } = this.state
@@ -103,31 +104,30 @@ export class _OrderModal extends Component {
 
     onSubmit = async (ev) => {
         ev.preventDefault()
-        const {  order , isReserve} = this.state
+        const { order, isReserve } = this.state
         if (!isReserve) {
             ev.target.type = 'submit'
-            this.setState({isReserve: true})
+            this.setState({ isReserve: true })
         }
         else {
-            // this.props.onSetOrder(this.state.order)
-            const savedOrder = await this.props.onSetOrder(order)
+            // this.props.onAddOrder(this.state.order)
+            const savedOrder = await this.props.onAddOrder(order)
             const stay = await stayService.getById(this.props.match.params.stayId)
             stay.orders.push(savedOrder)
+            console.log('stay', stay);
         }
     }
 
-    temp = ()=>{
+    temp = () => {
         const { stay, order } = this.state
         const checkIn = Date.parse(order.checkIn)
-        console.log('checkIn',checkIn);
-            }
+    }
 
 
     render() {
-        const { isPickingDates, isPickingGuests, isReserve, order,reviewsNumber } = this.state
-        const {  stay } = this.props
-
-        if (!order) return <div>loading</div>
+        const { isPickingDates, isPickingGuests, isReserve, reviewsNumber, order } = this.state
+        const { stay, currOrder } = this.props
+        if (!currOrder) return <div>loading</div>
         return (
             <div className="order-modal">
                 <div className="flex space-between">
@@ -149,7 +149,7 @@ export class _OrderModal extends Component {
                                     type="text"
                                     placeholder="Add dates"
                                     name="checkIn"
-                                    value={order.checkIn}
+                                    value={order.checkIn || ''}
                                     disabled
                                     style={{ outline: 'none' }}
                                     onChange={this.handleChange}
@@ -163,11 +163,10 @@ export class _OrderModal extends Component {
                                     type="text"
                                     placeholder="Add dates"
                                     name="checkOut"
-                                    value={order.checkOut}
+                                    value={order.checkOut || ''}
                                     disabled
                                     style={{ outline: 'none' }}
                                     onChange={this.handleChange}
-
                                 />
                             </div>
                         </div>
@@ -179,15 +178,13 @@ export class _OrderModal extends Component {
                     <div className="flex column">
                         {!isReserve && <button className="confirm-order" type="button" onClick={this.onSubmit}>Check availability</button>}
                         {isReserve && <button className="confirm-order" type="button" onClick={this.onSubmit}>Reserve</button>}
-                        
+
                     </div>
                     <span>You won't be charged yet </span>
                     <div className={isPickingGuests ? "picking-guest-container" : "picking-guest-container none"}> {isPickingGuests && <GuestsPicking handleGuestsChanege={this.handleGuestsChanege} />} </div>
 
                 </form>
                 <div className={isPickingDates ? "picking-dates-container" : "checkin-container none"}> {isPickingDates && <DatePicker preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />} </div>
-
-
             </div>
         )
     }
@@ -196,12 +193,13 @@ export class _OrderModal extends Component {
 function mapStateToProps(state) {
     return {
         stays: state.stayReducer.stays,
-        order: state.orderReducer.order
+        currOrder: state.orderReducer.currOrder
+
     }
 }
 const mapDispatchToProps = {
-    onLoadOrder,
-    onSetOrder
+    onAddOrder,
+    onLoadOrder
 
 }
 export const OrderModal = connect(mapStateToProps, mapDispatchToProps)(withRouter(_OrderModal))

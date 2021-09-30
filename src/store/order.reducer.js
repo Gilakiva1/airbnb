@@ -1,15 +1,16 @@
 const initialState = {
-    order: null
+    orders: [],
+    currOrder: null
 }
 
 
 export function orderReducer(state = initialState, action) {
-    var newstate;
-    console.log('action',action.order);
-    switch (action.type) {
 
+    switch (action.type) {
         case 'SET_ORDER':
-            return { ...state, order: action.order }
+            return { ...state, currOrder: action.order }
+        case 'ADD_ORDER':
+            return { ...state, orders: [...state.orders, action.order,], currOrder: null }
 
         default: return { ...state }
     }

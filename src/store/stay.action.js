@@ -11,8 +11,6 @@ export function loadStays(params) {
   };
 } 
 
-  
-
 
 export function onSetFilter(filterBy) {
 

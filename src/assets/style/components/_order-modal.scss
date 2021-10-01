@@ -12,9 +12,9 @@
         color: $clr2;
     }
     // box-shadow: 0px 6px 16px rgb(0 0 0 / 12%);
-    .rating-container * > {
-        margin-inline-start: 2px;
-    }
+    // .rating-container * > {
+    //     margin-inline-start: 2px;
+    // }
 
     .confirm-guests {
         text-align: left;
@@ -22,7 +22,6 @@
         border: none;
         line-height: 22px;
         padding: inherit;
-        color: $clr1;
     }
     input {
         background-color: #fff;
@@ -31,8 +30,13 @@
         padding: initial;
         color: $clr1;
     }
-    .rating {
-        color: $clr1;
+    .rating-container {
+        width: rem(113px);
+        display: flex; 
+        justify-content: space-between;
+        .rating {
+            text-decoration-line: underline;
+        }
     }
     .price {
         font-size: rem(22px);

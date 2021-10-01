@@ -136,12 +136,13 @@ export class _OrderModal extends Component {
         return (
             <div className="order-modal">
                 <div className="flex space-between align-center">
-
-                    <span className="price fs22 meduim">${stay.price} <span className="fs16 book clr2"> / night</span></span>
-                    <div className="rating-conatiner flex align-center">
-                        {<FontAwesomeIcon className='star-icon ' icon={faStar} />}
-                        <span className="fs14 meduim clr2"> 5</span>
-                        <span className="rating"> ({reviewsNumber} reviews)  </span>
+                    <span className="price fs22 medium">${stay.price}
+                        <span className="fs16 light clr2"> / night</span>
+                    </span>
+                    <div className="rating-container flex align-center">
+                        {<FontAwesomeIcon className='star-icon' icon={faStar} />} 
+                        <span className="fs14 medium clr2"> 5</span>
+                        <span className="rating medium fs14 clr1 "> ({reviewsNumber} reviews)  </span>
                     </div>
                 </div>
                 <form className="" onClick={this.preventPropagation}>
@@ -180,16 +181,15 @@ export class _OrderModal extends Component {
                         <label className="guests" onClick={() => this.activeInput('guest')}>
                             <div className="flex column  ">
                                 <span className="bold fs10">GUESTS</span>
-                                <button className="fs14 confirm-guests light" type="button" >{this.getTotalGuests()} GUESTS</button>
+                                <button className="fs14 confirm-guests light clr2 " type="button" >{this.getTotalGuests()} guest</button>
                             </div>
-                        </label>
+                        </label> 
                     </div>
                     <div className="flex column">
                         {!isReserve && <button className="confirm-order fs16" type="button" onClick={this.onSubmit}>Check availability</button>}
                         {isReserve && <button className="confirm-order fs16" type="button" onClick={this.onSubmit}>Reserve</button>}
 
                     </div>
-                    <span>You won't be charged yet </span>
                     <div className={isPickingGuests ? "picking-guest-container" : "picking-guest-container none"}> {isPickingGuests && <GuestsPicking handleGuestsChanege={this.handleGuestsChanege} />} </div>
 
                 </form>

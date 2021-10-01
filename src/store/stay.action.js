@@ -9,7 +9,7 @@ export function loadStays(params) {
       console.log(err, 'error is');
     }
   };
-} 
+}  
 
 
 export function onSetFilter(filterBy) {

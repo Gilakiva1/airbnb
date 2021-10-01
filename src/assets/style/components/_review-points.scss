@@ -1,0 +1,25 @@
+.review-points-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    p {
+        margin: 0;
+    }
+    line-height: 33px;
+
+    .full-bar {
+        width: 170px;
+        display: flex;
+        justify-content: space-evenly;
+    }
+ 
+    .review-point-bar {
+        width: rem(120px);
+        height: 5px;
+        background-color: rgb(221, 221, 221);
+        .review-point-inner-bar {
+            height: 5px;
+            background-color: $clr2;
+        }
+    }
+}

@@ -1,5 +1,9 @@
 .order-modal {
+    margin-block-end: rem(69px);
     position: sticky;
+    display: flex;
+    max-height: 288px;
+    flex-direction: column;
     top: 0;
     top: rem(30px);
     z-index: 10;
@@ -88,10 +92,26 @@
             border: 2px solid black;
         }
     }
-}
 
-.confirm-order {
-    height: 45px;
-    border-radius: 8px;
-    border: none;
+    .confirm-order {
+        height: 45px;
+
+        border-radius: 8px;
+        border: none;
+        color: $clr4;
+        background-image: radial-gradient(
+            circle at center,
+            #ff385c 0%,
+            #e61e4d 27.5%,
+            #e31c5f 40%,
+            #d70466 57.5%,
+            #bd1e59 75%,
+            #bd1e59 100%
+        );
+        background-position: calc((100 - var(--mouse-x, 0)) * 1%) calc((100 - var(--mouse-y, 0)) * 1%);
+        background-size: 150% 150%;
+        & span:hover {
+            text-decoration: underline;
+        }
+    }
 }

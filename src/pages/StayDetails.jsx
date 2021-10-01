@@ -14,6 +14,7 @@ import { Amenities } from '../cmps/stay-details/amenities.jsx';
 import { DatePicker } from '../cmps/header/DatePicker.jsx';
 import { onUpdateOrder, onLoadOrder, onSetOrder } from '../store/order.action';
 import { ReviewPoints } from '../cmps/stay-details/ReviewPoints.jsx';
+import { ReviewList } from '../cmps/stay-details/ReviewList.jsx';
 
 
 export class _StayDetails extends Component {
@@ -109,21 +110,20 @@ export class _StayDetails extends Component {
                                 <h2>Select check-in date</h2>
                                 <p className="fade-font">Add your travel dates for exact pricing</p>
                                 <div className="details-dates flex justify-center">
-                                <DatePicker className={'datepicker-details'} preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />
+                                    <DatePicker className={'datepicker-details'} preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />
                                 </div>
                             </div>
                             <div className="seperation-line"></div>
-                                <h2 className="details-reviews-header "> <div className="flex gap5">
+                            <h2 className="details-reviews-header "> <div className="flex gap5">
                                 {<FontAwesomeIcon className="star-icon" icon={faStar} />}
                                 {stay.rating}
                                 ({utilService.getRandomIntInclusive(30, 500)} reviews)
                             </div></h2>
-                            <div className="review-points-container">
-                                <ReviewPoints/>
-                            </div>
                         </div>
                         <OrderModal stay={stay} />
                     </div>
+                    <ReviewPoints reviews={stay.reviews} />
+                    <ReviewList reviews={stay.reviews} />
 
                 </section>
 

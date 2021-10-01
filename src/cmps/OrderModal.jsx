@@ -36,20 +36,30 @@ export class _OrderModal extends React.Component {
         console.log(this.props);
         this.setState({ order, reviewsNumber })
     }
+    inputRef = React.createRef(null)
 
 
     componentDidUpdate() {
         // debugger
-        const {order} = this.state
-        const {currOrder} = this.props
+        const { order } = this.state
+        const { currOrder } = this.props
         if (order.checkIn !== currOrder.checkIn || order.checkOut !== currOrder.checkOut) {
             this.setState({ order: this.props.currOrder })
         }
     }
 
-
     componentWillUnmount() {
         window.removeEventListener('click', this.closeInputs)
+    }
+
+    onSetColor = (ev) => {
+        let x = ev.clientX
+        let y = ev.clientY
+        this.inputRef.current.style.setProperty('--mouse-x', x)
+        this.inputRef.current.style.setProperty('--mouse-y', y)
+
+
+
     }
 
     handleChange = (ev) => {
@@ -196,19 +206,19 @@ export class _OrderModal extends React.Component {
                         </label>
                     </div>
                     <div className="flex column">
-                        {!isReserve && <button className="confirm-order fs16" type="button" onClick={this.onSubmit}>Check availability</button>}
-                        {isReserve && <button className="confirm-order fs16" type="button" onClick={this.onSubmit}>Reserve</button>}
+                        {!isReserve && <button onMouseMove={this.onSetColor} ref={this.inputRef} className="confirm-order fs16" type="button" onClick={this.onSubmit}><span>Check availability</span></button>}
+                        {isReserve &&
+                            <button onMouseMove={this.onSetColor} ref={this.inputRef} className="confirm-order fs16 medium" type="button" onClick={this.onSubmit}>Reserve</button>}
 
                     </div>
                     <div className={`${isPickingGuests ? '' : 'none'}`}> {isPickingGuests && <GuestsPicking handleGuestsChanege={this.handleGuestsChanege} />} </div>
 
-                </form > 
+                </form >
                 <div className={isPickingDates ? '' : 'none'}> {isPickingDates && <DatePicker preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />} </div>
             </div >
         )
     }
 }
-
 function mapStateToProps(state) {
     return {
         stays: state.stayReducer.stays,

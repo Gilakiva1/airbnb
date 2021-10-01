@@ -13,7 +13,7 @@ export const storageService = {
 
 function query(entityType, params = {}) {
     let entities;
-    
+
     if (entityType === 'stayDB') {
 
         entities = JSON.parse(localStorage.getItem(entityType)) || dummyData
@@ -22,7 +22,7 @@ function query(entityType, params = {}) {
             const regex = new RegExp(params.address, 'i');
 
             entities = entities.filter(entitie => {
-            entitie.loc.address = entitie.loc.address.split('-').join(' ')
+                entitie.loc.address = entitie.loc.address.split('-').join(' ')
                 return regex.test(entitie.loc.address)
             })
         }
@@ -106,7 +106,7 @@ function _makeId(length = 5) {
 //         resolve(entities)
 //     })
 // }
-// if (filterBy.checkIn) {
+// if (filterBy.checkin) {
 //     entities = entities.filter(entitie => {
 //        if (entitie.orders.forEach(order=>{
 //         if (order)
@@ -174,17 +174,85 @@ const dummyData = [{
 
     },
     reviews: [{
-        id: 'madeId',
+        id: '596587',
+        txt: ' Very helpful hosts. Cooked traditional...',
+        rate: 4,
+        by: {
+            _id: 'u101',
+            fullname: 'gilli2',
+            imgUrl: ' /img/img2.jpg',
+            desc: 'Very central apartment, clean and quiet. Walking distance from anywhere, close to grocery stores and the beach, and the marketVery fast feedback from the host.We had a great time'
+        },
+        date: ' May 2015'
+    },
+    {
+        id: '8gfj42',
         txt: ' Very helpful hosts. Cooked traditional...',
         rate: 4,
         by: {
             _id: 'u102',
-            fullname: 'user2',
-            imgUrl: ' /img/img2.jpg'
+            fullname: 'guy',
+            imgUrl: ' /img/img2.jpg',
+            desc: 'perfect for couples you are 5 minutesaway from everywherewe had a really good time!',
         },
-        date: ' May 2015'
-    }],
-    rating: '4.8',
+        date: 'sep 2020',
+
+    },
+    {
+        id: '8gkhjj',
+        txt: ' Very helpful hosts. Cooked traditional...',
+        rate: 5,
+        by: {
+            _id: 'u103',
+            fullname: 'guy',
+            imgUrl: ' /img/img2.jpg',
+            desc: `The location is great!! Short walk to the beach, shopping center, restaurants etc.
+            The host is super fast responding and can share tips about anything you would like to do in the city.
+            The flat has all that one needs, including an espresso machine, big screen TV (for the kids) and a reliable WiFi connection.
+            Recommended!`,
+        },
+        date: 'july 2020',
+
+    }, {
+
+        id: 'skdfj4',
+        txt: ' Super nice location, very cosy room, Michael was very helpful. Fully recommended!',
+        rate: 2,
+        by: {
+            _id: 'u104',
+            fullname: 'omri',
+            imgUrl: ' /img/img2.jpg',
+            desc: 'Exactly what we looked for in a fair price. Clean easy and great Thanks a lot',
+        },
+        date: 'july 2020',
+
+
+    }, {
+        id: 'skdfj4',
+        txt: 'great apartment in a great location.',
+        rate: 3,
+        by: {
+            _id: 'u105',
+            fullname: 'oded',
+            imgUrl: ' /img/img2.jpg',
+            desc: 'Amazing location with a great view from the balcony, sunset was beautiful. Walking distance to the market and beaches, apartment is a little basic but had everything I needed',
+        },
+        date: 'nov 2020',
+
+    }, {
+        id: 'skdfj4',
+        txt: 'Perfect location, nice and clean. First time I get what I see in the photos, I asked the host if he sell the apartment... Lol',
+        rate: 3,
+        by: {
+            _id: 'u105',
+            fullname: 'shmulik',
+            imgUrl: ' /img/img2.jpg',
+            desc: `We enjoyed the cleanliness of the place. Excellent location. close to the beach and everything is within walking distance very convenient. Place was simple and we'll kept and Everything you need is in the room. We will definitely stay here again `,
+        },
+        date: 'nov 2020',
+    }
+    ],
+    rating: '3.0',
     likedByUserIds: ['u101', 'u102']
 },
 {
@@ -246,7 +314,7 @@ const dummyData = [{
 {
     _id: '10006236',
     name: 'New York super apartment',
-    imgUrls: ['https://a0.muscache.com/im/pictures/f31f4456-689b-484c-9921-d17d11cbba03.jpg?im_w=1200', 'https://a0.muscache.com/im/pictures/7ed58939-0f5a-4b95-9007-488b874f9bbf.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/0c953537-c8dc-4af8-950c-f6eee116e766.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/ca78ea26-4e61-4f2c-8842-d47469e79d88.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/c2ab60d8-cb47-4c93-b2d0-bb1d04b709fd.jpg?im_w=720','https://a0.muscache.com/im/pictures/f31f4456-689b-484c-9921-d17d11cbba03.jpg?im_w=1200', 'https://a0.muscache.com/im/pictures/7ed58939-0f5a-4b95-9007-488b874f9bbf.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/0c953537-c8dc-4af8-950c-f6eee116e766.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/ca78ea26-4e61-4f2c-8842-d47469e79d88.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/c2ab60d8-cb47-4c93-b2d0-bb1d04b709fd.jpg?im_w=720'],
+    imgUrls: ['https://a0.muscache.com/im/pictures/f31f4456-689b-484c-9921-d17d11cbba03.jpg?im_w=1200', 'https://a0.muscache.com/im/pictures/7ed58939-0f5a-4b95-9007-488b874f9bbf.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/0c953537-c8dc-4af8-950c-f6eee116e766.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/ca78ea26-4e61-4f2c-8842-d47469e79d88.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/c2ab60d8-cb47-4c93-b2d0-bb1d04b709fd.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/f31f4456-689b-484c-9921-d17d11cbba03.jpg?im_w=1200', 'https://a0.muscache.com/im/pictures/7ed58939-0f5a-4b95-9007-488b874f9bbf.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/0c953537-c8dc-4af8-950c-f6eee116e766.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/ca78ea26-4e61-4f2c-8842-d47469e79d88.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/c2ab60d8-cb47-4c93-b2d0-bb1d04b709fd.jpg?im_w=720'],
     price: 120,
     description: 'The apartment is literally on TOP of the river as the photos can show. It\'s really comfortable, perfectly located and with the most perfect view. It is in a recently rebuilt building, with new construction materials and with is disposal on top of the river and its great windows you will have all the quiet you will need, near the most historic zone of the city.',
     type: 'apratment',
@@ -627,18 +695,139 @@ const dummyData = [{
         lng: 34.855499,
         city: 'Tel-Aviv'
     },
-    reviews: [
-        {
-            id: 'madeId3',
-            txt: 'Very helpful hosts. Cooked traditional...',
-            rate: 4,
-            by: {
-                _id: 'u102',
-                fullname: 'user2',
-                imgUrl: '/img/img2.jpg'
-            },
-            date: 'May 2015'
-        }
+    reviews: [{
+        id: '596587',
+        txt: ' Very helpful hosts. Cooked traditional...',
+        rate: {
+            summery: 5,
+            cleanliness: 3,
+            communication: 5,
+            checkin: 4,
+            accuracy: 3,
+            value: 5,
+            location: 2
+
+
+        },
+        by: {
+            _id: 'u101',
+            fullname: 'gilli2',
+            imgUrl: ' /img/img2.jpg',
+            desc: 'Very central apartment, clean and quiet. Walking distance from anywhere, close to grocery stores and the beach, and the marketVery fast feedback from the host.We had a great time'
+        },
+        date: ' May 2015'
+    },
+    {
+        id: '8gfj42',
+        txt: ' Very helpful hosts. Cooked traditional...',
+        rate: {
+            summery: 5,
+            cleanliness: 3,
+            communication: 5,
+            checkin: 4,
+            accuracy: 3,
+            value: 5,
+            location: 2
+
+        },
+        by: {
+            _id: 'u102',
+            fullname: 'guy',
+            imgUrl: ' /img/img2.jpg',
+            desc: 'perfect for couples you are 5 minutesaway from everywherewe had a really good time!',
+        },
+        date: 'sep 2020',
+
+    },
+    {
+        id: '8gkhjj',
+        txt: ' Very helpful hosts. Cooked traditional...',
+        rate: {
+            summery: 5,
+            cleanliness: 3,
+            communication: 5,
+            checkin: 4,
+            accuracy: 3,
+            value: 5,
+            location: 2
+
+        },
+        by: {
+            _id: 'u103',
+            fullname: 'guy',
+            imgUrl: ' /img/img2.jpg',
+            desc: `The location is great!! Short walk to the beach, shopping center, restaurants etc.
+            The host is super fast responding and can share tips about anything you would like to do in the city.
+            The flat has all that one needs, including an espresso machine, big screen TV (for the kids) and a reliable WiFi connection.
+            Recommended!`,
+        },
+        date: 'july 2020',
+
+    }, {
+
+        id: 'skdfj4',
+        txt: ' Super nice location, very cosy room, Michael was very helpful. Fully recommended!',
+        rate: {
+            summery: 5,
+            cleanliness: 3,
+            communication: 5,
+            checkin: 4,
+            accuracy: 3,
+            value: 5,
+            location: 2
+
+        },
+        by: {
+            _id: 'u104',
+            fullname: 'omri',
+            imgUrl: ' /img/img2.jpg',
+            desc: 'Exactly what we looked for in a fair price. Clean easy and great Thanks a lot',
+        },
+        date: 'july 2020',
+
+
+    }, {
+        id: 'skdfj4',
+        txt: 'great apartment in a great location.',
+        rate: {
+            summery: 5,
+            cleanliness: 3,
+            communication: 5,
+            checkin: 4,
+            accuracy: 3,
+            value: 5,
+            location: 2
+
+        },
+        by: {
+            _id: 'u105',
+            fullname: 'oded',
+            imgUrl: ' /img/img2.jpg',
+            desc: 'Amazing location with a great view from the balcony, sunset was beautiful. Walking distance to the market and beaches, apartment is a little basic but had everything I needed',
+        },
+        date: 'nov 2020',
+
+    }, {
+        id: 'skdfj4',
+        txt: 'Perfect location, nice and clean. First time I get what I see in the photos, I asked the host if he sell the apartment... Lol',
+        rate: {
+            summery: 5,
+            cleanliness: 3,
+            communication: 5,
+            checkin: 4,
+            accuracy: 3,
+            value: 5,
+            location: 2
+
+        },
+        by: {
+            _id: 'u105',
+            fullname: 'shmulik',
+            imgUrl: ' /img/img2.jpg',
+            desc: `We enjoyed the cleanliness of the place. Excellent location. close to the beach and everything is within walking distance very convenient. Place was simple and we'll kept and Everything you need is in the room. We will definitely stay here again `,
+        },
+        date: 'nov 2020',
+    }
     ],
     rating: '4.4',
     likedByUserIds: ['u101', 'u102']

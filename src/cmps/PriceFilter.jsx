@@ -17,6 +17,7 @@ export default function PriceFilter(props) {
 
  
   return (
+    <div>
     <Box sx={{ width: 300 }}>
       <Slider
         getAriaLabel={() => 'Minimum distance'}
@@ -29,5 +30,6 @@ export default function PriceFilter(props) {
       />
       <button onClick={()=>{props.onSavePrice(price)}}>Save</button>
     </Box>
+    </div>
   );
 }

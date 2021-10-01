@@ -1,0 +1,35 @@
+.list-filter {
+    .price-filter {
+        border: 0.5px solid rgba(118, 118, 118, 0.28);
+        border-radius: 12px;
+        box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.15);
+        display: inline-block;
+        padding: 10px;
+        
+    }
+    .filter-container{
+        position: relative;
+    }
+    div {
+        button {
+            display: inline-block;
+            border-radius: 30px;
+            cursor: pointer;
+            color: rgb(34, 34, 34);
+            padding: 8px 16px;
+            font-size: rem(12px);
+            line-height: rem(16px);
+            background-color: #fff;
+            border: 1px solid rgb(176, 176, 176);
+            text-align: center;
+        }
+    }
+}
+
+.stay-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    grid-auto-flow: dense;
+}

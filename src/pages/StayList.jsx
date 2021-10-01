@@ -35,7 +35,9 @@ class _StayList extends React.Component {
         if (!stays.length) return <div>loading...</div>
         return (
             <>
+            <div className="list-filter">
                 <StayFilter />
+            </div>
                 <div className="stay-list">
                     {stays.map((stay, idx) => <StayPreview key={stay._id} stay={stay}/>)}
                 </div>

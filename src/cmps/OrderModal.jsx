@@ -26,7 +26,7 @@ export class _OrderModal extends Component {
         isPickingDates: false,
         reviewsNumber: 0
 
-    } 
+    }
 
     async componentDidMount() {
         let { reviewsNumber } = this.state
@@ -80,9 +80,14 @@ export class _OrderModal extends Component {
     }
 
     getTotalGuests = () => {
-        let { adult, child, infant } = this.state.order.guests
-        var guests = `guests:${adult + child + infant}`
-        return guests
+        if (this.state.order.guests) {
+
+            let { adult, child, infant } = this.state.order.guests
+            var guests = `guests:${adult + child + infant}`
+            return guests
+        } else {
+            return 0
+        }
     }
     handleKeyPress = () => {
         return false

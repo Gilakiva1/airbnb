@@ -45,9 +45,11 @@
     gap: 5px;
   }
 }
-
-.height {
-  min-height: calc(100vh - 612px);
+.pointer {
+  cursor: pointer;
+}
+.border-none {
+  border: none;
 }
 
 .round-edge {
@@ -59,7 +61,7 @@
 }
 .high {
   height: 100%;
-}  
+}
 .fixed {
   position: fixed;
 }

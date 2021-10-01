@@ -54,8 +54,8 @@ class _AppHeader extends React.Component {
         return (
             <header className={`${scrollLoc > 40 ? 'white' : ''} ${pathname === '/' ? 'fixed ' : 'sticky-color'} header-container main-container`}>
                 <div className="header-func flex">
-                    <div className="logo-container flex align-center" onClick={this.backToHome}>
-                        <button className="btn-logo"><LogoSvg className={`${(pathname === '/' && scrollLoc > 40) || pathname !== '/' ? 'logo-pink' : 'logo-white'} `} /></button>
+                    <div className="logo-container flex align-center pointer" onClick={this.backToHome}>
+                        <button className="btn-logo border-none"><LogoSvg className={`${(pathname === '/' && scrollLoc > 40) || pathname !== '/' ? 'logo-pink' : 'logo-white'} `} /></button>
                         <h3 className={`logo-txt ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-pink'}`}>Home Away</h3>
                     </div>
                     {scrollLoc > 40 && pathname === '/' && <MiniSearchBar />}

@@ -81,10 +81,15 @@
   &.align-center {
     align-items: center;
   }
-  &.gap5 {
-    gap: 5px;
-  }
 }
+
+.gap5 {
+  gap: 5px;
+}
+.gap10 {
+  gap: 10px;
+}
+
 .pointer {
   cursor: pointer;
 }

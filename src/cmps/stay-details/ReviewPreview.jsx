@@ -1,14 +1,15 @@
 export function ReviewPreview({ review }) {
 
     return (
-        <li className="review-preview">
-            <div className="review-img"><img src={review.img} className="img" /></div>
-            <h2 className="review-name">{review.by.fullname}</h2>
-            <h2 className="review-date">{review.date}</h2>
-            <h2 className="review-desc">{review.by.desc}</h2>
-        </li>
-
-
+        <div className="review-preview">
+            <div className="flex gap5">
+                <img className="user-profile-img" src={review.imgUrl} alt="" />
+                <div className="flex column">
+                    <p>  <span className="user-name">{review.by.fullname}</span> <br />
+                        <span className="fade-font">{review.date}</span> </p>
+                </div>
+            </div>
+            <p>{review.by.desc}</p>
+        </div >
     )
-
 }

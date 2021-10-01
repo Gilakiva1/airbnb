@@ -9,8 +9,15 @@
 
     .review-address-container {
         font-size: rem(14px);
-        color: #717171;
+        color: $clr1;
         font-weight: bold;
+
+        span {
+            color: $clr2;
+        }
+    }
+    .star-icon {
+        color: rgb(255, 56, 92);
     }
     .user-profile-img {
         border-radius: 50%;
@@ -25,7 +32,7 @@
         gap: rem(10px);
 
         div:not(:first-child) {
-            height: 174px;
+            height: 175px;
         }
         .grid-img0 {
             grid-row: 1/-1;
@@ -85,9 +92,28 @@
     margin-bottom: 30px;
 }
 
-.star-icon {
-    color: rgb(255, 56, 92);
+.datepicker-details {
+    align-self: center;
+    justify-self: center;
 }
+
+.details-reviews-header {
+    font-size: rem(22px);
+}
+
+.review-points-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.review-point-bar {
+    width: rem(100px);
+    color: $clr2;
+}
+.review-point-inner-bar {
+    color: $clr1;
+}
+
 .order-modal {
     .confirm-order {
         color: $clr4;
@@ -103,6 +129,5 @@
                 #bd1e59 100%
             )
         );
-        
     }
 }

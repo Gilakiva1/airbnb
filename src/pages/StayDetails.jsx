@@ -12,7 +12,8 @@ import { stayService } from '../services/stay.service.js';
 import { orderService } from '../services/order.service.js';
 import { Amenities } from '../cmps/stay-details/amenities.jsx';
 import { DatePicker } from '../cmps/header/DatePicker.jsx';
-import {onUpdateOrder,onLoadOrder , onSetOrder} from '../store/order.action';
+import { onUpdateOrder, onLoadOrder, onSetOrder } from '../store/order.action';
+import { ReviewPoints } from '../cmps/stay-details/ReviewPoints.jsx';
 
 
 export class _StayDetails extends Component {
@@ -31,7 +32,7 @@ export class _StayDetails extends Component {
         this.setState({ stay })
     }
 
-     handlePickingDates = async (start, end) => {
+    handlePickingDates = async (start, end) => {
         if (!this.props.currOrder) await this.props.onLoadOrder('load')
         let order = this.props.currOrder
         let checkIn = ` ${start.toLocaleString('en-IL', { month: 'short', day: 'numeric' })} `
@@ -45,7 +46,7 @@ export class _StayDetails extends Component {
         this.props.onUpdateOrder(order)
     }
 
-   
+
     preventPropagation = event => {
         event.stopPropagation()
     }
@@ -57,64 +58,75 @@ export class _StayDetails extends Component {
 
         return (
             <>
-              
-            <section className="stay-details-container">
-                <h1>{stay.name}</h1>
-                <div className="flex space-between">
-                    <div className="review-address-container flex">
+
+                <section className="stay-details-container">
+                    <h1>{stay.name}</h1>
+                    <div className="flex space-between">
+                        <div className="review-address-container flex">
+                            <div className="flex gap5">
+                                {<FontAwesomeIcon className='star-icon' icon={faStar} />}
+                                <span>{stay.rating}</span><span></span>
+                                ({utilService.getRandomIntInclusive(30, 500)} reviews) ·<span> </span>
+                            </div>
+                            <div>{stay.loc.address}</div>
+                        </div>
                         <div className="flex gap5">
-                            {<FontAwesomeIcon className='star-icon' icon={faStar} />}
-                            {stay.rating}
-                            ({utilService.getRandomIntInclusive(30, 500)} reviews) ·<span> </span>
+                            <ShareSvg /> Share
+                            <HeartSvg /> Save
                         </div>
-                        <div>{stay.loc.address}</div>
                     </div>
-                    <div className="flex gap5">
-                        <ShareSvg /> Share
-                        <HeartSvg /> Save
-                    </div>
-                </div>
-                <div className="stay-details-grid ">{stay.imgUrls.map((img, idx) => {
-                    return <div className={`grid-img${idx} pointer`} key={idx}><img className={`img${idx}`} src={img} alt="" /></div>
-                })}</div>
-                <div className="details-main-container flex space-between ">
-                    <div className="details-info flex column">
-                        <div className="flex space-between">
-                            <div className=" flex column space-between">
-                                <h2>Entire {stay.type} hosted by {stay.host.fullname}</h2>
-                                <div className="flex">{stay.capacity} guests · {stay.type} ·  {utilService.getRandomIntInclusive(2, 6)} beds · {utilService.getRandomIntInclusive(1, 5)} baths </div>
+                    <div className="stay-details-grid ">{stay.imgUrls.slice(0, 5).map((img, idx) => {
+                        return <div className={`grid-img${idx} pointer`} key={idx}><img className={`img${idx}`} src={img} alt="" /></div>
+                    })}</div>
+                    <div className="details-main-container flex space-between ">
+                        <div className="details-info flex column">
+                            <div className="flex space-between">
+                                <div className=" flex column space-between">
+                                    <h2>Entire {stay.type} hosted by {stay.host.fullname}</h2>
+                                    <div className="flex">{stay.capacity} guests · {stay.type} ·  {utilService.getRandomIntInclusive(2, 6)} beds · {utilService.getRandomIntInclusive(1, 5)} baths </div>
+                                </div>
+                                <div ><img className="user-profile-img" src={imgUser} alt="" /></div>
                             </div>
-                            <div ><img className="user-profile-img" src={imgUser} alt="" /></div>
-                        </div>
-                        <div className="seperation-line"></div>
-                        <div className="tag-container flex column">
-                            {stay.tags.map((tag, idx) => (
-                                <Tags key={idx} tag={tag} type={stay.type} />
-                            ))}
-                        </div>
-                        <div className="seperation-line"></div>
-                        <div className="description">{stay.description}</div>
-                        <div className="seperation-line"></div>
-                        <div className="amenities flex column">
-                            <h2 className="middle-header">Amenities</h2>
-                            <div className="amenities-container">
-                                {stay.amenities.map((amenity, idx) => {
-                                    return <Amenities key={idx} amenity={amenity} />
-                                })}
+                            <div className="seperation-line"></div>
+                            <div className="tag-container flex column">
+                                {stay.tags.map((tag, idx) => (
+                                    <Tags key={idx} tag={tag} type={stay.type} />
+                                ))}
+                            </div>
+                            <div className="seperation-line"></div>
+                            <div className="description">{stay.description}</div>
+                            <div className="seperation-line"></div>
+                            <div className="amenities flex column">
+                                <h2 className="middle-header">Amenities</h2>
+                                <div className="amenities-container">
+                                    {stay.amenities.map((amenity, idx) => {
+                                        return <Amenities key={idx} amenity={amenity} />
+                                    })}
+                                </div>
+                            </div>
+                            <div className="seperation-line"></div>
+                            <div >
+                                <h2>Select check-in date</h2>
+                                <p className="fade-font">Add your travel dates for exact pricing</p>
+                                <div className="details-dates flex justify-center">
+                                <DatePicker className={'datepicker-details'} preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />
+                                </div>
+                            </div>
+                            <div className="seperation-line"></div>
+                                <h2 className="details-reviews-header "> <div className="flex gap5">
+                                {<FontAwesomeIcon className="star-icon" icon={faStar} />}
+                                {stay.rating}
+                                ({utilService.getRandomIntInclusive(30, 500)} reviews)
+                            </div></h2>
+                            <div className="review-points-container">
+                                <ReviewPoints/>
                             </div>
                         </div>
-                        <div className="seperation-line"></div>
-                        <div className="details-dates">
-                            <h2>Select check-in date</h2>
-                            <p className="fade-font">Add your travel dates for exact pricing</p>
-                            <DatePicker preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates}/>
-                        </div>
+                        <OrderModal stay={stay} />
                     </div>
-                    <OrderModal  stay={stay} />
-                </div>
-                
-            </section>
-                  
+
+                </section>
+
             </>
         )
     }
@@ -133,5 +145,5 @@ const mapDispatchToProps = {
     onSetOrder
 }
 
-export const StayDetails = connect(mapStateToProps,mapDispatchToProps)(_StayDetails)
+export const StayDetails = connect(mapStateToProps, mapDispatchToProps)(_StayDetails)
 

@@ -6,7 +6,7 @@ import { Calendar } from 'react-date-range';
 import { addDays } from 'date-fns';
 
 
-export const DatePicker = ({ handlePickingDates, preventPropagation }) => {
+export const DatePicker = ({ handlePickingDates, preventPropagation, className='' }) => {
 
     const [dateState, setDateState] = useState([
         {
@@ -21,7 +21,7 @@ export const DatePicker = ({ handlePickingDates, preventPropagation }) => {
     }, [dateState])
 
     return (
-        <div onClick={preventPropagation}>
+        <div className={className} onClick={preventPropagation}>
             <DateRange
                 editableDateInputs={true}
                 onChange={item => setDateState([item.selection])}

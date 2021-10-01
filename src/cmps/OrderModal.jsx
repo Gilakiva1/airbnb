@@ -13,8 +13,8 @@ export class _OrderModal extends Component {
 
     state = {
         order: {
-            chackIn: '',
-            chackOut: '',
+            checkIn: '',
+            checkOut: '',
             guests: {
                 adult: 0,
                 child: 0,

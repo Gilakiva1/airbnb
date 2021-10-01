@@ -7,24 +7,25 @@ import Slider from "react-slick";
 // import "~slick-carousel/slick/slick.css"; 
 // import "~slick-carousel/slick/slick-theme.css";
 
+
 export class SimpleSlider extends Component {
     render() {
         const { stay } = this.props
         const settings = {
-            dots: false,
+            dots: true,
             infinite: true,
             arrows:true,
             speed: 500,
             slidesToShow: 1,
-            slidesToScroll: 1
+            slidesToScroll: 1,
+            appendDots: dots => <ul>{dots.slice(0,5)}</ul>
         };
         return (
          
             <Slider className='slider-img' {...settings}>
+                
                 {stay.imgUrls.map((stayImg, idx) => (
-                    
                         <img key={idx} className="stay-img" src={stayImg} alt="" />
-                    
                 ))}
             </Slider>
             

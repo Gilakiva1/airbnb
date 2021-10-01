@@ -45,7 +45,7 @@ export const HomePage = () => {
             <h1 className="title-popular fs30">Popular Destinations</h1>
             <PopularImgList links={popularDestinations} />
             <h1 className="title-labels ">Live Anywhere</h1>
-            <AmenitiesImgList links={amenities} />
+            <LabelsImgList links={amenities} />
             <Link to='/host'>
                 <div className="host-container ">
                     <img className="round-edge" src={imgHost} />

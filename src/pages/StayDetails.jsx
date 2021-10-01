@@ -6,7 +6,7 @@ import { ShareSvg } from '../assets/img/stay-details/ShareSvg.jsx';
 import { HeartSvg } from '../assets/img/stay-details/HeartSvg.jsx';
 import { utilService } from '../services/util.service.js';
 import imgUser from '../assets/img/home-page/user.jpg'
-import { Tags } from '../cmps/Tags.jsx';
+import { Tags } from '../cmps/stay-details/Tags.jsx';
 import { OrderModal } from '../cmps/OrderModal.jsx';
 import { stayService } from '../services/stay.service.js';
 import { orderService } from '../services/order.service.js';

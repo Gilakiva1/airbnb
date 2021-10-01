@@ -4,9 +4,9 @@ import { stayService } from '../services/stay.service';
 
 export function onAddOrder(orderDetails) {
     try {
-        return async dispath => {
+        return async dispatch => {
             const order = await orderService.save(orderDetails)
-            dispath({ type: 'ADD_ORDER', order })
+            dispatch({ type: 'ADD_ORDER', order })
             return order
         }
     } catch (err) {
@@ -16,9 +16,9 @@ export function onAddOrder(orderDetails) {
 }
 export function onSetOrder(orderDetails) {
     try {
-        return async dispath => {
+        return async dispatch => {
             const order = await orderService.save(orderDetails)
-            dispath({ type: 'SET_ORDER', order })
+            dispatch({ type: 'SET_ORDER', order })
         }
     } catch (err) {
         console.log('err', err);
@@ -27,9 +27,9 @@ export function onSetOrder(orderDetails) {
 }
 export function onLoadOrder(filter) {
     try {
-        return async dispath => {
+        return async dispatch => {
             const order = await orderService.query(filter)
-            dispath({ type: 'SET_ORDER', order })
+            dispatch({ type: 'SET_ORDER', order })
             return order
         }
     } catch (err) {
@@ -38,13 +38,26 @@ export function onLoadOrder(filter) {
     }
 }
 
+export function onUpdateOrder(order) {
+    try {
+        return async dispatch => {
+           const updatedOrder = await orderService.save(order)
+            dispatch({ type: 'UPDATE_ORDER', updatedOrder })
+        }
+    } catch (err) {
+        console.log('err', err);
+        throw err
+    }
+    
+}
+
 
 // export function onLoadOrder() {
-//     return async dispath => {
+//     return async dispatch => {
 //         try {
 //             const order = await orderService.query()
 //             console.log('order', order);
-//             dispath({ type: 'SET_ORDER', order })
+//             dispatch({ type: 'SET_ORDER', order })
 //             return order
 //         } catch (err) {
 //             console.log('err', err);

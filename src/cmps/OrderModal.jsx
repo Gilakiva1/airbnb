@@ -37,6 +37,17 @@ export class _OrderModal extends React.Component {
         this.setState({ order, reviewsNumber })
     }
 
+
+    componentDidUpdate() {
+        // debugger
+        const {order} = this.state
+        const {currOrder} = this.props
+        if (order.checkIn !== currOrder.checkIn || order.checkOut !== currOrder.checkOut) {
+            this.setState({ order: this.props.currOrder })
+        }
+    }
+
+
     componentWillUnmount() {
         window.removeEventListener('click', this.closeInputs)
     }
@@ -68,7 +79,6 @@ export class _OrderModal extends React.Component {
                 break;
         }
     }
-
 
     setIsPickingGuests = () => {
         let { isPickingGuests } = this.state

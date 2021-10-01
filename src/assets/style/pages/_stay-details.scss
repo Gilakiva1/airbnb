@@ -75,3 +75,21 @@
 .star-icon {
     color: rgb(255, 56, 92);
 }
+.order-modal {
+    .confirm-order {
+        color: $clr4;
+        background-image: var(
+            --dls19-brand-gradient-radial,
+            radial-gradient(
+                circle at center,
+                #ff385c 0%,
+                #e61e4d 27.5%,
+                #e31c5f 40%,
+                #d70466 57.5%,
+                #bd1e59 75%,
+                #bd1e59 100%
+            )
+        );
+        
+    }
+}

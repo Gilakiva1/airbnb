@@ -9,7 +9,6 @@ import imgUser from '../assets/img/home-page/user.jpg'
 import { Tags } from '../cmps/Tags.jsx';
 import { OrderModal } from '../cmps/OrderModal.jsx';
 import { stayService } from '../services/stay.service.js';
-import { orderService } from '../services/order.service.js';
 
 
 export class _StayDetails extends Component {
@@ -18,7 +17,6 @@ export class _StayDetails extends Component {
     };
     componentDidMount() {
         this.loadStay()
-        // this.loadOrder()
 
     }
 
@@ -31,7 +29,6 @@ export class _StayDetails extends Component {
 
     render() {
         const { stay } = this.state
-        const { order } = this.props
         if (!stay) return <div>Loading...</div>
 
         return (
@@ -78,7 +75,7 @@ export class _StayDetails extends Component {
                             <h2>What this place offers</h2>
                         </div>
                     </div>
-                    <OrderModal stay={stay}/>
+                    <OrderModal stay={stay} />
                 </div>
                 
             </section>

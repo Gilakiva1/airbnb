@@ -1,4 +1,8 @@
 // Font Sizes
+.fs10 {
+  font-size: rem(10px);
+}
+
 .fs12 {
   font-size: rem(12px);
 }
@@ -113,6 +117,27 @@
 }
 .index-top {
   z-index: 5;
+}
+.light {
+  font-family: airbnb-cereal-book;
+}
+.medium {
+  font-family: airbnb-cereal-meduim;
+}
+.bold {
+  font-family: airbnb-cereal-bold;
+}
+.clr1 {
+  color: #717171;
+}
+.clr2 {
+  color: #222222;
+}
+.clr3 {
+  color: rgb(255, 56, 92);
+}
+.clr4 {
+  color: white;
 }
 
 // Display helpers

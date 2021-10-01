@@ -113,7 +113,7 @@ export class _StayDetails extends Component {
                                 </div>
                             </div>
                             <div className="seperation-line"></div>
-                                <h2 className="details-reviews-header "> <div className="flex gap5">
+                                <h2> <div className="details-reviews-header flex gap5">
                                 {<FontAwesomeIcon className="star-icon" icon={faStar} />}
                                 {stay.rating}
                                 ({utilService.getRandomIntInclusive(30, 500)} reviews)
@@ -121,6 +121,7 @@ export class _StayDetails extends Component {
                             <div className="review-points-container">
                                 <ReviewPoints/>
                             </div>
+                            
                         </div>
                         <OrderModal stay={stay} />
                     </div>

@@ -103,15 +103,29 @@
 
 .review-points-container {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr); 
+    gap:20px;
+    margin-top: 50px;
+    p {
+        margin: 0;
+        font-size: rem(16px);
+    }
+    span {
+        color: $clr2;
+        font-size: rem(12px);
+    }
 }
 
 .review-point-bar {
     width: rem(100px);
-    color: $clr2;
+    background-color: $clr1;
+    border-radius: 5px;
+    height: 5px;
 }
 .review-point-inner-bar {
-    color: $clr1;
+    background-color: $clr2;
+    height: 5px;
+    border-radius: 5px;
 }
 
 .order-modal {

@@ -1,6 +1,10 @@
 .order-modal {
-    margin-top: 50px;
-    margin-left: 20px;
+    position: sticky;
+    top: rem(30px);
+    z-index: 10;
+    margin-top: rem(50px);
+    margin-left: rem(20px);
+    background-color: #fff;
     width: 371px;
     gap: 5px;
     font-size: rem(12px);
@@ -9,7 +13,7 @@
     box-shadow: 0 6px 16px -2px #d8d8d8;
     padding: 20px 25px 15px;
     > * {
-        color:$clr2
+        color: $clr2;
     }
     // box-shadow: 0px 6px 16px rgb(0 0 0 / 12%);
     .confirm-guests {
@@ -26,11 +30,11 @@
     .rating {
         color: $clr1;
     }
-    .price{
+    .price {
         font-family: airbnb-cereal-bold;
         font-size: rem(22px);
     }
-    .date-label{
+    .date-label {
         color: #000;
         font-family: airbnb-cereal-bold;
     }

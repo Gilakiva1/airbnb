@@ -33,7 +33,7 @@ class _AppHeader extends React.Component {
     onToggleHeader = (ev) => {
         const { pathname } = this.props.history.location
         const scrollLocaion = ev.path[1].pageYOffset
-        if (scrollLocaion < 40 && pathname === '/' ) {
+        if (scrollLocaion < 40 && pathname === '/') {
             this.setState({ isEnter: true })
         }
         this.setState({ scrollLoc: scrollLocaion })

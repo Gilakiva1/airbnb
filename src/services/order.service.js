@@ -8,7 +8,6 @@ export const orderService = {
 const STORAGE_KEY = 'orderDB'
 
 function save(order) {
-    console.log('save',order);
     if (order._id) {
         return storageService.put(STORAGE_KEY, order);
     } else {
@@ -16,11 +15,9 @@ function save(order) {
         return storageService.post(STORAGE_KEY, order)
     } 
 }
-function query() {
-    return storageService.query(STORAGE_KEY);
+function query(filter) {
+    return storageService.query(STORAGE_KEY, filter);
 }
+ 
 
-function getOrderDetails() {
-    return storageService.get(STORAGE_KEY);
-  }
 

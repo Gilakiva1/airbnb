@@ -1,6 +1,7 @@
 .hero-logo {
     margin-block-end: 2.5rem;
     max-height: 86vh;
+  
 }
 
 .home-page {
@@ -35,15 +36,19 @@
             grid-template-rows: repeat(2, 1fr);
         }
     }
-    .amenities-img-list {
+    .labels-img-list {
         display: grid;
         gap: rem(10px);
         grid-template-columns: repeat(4, 1fr);
         margin-block-start: rem(30px);
-    }
 
-    .amenitie-txt {
-        padding-block-start: rem(10px);
+        .label-txt {
+            padding-block-start: rem(10px);
+            font-size: rem(18px);
+        }
+    }
+    .title-label {
+        font-size: 1.875rem;
     }
 
     .host-container {

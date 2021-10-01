@@ -4,12 +4,8 @@
   z-index: 5;
   padding-block-end: rem(15px);
 
-  .logo-container { 
-    .btn-logo {
-      border: none;
-      background: inherit;
-    }
-    
+  .btn-logo {
+    background: inherit;
   }
 
   .header-func {
@@ -18,7 +14,7 @@
 
     .link-host {
       text-decoration: none;
-      margin-inline-end: 5px;  
+      margin-inline-end: 5px;
       padding: rem(12px);
       font-weight: 600;
 

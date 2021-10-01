@@ -7,7 +7,7 @@ import { withRouter } from 'react-router'
 import { DatePicker } from './DatePicker.jsx'
 import { utilService } from '../../services/util.service'
 import { GuestsPicking } from './GuestsPicking.jsx'
-import { onSetOrder } from '../../store/order.action'
+import { onAddOrder, onSetOrder } from '../../store/order.action'
 
 export class _SearchBar extends React.Component {
 
@@ -99,9 +99,10 @@ export class _SearchBar extends React.Component {
 
   render() {
     const { isPickingGuests, isPickingDates, criteria } = this.state
+    const { animateClassName } = this.props
     const { checkIn, checkOut } = criteria
     return (
-      <section className="flex column align-center">
+      <section className={`flex column align-center ${animateClassName}`}>
         <div>
           <div className="flex column">
             <form className="search-bar-container flex" onClick={this.preventPropagation} onSubmit={this.onSubmit}>
@@ -179,7 +180,8 @@ function mapStateToProps(state) {
 }
 const mapDispatchToProps = {
   onSetFilter,
-  onSetOrder
+  onSetOrder,
+  onAddOrder
 
 }
 

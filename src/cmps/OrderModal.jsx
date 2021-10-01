@@ -1,4 +1,4 @@
-import { Component } from 'react'
+import React from 'react';
 import { connect } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
@@ -9,7 +9,7 @@ import { stayService } from '../services/stay.service';
 import { withRouter } from 'react-router';
 import { onAddOrder, onLoadOrder } from '../store/order.action';
 
-export class _OrderModal extends Component {
+export class _OrderModal extends React.Component {
 
     state = {
         order: {
@@ -68,6 +68,7 @@ export class _OrderModal extends Component {
     }
 
     activeInput = (input) => {
+
         this.closeInputs()
         switch (input) {
             case 'guest':
@@ -125,7 +126,6 @@ export class _OrderModal extends Component {
             this.setState({ isReserve: true })
         }
         else {
-            // this.props.onAddOrder(this.state.order)
             const savedOrder = await this.props.onAddOrder(order)
             const stay = await stayService.getById(this.props.match.params.stayId)
             stay.orders.push(savedOrder)
@@ -146,18 +146,19 @@ export class _OrderModal extends Component {
         return (
             <div className="order-modal">
                 <div className="flex space-between align-center">
-
-                    <span className="price fs22 meduim">${stay.price} <span className="fs16 book clr2"> / night</span></span>
-                    <div className="rating-conatiner flex align-center">
-                        {<FontAwesomeIcon className='star-icon ' icon={faStar} />}
-                        <span className="fs14 meduim clr2"> 5</span>
-                        <span className="rating"> ({reviewsNumber} reviews)  </span>
+                    <span className="price fs22 medium">${stay.price}
+                        <span className="fs16 light clr2"> / night</span>
+                    </span>
+                    <div className="rating-container flex align-center">
+                        {<FontAwesomeIcon className='star-icon' icon={faStar} />}
+                        <span className="fs14 medium clr2"> 5</span>
+                        <span className="rating medium fs14 clr1 "> ({reviewsNumber} reviews)  </span>
                     </div>
                 </div>
                 <form className="" onClick={this.preventPropagation}>
                     <div className="flex column">
-                        <div className="input-container flex">
-                            <div className="check-in"
+                        <div className={`input-container pointer flex ${isPickingDates ? 'focus' : ''}`}>
+                            <div className={"check-in"}
                                 onClick={() => this.activeInput('date')}>
                                 <span className="date-label fs10 bold">CHECK-IN:</span>
                                 <input
@@ -187,10 +188,10 @@ export class _OrderModal extends Component {
                                 />
                             </div>
                         </div>
-                        <label className="guests" onClick={() => this.activeInput('guest')}>
+                        <label className={`guests ${isPickingGuests ? 'focus' : ''}`}>
                             <div className="flex column  ">
                                 <span className="bold fs10">GUESTS</span>
-                                <button className="fs14 confirm-guests light" type="button" >{this.getTotalGuests()} GUESTS</button>
+                                <button onClick={() => this.activeInput('guest')} className="fs14 confirm-guests light clr2" type="button" >{this.getTotalGuests()} guest</button>
                             </div>
                         </label>
                     </div>
@@ -199,12 +200,11 @@ export class _OrderModal extends Component {
                         {isReserve && <button className="confirm-order fs16" type="button" onClick={this.onSubmit}>Reserve</button>}
 
                     </div>
-                    <span>You won't be charged yet </span>
-                    <div className={isPickingGuests ? "picking-guest-container" : "picking-guest-container none"}> {isPickingGuests && <GuestsPicking handleGuestsChanege={this.handleGuestsChanege} />} </div>
+                    <div className={`${isPickingGuests ? '' : 'none'}`}> {isPickingGuests && <GuestsPicking handleGuestsChanege={this.handleGuestsChanege} />} </div>
 
-                </form>
-                <div className={isPickingDates ? "picking-dates-container" : "checkin-container none"}> {isPickingDates && <DatePicker preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />} </div>
-            </div>
+                </form > 
+                <div className={isPickingDates ? '' : 'none'}> {isPickingDates && <DatePicker preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />} </div>
+            </div >
         )
     }
 }

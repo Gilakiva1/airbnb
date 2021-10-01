@@ -12,6 +12,10 @@ html {
   scroll-behavior: smooth;
 }
 
+.bold {
+  font-family: "airbnb-cereal-bold";
+}
+
 body {
   margin: 0;
   background-size: 40%;
@@ -48,22 +52,20 @@ ul {
 }
 button {
   cursor: pointer;
-  font-family: "airbnb-cereal-book";
+  font-family: airbnb-cereal-book, sans-serif;
 }
-
 
 .scale-up-top {
-	        animation: scale-up-top 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+  animation: scale-up-top 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
 }
 
- 
 @keyframes scale-up-top {
   0% {
-            transform: scale(0.5);
-            transform-origin: 50% 0%;
+    transform: scale(0.5);
+    transform-origin: 50% 0%;
   }
   100% {
-            transform: scale(1);
-            transform-origin: 50% 0%;
+    transform: scale(1);
+    transform-origin: 50% 0%;
   }
 }

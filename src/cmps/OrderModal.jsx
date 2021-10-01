@@ -135,12 +135,12 @@ export class _OrderModal extends Component {
         if (!currOrder) return <div>loading</div>
         return (
             <div className="order-modal">
-                <div className="flex space-between">
+                <div className="flex space-between align-center">
 
-                    <span><span className="price">${stay.price}</span>/Night</span>
-                    <div>
-                        {<FontAwesomeIcon className='star-icon' icon={faStar} />}
-                        5
+                    <span className="price fs22 meduim">${stay.price} <span className="fs16 book clr2"> / night</span></span>
+                    <div className="rating-conatiner flex align-center">
+                        {<FontAwesomeIcon className='star-icon ' icon={faStar} />}
+                        <span className="fs14 meduim clr2"> 5</span>
                         <span className="rating"> ({reviewsNumber} reviews)  </span>
                     </div>
                 </div>
@@ -149,8 +149,9 @@ export class _OrderModal extends Component {
                         <div className="input-container flex">
                             <div className="check-in"
                                 onClick={() => this.activeInput('date')}>
-                                <span className="date-label">Check in:</span>
+                                <span className="date-label fs10 bold">CHECK-IN:</span>
                                 <input
+                                    className="light fs14"
                                     type="text"
                                     placeholder="Add dates"
                                     name="checkIn"
@@ -163,8 +164,9 @@ export class _OrderModal extends Component {
                             </div>
                             <div className="check-out"
                                 onClick={() => this.activeInput('date')}>
-                                <span className="date-label">Check out:</span>
+                                <span className="date-label fs10 bold ">CHEACKOUT:</span>
                                 <input
+                                    className="light fs14"
                                     type="text"
                                     placeholder="Add dates"
                                     name="checkOut"
@@ -175,14 +177,16 @@ export class _OrderModal extends Component {
                                 />
                             </div>
                         </div>
-                        <div className="guests flex column">
-                            <label htmlFor="confirm-guests">Guests:</label>
-                            <button className="confirm-guests" type="button" onClick={() => this.activeInput('guest')}>{this.getTotalGuests()}</button>
-                        </div>
+                        <label className="guests" onClick={() => this.activeInput('guest')}>
+                            <div className="flex column  ">
+                                <span className="bold fs10">GUESTS</span>
+                                <button className="fs14 confirm-guests light" type="button" >{this.getTotalGuests()} GUESTS</button>
+                            </div>
+                        </label>
                     </div>
                     <div className="flex column">
-                        {!isReserve && <button className="confirm-order" type="button" onClick={this.onSubmit}>Check availability</button>}
-                        {isReserve && <button className="confirm-order" type="button" onClick={this.onSubmit}>Reserve</button>}
+                        {!isReserve && <button className="confirm-order fs16" type="button" onClick={this.onSubmit}>Check availability</button>}
+                        {isReserve && <button className="confirm-order fs16" type="button" onClick={this.onSubmit}>Reserve</button>}
 
                     </div>
                     <span>You won't be charged yet </span>

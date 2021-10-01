@@ -33,7 +33,7 @@ class _AppHeader extends React.Component {
     onToggleHeader = (ev) => {
         const { pathname } = this.props.history.location
         const scrollLocaion = ev.path[1].pageYOffset
-        if (scrollLocaion < 40 && pathname === '/' ) {
+        if (scrollLocaion < 40 && pathname === '/') {
             this.setState({ isEnter: true })
         }
         this.setState({ scrollLoc: scrollLocaion })
@@ -46,6 +46,7 @@ class _AppHeader extends React.Component {
             document.documentElement.scrollTop = 0
         }
     }
+    onToggleHeader
 
     render() {
         const { scrollLoc, isEnter } = this.state
@@ -66,7 +67,7 @@ class _AppHeader extends React.Component {
                             <NavLink className={`link-host border-round fs14 ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-black hover-bcg'}`} to={`/ `} >Explore</NavLink>
                             <NavLink className={`link-host border-round fs14 ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-black hover-bcg'}`} to={`/ `} >Become a host</NavLink>
                             <div className="menu-container border-round">
-                                <button className="menu-btn border-round flex align-center">
+                                <button onClick={this.onToggoleMenu} className="menu-btn border-round flex align-center">
                                     <div className="menu-details flex align-center">
                                         <FontAwesomeIcon className="hamburger-menu" icon={faBars} />
                                         <img src={imgUser} alt="" className="user-img border-round" />
@@ -78,7 +79,6 @@ class _AppHeader extends React.Component {
                 </div>
                 {scrollLoc < 40 && pathname === '/' && <SearchBar animateClassName={isEnter ? 'scale-up-top' : ''} />}
             </header>
-
         )
     }
 }

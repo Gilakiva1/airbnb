@@ -1,9 +1,16 @@
 // Font Sizes
+.fs10 {
+  font-size: rem(10px);
+}
+
 .fs12 {
   font-size: rem(12px);
 }
 .fs14 {
   font-size: rem(14px);
+}
+.fs16 {
+  font-size: rem(16px);
 }
 .fs18 {
   font-size: rem(18px);
@@ -20,8 +27,41 @@
 .fs30 {
   font-size: rem(30px);
 }
+.fs32 {
+  font-size: rem(32px);
+}
+.fh18 {
+  line-height: rem(18px);
+}
+.fh20 {
+  line-height: rem(20px);
+}
+.fh32 {
+  line-height: rem(32px);
+}
 
 // flex helpers
+
+.clr1 {
+  color: $clr1;
+}
+
+.clr2 {
+  color: $clr2;
+}
+
+.fw-unset {
+  font-weight: unset;
+}
+.airbnb-medium {
+  font-family: airbnb-cereal-Medium;
+}
+.airbnb-book {
+  font-family: airbnb-cereal-book;
+}
+.airbnb-bold {
+  font-family: airbnb-cereal-bold;
+}
 
 .flex {
   display: flex;
@@ -77,6 +117,27 @@
 }
 .index-top {
   z-index: 5;
+}
+.light {
+  font-family: airbnb-cereal-book;
+}
+.medium {
+  font-family: airbnb-cereal-meduim;
+}
+.bold {
+  font-family: airbnb-cereal-bold;
+}
+.clr1 {
+  color: #717171;
+}
+.clr2 {
+  color: #222222;
+}
+.clr3 {
+  color: rgb(255, 56, 92);
+}
+.clr4 {
+  color: white;
 }
 
 // Display helpers

@@ -18,3 +18,4 @@ export function onSetFilter(filterBy) {
     dispatch({ type: 'UPDATE_ORDER', filterBy })
   }
 }
+  

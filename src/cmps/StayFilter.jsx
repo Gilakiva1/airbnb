@@ -20,13 +20,15 @@ class _StayFilter extends Component {
     }
 
     onSavePrice = (price) => {
+        console.log('price',price);
         const newPrice = {
             maxPrice:price[1],
             minPrice:price[0],
         }
+        console.log('newPrice',newPrice);
         this.setState(({ filterBy: { price: newPrice }}),
             () => {
-                this.props.onSetFilter(this.state.filterBy)
+                this.props.onSetFilter(newPrice)
             })
     }
 

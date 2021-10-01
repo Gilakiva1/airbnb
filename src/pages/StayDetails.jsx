@@ -21,7 +21,6 @@ export class _StayDetails extends Component {
     };
     componentDidMount() {
         this.loadStay()
-        // this.loadOrder()
 
     }
 
@@ -54,10 +53,11 @@ export class _StayDetails extends Component {
 
     render() {
         const { stay } = this.state
-        const { order } = this.props
         if (!stay) return <div>Loading...</div>
 
         return (
+            <>
+              
             <section className="stay-details-container">
                 <h1>{stay.name}</h1>
                 <div className="flex space-between">
@@ -112,7 +112,10 @@ export class _StayDetails extends Component {
                     </div>
                     <OrderModal  stay={stay} />
                 </div>
+                
             </section>
+                  
+            </>
         )
     }
 }

@@ -10,9 +10,9 @@ export class _GuestsPicking extends React.Component {
         child: 0,
         infant: 0
     }
- 
+
     componentDidMount() {
-        if (!this.props.order) return 
+        if (!this.props.order) return
         this.setState(this.props.order.guests)
     }
 
@@ -72,7 +72,7 @@ export class _GuestsPicking extends React.Component {
     }
     render() {
         console.log('');
- 
+        const { pathnme } = this.props.location
         const { adult, child, infant } = this.state
         return (
             <section className="guests-container flex column" onClick={this.preventPropagation} >

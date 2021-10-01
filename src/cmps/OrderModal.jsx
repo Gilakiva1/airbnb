@@ -13,8 +13,8 @@ export class _OrderModal extends Component {
 
     state = {
         order: {
-            chackIn: '',
-            chackOut: '',
+            checkIn: '',
+            checkOut: '',
             guests: {
                 adult: 0,
                 child: 0,
@@ -36,6 +36,17 @@ export class _OrderModal extends Component {
         console.log(this.props);
         this.setState({ order, reviewsNumber })
     }
+
+
+    componentDidUpdate() {
+        // debugger
+        const {order} = this.state
+        const {currOrder} = this.props
+        if (order.checkIn !== currOrder.checkIn || order.checkOut !== currOrder.checkOut) {
+            this.setState({ order: this.props.currOrder })
+        }
+    }
+
 
     componentWillUnmount() {
         window.removeEventListener('click', this.closeInputs)
@@ -67,7 +78,6 @@ export class _OrderModal extends Component {
                 break;
         }
     }
-
 
     setIsPickingGuests = () => {
         let { isPickingGuests } = this.state

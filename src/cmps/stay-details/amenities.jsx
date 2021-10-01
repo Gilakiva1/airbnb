@@ -1,54 +1,55 @@
+import { AirConditioning } from "../svgs/AirConditioning"
+import { Gym } from "../svgs/Gym"
+import { Hangers } from "../svgs/Hangers"
 import { Kitchen } from "../svgs/Kitchen"
+import { LongStay } from "../svgs/LongStay"
+import { SmokeAlarm } from "../svgs/SmokeAlarm"
+import { TV } from "../svgs/TV"
+import { WiFi } from "../svgs/WiFi"
 
 
-export function Amenities({ amenity}) {
+export function Amenities({ amenity }) {
     switch (amenity) {
         case 'kitchen':
-            return <div className="amenity-container flex">
-                <Kitchen />
-                <div className="flex column">
-                    <p>  <span className="amenity-header">{`Entire ${type}`}</span> <br />
-                        <span className="fade-font"> {`You'll have the entire ${type} to yourself.`}</span></p>
-                </div>
+            return <div className="amenity-container flex gap5">
+                <Kitchen/>
+                <p>Kitchen</p>
             </div>
-        case 'enhanced clean':
-            return <div className="amenity-container flex">
-                <EnhancedClean />
-                <div className="amenity-santences flex column">
-                    <p>  <span className="amenity-header">Enhanced Clean</span> <br />
-                        <span className="fade-font">The host committed to Homeaway's 5-step enhanced cleaning process.</span> </p>
-                </div>
+        case 'TV':
+            return <div className="amenity-container flex gap5">
+                <TV/>
+                <p>TV</p>
             </div>
-        case 'self check-in':
-            return <div className="amenity-container flex">
-                <SelfCheckIn />
-                <div className="flex column">
-                    <p> <span className="amenity-header">Self Check-in</span> <br />
-                        <span className="fade-font"> Check yourself in with the key safe.</span></p>
-                </div>
-            </div>
-        case 'free cancellation':
-            return <div className="amenity-container flex">
-                <FreeCancel />
-                <div className="flex column">
-                    <span className="amenity-header">Free cancellation up to 48 hours before the check-in.</span>
-                </div>
-            </div>
-        case 'great check-in':
-            return <div className="amenity-container flex">
-                <GreatCheckin />
-                <div className="flex column">
-                    <p> <span className="amenity-header">Great Check-in experience</span> <br />
-                        <span className="fade-font">95% of recent guests gave the check-in process a 5-star rating.</span></p>
-                </div>
+        case 'long stay':
+            return <div className="amenity-container flex gap5">
+                <LongStay/>
+                <p>Long-term stays allowed</p>
             </div>
         case 'wifi':
-            return <div className="amenity-container flex">
-                <WiFi />
-                <div className="flex column">
-                    <p> <span className="amenity-header">Wi-Fi</span> <br />
-                        <span className="fade-font">Guests often search for this popular amenity.</span></p>
-                </div>
+            return <div className="amenity-container flex gap5">
+                <WiFi/>
+                <p>Wi-Fi</p>
             </div>
+        case 'air conditioning':
+            return <div className="amenity-container flex gap5">
+                <AirConditioning/>
+                <p>Air conditioning</p>
+            </div>
+        case 'smoke alarm':
+            return <div className="amenity-container flex gap5">
+                <SmokeAlarm/>
+                <p>Smoke Alarm</p>
+            </div>
+        case 'gym':
+            return <div className="amenity-container flex gap5">
+                <Gym/>
+                <p>Gym</p>
+            </div>
+        case 'hangers':
+            return <div className="amenity-container flex gap5">
+                <Hangers/>
+                <p>Hangers</p>
+            </div>
+            default: return null
     }
 }

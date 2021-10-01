@@ -10,6 +10,9 @@ import { Tags } from '../cmps/stay-details/Tags.jsx';
 import { OrderModal } from '../cmps/OrderModal.jsx';
 import { stayService } from '../services/stay.service.js';
 import { orderService } from '../services/order.service.js';
+import { Amenities } from '../cmps/stay-details/amenities.jsx';
+import { DatePicker } from '../cmps/header/DatePicker.jsx';
+import {onUpdateOrder,onLoadOrder , onSetOrder} from '../store/order.action';
 
 
 export class _StayDetails extends Component {
@@ -28,6 +31,26 @@ export class _StayDetails extends Component {
         if (!stay) this.props.history.push("/")
         this.setState({ stay })
     }
+
+     handlePickingDates = async (start, end) => {
+        if (!this.props.currOrder) await this.props.onLoadOrder('load')
+        let order = this.props.currOrder
+        let checkIn = ` ${start.toLocaleString('en-IL', { month: 'short', day: 'numeric' })} `
+        if (end) {
+            var checkOut = ` ${end.toLocaleString('en-IL', { month: 'short', day: 'numeric' })} `
+            order.checkOut = checkOut
+        } else {
+            order.checkOut = ''
+        }
+        order.checkIn = checkIn
+        this.props.onUpdateOrder(order)
+    }
+
+   
+    preventPropagation = event => {
+        event.stopPropagation()
+    }
+
 
     render() {
         const { stay } = this.state
@@ -51,13 +74,13 @@ export class _StayDetails extends Component {
                         <HeartSvg /> Save
                     </div>
                 </div>
-                <div className="stay-details-grid">{stay.imgUrls.map((img, idx) => {
+                <div className="stay-details-grid ">{stay.imgUrls.map((img, idx) => {
                     return <div className={`grid-img${idx} pointer`} key={idx}><img className={`img${idx}`} src={img} alt="" /></div>
                 })}</div>
                 <div className="details-main-container flex space-between ">
                     <div className="details-info flex column">
                         <div className="flex space-between">
-                            <div className="det flex column space-between">
+                            <div className=" flex column space-between">
                                 <h2>Entire {stay.type} hosted by {stay.host.fullname}</h2>
                                 <div className="flex">{stay.capacity} guests · {stay.type} ·  {utilService.getRandomIntInclusive(2, 6)} beds · {utilService.getRandomIntInclusive(1, 5)} baths </div>
                             </div>
@@ -72,11 +95,22 @@ export class _StayDetails extends Component {
                         <div className="seperation-line"></div>
                         <div className="description">{stay.description}</div>
                         <div className="seperation-line"></div>
-                        <div className="labels">
-                            <h2>What this place offers</h2>
+                        <div className="amenities flex column">
+                            <h2 className="middle-header">Amenities</h2>
+                            <div className="amenities-container">
+                                {stay.amenities.map((amenity, idx) => {
+                                    return <Amenities key={idx} amenity={amenity} />
+                                })}
+                            </div>
+                        </div>
+                        <div className="seperation-line"></div>
+                        <div className="details-dates">
+                            <h2>Select check-in date</h2>
+                            <p className="fade-font">Add your travel dates for exact pricing</p>
+                            <DatePicker preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates}/>
                         </div>
                     </div>
-                    <OrderModal stay={stay}/>
+                    <OrderModal  stay={stay} />
                 </div>
             </section>
         )
@@ -87,12 +121,14 @@ export class _StayDetails extends Component {
 function mapStateToProps(state) {
     return {
         stays: state.stayReducer.stays,
-        order: state.orderReducer.order
+        currOrder: state.orderReducer.currOrder
     }
 }
 const mapDispatchToProps = {
-    // onLoadOrder
+    onUpdateOrder,
+    onLoadOrder,
+    onSetOrder
 }
 
-export const StayDetails = connect(mapStateToProps)(_StayDetails)
+export const StayDetails = connect(mapStateToProps,mapDispatchToProps)(_StayDetails)
 

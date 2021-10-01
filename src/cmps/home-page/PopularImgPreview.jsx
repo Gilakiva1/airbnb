@@ -5,7 +5,7 @@ import { utilService } from "../../services/util.service"
 
 export function PopularImgPreview({ link, idx, onSubmit }) {
 
-    const order = { address: link.city } 
+    const order = { address: link.city , checkIn:'', checkOut: ''} 
     const queryString = utilService.makeQueryParams(order)
     return (
 

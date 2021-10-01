@@ -17,8 +17,11 @@ function query(entityType, params = {}) {
 
         entities = JSON.parse(localStorage.getItem(entityType)) || dummyData
         if (params.address) {
+            params.address = params.address.split('-').join(' ')
             const regex = new RegExp(params.address, 'i');
+
             entities = entities.filter(entitie => {
+            entitie.loc.address = entitie.loc.address.split('-').join(' ')
                 return regex.test(entitie.loc.address)
             })
         }
@@ -40,10 +43,13 @@ function query(entityType, params = {}) {
         resolve(entities)
     })
 }
+
+
 function get(entityType, entityId) {
     return query(entityType)
         .then(entities => entities.find(entity => entity._id === entityId))
 }
+
 
 function post(entityType, newEntity) {
     newEntity._id = _makeId()
@@ -132,7 +138,7 @@ const dummyData = [{
     description: 'The apartment is literally on TOP of the river as the photos can show. It\'s really comfortable, perfectly located and with the most perfect view. It is in a recently rebuilt building, with new construction materials and with is disposal on top of the river and its great windows you will have all the quiet you will need, near the most historic zone of the city.',
     type: 'apretment',
     capacity: 8,
-    labels: [
+    amenities: [
         'TV',
         'Wifi',
         'Kitchen',
@@ -187,7 +193,7 @@ const dummyData = [{
     description: 'The apartment is literally on TOP of the river as the photos can show. It\'s really comfortable, perfectly located and with the most perfect view. It is in a recently rebuilt building, with new construction materials and with is disposal on top of the river and its great windows you will have all the quiet you will need, near the most historic zone of the city.',
     type: 'Villa',
     capacity: 12,
-    labels: [
+    amenities: [
         'Outdoor',
         'TV',
         'Wifi',
@@ -243,14 +249,13 @@ const dummyData = [{
     description: 'The apartment is literally on TOP of the river as the photos can show. It\'s really comfortable, perfectly located and with the most perfect view. It is in a recently rebuilt building, with new construction materials and with is disposal on top of the river and its great windows you will have all the quiet you will need, near the most historic zone of the city.',
     type: 'apratment',
     capacity: 8,
-    labels: [
-        'Home',
+    amenities: [
         'TV',
         'Wifi',
-        'Kitchen',
-        'Smoking allowed',
-        'Pets allowed',
-        'Cooking basics'
+        'kitchen',
+        'Smoke alarm',
+        'long stay',
+        'hangers'
     ],
     tags: [
         'entire to yourself',
@@ -299,7 +304,7 @@ const dummyData = [{
     description: '280 square feet guest room with 37" Flat Screen TV, King Size Pillow-top Mattress with large Pillows and high thread count linens, spacious Work Desk with an Ergonomic Chair and a 2-Line Phone for your convenience.',
     type: 'room in the hotel',
     capacity: 4,
-    labels: [
+    amenities: [
         'Home',
         'TV',
         'Wifi',
@@ -355,7 +360,7 @@ const dummyData = [{
     description: '280 square feet guest room with 37" Flat Screen TV, King Size Pillow-top Mattress with large Pillows and high thread count linens, spacious Work Desk with an Ergonomic Chair and a 2-Line Phone for your convenience.',
     type: 'room in the hotel',
     capacity: 4,
-    labels: [
+    amenities: [
         'Home',
         'TV',
         'Wifi',
@@ -411,7 +416,7 @@ const dummyData = [{
     description: 'Spacious loft with unique tin walls and high ceilings in prime Brooklyn. The apartment has a single bedroom with attached bath, an open kitchen and living area with dedicated workspace. The apartment is a cozy landing place after a long day and centrally located for anyone looking for nightlife, art or great food. Blocks from transit and 10min to Manhattan.',
     type: 'room in the hotel',
     capacity: 5,
-    labels: [
+    amenities: [
         'Home',
         'TV',
         'Wifi',
@@ -467,7 +472,7 @@ const dummyData = [{
     description: 'Bright, private bedroom in a 3 bedroom apartment in the Heart of Harlem. Besides the convenience of 2 different train lines on either side & the Metro North 2 blocks away, you’ll be downtown in minutes! Shake Shack is 30 seconds away, CVS, TJ Maxx, Victoria’s Secret, H&M, Bath & Bodyworks, Marshall’s, Starbucks and AMC are all within walking distance. Chipotle, Wing Stop, Whole Foods, Red Lobster, IHOP and local restaurants and bars are also in very close proximity.',
     type: 'privete room',
     capacity: 5,
-    labels: [
+    amenities: [
         'Home',
         'TV',
         'Wifi',
@@ -524,7 +529,7 @@ const dummyData = [{
     description: 'Our newly renovated 280 sqft room can offer unparalleled comfort, and special touches make all the difference. Relax, get some work done, and take full advantage of your stay.Your room charge and taxes has been taken prior to your arrival as a deposit. The remaining balance destination fee $40.17 per night will be charged upon arrival.',
     type: 'Room in the hotel',
     capacity: 4,
-    labels: [
+    amenities: [
         'Unique',
         'TV',
         'Wifi',
@@ -584,7 +589,7 @@ const dummyData = [{
     description: 'Welcome to one of the most special apartments in town – a stunning, super-chic Suite, with a private balcony and hot tub, both overlooking Carmel Market, Shenkin ST and Allenby ST – TLV\'s most iconic symbols, located at the heart of the city. This brand-new, fully-equipped Suite is just 5 minutes walk from the beach, and just next to the hottest restaurants, bars and nightclubs of TLV. Our Suite is the perfect starting point to an unforgettable, one-of-a-kind Tel Aviv experience The space',
     type: 'suite',
     capacity: 8,
-    labels: [
+    amenities: [
         'Outdoor',
         'Home',
         'TV',
@@ -645,7 +650,7 @@ const dummyData = [{
     description: 'At the entrance, an intimate sitting area with armchairs and lush plants make up the scene for a relaxing break. You can also to enjoy spectacular view of the well-groomed gardens. This centrally located loft stands on 2 levels. The ground floor includes an open space living and dining room, as well as a fully equipped kitchen. You will also have access to a room with a single bed. On the upper level, you’ll find an open concept bedroom with a king size bed, a small bathroom, and a lovely terrace.',
     type: 'apratment',
     capacity: 8,
-    labels: [
+    amenities: [
         'TV',
         'Wifi',
         'Kitchen',
@@ -703,7 +708,7 @@ const dummyData = [{
     description: 'The apartment is literally on TOP of the river as the photos can show. It\'s really comfortable, perfectly located and with the most perfect view. It is in a recently rebuilt building, with new construction materials and with is disposal on top of the river and its great windows you will have all the quiet you will need, near the most historic zone of the city.',
     type: 'apretment',
     capacity: 8,
-    labels: [
+    amenities: [
         'TV',
         'Wifi',
         'Kitchen',
@@ -760,7 +765,7 @@ const dummyData = [{
     description: 'The apartment is literally on TOP of the river as the photos can show. It\'s really comfortable, perfectly located and with the most perfect view. It is in a recently rebuilt building, with new construction materials and with is disposal on top of the river and its great windows you will have all the quiet you will need, near the most historic zone of the city.',
     type: 'apretment',
     capacity: 8,
-    labels: [
+    amenities: [
         'TV',
         'Wifi',
         'Kitchen',
@@ -819,7 +824,7 @@ const dummyData = [{
     description: 'Dreamdien - walking distance to burj khalifa',
     type: 'apretment',
     capacity: 8,
-    labels: [
+    amenities: [
         'TV',
         'Wifi',
         'Kitchen',
@@ -878,7 +883,7 @@ const dummyData = [{
     description: 'The Collective Canary Wharf is ideally located 10 minutes away from Canary Wharf with its cafes, pubs and bar and only a few stops away from The O2 arena. Historic Greenwich, ExCeL London, London City Airport and Central London are less than 20 minutes away via public transport.',
     type: 'Studio',
     capacity: 8,
-    labels: [
+    amenities: [
         'TV',
         'Wifi',
         'Kitchen',
@@ -936,7 +941,7 @@ const dummyData = [{
     description: 'Lovely light, spacious room in our split level apartment in a Victorian property. Kingsize bed, tea/coffee facilities in the room, 32inch Smart TV. Bathroom is adjacent to the room and for the exclusive use of guests. Perfect for Alexandra Palace which is only a 12 minute walk. Fantastic transport links - 7 minutes walk to Wood Green station, plus many shops.',
     type: 'Private room',
     capacity: 8,
-    labels: [
+    amenities: [
         'TV',
         'Wifi',
         'Kitchen',
@@ -994,7 +999,7 @@ const dummyData = [{
     description: 'Grab a drink from the trolley and head up to the heated glass bottom rooftop pool with a view in this exquisite London penthouse. Lounge around this chic open-plan space boasting skyline views, high-end designer furnishings, and floor-to-ceiling windows.',
     type: 'Condominium ',
     capacity: 8,
-    labels: [
+    amenities: [
         'TV',
         'Wifi',
         'Kitchen',
@@ -1052,7 +1057,7 @@ const dummyData = [{
     description: 'Lovely light, spacious room in our split level apartment in a Victorian property. Kingsize bed, tea/coffee facilities in the room, 32inch Smart TV. Bathroom is adjacent to the room and for the exclusive use of guests. Perfect for Alexandra Palace which is only a 12 minute walk. Fantastic transport links - 7 minutes walk to Wood Green station, plus many shops.',
     type: 'Condominium ',
     capacity: 8,
-    labels: [
+    amenities: [
         'TV',
         'Wifi',
         'Kitchen',

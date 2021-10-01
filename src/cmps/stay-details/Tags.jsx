@@ -18,7 +18,7 @@ export function Tags({ tag, type }) {
         case 'enhanced clean':
             return <div className="tag-container flex">
                 <EnhancedClean />
-                <div className="tag-santences flex column">
+                <div className=" flex column">
                     <p>  <span className="tag-header">Enhanced Clean</span> <br />
                         <span className="fade-font">The host committed to Homeaway's 5-step enhanced cleaning process.</span> </p>
                 </div>

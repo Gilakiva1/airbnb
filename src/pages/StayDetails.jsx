@@ -65,7 +65,6 @@ export class _StayDetails extends Component {
 
         return (
             <>
-
                 <section className="stay-details-container">
                     <h1>{stay.name}</h1>
                     <div className="flex space-between">

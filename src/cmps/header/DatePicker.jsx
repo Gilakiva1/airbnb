@@ -11,10 +11,10 @@ import { addDays } from 'date-fns';
 
 export const DatePicker = ({ order, handlePickingDates, preventPropagation, className = '' }) => {
     const [dateState, setDateState] = useState([
-
+ 
         {
-            startDate: order.checkIn ? order.checkIn: new Date(),
-            endDate: order.checkOut ? order.checkOut : null,
+            startDate: order.checkIn ? new Date(order.checkIn) : new Date(),
+            endDate: order.checkOut ? new Date(order.checkOut) : null,
             key: 'selection'
         }
     ]);

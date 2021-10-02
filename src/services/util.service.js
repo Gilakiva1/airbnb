@@ -105,7 +105,7 @@ function getQueryParams(params) {
         } else {
             newParams[key] = value
         }
-    }
+    } 
     return newParams
 
 }

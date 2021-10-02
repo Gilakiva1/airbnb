@@ -35,10 +35,6 @@ function query(entityType, params = {}) {
     } else {
         entities = JSON.parse(localStorage.getItem(entityType)) || []
 
-        if (params === 'load') {
-            entities = entities.pop()
-        }
-
     }
     return new Promise((resolve, reject) => {
         resolve(entities)

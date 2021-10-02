@@ -11,10 +11,7 @@ class _StayList extends React.Component {
     }
 
     async componentDidMount() {
-        // window.scrollTo(0, 0);
-        // window.top.location.reload();
-        // window.parent.location = 0;
-        // window.opener.top.location.reload();
+       
         window.page = 0
 
         const searchParams = new URLSearchParams(this.props.location.search);
@@ -29,7 +26,7 @@ class _StayList extends React.Component {
                 newParams[key] = value
             }
         }
-        await this.props.loadStays(newParams)
+        this.props.loadStays(newParams)
         this.setState({ params: utilService.makeQueryParams(newParams) })
     }
 

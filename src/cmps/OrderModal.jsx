@@ -57,11 +57,8 @@ export class _OrderModal extends React.Component {
         let y = ev.clientY
         this.inputRef.current.style.setProperty('--mouse-x', x)
         this.inputRef.current.style.setProperty('--mouse-y', y)
-
-
-
     }
-
+ 
     handleChange = (ev) => {
         const { order } = this.state
         const field = ev.target.name

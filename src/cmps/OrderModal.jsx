@@ -12,19 +12,12 @@ import { onAddOrder, onLoadOrder } from '../store/order.action';
 export class _OrderModal extends React.Component {
 
     state = {
-        order: {
-            checkIn: '',
-            checkOut: '',
-            guests: {
-                adult: 0,
-                child: 0,
-                infant: 0
-            }
-        },
+        order: null,
         isReserve: false,
         isPickingGuests: false,
         isPickingDates: false,
-        reviewsNumber: 0
+        reviewsNumber: 0,
+        orderParams: null
 
     }
 
@@ -32,20 +25,21 @@ export class _OrderModal extends React.Component {
         let { reviewsNumber } = this.state
         reviewsNumber = utilService.getRandomIntInclusive(30, 500)
         window.addEventListener('click', this.closeInputs)
-        const order = await this.props.onLoadOrder('load')
-        console.log(this.props);
+
+        const searchParams = new URLSearchParams(this.props.location.search);
+        const order = utilService.getQueryParams(searchParams)
         this.setState({ order, reviewsNumber })
     }
-    inputRef = React.createRef(null)
 
+    inputRef = React.createRef(null)
 
     componentDidUpdate() {
         // debugger
-        const { order } = this.state
-        const { currOrder } = this.props
-        if (order.checkIn !== currOrder.checkIn || order.checkOut !== currOrder.checkOut) {
-            this.setState({ order: this.props.currOrder })
-        }
+        // const { order } = this.state
+        // const { currOrder } = this.props
+        // if (order.checkIn !== currOrder.checkIn || order.checkOut !== currOrder.checkOut) {
+        //     this.setState({ order: this.props.currOrder })
+        // }
     }
 
     componentWillUnmount() {
@@ -58,7 +52,7 @@ export class _OrderModal extends React.Component {
         this.inputRef.current.style.setProperty('--mouse-x', x)
         this.inputRef.current.style.setProperty('--mouse-y', y)
     }
- 
+
     handleChange = (ev) => {
         const { order } = this.state
         const field = ev.target.name
@@ -147,9 +141,9 @@ export class _OrderModal extends React.Component {
 
 
     render() {
-        const { isPickingDates, isPickingGuests, isReserve, reviewsNumber, order } = this.state
-        const { stay, currOrder } = this.props
-        if (!currOrder) return <div>loading</div>
+        const { isPickingDates, isPickingGuests, isReserve, reviewsNumber, order, orderParams } = this.state
+        const { stay } = this.props
+        if (!order) return <div>loading</div>
         return (
             <div className="order-modal">
                 <div className="flex space-between align-center">

@@ -7,47 +7,35 @@ import { utilService } from '../services/util.service.js'
 
 class _StayList extends React.Component {
     state = {
-        params: null
+        orderParams: null
     }
 
     async componentDidMount() {
-       
+
         window.page = 0
 
         const searchParams = new URLSearchParams(this.props.location.search);
-        let newParams = {}
-        for (let [key, value] of searchParams) {
-            if (key === 'adult') {
-                newParams.guests = {}
-            }
-            if (key === 'adult' || key === 'child' || key === 'infant') {
-                newParams.guests[key] = +value
-            } else {
-                newParams[key] = value
-            }
-        }
-        this.props.loadStays(newParams)
-        this.setState({ params: utilService.makeQueryParams(newParams) })
+        const getParms = utilService.getQueryParams(searchParams)
+
+        await this.props.loadStays(getParms)
+        this.setState({ orderParams: getParms })
+
     }
 
     render() {
         const { stays } = this.props
-        const { params } = this.state
-        var city = ''
-        if (params) {
-            city = params.split('=')[1];
-        }
+        const { orderParams } = this.state
 
-        if (!stays.length) return <div>loading...</div>
+        if (!orderParams) return <div>loading...</div>
         return (
             <>
                 <h1 className="count-stays airbnb-book fs14 fh18 fw-unset">{stays.length} stays </h1>
-                <h1 className="city-name">Stays in {city}</h1>
+                <h1 className="city-name">Stays in {orderParams.address}</h1>
                 <div className="list-filter">
                     <StayFilter />
                 </div>
                 <div className="stay-list">
-                    {stays.map((stay, idx) => <StayPreview key={stay._id} stay={stay} />)}
+                    {stays.map((stay, idx) => <StayPreview key={stay._id} stay={stay} orderParams={orderParams} />)}
                 </div>
             </>
         )

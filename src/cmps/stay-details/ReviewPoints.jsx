@@ -8,8 +8,7 @@ export function ReviewPoints({ reviews }) {
     value: 0,
     location: 0,
   }
-  return (<>
-    <div className="review-points-container">
+  return (<div className="reviews-points-container">
       {reviews.map(review => {
         const { rate } = review
         for (const [key, value] of Object.entries(rate)) {
@@ -63,7 +62,6 @@ export function ReviewPoints({ reviews }) {
         </div>{ratePonits.value / reviews.length}
         </div>
       </div>
-    </div>
-  </>
+  </div>
   )
 }

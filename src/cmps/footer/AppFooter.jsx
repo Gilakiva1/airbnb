@@ -1,9 +1,14 @@
 import React from "react"
+import Media from 'react-media';
 
-export class AppFooter extends React.Component {
-    render() {
+export function AppFooter() {
+    if (window.innerWidth > 550) {
+
+
         return (
-            <footer className="main-footer main-container">
+
+            <footer className="main-footer main-container-home">
+
                 <div className="links-container">
                     <div className="top rated">
                     </div>
@@ -12,6 +17,16 @@ export class AppFooter extends React.Component {
                     <div className="about"> </div>
                 </div>
             </footer>
+
+
+        )
+    } else {
+        return (
+
+            <footer className="main-footer-mobile main-container-home">
+                <p>mini-fotter</p>
+            </footer>
         )
     }
 }
+

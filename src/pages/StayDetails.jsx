@@ -24,19 +24,23 @@ export class _StayDetails extends Component {
     componentDidMount() {
         this.loadStay()
 
-    }
+    } 
 
     loadStay = async () => {
         const id = this.props.match.params.stayId;
         const stay = await stayService.getById(id)
         if (!stay) this.props.history.push("/")
+
         const searchParams = new URLSearchParams(this.props.location.search);
         const order = utilService.getQueryParams(searchParams)
-        order.checkIn = new Date(+order.checkIn)
-        order.checkOut = new Date(+order.checkOut)
- 
+        if (order.checkIn && order.checkOut) {
+
+            order.checkIn = new Date(+order.checkIn)
+            order.checkOut = new Date(+order.checkOut)
+        }
+
         this.setState({ stay, order })
-    } 
+    }
 
     handlePickingDates = async (start, end) => {
         const { order } = this.state

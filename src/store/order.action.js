@@ -14,42 +14,31 @@ export function onAddOrder(orderDetails) {
         throw err
     }
 }
-export function onSetOrder(orderDetails) {
-    try {
-        return async dispatch => {
-            const order = await orderService.save(orderDetails)
-            dispatch({ type: 'SET_ORDER', order })
-        }
-    } catch (err) {
-        console.log('err', err);
-        throw err
-    }
-}
-export function onLoadOrder(filter) {
-    try {
-        return async dispatch => {
-            const order = await orderService.query(filter)
-            dispatch({ type: 'SET_ORDER', order })
-            return order
-        }
-    } catch (err) {
-        console.log('err', err);
-        throw err
-    }
-}
-
 export function onUpdateOrder(order) {
     try {
         return async dispatch => {
-           const updatedOrder = await orderService.save(order)
+            const updatedOrder = await orderService.save(order)
             dispatch({ type: 'UPDATE_ORDER', updatedOrder })
         }
     } catch (err) {
         console.log('err', err);
         throw err
     }
-    
+
 }
+// export function onSetOrder(orderDetails) {
+//     try {
+//         return async dispatch => {
+//             const order = await orderService.save(orderDetails)
+//             dispatch({ type: 'SET_ORDER', order })
+//         }
+//     } catch (err) {
+//         console.log('err', err);
+//         throw err
+//     }
+// }
+
+
 
 
 // export function onLoadOrder() {

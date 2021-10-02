@@ -4,9 +4,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { utilService } from "../services/util.service";
 
-export function StayPreview({ stay }) {
+
+export function StayPreview({ stay, orderParams }) {
+    const queryString = utilService.makeQueryParams(orderParams)
+
     return (
-        <Link className="link-detail" to={`/stay/${stay._id}`}>
+        <Link className="link-detail" to={`/stay/${stay._id}?${queryString}`}>
             <div className="stay-container">
                 <SimpleSlider stay={stay} />
                 <div className="flex column mrt10">

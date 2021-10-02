@@ -11,13 +11,14 @@ import { OrderModal } from '../cmps/OrderModal.jsx';
 import { stayService } from '../services/stay.service.js';
 import { Amenities } from '../cmps/stay-details/amenities.jsx';
 import { DatePicker } from '../cmps/header/DatePicker.jsx';
-import { onUpdateOrder, onLoadOrder, onSetOrder } from '../store/order.action';
+import { onAddOrder } from '../store/order.action';
 import { ReviewPoints } from '../cmps/stay-details/ReviewPoints.jsx';
 import { ReviewList } from '../cmps/stay-details/ReviewList.jsx';
 
 export class _StayDetails extends Component {
     state = {
-        stay: null
+        stay: null,
+        order: null
     };
     componentDidMount() {
         this.loadStay()
@@ -27,12 +28,17 @@ export class _StayDetails extends Component {
         const id = this.props.match.params.stayId;
         const stay = await stayService.getById(id)
         if (!stay) this.props.history.push("/")
-        this.setState({ stay })
-    }
+        const searchParams = new URLSearchParams(this.props.location.search);
+        const order = utilService.getQueryParams(searchParams)
+        order.checkIn = new Date(+order.checkIn)
+        order.checkOut = new Date(+order.checkOut)
+ 
+        this.setState({ stay, order })
+    } 
 
     handlePickingDates = async (start, end) => {
-        if (!this.props.currOrder) await this.props.onLoadOrder('load')
-        let order = this.props.currOrder
+        const { order } = this.state
+
         let checkIn = ` ${start.toLocaleString('en-IL', { month: 'short', day: 'numeric' })} `
         if (end) {
             var checkOut = ` ${end.toLocaleString('en-IL', { month: 'short', day: 'numeric' })} `
@@ -41,7 +47,7 @@ export class _StayDetails extends Component {
             order.checkOut = ''
         }
         order.checkIn = checkIn
-        this.props.onUpdateOrder(order)
+
     }
 
 
@@ -51,7 +57,8 @@ export class _StayDetails extends Component {
 
 
     render() {
-        const { stay } = this.state
+        const { stay, order } = this.state
+
         if (!stay) return <div>Loading...</div>
         return (
             <>
@@ -105,7 +112,7 @@ export class _StayDetails extends Component {
                                 <h2>Select check-in date</h2>
                                 <p className="fade-font">Add your travel dates for exact pricing</p>
                                 <div className="details-dates flex justify-center">
-                                    <DatePicker className={'datepicker-details'} preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />
+                                    <DatePicker order={order} className={'datepicker-details'} preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />
                                 </div>
                             </div>
                             <div className="seperation-line"></div>
@@ -115,11 +122,15 @@ export class _StayDetails extends Component {
                                 ({utilService.getRandomIntInclusive(30, 500)} reviews)
                             </div>
                         </div >
-                        <OrderModal stay={stay} />
+                        <OrderModal stay={stay} order={order} />
                     </div >
                     <ReviewPoints reviews={stay.reviews} />
                     <ReviewList reviews={stay.reviews} />
-                </section > 
+                    <div className="seperation-line"></div>
+                    <h2>Where you’ll be</h2>
+                    <p>{stay.loc.address}</p>
+                </section >
+
             </>
         )
     }
@@ -129,13 +140,10 @@ export class _StayDetails extends Component {
 function mapStateToProps(state) {
     return {
         stays: state.stayReducer.stays,
-        currOrder: state.orderReducer.currOrder
     }
 }
 const mapDispatchToProps = {
-    onUpdateOrder,
-    onLoadOrder,
-    onSetOrder
+    onAddOrder
 }
 
 export const StayDetails = connect(mapStateToProps, mapDispatchToProps)(_StayDetails)

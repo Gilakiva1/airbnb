@@ -1,5 +1,5 @@
 import { de } from "date-fns/locale";
-
+import user1 from '../assets/img/profiles/user1.png'
 
 export const storageService = {
     query,
@@ -34,10 +34,6 @@ function query(entityType, params = {}) {
         }
     } else {
         entities = JSON.parse(localStorage.getItem(entityType)) || []
-
-        if (params === 'load') {
-            entities = entities.pop()
-        }
 
     }
     return new Promise((resolve, reject) => {
@@ -180,7 +176,7 @@ const dummyData = [{
         by: {
             _id: 'u101',
             fullname: 'gilli2',
-            imgUrl: ' /img/img2.jpg',
+            imgUrl: 'https://a0.muscache.com/defaults/user_pic-225x225.png?im_w=240',
             desc: 'Very central apartment, clean and quiet. Walking distance from anywhere, close to grocery stores and the beach, and the marketVery fast feedback from the host.We had a great time'
         },
         date: ' May 2015'
@@ -192,7 +188,7 @@ const dummyData = [{
         by: {
             _id: 'u102',
             fullname: 'guy',
-            imgUrl: ' /img/img2.jpg',
+            imgUrl: 'https://a0.muscache.com/defaults/user_pic-225x225.png?im_w=240',
             desc: 'perfect for couples you are 5 minutesaway from everywherewe had a really good time!',
         },
         date: 'sep 2020',
@@ -205,7 +201,7 @@ const dummyData = [{
         by: {
             _id: 'u103',
             fullname: 'guy',
-            imgUrl: ' /img/img2.jpg',
+            imgUrl: 'https://a0.muscache.com/defaults/user_pic-225x225.png?im_w=240',
             desc: `The location is great!! Short walk to the beach, shopping center, restaurants etc.
             The host is super fast responding and can share tips about anything you would like to do in the city.
             The flat has all that one needs, including an espresso machine, big screen TV (for the kids) and a reliable WiFi connection.
@@ -221,7 +217,7 @@ const dummyData = [{
         by: {
             _id: 'u104',
             fullname: 'omri',
-            imgUrl: ' /img/img2.jpg',
+            imgUrl: 'https://a0.muscache.com/defaults/user_pic-225x225.png?im_w=240',
             desc: 'Exactly what we looked for in a fair price. Clean easy and great Thanks a lot',
         },
         date: 'july 2020',
@@ -234,7 +230,7 @@ const dummyData = [{
         by: {
             _id: 'u105',
             fullname: 'oded',
-            imgUrl: ' /img/img2.jpg',
+            imgUrl: 'https://a0.muscache.com/defaults/user_pic-225x225.png?im_w=240',
             desc: 'Amazing location with a great view from the balcony, sunset was beautiful. Walking distance to the market and beaches, apartment is a little basic but had everything I needed',
         },
         date: 'nov 2020',
@@ -246,7 +242,7 @@ const dummyData = [{
         by: {
             _id: 'u105',
             fullname: 'shmulik',
-            imgUrl: ' /img/img2.jpg',
+            imgUrl: 'https://a0.muscache.com/defaults/user_pic-225x225.png?im_w=240',
             desc: `We enjoyed the cleanliness of the place. Excellent location. close to the beach and everything is within walking distance very convenient. Place was simple and we'll kept and Everything you need is in the room. We will definitely stay here again `,
         },
         date: 'nov 2020',
@@ -712,7 +708,7 @@ const dummyData = [{
         by: {
             _id: 'u101',
             fullname: 'gilli2',
-            imgUrl: ' /img/img2.jpg',
+            imgUrl: 'https://a0.muscache.com/defaults/user_pic-225x225.png?im_w=240',
             desc: 'Very central apartment, clean and quiet. Walking distance from anywhere, close to grocery stores and the beach, and the marketVery fast feedback from the host.We had a great time'
         },
         date: ' May 2015'
@@ -733,7 +729,7 @@ const dummyData = [{
         by: {
             _id: 'u102',
             fullname: 'guy',
-            imgUrl: ' /img/img2.jpg',
+            imgUrl: 'https://a0.muscache.com/defaults/user_pic-225x225.png?im_w=240',
             desc: 'perfect for couples you are 5 minutesaway from everywherewe had a really good time!',
         },
         date: 'sep 2020',
@@ -755,7 +751,7 @@ const dummyData = [{
         by: {
             _id: 'u103',
             fullname: 'guy',
-            imgUrl: ' /img/img2.jpg',
+            imgUrl: 'https://a0.muscache.com/defaults/user_pic-225x225.png?im_w=240',
             desc: `The location is great!! Short walk to the beach, shopping center, restaurants etc.
             The host is super fast responding and can share tips about anything you would like to do in the city.
             The flat has all that one needs, including an espresso machine, big screen TV (for the kids) and a reliable WiFi connection.
@@ -780,7 +776,7 @@ const dummyData = [{
         by: {
             _id: 'u104',
             fullname: 'omri',
-            imgUrl: ' /img/img2.jpg',
+            imgUrl: 'https://a0.muscache.com/defaults/user_pic-225x225.png?im_w=240',
             desc: 'Exactly what we looked for in a fair price. Clean easy and great Thanks a lot',
         },
         date: 'july 2020',
@@ -802,7 +798,7 @@ const dummyData = [{
         by: {
             _id: 'u105',
             fullname: 'oded',
-            imgUrl: ' /img/img2.jpg',
+            imgUrl: 'https://a0.muscache.com/defaults/user_pic-225x225.png?im_w=240',
             desc: 'Amazing location with a great view from the balcony, sunset was beautiful. Walking distance to the market and beaches, apartment is a little basic but had everything I needed',
         },
         date: 'nov 2020',
@@ -823,7 +819,7 @@ const dummyData = [{
         by: {
             _id: 'u105',
             fullname: 'shmulik',
-            imgUrl: ' /img/img2.jpg',
+            imgUrl: 'https://a0.muscache.com/defaults/user_pic-225x225.png?im_w=240',
             desc: `We enjoyed the cleanliness of the place. Excellent location. close to the beach and everything is within walking distance very convenient. Place was simple and we'll kept and Everything you need is in the room. We will definitely stay here again `,
         },
         date: 'nov 2020',
@@ -941,7 +937,7 @@ const dummyData = [{
             by: {
                 _id: 'u102',
                 fullname: 'user2',
-                imgUrl: ' /img/img2.jpg'
+                imgUrl: 'https://a0.muscache.com/defaults/user_pic-225x225.png?im_w=240'
             },
             date: ' May 2015'
         }
@@ -998,14 +994,13 @@ const dummyData = [{
             by: {
                 _id: 'u102',
                 fullname: 'user2',
-                imgUrl: ' /img/img2.jpg'
+                imgUrl: 'https://a0.muscache.com/defaults/user_pic-225x225.png?im_w=240'
             },
             date: ' May 2015'
         }
     ],
     rating: '4',
     likedByUserIds: ['u101', 'u102']
-
 },
 {
     _id: '100065220',
@@ -1057,7 +1052,7 @@ const dummyData = [{
             by: {
                 _id: 'u102',
                 fullname: 'user2',
-                imgUrl: ' /img/img2.jpg'
+                imgUrl: 'https://a0.muscache.com/defaults/user_pic-225x225.png?im_w=240'
             },
             date: ' May 2015'
         }
@@ -1115,7 +1110,7 @@ const dummyData = [{
             by: {
                 _id: 'u102',
                 fullname: 'user2',
-                imgUrl: ' /img/img2.jpg'
+                imgUrl: 'https://a0.muscache.com/defaults/user_pic-225x225.png?im_w=240'
             },
             date: ' May 2015'
         }
@@ -1173,7 +1168,7 @@ const dummyData = [{
             by: {
                 _id: 'u102',
                 fullname: 'user2',
-                imgUrl: ' /img/img2.jpg'
+                imgUrl: 'https://a0.muscache.com/defaults/user_pic-225x225.png?im_w=240'
             },
             date: ' May 2015'
         }
@@ -1231,7 +1226,7 @@ const dummyData = [{
             by: {
                 _id: 'u102',
                 fullname: 'user2',
-                imgUrl: ' /img/img2.jpg'
+                imgUrl: 'https://a0.muscache.com/defaults/user_pic-225x225.png?im_w=240'
             },
             date: ' May 2015'
         }
@@ -1289,7 +1284,7 @@ const dummyData = [{
             by: {
                 _id: 'u102',
                 fullname: 'user2',
-                imgUrl: ' /img/img2.jpg'
+                imgUrl: 'https://a0.muscache.com/defaults/user_pic-225x225.png?im_w=240'
             },
             date: ' May 2015'
         }

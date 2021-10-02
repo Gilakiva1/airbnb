@@ -19,7 +19,8 @@ export const utilService = {
     delay,
     makeQueryParams,
     HomePageImgPopular,
-    HomePageImgLabels
+    HomePageImgLabels,
+    getQueryParams
 }
 function HomePageImgPopular() {
 
@@ -91,6 +92,21 @@ function makeQueryParams(criteria) {
         return acc
     }, '');
     return queryString
+}
+
+function getQueryParams(params) {
+    let newParams = {}
+    for (let [key, value] of params) {
+        if (key === 'adult') {
+            newParams.guests = {}
+        }
+        if (key === 'adult' || key === 'child' || key === 'infant') {
+            newParams.guests[key] = +value
+        } else {
+            newParams[key] = value
+        }
+    } 
+    return newParams
 
 }
 

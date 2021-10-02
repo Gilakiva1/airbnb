@@ -7,24 +7,17 @@ import { GuestsPicking } from './header/GuestsPicking';
 import { DatePicker } from './header/DatePicker';
 import { stayService } from '../services/stay.service';
 import { withRouter } from 'react-router';
-import { onAddOrder, onLoadOrder } from '../store/order.action';
+import { onAddOrder } from '../store/order.action';
 
 export class _OrderModal extends React.Component {
 
     state = {
-        order: {
-            checkIn: '',
-            checkOut: '',
-            guests: {
-                adult: 0,
-                child: 0,
-                infant: 0
-            }
-        },
+        order: null,
         isReserve: false,
         isPickingGuests: false,
         isPickingDates: false,
-        reviewsNumber: 0
+        reviewsNumber: 0,
+        orderParams: null
 
     }
 
@@ -32,19 +25,19 @@ export class _OrderModal extends React.Component {
         let { reviewsNumber } = this.state
         reviewsNumber = utilService.getRandomIntInclusive(30, 500)
         window.addEventListener('click', this.closeInputs)
-        const order = await this.props.onLoadOrder('load')
-        console.log(this.props);
+        const { order } = this.props
         this.setState({ order, reviewsNumber })
     }
+
     inputRef = React.createRef(null)
 
-
     componentDidUpdate() {
-        const { order } = this.state
-        const { currOrder } = this.props
-        if (order.checkIn !== currOrder.checkIn || order.checkOut !== currOrder.checkOut) {
-            this.setState({ order: this.props.currOrder })
-        }
+        // debugger
+        // const { order } = this.state
+        // const { currOrder } = this.props
+        // if (order.checkIn !== currOrder.checkIn || order.checkOut !== currOrder.checkOut) {
+        //     this.setState({ order: this.props.currOrder })
+        // }
     }
 
     componentWillUnmount() {
@@ -139,9 +132,9 @@ export class _OrderModal extends React.Component {
     }
 
     render() {
-        const { isPickingDates, isPickingGuests, isReserve, reviewsNumber, order } = this.state
-        const { stay, currOrder } = this.props
-        if (!currOrder) return <div>loading</div>
+        const { isPickingDates, isPickingGuests, isReserve, reviewsNumber, order, orderParams } = this.state
+        const { stay } = this.props
+        if (!order) return <div>loading</div>
         return (
             <div className="order-modal">
                 <div className="flex space-between align-center">
@@ -165,7 +158,7 @@ export class _OrderModal extends React.Component {
                                     type="text"
                                     placeholder="Add dates"
                                     name="checkIn"
-                                    value={order.checkIn || ''}
+                                    value={order.checkIn|| ''}
                                     disabled
                                     style={{ outline: 'none' }}
                                     onChange={this.handleChange}
@@ -178,9 +171,9 @@ export class _OrderModal extends React.Component {
                                 <input
                                     className="light fs14"
                                     type="text"
-                                    placeholder="Add dates"
+                                    placeholder="Add dates" 
                                     name="checkOut"
-                                    value={order.checkOut || ''}
+                                    value={order.checkOut|| ''}
                                     disabled
                                     style={{ outline: 'none' }}
                                     onChange={this.handleChange}
@@ -201,7 +194,7 @@ export class _OrderModal extends React.Component {
                     </div>
                     <div className={`${isPickingGuests ? '' : 'none'}`}> {isPickingGuests && <GuestsPicking handleGuestsChanege={this.handleGuestsChanege} />} </div>
                 </form >
-                <div className={isPickingDates ? '' : 'none'}> {isPickingDates && <DatePicker preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />} </div>
+                <div className={isPickingDates ? '' : 'none'}> {isPickingDates && <DatePicker order={order} preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />} </div>
             </div >
         )
     }
@@ -210,12 +203,10 @@ export class _OrderModal extends React.Component {
 function mapStateToProps(state) {
     return {
         stays: state.stayReducer.stays,
-        currOrder: state.orderReducer.currOrder
     }
 }
 const mapDispatchToProps = {
     onAddOrder,
-    onLoadOrder
 }
 
 export const OrderModal = connect(mapStateToProps, mapDispatchToProps)(withRouter(_OrderModal))

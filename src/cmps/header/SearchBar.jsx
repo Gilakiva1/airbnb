@@ -7,7 +7,7 @@ import { withRouter } from 'react-router'
 import { DatePicker } from './DatePicker.jsx'
 import { utilService } from '../../services/util.service'
 import { GuestsPicking } from './GuestsPicking.jsx'
-import { onAddOrder, onSetOrder } from '../../store/order.action'
+import { onAddOrder } from '../../store/order.action'
 
 export class _SearchBar extends React.Component {
 
@@ -24,7 +24,8 @@ export class _SearchBar extends React.Component {
     },
     isPickingGuests: false,
     isPickingDates: false,
-    isInsideHeader: true
+    isInsideHeader: true,
+    dateForamt: null
   }
 
   componentDidMount() {
@@ -52,19 +53,22 @@ export class _SearchBar extends React.Component {
   }
 
   handlePickingDates = (start, end) => {
+
     let { criteria } = this.state
     let { checkIn, checkOut } = criteria
     checkIn = ` ${start.toLocaleString('en-IL', { month: 'short', day: 'numeric' })} `
     if (end) checkOut = ` ${end.toLocaleString('en-IL', { month: 'short', day: 'numeric' })} `
-    this.setState({ criteria: { ...criteria, checkIn, checkOut } })
+    this.setState({ criteria: { ...criteria, checkIn, checkOut }, dateForamt: { start, end } })
     if (end && start !== end) this.activeInput('guest')
   }
 
   onSubmit = async (ev) => {
     ev.preventDefault()
-    const { criteria } = this.state
+    const { criteria, dateForamt } = this.state
+    criteria.checkIn = Date.parse(dateForamt.start)
+    criteria.checkOut = Date.parse(dateForamt.end)
+
     const queryString = utilService.makeQueryParams(criteria)
-    await this.props.onSetOrder(criteria)
     this.props.history.push(`/stay?${queryString}`)
 
   }
@@ -167,7 +171,7 @@ export class _SearchBar extends React.Component {
               <button className="search-bar-submit flex">{<FontAwesomeIcon className='search-icon' icon={faSearch} />}</button>
             </form>
             <div className={isPickingGuests ? "picking-guest-container" : "picking-guest-container none"}> {isPickingGuests && <GuestsPicking handleGuestsChanege={this.handleGuestsChanege} />} </div>
-            <div className={isPickingDates ? "picking-dates-container" : "checkin-container none"}> {isPickingDates && <DatePicker preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />} </div>
+            <div className={isPickingDates ? "picking-dates-container" : "checkin-container none"}> {isPickingDates && <DatePicker order={{}} preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />} </div>
           </div>
         </div>
       </section>
@@ -180,7 +184,7 @@ function mapStateToProps(state) {
 }
 const mapDispatchToProps = {
   onSetFilter,
-  onSetOrder,
+
   onAddOrder
 
 }

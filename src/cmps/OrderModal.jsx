@@ -40,7 +40,6 @@ export class _OrderModal extends React.Component {
 
 
     componentDidUpdate() {
-        // debugger
         const { order } = this.state
         const { currOrder } = this.props
         if (order.checkIn !== currOrder.checkIn || order.checkOut !== currOrder.checkOut) {
@@ -57,9 +56,6 @@ export class _OrderModal extends React.Component {
         let y = ev.clientY
         this.inputRef.current.style.setProperty('--mouse-x', x)
         this.inputRef.current.style.setProperty('--mouse-y', y)
-
-
-
     }
 
     handleChange = (ev) => {
@@ -78,7 +74,6 @@ export class _OrderModal extends React.Component {
     }
 
     activeInput = (input) => {
-
         this.closeInputs()
         switch (input) {
             case 'guest':
@@ -102,7 +97,6 @@ export class _OrderModal extends React.Component {
 
     getTotalGuests = () => {
         if (this.state.order.guests) {
-
             let { adult, child, infant } = this.state.order.guests
             var guests = `guests:${adult + child + infant}`
             return guests
@@ -110,6 +104,7 @@ export class _OrderModal extends React.Component {
             return 0
         }
     }
+
     handleKeyPress = () => {
         return false
     }
@@ -142,12 +137,6 @@ export class _OrderModal extends React.Component {
             console.log('stay', stay);
         }
     }
-
-    temp = () => {
-        const { stay, order } = this.state
-        const checkIn = Date.parse(order.checkIn)
-    }
-
 
     render() {
         const { isPickingDates, isPickingGuests, isReserve, reviewsNumber, order } = this.state
@@ -209,26 +198,24 @@ export class _OrderModal extends React.Component {
                         {!isReserve && <button onMouseMove={this.onSetColor} ref={this.inputRef} className="confirm-order fs16" type="button" onClick={this.onSubmit}><span>Check availability</span></button>}
                         {isReserve &&
                             <button onMouseMove={this.onSetColor} ref={this.inputRef} className="confirm-order fs16 medium" type="button" onClick={this.onSubmit}>Reserve</button>}
-
                     </div>
                     <div className={`${isPickingGuests ? '' : 'none'}`}> {isPickingGuests && <GuestsPicking handleGuestsChanege={this.handleGuestsChanege} />} </div>
-
                 </form >
                 <div className={isPickingDates ? '' : 'none'}> {isPickingDates && <DatePicker preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />} </div>
             </div >
         )
     }
 }
+
 function mapStateToProps(state) {
     return {
         stays: state.stayReducer.stays,
         currOrder: state.orderReducer.currOrder
-
     }
 }
 const mapDispatchToProps = {
     onAddOrder,
     onLoadOrder
-
 }
+
 export const OrderModal = connect(mapStateToProps, mapDispatchToProps)(withRouter(_OrderModal))

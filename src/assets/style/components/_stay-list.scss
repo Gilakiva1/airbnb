@@ -5,12 +5,10 @@
         box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.15);
         display: inline-block;
         padding: 10px;
-        
     }
     .filter-container{
         position: relative;
     }
-    
     div {
         button {
             display: inline-block;
@@ -33,9 +31,9 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
-    // padding: 20px;
     grid-auto-flow: dense;
 }
+
 
 .city-name{
     font-size: rem(32px);

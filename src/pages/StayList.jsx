@@ -4,19 +4,12 @@ import { StayPreview } from '../cmps/StayPreview.jsx'
 import { StayFilter } from '../cmps/StayFilter.jsx'
 import { loadStays } from '../store/stay.action.js'
 import { utilService } from '../services/util.service.js'
-
 class _StayList extends React.Component {
     state = {
         params: null
     }
 
     async componentDidMount() {
-        // window.scrollTo(0, 0);
-        // window.top.location.reload();
-        // window.parent.location = 0;
-        // window.opener.top.location.reload();
-        window.page = 0
-
         const searchParams = new URLSearchParams(this.props.location.search);
         let newParams = {}
         for (let [key, value] of searchParams) {
@@ -40,6 +33,8 @@ class _StayList extends React.Component {
         if (params) {
             city = params.split('=')[1];
         }
+
+        console.log('city',city);
 
         if (!stays.length) return <div>loading...</div>
         return (

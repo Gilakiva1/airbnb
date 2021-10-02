@@ -9,13 +9,11 @@ import imgUser from '../assets/img/home-page/user.jpg'
 import { Tags } from '../cmps/stay-details/Tags.jsx';
 import { OrderModal } from '../cmps/OrderModal.jsx';
 import { stayService } from '../services/stay.service.js';
-import { orderService } from '../services/order.service.js';
 import { Amenities } from '../cmps/stay-details/amenities.jsx';
 import { DatePicker } from '../cmps/header/DatePicker.jsx';
 import { onUpdateOrder, onLoadOrder, onSetOrder } from '../store/order.action';
 import { ReviewPoints } from '../cmps/stay-details/ReviewPoints.jsx';
 import { ReviewList } from '../cmps/stay-details/ReviewList.jsx';
-
 
 export class _StayDetails extends Component {
     state = {
@@ -23,7 +21,6 @@ export class _StayDetails extends Component {
     };
     componentDidMount() {
         this.loadStay()
-
     }
 
     loadStay = async () => {
@@ -56,10 +53,8 @@ export class _StayDetails extends Component {
     render() {
         const { stay } = this.state
         if (!stay) return <div>Loading...</div>
-
         return (
             <>
-
                 <section className="stay-details-container">
                     <h1>{stay.name}</h1>
                     <div className="flex space-between">
@@ -124,9 +119,7 @@ export class _StayDetails extends Component {
                     </div >
                     <ReviewPoints reviews={stay.reviews} />
                     <ReviewList reviews={stay.reviews} />
-
                 </section > 
-
             </>
         )
     }

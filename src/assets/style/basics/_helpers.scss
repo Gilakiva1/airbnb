@@ -42,13 +42,7 @@
 
 // flex helpers
 
-.clr1 {
-  color: $clr1;
-}
 
-.clr2 {
-  color: $clr2;
-}
 
 .fw-unset {
   font-weight: unset;
@@ -185,4 +179,11 @@
   margin-right: 5px;
   border-right: 1px solid rgba(131, 126, 126, 0.5);
   height: 35px;
+}
+
+.mrb2{
+  margin-bottom: 2px;
+}
+.mrt10{
+  margin-top: 10px;
 }

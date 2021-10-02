@@ -14,7 +14,8 @@ import { DatePicker } from '../cmps/header/DatePicker.jsx';
 import { onAddOrder } from '../store/order.action';
 import { ReviewPoints } from '../cmps/stay-details/ReviewPoints.jsx';
 import { ReviewList } from '../cmps/stay-details/ReviewList.jsx';
-
+import GoogleMaps from '../cmps/stay-details/Google-Maps.jsx';
+import { IdentityVerified } from '../cmps/svgs/IdentityVerified.jsx';
 
 export class _StayDetails extends Component {
     state = {
@@ -24,14 +25,14 @@ export class _StayDetails extends Component {
     componentDidMount() {
         this.loadStay()
 
-    } 
+    }
 
     loadStay = async () => {
         const id = this.props.match.params.stayId;
         const stay = await stayService.getById(id)
-        if (!stay) this.props.history.push("/")
-
         const searchParams = new URLSearchParams(this.props.location.search);
+        if (!stay) this.props.history.push(`/stay?${searchParams}`)
+
         const order = utilService.getQueryParams(searchParams)
         if (order.checkIn && order.checkOut) {
 
@@ -66,7 +67,6 @@ export class _StayDetails extends Component {
         const { stay, order } = this.state
 
         if (!stay) return <div>Loading...</div>
-
         return (
             <>
                 <section className="stay-details-container">
@@ -123,10 +123,10 @@ export class _StayDetails extends Component {
                                 </div>
                             </div>
                             <div className="seperation-line"></div>
-                            <div className="details-reviews-header flex gap5">
+                            <div className="details-reviews-header medium fh26 flex gap5">
                                 {<FontAwesomeIcon className="star-icon" icon={faStar} />}
                                 {stay.rating}
-                                ({utilService.getRandomIntInclusive(30, 500)} reviews)
+                                <span>·</span>{utilService.getRandomIntInclusive(30, 500)} reviews
                             </div>
                         </div >
                         <OrderModal stay={stay} order={order} />
@@ -136,6 +136,31 @@ export class _StayDetails extends Component {
                     <div className="seperation-line"></div>
                     <h2>Where you’ll be</h2>
                     <p>{stay.loc.address}</p>
+                    <GoogleMaps />
+                    <div className="seperation-line"></div>
+                    <div className="user-header flex  gap10">
+                        <img className="user-details-profile-img" src={stay.host.imgUrl} alt="" />
+                        <div className="user-profile-name-date flex column">
+                         <span className="user-name medium fs22 fh26">Hosted by {stay.host.fullname}</span>
+                                <span className="fs14 fh18 book clr1">{stay.host.joinDate || 'joined in September 2016'}</span>
+                        </div>
+                    </div>
+                        <div className="flex gap10">
+                            <div className="fs22 flex gap5">
+                                {<FontAwesomeIcon className="star-icon fs16 fh20" icon={faStar} />}
+                                <div className="fs16 fh20 book">{utilService.getRandomIntInclusive(100, 2000).toLocaleString('en-IL')} Reviews</div>
+                            </div>
+                            <div className=" flex gap10">
+                                {<IdentityVerified className="clr3"/>}
+                                <div className="fs16 fh20 book">Identity verified</div>
+                            </div>
+                        </div>
+                        <div className=" respond-container">
+                            <p className="fs16 fh20 book">Response rate: 99%</p>
+                            <p className="fs16 fh20 book">Response time: within an hour</p>
+                        </div>
+                        <button className="contact-host fs16 fh20 medium">Contact host</button>
+                    <div className="seperation-line"></div>
                 </section >
 
             </>

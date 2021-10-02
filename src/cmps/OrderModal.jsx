@@ -67,7 +67,6 @@ export class _OrderModal extends React.Component {
     }
 
     activeInput = (input) => {
-
         this.closeInputs()
         switch (input) {
             case 'guest':
@@ -91,7 +90,6 @@ export class _OrderModal extends React.Component {
 
     getTotalGuests = () => {
         if (this.state.order.guests) {
-
             let { adult, child, infant } = this.state.order.guests
             var guests = `guests:${adult + child + infant}`
             return guests
@@ -99,6 +97,7 @@ export class _OrderModal extends React.Component {
             return 0
         }
     }
+
     handleKeyPress = () => {
         return false
     }
@@ -131,12 +130,6 @@ export class _OrderModal extends React.Component {
             console.log('stay', stay);
         }
     }
-
-    temp = () => {
-        const { stay, order } = this.state
-        const checkIn = Date.parse(order.checkIn)
-    }
-
 
     render() {
         const { isPickingDates, isPickingGuests, isReserve, reviewsNumber, order, orderParams } = this.state
@@ -198,7 +191,6 @@ export class _OrderModal extends React.Component {
                         {!isReserve && <button onMouseMove={this.onSetColor} ref={this.inputRef} className="confirm-order fs16" type="button" onClick={this.onSubmit}><span>Check availability</span></button>}
                         {isReserve &&
                             <button onMouseMove={this.onSetColor} ref={this.inputRef} className="confirm-order fs16 medium" type="button" onClick={this.onSubmit}>Reserve</button>}
-
                     </div>
                     <div className={`${isPickingGuests ? '' : 'none'}`}> {isPickingGuests && <GuestsPicking handleGuestsChanege={this.handleGuestsChanege} />} </div>
                     <div className={isPickingDates ? '' : 'none'}> {isPickingDates && <DatePicker order={order} preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />} </div>
@@ -207,14 +199,14 @@ export class _OrderModal extends React.Component {
         )
     }
 }
+
 function mapStateToProps(state) {
     return {
         stays: state.stayReducer.stays,
-
     }
 }
 const mapDispatchToProps = {
     onAddOrder,
-
 }
+
 export const OrderModal = connect(mapStateToProps, mapDispatchToProps)(withRouter(_OrderModal))

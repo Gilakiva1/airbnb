@@ -16,7 +16,7 @@ function query(entityType, params = {}) {
 
     if (entityType === 'stayDB') {
 
-        entities = JSON.parse(localStorage.getItem(entityType)) || dummyData
+        entities = JSON.parse(localStorage.getItem(entityType)) || stays
         if (params.address) {
             params.address = params.address.split('-').join(' ')
             const regex = new RegExp(params.address, 'i');
@@ -32,7 +32,13 @@ function query(entityType, params = {}) {
                 return entitie.capacity >= params.guests.adult + params.guests.child + params.guests.infant
             })
         }
-    } else {
+    } 
+    
+   else if (entityType === 'orderDB') {
+    entities = JSON.parse(localStorage.getItem(entityType)) || stays
+
+   }
+    else {
         entities = JSON.parse(localStorage.getItem(entityType)) || []
 
     }
@@ -128,7 +134,7 @@ function postMany(entityType, newEntities) {
         })
 }
 
-const dummyData = [{
+const stays = [{
     _id: '10006546',
     name: 'Ribeira Charming Duplex',
     imgUrls: ['https://a0.muscache.com/im/pictures/19699192/1db389e2_original.jpg?im_w=1200', 'https://a0.muscache.com/im/pictures/19699115/da835cad_original.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/19699172/fcdea060_original.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/19699165/665a1533_original.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/19699218/ea3a4033_original.jpg?im_w=720'],
@@ -153,7 +159,7 @@ const dummyData = [{
     host: {
         _id: '51399391',
         fullname: ' Davit Pok',
-        imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
+        imgUrl: user1,
     },
     orders: [
         {
@@ -1293,4 +1299,30 @@ const dummyData = [{
     likedByUserIds: ['u101', 'u102']
 
 }
+]
+
+const orders = [[
+    {
+      _id: "o1225",
+      hostId: "u102",
+      createdAt: '9898989',
+      buyer: {
+        _id: "u101",
+        fullname: "User 1"
+      },
+      totalPrice: 160,
+      startDate: "2025/10/15",
+      endDate: "2025/10/17",
+      guests: {
+        adults: 2,
+        kids: 1
+      },
+      stay: {
+        _id: "h102",
+        name: "House Of Uncle My",
+        price: 80.00
+      },
+      status: "pending"
+    }    
+  ],
 ]

@@ -18,6 +18,9 @@
 .fs20 {
   font-size: rem(20px);
 }
+.fs22 {
+  font-size: rem(22px);
+}
 .fs24 {
   font-size: rem(24px);
 }
@@ -36,19 +39,16 @@
 .fh20 {
   line-height: rem(20px);
 }
+.fh26 {
+  line-height: rem(26px);
+}
 .fh32 {
   line-height: rem(32px);
 }
 
 // flex helpers
 
-.clr1 {
-  color: $clr1;
-}
 
-.clr2 {
-  color: $clr2;
-}
 
 .fw-unset {
   font-weight: unset;
@@ -185,4 +185,11 @@
   margin-right: 5px;
   border-right: 1px solid rgba(131, 126, 126, 0.5);
   height: 35px;
+}
+
+.mrb2{
+  margin-bottom: 2px;
+}
+.mrt10{
+  margin-top: 10px;
 }

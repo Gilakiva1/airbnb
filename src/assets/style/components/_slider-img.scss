@@ -1,5 +1,5 @@
 .slider-img{
-    position: relative;
+    position: a;
     cursor: pointer;
     &:hover{
         .slick-prev{
@@ -15,9 +15,6 @@
         left: 0px;
         z-index: 1;
         opacity: 0;
-       
-        // border-radius: 50%;
-
     }
     .slick-next{
         position: absolute;
@@ -28,7 +25,6 @@
     }
     .slick-next::before{
         opacity: 1 !important;
-        // color: black;
         font-size: 25px;
         right: 0;
     }
@@ -37,38 +33,20 @@
         font-size: 25px;
         margin-left: 6px;
         opacity: 1 !important;
-
     }
 
     .slick-slider{
         position: relative;
         margin-bottom: 8px;         
-        div{
-            height: 100%;
-            width: 100%;
-            margin: 0 0;
-            padding: 0 0 ;
-            border-radius: 12px;
-            img{
-                height: 100%;
-                border-radius: 12px;
-                object-fit: cover;
-                    @include aspect-ratio(1,1);
-            }
-        }
     }
 }
 
 .slick-dots{
     bottom: 0 !important;
-
         li{
             margin: 0 !important;
-            
             button::before{
-                color: white !important;
-                
+                color: white !important;     
             }
         }
-    
 }

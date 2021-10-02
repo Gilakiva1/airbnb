@@ -1,9 +1,7 @@
-// import React from 'react'
-// import { connect } from 'react-redux';
 import React from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { LogoSvg } from "../svgs/LogoSvg"
@@ -22,7 +20,7 @@ class _AppHeader extends React.Component {
         window.addEventListener('scroll', this.onToggleHeader)
     }
 
-    componentDidUpdate(prevProps, prevState) {
+    componentDidUpdate() {
         if (this.props.history.location.pathname !== '/') {
             window.removeEventListener('scroll', this.onToggleHeader)
         } else {
@@ -46,7 +44,6 @@ class _AppHeader extends React.Component {
             document.documentElement.scrollTop = 0
         }
     }
-    onToggleHeader
 
     render() {
         const { scrollLoc, isEnter } = this.state
@@ -63,7 +60,7 @@ class _AppHeader extends React.Component {
                     {pathname !== '/' && <MiniSearchBar />}
                     <nav className="nav-header">
                         <div className="nav-header flex align-center">
-                            <NavLink className={`link-host border-round fs14 ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-black hover-bcg'}`} to={`/ `} >Explore</NavLink>
+                            <NavLink className={`link-host border-round fs14 ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-black hover-bcg'}`} to={`/stay`} >Explore</NavLink>
                             <NavLink className={`link-host border-round fs14 ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-black hover-bcg'}`} to={`/ `} >Become a host</NavLink>
                             <div className="menu-container border-round">
                                 <button onClick={this.onToggoleMenu} className="menu-btn border-round flex align-center">

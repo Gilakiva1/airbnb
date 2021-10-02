@@ -4,23 +4,16 @@ import { StayPreview } from '../cmps/StayPreview.jsx'
 import { StayFilter } from '../cmps/StayFilter.jsx'
 import { loadStays } from '../store/stay.action.js'
 import { utilService } from '../services/util.service.js'
-
 class _StayList extends React.Component {
     state = {
         orderParams: null
     }
 
     async componentDidMount() {
-        console.log(this.props);
-
-        window.page = 0
-
         const searchParams = new URLSearchParams(this.props.location.search);
         const getParms = utilService.getQueryParams(searchParams)
-
         await this.props.loadStays(getParms)
         this.setState({ orderParams: getParms })
-
     }
 
     render() {

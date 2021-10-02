@@ -5,10 +5,6 @@ import 'react-date-range/dist/theme/default.css'; // theme css file\
 import { Calendar } from 'react-date-range';
 import { addDays } from 'date-fns';
 
-
-
-
-
 export const DatePicker = ({ order, handlePickingDates, preventPropagation, className = '' }) => {
     const [dateState, setDateState] = useState([
  

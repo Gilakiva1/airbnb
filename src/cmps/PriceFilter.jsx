@@ -5,6 +5,7 @@ import Slider from '@mui/material/Slider';
 const minDistance = 35;
 
 export default function PriceFilter(props) {
+
   const [price, setPrice] = React.useState([0, 100]);
   const handleChange1 = (event, newValue, activeThumb) => {
     if (!Array.isArray(newValue)) return;
@@ -15,7 +16,6 @@ export default function PriceFilter(props) {
     }
   };
 
- 
   return (
     <div>
     <Box sx={{ width: 300 }}>

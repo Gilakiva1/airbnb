@@ -1,13 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch, faStar } from '@fortawesome/free-solid-svg-icons'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { onSetFilter } from '../../store/stay.action.js'
 import { withRouter } from 'react-router'
 import { DatePicker } from './DatePicker.jsx'
 import { utilService } from '../../services/util.service'
 import { GuestsPicking } from './GuestsPicking.jsx'
-import { onAddOrder } from '../../store/order.action'
 
 export class _SearchBar extends React.Component {
 
@@ -159,7 +158,7 @@ export class _SearchBar extends React.Component {
               >
                 <span>Guests:</span>
                 <input
-                  type="search"
+                  type="text"
                   placeholder="Add guests"
                   autoComplete="off"
                   name="guests"
@@ -184,8 +183,6 @@ function mapStateToProps(state) {
 }
 const mapDispatchToProps = {
   onSetFilter,
-
-  onAddOrder
 
 }
 

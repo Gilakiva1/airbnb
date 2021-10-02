@@ -37,16 +37,6 @@ function GoogleMaps() {
         onLoad={onLoad}
         onUnmount={onUnmount}
       >
-<GoogleMap
-  onLoad={map => {
-    const bounds = new window.google.maps.LatLngBounds();
-    map.fitBounds(bounds);
-  }}
-  onUnmount={map => {
-    // do your stuff before map is unmounted
-  }}
-/>
-
         { /* Child components, such as markers, info windows, etc. */ }
         <></>
       </GoogleMap>

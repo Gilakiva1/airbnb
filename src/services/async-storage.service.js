@@ -32,7 +32,13 @@ function query(entityType, params = {}) {
                 return entitie.capacity >= params.guests.adult + params.guests.child + params.guests.infant
             })
         }
-    } else {
+    } 
+    
+   else if (entityType === 'orderDB') {
+    entities = JSON.parse(localStorage.getItem(entityType)) || stays
+
+   }
+    else {
         entities = JSON.parse(localStorage.getItem(entityType)) || []
 
     }
@@ -1295,4 +1301,28 @@ const stays = [{
 }
 ]
 
-
+const orders = [[
+    {
+      _id: "o1225",
+      hostId: "u102",
+      createdAt: '9898989',
+      buyer: {
+        _id: "u101",
+        fullname: "User 1"
+      },
+      totalPrice: 160,
+      startDate: "2025/10/15",
+      endDate: "2025/10/17",
+      guests: {
+        adults: 2,
+        kids: 1
+      },
+      stay: {
+        _id: "h102",
+        name: "House Of Uncle My",
+        price: 80.00
+      },
+      status: "pending"
+    }    
+  ],
+]

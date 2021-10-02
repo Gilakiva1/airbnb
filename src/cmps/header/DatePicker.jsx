@@ -6,19 +6,22 @@ import { Calendar } from 'react-date-range';
 import { addDays } from 'date-fns';
 
 
-export const DatePicker = ({ handlePickingDates, preventPropagation, className='' }) => {
 
+
+
+export const DatePicker = ({ order, handlePickingDates, preventPropagation, className = '' }) => {
     const [dateState, setDateState] = useState([
+ 
         {
-            startDate: new Date(),
-            endDate: null,
+            startDate: order.checkIn ? new Date(order.checkIn) : new Date(),
+            endDate: order.checkOut ? new Date(order.checkOut) : null,
             key: 'selection'
         }
     ]);
-
     useEffect(() => {
         handlePickingDates(dateState[0].startDate, dateState[0].endDate)
     }, [dateState])
+
 
     return (
         <div className={className} onClick={preventPropagation}>

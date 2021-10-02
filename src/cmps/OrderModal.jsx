@@ -7,7 +7,7 @@ import { GuestsPicking } from './header/GuestsPicking';
 import { DatePicker } from './header/DatePicker';
 import { stayService } from '../services/stay.service';
 import { withRouter } from 'react-router';
-import { onAddOrder, onLoadOrder } from '../store/order.action';
+import { onAddOrder } from '../store/order.action';
 
 export class _OrderModal extends React.Component {
 
@@ -25,9 +25,7 @@ export class _OrderModal extends React.Component {
         let { reviewsNumber } = this.state
         reviewsNumber = utilService.getRandomIntInclusive(30, 500)
         window.addEventListener('click', this.closeInputs)
-
-        const searchParams = new URLSearchParams(this.props.location.search);
-        const order = utilService.getQueryParams(searchParams)
+        const { order } = this.props
         this.setState({ order, reviewsNumber })
     }
 
@@ -167,7 +165,7 @@ export class _OrderModal extends React.Component {
                                     type="text"
                                     placeholder="Add dates"
                                     name="checkIn"
-                                    value={order.checkIn || ''}
+                                    value={order.checkIn|| ''}
                                     disabled
                                     style={{ outline: 'none' }}
                                     onChange={this.handleChange}
@@ -180,9 +178,9 @@ export class _OrderModal extends React.Component {
                                 <input
                                     className="light fs14"
                                     type="text"
-                                    placeholder="Add dates"
+                                    placeholder="Add dates" 
                                     name="checkOut"
-                                    value={order.checkOut || ''}
+                                    value={order.checkOut|| ''}
                                     disabled
                                     style={{ outline: 'none' }}
                                     onChange={this.handleChange}
@@ -205,7 +203,7 @@ export class _OrderModal extends React.Component {
                     <div className={`${isPickingGuests ? '' : 'none'}`}> {isPickingGuests && <GuestsPicking handleGuestsChanege={this.handleGuestsChanege} />} </div>
 
                 </form >
-                <div className={isPickingDates ? '' : 'none'}> {isPickingDates && <DatePicker preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />} </div>
+                <div className={isPickingDates ? '' : 'none'}> {isPickingDates && <DatePicker order={order} preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />} </div>
             </div >
         )
     }
@@ -213,13 +211,11 @@ export class _OrderModal extends React.Component {
 function mapStateToProps(state) {
     return {
         stays: state.stayReducer.stays,
-        currOrder: state.orderReducer.currOrder
 
     }
 }
 const mapDispatchToProps = {
     onAddOrder,
-    onLoadOrder
 
 }
 export const OrderModal = connect(mapStateToProps, mapDispatchToProps)(withRouter(_OrderModal))

@@ -130,7 +130,9 @@ export class _StayDetails extends Component {
                     </div >
                     <ReviewPoints reviews={stay.reviews} />
                     <ReviewList reviews={stay.reviews} />
-
+                    <div className="seperation-line"></div>
+                    <h2>Where you’ll be</h2>
+                    <p>{stay.loc.address}</p>
                 </section >
 
             </>

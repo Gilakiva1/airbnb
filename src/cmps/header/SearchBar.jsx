@@ -64,7 +64,6 @@ export class _SearchBar extends React.Component {
     ev.preventDefault()
     const { criteria } = this.state
     const queryString = utilService.makeQueryParams(criteria)
-    await this.props.onSetOrder(criteria)
     this.props.history.push(`/stay?${queryString}`)
 
   }

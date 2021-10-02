@@ -12,7 +12,7 @@ export function onAddOrder(orderDetails) {
     } catch (err) {
         console.log('err', err);
         throw err
-    }
+    } 
 }
 export function onSetOrder(orderDetails) {
     try {

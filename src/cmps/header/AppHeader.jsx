@@ -53,14 +53,13 @@ class _AppHeader extends React.Component {
         const { pathname } = this.props.history.location
 
         return (
-            <header className={`${scrollLoc > 40 ? 'white' : ''} ${pathname === '/' ? 'fixed ' : 'sticky-color'} header-container main-container`}>
+            <header className={`${scrollLoc > 40 ? 'white' : ''} ${pathname === '/' ? 'fixed home' : 'sticky-color'} header-container  main-container `}>
                 <div className="header-func flex">
                     <div className="logo-container flex align-center pointer" onClick={this.backToHome}>
                         <button className="btn-logo border-none"><LogoSvg className={`${(pathname === '/' && scrollLoc > 40) || pathname !== '/' ? 'logo-pink' : 'logo-white'} `} /></button>
                         <h3 className={`logo-txt ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-pink'}`}>Home Away</h3>
                     </div>
                     {scrollLoc > 40 && pathname === '/' && <MiniSearchBar />}
-
                     {pathname !== '/' && <MiniSearchBar />}
                     <nav className="nav-header">
                         <div className="nav-header flex align-center">
@@ -77,7 +76,7 @@ class _AppHeader extends React.Component {
                         </div>
                     </nav>
                 </div>
-                {scrollLoc < 40 && pathname === '/' && <SearchBar animateClassName={isEnter ? 'scale-up-top' : ''} />}
+                    {scrollLoc < 40 && pathname === '/' && <SearchBar animateClassName={isEnter ? 'scale-up-top' : ''} />}
             </header>
         )
     }

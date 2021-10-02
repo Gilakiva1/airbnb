@@ -11,6 +11,7 @@ class _StayList extends React.Component {
     }
 
     async componentDidMount() {
+        console.log(this.props);
 
         window.page = 0
 

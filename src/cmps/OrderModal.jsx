@@ -165,7 +165,7 @@ export class _OrderModal extends React.Component {
                                     type="text"
                                     placeholder="Add dates"
                                     name="checkIn"
-                                    value={order.checkIn|| ''}
+                                    value={order.checkIn || ''}
                                     disabled
                                     style={{ outline: 'none' }}
                                     onChange={this.handleChange}
@@ -178,9 +178,9 @@ export class _OrderModal extends React.Component {
                                 <input
                                     className="light fs14"
                                     type="text"
-                                    placeholder="Add dates" 
+                                    placeholder="Add dates"
                                     name="checkOut"
-                                    value={order.checkOut|| ''}
+                                    value={order.checkOut || ''}
                                     disabled
                                     style={{ outline: 'none' }}
                                     onChange={this.handleChange}
@@ -201,9 +201,8 @@ export class _OrderModal extends React.Component {
 
                     </div>
                     <div className={`${isPickingGuests ? '' : 'none'}`}> {isPickingGuests && <GuestsPicking handleGuestsChanege={this.handleGuestsChanege} />} </div>
-
+                    <div className={isPickingDates ? '' : 'none'}> {isPickingDates && <DatePicker order={order} preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />} </div>
                 </form >
-                <div className={isPickingDates ? '' : 'none'}> {isPickingDates && <DatePicker order={order} preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />} </div>
             </div >
         )
     }

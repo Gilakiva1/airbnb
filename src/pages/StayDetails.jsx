@@ -122,7 +122,7 @@ export class _StayDetails extends Component {
                                     <DatePicker order={order} className={'datepicker-details'} preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />
                                 </div>
                             </div>
-                            <div className="seperation-line"></div>
+                            <div className="seperation-line big"></div>
                             <div className="details-reviews-header medium fh26 flex gap5">
                                 {<FontAwesomeIcon className="star-icon" icon={faStar} />}
                                 {stay.rating}

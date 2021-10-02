@@ -30,11 +30,8 @@ export class SimpleSlider extends Component {
             <>
                 <button onClick={this.likeStay} className={`like-tag ${isLike ? 'like':''}`}> <Like /> </button>
                 <Slider className='slider-img' {...settings}>
-
                     {stay.imgUrls.map((stayImg, idx) => (
-                        <>
                             <img key={idx} className="stay-img" src={stayImg} alt="" />
-                        </>
                     ))}
                 </Slider>
             </>

@@ -35,7 +35,7 @@ function query(entityType, params = {}) {
     } 
     
    else if (entityType === 'orderDB') {
-    entities = JSON.parse(localStorage.getItem(entityType)) || stays
+    entities = JSON.parse(localStorage.getItem(entityType)) || orders
 
    }
     else {
@@ -1305,22 +1305,23 @@ const orders = [[
     {
       _id: "o1225",
       hostId: "u102",
-      createdAt: '9898989',
+      createdAt: '9898988989',
       buyer: {
         _id: "u101",
         fullname: "User 1"
       },
-      totalPrice: 160,
+      totalPrice: 400,
       startDate: "2025/10/15",
       endDate: "2025/10/17",
       guests: {
-        adults: 2,
-        kids: 1
+        adult: 2,
+        child: 1,
+        infant: 0
       },
       stay: {
-        _id: "h102",
-        name: "House Of Uncle My",
-        price: 80.00
+        _id: "1000651123122",
+        name: "Stunning Shoreditch Loft Conversion + Movie Screen",
+        price: 200
       },
       status: "pending"
     }    

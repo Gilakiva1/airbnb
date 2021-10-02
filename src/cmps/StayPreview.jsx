@@ -3,8 +3,8 @@ import { SimpleSlider } from "./SliderImg";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { utilService } from "../services/util.service";
-
-
+    
+    
 export function StayPreview({ stay, orderParams }) {
     const queryString = utilService.makeQueryParams(orderParams)
 

@@ -1,5 +1,4 @@
 import React from "react"
-import Media from 'react-media';
 
 export function AppFooter() {
     if (window.innerWidth > 550) {

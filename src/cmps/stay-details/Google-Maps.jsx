@@ -2,21 +2,21 @@ import React from 'react'
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 
 const containerStyle = {
-  width: '400px',
+  width: '100%',
   height: '400px'
 };
 
-const center = {
-  lat: -3.745,
-  lng: -38.523
-};
 
-function GoogleMaps() {
+function GoogleMaps({ lat, lng }) {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: "AIzaSyCXvAM_0KU7CnqILKk0xY3gs6kSuYj9xc4"
+    googleMapsApiKey: "AIzaSyAFXMKnLTzbGyLpnKlxj9YiyhMkMs4nf0M"
   })
 
+  const center = {
+    lat: lat,
+    lng: lng
+  };
   const [map, setMap] = React.useState(null)
 
   const onLoad = React.useCallback(function callback(map) {
@@ -30,16 +30,16 @@ function GoogleMaps() {
   }, [])
 
   return isLoaded ? (
-      <GoogleMap
-        mapContainerStyle={containerStyle}
-        center={center}
-        zoom={10}
-        onLoad={onLoad}
-        onUnmount={onUnmount}
-      >
-        { /* Child components, such as markers, info windows, etc. */ }
-        <></>
-      </GoogleMap>
+    <GoogleMap
+      mapContainerStyle={containerStyle}
+      center={center}
+      zoom={10}
+      onLoad={onLoad}
+      onUnmount={onUnmount}
+    >
+      { /* Child components, such as markers, info windows, etc. */}
+      <></>
+    </GoogleMap>
   ) : <></>
 }
 

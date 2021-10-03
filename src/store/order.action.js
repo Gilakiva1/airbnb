@@ -13,6 +13,10 @@ export function onAddOrder(orderDetails) {
         console.log('err', err);
         throw err
     }
+
+
+
+
 }
 export function onUpdateOrder(order) {
     try {
@@ -27,21 +31,17 @@ export function onUpdateOrder(order) {
 
 }
 
-export function onDateChange(newDates) {
-    
-}
 
-// export function onSetOrder(orderDetails) {
-//     try {
-//         return async dispatch => {
-//             const order = await orderService.save(orderDetails)
-//             dispatch({ type: 'SET_ORDER', order })
-//         }
-//     } catch (err) {
-//         console.log('err', err);
-//         throw err
-//     }
-// }
+export function onSetOrder(order) {
+    try {
+        return async dispatch => {
+            dispatch({ type: 'SET_ORDER', order })
+        }
+    } catch (err) {
+        console.log('err', err);
+        throw err
+    }
+}
 
 
 
@@ -73,9 +73,9 @@ export function onDateChange(newDates) {
 
 
 
-export function sendOrderDetails(order) {
-    console.log('orderDetails', order);
-    return async dispatch => {
-        dispatch({ type: 'SET_ORDER', order })
-    }
-}
+// export function sendOrderDetails(order) {
+//     console.log('orderDetails', order);
+//     return async dispatch => {
+//         dispatch({ type: 'SET_ORDER', order })
+//     }
+// }

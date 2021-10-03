@@ -26,6 +26,11 @@ export function onUpdateOrder(order) {
     }
 
 }
+
+export function onDateChange(newDates) {
+    
+}
+
 // export function onSetOrder(orderDetails) {
 //     try {
 //         return async dispatch => {

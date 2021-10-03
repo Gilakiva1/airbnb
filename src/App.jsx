@@ -9,14 +9,14 @@ import './assets/style/style.scss'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-export class _App extends React.Component {
+class _App extends React.Component {
 
     render() {
         const { pathname } = this.props.history.location
 
         return (
             < >
-        
+
                 <AppHeader />
                 <main className={`${pathname === '/' ? 'main-container-home' : 'main-container'}`}>
                     <Switch>
@@ -28,4 +28,4 @@ export class _App extends React.Component {
         )
     }
 }
-export const App = connect()(withRouter(_App))
+export const App = withRouter(_App)

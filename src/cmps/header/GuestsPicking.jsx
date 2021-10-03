@@ -70,7 +70,6 @@ export class _GuestsPicking extends React.Component {
         event.stopPropagation()
     }
     render() {
-        console.log('');
         const { pathnme } = this.props.location
         const { adult, child, infant } = this.state
         return (

@@ -5,18 +5,18 @@ import { Like } from '../cmps/svgs/Like.jsx'
 
 export class SimpleSlider extends Component {
     state = {
-        isLike:false
+        isLike: false,
     }
 
     likeStay = (ev) => {
         ev.preventDefault()
-        const {isLike} = this.state
-        this.setState(prevState => ({ ...prevState, isLike:!isLike }))
+        const { isLike } = this.state
+        this.setState(prevState => ({ ...prevState, isLike: !isLike }))
     }
 
     render() {
         const { stay } = this.props
-        const {isLike} = this.state
+        const { isLike } = this.state
         const settings = {
             dots: true,
             infinite: true,
@@ -28,10 +28,10 @@ export class SimpleSlider extends Component {
         };
         return (
             <>
-                <button onClick={this.likeStay} className={`like-tag ${isLike ? 'like':''}`}> <Like /> </button>
+                <button onClick={this.likeStay} className={`like-tag ${isLike ? 'like' : ''}`}> <Like /> </button>
                 <Slider className='slider-img' {...settings}>
-                    {stay.imgUrls.map((stayImg, idx) => (
-                            <img key={idx} className="stay-img" src={stayImg} alt="" />
+                    {stay.imgUrls.slice(0,5).map((stayImg, idx) => (
+                        <img key={idx} className="stay-img" src={stayImg} alt="" />
                     ))}
                 </Slider>
             </>

@@ -13,10 +13,6 @@ export function onAddOrder(orderDetails) {
         console.log('err', err);
         throw err
     }
-
-
-
-
 }
 export function onUpdateOrder(order) {
     try {

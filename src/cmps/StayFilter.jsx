@@ -1,99 +1,63 @@
 import { connect } from 'react-redux'
 import { Component } from 'react'
 import PriceFilter from './PriceFilter.jsx';
-import { onSetFilter } from '../store/stay.action.js'
 import { PropertyTypeFilter } from './PropertyTypeFilter.jsx';
+import { AmenitiesFilter } from './AmenitiesFilter.jsx';
 
-class _StayFilter extends Component {
+export class StayFilter extends Component {
 
     state = {
-        filterBy: {
-            price: {
-                minPrice: '',
-                maxPrice: ''
-            },
-            propertyTypes: {
-                types:[],
-                isRemoveType:false
-            },
-        },
         isPrice: false,
-        isPropertyType: false
+        isPropertyType: false,
+        isAmenities: false
     }
-
     componentDidMount() {
-        window.addEventListener('click', this.closeFilters)
-    }
-    setCheckedPropertyType = (type) => {
-        var { propertyTypes } = this.state.filterBy
-        var {types} = propertyTypes
-        types.push(type)
-        this.setState(({ filterBy: { ...this.state.filterBy, propertyTypes:{types,isRemoveType:false} } }),
-            () => {
-                this.props.onSetFilter(this.state.filterBy)
-            })
+        // window.addEventListener('click', this.closeFilters)
     }
 
-    removePropertyType = (removeType) => {
-        const { propertyTypes } = this.state.filterBy
-        var {types} = propertyTypes
-        const idx = types.findIndex(type => type === removeType)
-        types.splice(idx, 1)
-        this.setState(({ filterBy: {...this.state.filterBy, propertyTypes:{types,isRemoveType:true} } }),
-            () => {
-                this.props.onSetFilter(this.state.filterBy)
-            })
+    componentWillUnmount() {
+        // window.removeEventListener('click', this.closeFilters)        
     }
 
     closeFilters = () => {
-        this.setState({ isPrice: false })
+        this.setState({ isPrice: false, isPropertyType: false, isAmenities: false })
     }
+
     toggelPriceFilter = (ev) => {
         ev.stopPropagation()
         this.setState(prevState => ({ ...prevState, isPrice: !this.state.isPrice }))
     }
+
     toggelPropertyTypeFilter = (ev) => {
         ev.stopPropagation()
         this.setState(prevState => ({ ...prevState, isPropertyType: !this.state.isPropertyType }))
     }
 
-    onSavePrice = (price) => {
-        const newPrice = {
-            maxPrice: price[1],
-            minPrice: price[0],
-        }
-        this.setState(({ filterBy: { ...this.state.filterBy, price: newPrice } }),
-            () => {
-                this.props.onSetFilter(this.state.filterBy)
-            })
-    }
+    toggelAmenitiesFilter = (ev) => {
+        ev.stopPropagation()
+        this.setState(prevState => ({ ...prevState, isAmenities: !this.state.isAmenities }))
 
-    minPrice = () => {
-        const { minPrice, maxPrice } = this.state.filterBy.price
-        if (!minPrice && (!maxPrice || maxPrice === 500)) {
-            return `Price`
-        } else if ((!maxPrice || maxPrice === 500) && minPrice) {
-            return `$${minPrice}+`
-        }
-        else if (!minPrice && maxPrice < 500) {
-            return `Up to $${maxPrice}`
-        }
-        else if (maxPrice < 500 && minPrice) {
-            return `$${minPrice} - $${maxPrice}`
-        }
     }
 
     render() {
-        const { isPrice, isPropertyType } = this.state
+        const { isPrice, isPropertyType, isAmenities } = this.state
+        const { stays, setCheckedPropertyType } = this.props
         return (
             <section className="filter-container flex">
                 <div>
-                    <button onClick={this.toggelPriceFilter}>{this.minPrice()}</button>
-                    {isPrice && <PriceFilter onSavePrice={this.onSavePrice} />}
+                    <button onClick={this.toggelPriceFilter}>{this.props.minPrice()}</button>
+                    {isPrice && <PriceFilter stays={stays} onSavePrice={this.props.onSavePrice} />}
                 </div>
                 <div>
                     <button onClick={this.toggelPropertyTypeFilter}>Property Type</button>
-                    {isPropertyType && <PropertyTypeFilter removePropertyType={this.removePropertyType} setCheckedPropertyType={this.setCheckedPropertyType} />}
+                    {isPropertyType && <PropertyTypeFilter
+                        property="type"
+                        stays={stays}
+                        setCheckedPropertyType={setCheckedPropertyType} />}
+                </div>
+                <div>
+                    <button onClick={this.toggelAmenitiesFilter}>Amenities</button>
+                    {isAmenities && <AmenitiesFilter stays={stays} removePropertyType={this.props.removePropertyType} setCheckedPropertyType={this.props.setCheckedPropertyType} />}
 
                 </div>
             </section>
@@ -101,14 +65,5 @@ class _StayFilter extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        stays: state.stayReducer.stays,
-    }
-}
-const mapDispatchToProps = {
-    onSetFilter
-    
-}
 
-export const StayFilter = connect(mapStateToProps, mapDispatchToProps)(_StayFilter)
+

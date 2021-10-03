@@ -132,7 +132,7 @@ export class _StayDetails extends Component {
                     <ReviewPoints reviews={stay.reviews} />
                     <ReviewList reviews={stay.reviews} />
                     <div className="seperation-line"></div>
-                    <h2>Where you’ll be</h2>
+                    <h2>Where you'll be</h2>
                     <p>{stay.loc.address}</p>
                     <GoogleMaps lat={stay.loc.lat} lng={stay.loc.lng} />
                     <div className="seperation-line"></div>
@@ -179,4 +179,3 @@ const mapDispatchToProps = {
 }
 
 export const StayDetails = connect(mapStateToProps, mapDispatchToProps)(_StayDetails)
-

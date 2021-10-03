@@ -18,7 +18,6 @@ export const storageService = {
 function query(entityType, params = {}) {
     let entities;
     if (entityType === 'stayDB') {
-
         entities = JSON.parse(localStorage.getItem(entityType)) || stays
         if (params.address) {
             params.address = params.address.split('-').join(' ')
@@ -35,12 +34,12 @@ function query(entityType, params = {}) {
                 return entitie.capacity >= params.guests.adult + params.guests.child + params.guests.infant
             })
         }
-    } 
+    }
     
-   else if (entityType === 'orderDB') {
-    entities = JSON.parse(localStorage.getItem(entityType)) || orders
+    else if (entityType === 'orderDB') {
+        entities = JSON.parse(localStorage.getItem(entityType)) || orders
 
-   }
+    }
     else {
         entities = JSON.parse(localStorage.getItem(entityType)) || []
 
@@ -169,7 +168,7 @@ const stays = [{
         by: {
             _id: 'u101',
             fullname: 'gilli2',
-            imgUrl:user2,
+            imgUrl: user2,
             desc: 'Very central apartment, clean and quiet. Walking distance from anywhere, close to grocery stores and the beach, and the marketVery fast feedback from the host.We had a great time'
         },
         date: ' May 2015'
@@ -347,7 +346,7 @@ const stays = [{
         by: {
             _id: 'u102',
             fullname: 'user2',
-            imgUrl:user4
+            imgUrl: user4
         },
         date: 'May 2015'
     }
@@ -381,7 +380,7 @@ const stays = [{
     host: {
         _id: '51392291',
         fullname: ' Davidi Pok',
-        imgUrl:user4,
+        imgUrl: user4,
     },
     orders: [{
         _id: 'u101',
@@ -586,7 +585,7 @@ const stays = [{
     imgUrls: ['https://a0.muscache.com/im/pictures/cbdb590e-03be-4538-a07d-16156dd810df.jpg?im_w=1200', 'https://a0.muscache.com/im/pictures/2c182ba4-1ad0-4aeb-9deb-b76aaa4ebaeb.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/06d5536d-5522-481c-93b5-68993ed93a1c.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/e7e0ffa8-8216-4154-b9b0-d49f0ef3c799.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/da0a5877-6291-492e-8240-6fa9be865974.jpg?im_w=720'],
     price: 120,
     description: 'Our newly renovated 280 sqft room can offer unparalleled comfort, and special touches make all the difference. Relax, get some work done, and take full advantage of your stay.Your room charge and taxes has been taken prior to your arrival as a deposit. The remaining balance destination fee $40.17 per night will be charged upon arrival.',
-    type: 'Room in the hotel',
+    type: 'room in the hotel',
     capacity: 4,
     amenities: [
         'Unique',
@@ -667,7 +666,7 @@ const stays = [{
     host: {
         _id: '51392291',
         fullname: ' Davidi Pok',
-        imgUrl:user3,
+        imgUrl: user3,
     },
     orders: [
         {
@@ -1290,27 +1289,27 @@ const stays = [{
 
 const orders = [[
     {
-      _id: "o1225",
-      hostId: "u102",
-      createdAt: '9898988989',
-      buyer: {
-        _id: "u101",
-        fullname: "User 1"
-      },
-      totalPrice: 400,
-      startDate: "2025/10/15",
-      endDate: "2025/10/17",
-      guests: {
-        adult: 2,
-        child: 1,
-        infant: 0
-      },
-      stay: {
-        _id: "1000651123122",
-        name: "Stunning Shoreditch Loft Conversion + Movie Screen",
-        price: 200
-      },
-      status: "pending"
-    }    
-  ],
+        _id: "o1225",
+        hostId: "u102",
+        createdAt: '9898988989',
+        buyer: {
+            _id: "u101",
+            fullname: "User 1"
+        },
+        totalPrice: 400,
+        startDate: "2025/10/15",
+        endDate: "2025/10/17",
+        guests: {
+            adult: 2,
+            child: 1,
+            infant: 0
+        },
+        stay: {
+            _id: "1000651123122",
+            name: "Stunning Shoreditch Loft Conversion + Movie Screen",
+            price: 200
+        },
+        status: "pending"
+    }
+],
 ]

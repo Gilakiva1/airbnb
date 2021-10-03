@@ -1,7 +1,6 @@
 import { Component } from "react";
-import { connect } from 'react-redux'
 
-export class _PropertyTypeFilter extends Component {
+export class PropertyTypeFilter extends Component {
     state = {
         types: []
     }
@@ -10,55 +9,55 @@ export class _PropertyTypeFilter extends Component {
         this.checkTypeExists()
     }
     checkTypeExists = () => {
-        let { types } = this.state
-        const { stays } = this.props
-
-        stays.map(stay => {
-            if (!types.length)
-                types.push(stay.type)
-            for (let i = 0; i < types.length; i++) {
-
-                if (types[i] === stay.type) return
-                else {
-                    if (i === types.length - 1) {
-                        types.push(stay.type)
-                    }
+        const { stays, property } = this.props
+        let types
+        if (property === 'type') {
+            types = stays.reduce((acc, stay) => {
+                const typeName = stay[property]
+                if (!acc.some(currType => currType.name === typeName)) {
+                    acc.push({ name: typeName, isChecked: false })
                 }
-            }
-        })
+                return acc
+            }, [])
+        } /* else if (property === 'amenties') */
         this.setState({ types })
     }
 
     saveChecked = (ev) => {
-        const type = ev.target.value
-        if(ev.target.checked){
-            this.props.setCheckedPropertyType(type)
-        }
-        else {
-            this.props.removePropertyType(type)
-        }
+        const { name: value, checked } = ev.target
+        const types = this.state.types.map(currType => {
+            if (currType.name === value) {
+                currType.isChecked = checked
+            }
+            return currType
+        })
+        this.setState({ types })
+        // this.props.setCheckedPropertyType(type)
+
     }
 
     render() {
         const { types } = this.state
         return (
-            types.map((type,idx) => (
-                <label key={idx}>
-                    <input type="checkbox" value={type}
-                        onChange={this.saveChecked}
-                    />
-                    {type}
-                </label>
+            <>
+                {types.map((type, idx) => (
+                    <label key={idx}>
+                        <input type="checkbox" name={type.name} value={type.isChecked}
+                            checked={type.isChecked}
+                            onChange={this.saveChecked}
+                        />
+                        {type.name}
+                    </label>
 
-            ))
+                ))}
+                <button onClick={() =>
+                    this.props.setCheckedPropertyType(this.state.types.reduce((acc, type) => {
+                        if (type.isChecked) acc.push(type.name)
+                        return acc
+                    }, []))}>Save</button>
+            </>
         )
+
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        stays: state.stayReducer.stays,
-    }
-}
-
-export const PropertyTypeFilter = connect(mapStateToProps)(_PropertyTypeFilter)

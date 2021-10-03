@@ -8,7 +8,7 @@ import { userReducer } from './user.reducer.js';
 const rootReducer = combineReducers({
   stayReducer,
   orderReducer,
-//   userReducer,
+  userReducer,
 });
 
 // export const store = createStore(rootReducer, applyMiddleware(thunk))

@@ -21,8 +21,8 @@ export function onAddOrder(orderDetails) {
 export function onUpdateOrder(order) {
     try {
         return async dispatch => {
-            const updatedOrder = await orderService.save(order)
-            dispatch({ type: 'UPDATE_ORDER', updatedOrder })
+            await orderService.save(order)
+            dispatch({ type: 'UPDATE_ORDER', order })
         }
     } catch (err) {
         console.log('err', err);

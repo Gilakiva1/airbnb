@@ -13,7 +13,7 @@ export function orderReducer(state = initialState, action) {
         case 'ADD_ORDER':
             return { ...state, orders: [...state.orders, action.order,] }
         case 'UPDATE_ORDER':
-            return { ...state, currOrder: action.updatedOrder }
+            return { ...state, currOrder: action.order }
         default: return { ...state }
     }
 

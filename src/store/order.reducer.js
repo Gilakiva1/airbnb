@@ -14,9 +14,12 @@ export function orderReducer(state = initialState, action) {
             return { ...state, orders: [...state.orders, action.order,] }
         case 'UPDATE_ORDER':
             return { ...state, currOrder: action.order }
+<<<<<<< HEAD
         case 'LOAD_ORDERS':
             return { ...state, orders: action.orders }
 
+=======
+>>>>>>> bedf460c2f4585824eba2d5cf67754413c92b9c3
         default: return { ...state }
     }
 

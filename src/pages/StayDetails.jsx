@@ -11,7 +11,7 @@ import { OrderModal } from '../cmps/OrderModal.jsx';
 import { stayService } from '../services/stay.service.js';
 import { Amenities } from '../cmps/stay-details/amenities.jsx';
 import { DatePicker } from '../cmps/header/DatePicker.jsx';
-import { onAddOrder, onSetOrder, onUpdateOrder } from '../store/order.action';
+import { onAddOrder, onUpdateOrder, onSetOrder } from '../store/order.action';
 import { ReviewPoints } from '../cmps/stay-details/ReviewPoints.jsx';
 import { ReviewList } from '../cmps/stay-details/ReviewList.jsx';
 import GoogleMaps from '../cmps/stay-details/Google-Maps.jsx';

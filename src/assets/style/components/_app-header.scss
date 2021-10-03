@@ -11,12 +11,14 @@
   .header-func {
     justify-content: space-between;
     margin-block-start: 15px;
+    position: relative;
 
     .link-host {
       text-decoration: none;
       margin-inline-end: 5px;
       padding: rem(12px);
       font-weight: 600;
+      text-align: center;
 
       &:hover {
         background-color: rgba(255, 255, 255, 0.15);
@@ -33,7 +35,6 @@
       }
 
       .menu-container {
-        background-color: whitesmoke;
         color: black;
 
         .menu-btn {
@@ -76,6 +77,17 @@
   }
   .txt-pink {
     color: $clr3;
+  }
+  .menu-dropdown {
+    z-index: 10;
+    right: 0;
+    top: 70px;
+    justify-content: space-around;
+    position: absolute;
+    width: rem(200px);
+    height: 200px;
+    padding: 0px 20px;
+   
   }
   // .txt-black {
   //   color: $clr1;

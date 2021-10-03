@@ -44,7 +44,7 @@ export class _OrderModal extends React.Component {
 
     handleChange = (ev) => {
         const { currOrder } = this.props
-        const orderCopy = {...currOrder}
+        const orderCopy = { ...currOrder }
         const field = ev.target.name
         const value = ev.target.value
         orderCopy[field] = value
@@ -71,14 +71,8 @@ export class _OrderModal extends React.Component {
         }
     }
 
-    setIsPickingGuests = () => {
-        let { isPickingGuests } = this.state
-        isPickingGuests = false
-        this.setState({ isPickingGuests })
-    }
-
-    preventPropagation = event => {
-        event.stopPropagation()
+    preventPropagation = ev => {
+        ev.stopPropagation()
     }
 
     getTotalGuests = () => {
@@ -92,8 +86,7 @@ export class _OrderModal extends React.Component {
     }
 
     handleGuestsChanege = (field, value) => {
-        let { currOrder } = this.props
-        const orderCopy = {...currOrder}
+        const orderCopy = { ...this.props.currOrder }
         if (!orderCopy.guests) {
             orderCopy.guests = {
                 adult: 0,
@@ -106,8 +99,7 @@ export class _OrderModal extends React.Component {
     }
 
     handlePickingDates = (start, end) => {
-        let { currOrder } = this.props
-        const orderCopy = {...currOrder}
+        const orderCopy = { ...this.props.currOrder }
         orderCopy.checkIn = Date.parse(start)
         if (end) {
             orderCopy.checkOut = Date.parse(end)
@@ -116,9 +108,8 @@ export class _OrderModal extends React.Component {
     }
 
     createFinalOrder = () => {
-        const { currOrder } = this.props
-        const { stay } = this.props
-        var finalOrder = {}
+        const { currOrder, stay } = this.props
+        const finalOrder = {}
         finalOrder.hostId = stay.host._id
         finalOrder.createdAt = Date.now()
         finalOrder.buyer = {}
@@ -146,7 +137,8 @@ export class _OrderModal extends React.Component {
         else {
             const finalOrder = this.createFinalOrder()
             const savedOrder = await this.props.onAddOrder(finalOrder)
-            const stay = await stayService.getById(this.props.match.params.stayId)
+            //change to save id at stay or mini order
+            const { stay } = this.props
             stay.orders.push(savedOrder)
         }
     }

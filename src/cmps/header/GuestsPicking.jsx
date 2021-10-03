@@ -1,4 +1,3 @@
-import de from "date-fns/esm/locale/de/index.js"
 import React from "react"
 import { connect } from "react-redux"
 import { withRouter } from "react-router"

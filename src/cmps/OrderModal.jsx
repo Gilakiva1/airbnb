@@ -13,7 +13,6 @@ import { OrderMsg } from './orderMsg';
 export class _OrderModal extends React.Component {
 
     state = {
-        order: null,
         isReserve: false,
         isFinalReserve: false,
         isPickingGuests: false,
@@ -28,7 +27,6 @@ export class _OrderModal extends React.Component {
         let { reviewsNumber } = this.state
         reviewsNumber = utilService.getRandomIntInclusive(30, 500)
         window.addEventListener('click', this.closeInputs)
-        const { order } = this.props
         this.setState({ order, reviewsNumber })
         console.log('orderr', order);
     }
@@ -160,7 +158,7 @@ export class _OrderModal extends React.Component {
             stay.orders.push(savedOrder)
             this.setState({ isFinalReserve: true })
             setTimeout(() => {
-                this.setState({ isFinalReserve: false }, () => {
+                this.setState({ isFinalReserve: false } ,()=>{
                     this.props.history.push('/trip')
                 })
 

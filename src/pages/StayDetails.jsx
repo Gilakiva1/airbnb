@@ -11,11 +11,12 @@ import { OrderModal } from '../cmps/OrderModal.jsx';
 import { stayService } from '../services/stay.service.js';
 import { Amenities } from '../cmps/stay-details/amenities.jsx';
 import { DatePicker } from '../cmps/header/DatePicker.jsx';
-import { onAddOrder } from '../store/order.action';
+import { onAddOrder, onUpdateOrder } from '../store/order.action';
 import { ReviewPoints } from '../cmps/stay-details/ReviewPoints.jsx';
 import { ReviewList } from '../cmps/stay-details/ReviewList.jsx';
 import GoogleMaps from '../cmps/stay-details/Google-Maps.jsx';
 import { IdentityVerified } from '../cmps/svgs/IdentityVerified.jsx';
+
 
 export class _StayDetails extends Component {
     state = {
@@ -44,13 +45,14 @@ export class _StayDetails extends Component {
     }
 
     handlePickingDates =  (start, end) => {
-        const { order } = this.state
+        const orderCopy = {...this.props.currOrder}
         if (end) {
-            order.checkOut = Date.parse(end)
-        } else if (!order.checkOut) {
-            order.checkOut = ''
+            orderCopy.checkOut = Date.parse(end)
+        } else if (!orderCopy.checkOut) {
+            orderCopy.checkOut = ''
         }
-        order.checkIn = Date.parse(start)
+        orderCopy.checkIn = Date.parse(start)
+        this.props.onUpdateOrder(orderCopy)
     }
 
 
@@ -115,7 +117,7 @@ export class _StayDetails extends Component {
                                 <h2>Select check-in date</h2>
                                 <p className="fade-font">Add your travel dates for exact pricing</p>
                                 <div className="details-dates flex justify-center">
-                                    <DatePicker order={order} className={'datepicker-details'} preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />
+                                    <DatePicker order={this.props.currOrder} className={'datepicker-details'} preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />
                                 </div>
                             </div>
                             <div className="seperation-line big"></div>
@@ -132,7 +134,7 @@ export class _StayDetails extends Component {
                     <div className="seperation-line"></div>
                     <h2>Where you’ll be</h2>
                     <p>{stay.loc.address}</p>
-                    <GoogleMaps />
+                    <GoogleMaps lat={stay.loc.lat} lng={stay.loc.lng} />
                     <div className="seperation-line"></div>
                     <div className="user-header flex  gap10">
                         <img className="user-details-profile-img" src={stay.host.imgUrl} alt="" />
@@ -168,10 +170,12 @@ export class _StayDetails extends Component {
 function mapStateToProps(state) {
     return {
         stays: state.stayReducer.stays,
+        currOrder: state.orderReducer.currOrder
     }
 }
 const mapDispatchToProps = {
-    onAddOrder
+    onAddOrder,
+    onUpdateOrder
 }
 
 export const StayDetails = connect(mapStateToProps, mapDispatchToProps)(_StayDetails)

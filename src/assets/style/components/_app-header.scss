@@ -79,17 +79,28 @@
     color: $clr3;
   }
   .menu-dropdown {
+    
     z-index: 10;
     right: 0;
     top: 70px;
-    justify-content: space-around;
+    line-height: 40px;
     position: absolute;
-    width: rem(200px);
-    height: 200px;
-    padding: 0px 20px;
-   
+    width: rem(240px);
+    
   }
   // .txt-black {
   //   color: $clr1;
   // }
+}
+
+.link {
+  font-family: airbnb-cereal-meduim;
+  font-weight: 100;
+  padding: 0px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  &:hover {
+    background-color: rgba(93, 85, 85, 0.15);
+    transition: 0.4s;
+  }
 }

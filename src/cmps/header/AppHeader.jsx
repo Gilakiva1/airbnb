@@ -21,6 +21,7 @@ class _AppHeader extends React.Component {
 
     componentDidMount() {
         window.addEventListener('scroll', this.onToggleHeader)
+        window.addEventListener('click', this.onCloseMenu)
     }
 
     componentDidUpdate() {
@@ -47,9 +48,14 @@ class _AppHeader extends React.Component {
             document.documentElement.scrollTop = 0
         }
     }
-    onToggoleMenu = () => {
+    onToggoleMenu = (ev) => {
+        ev.stopPropagation()
         const { isShowMenu } = this.state
         this.setState({ isShowMenu: !isShowMenu })
+    }
+    onCloseMenu = () => {
+        this.setState({ isShowMenu: false })
+
     }
 
     render() {
@@ -81,8 +87,8 @@ class _AppHeader extends React.Component {
                                 </div>
                             </div>
                         </div>
+                        {isShowMenu && <MenuBar  />}
                     </nav>
-                            {isShowMenu && <MenuBar />}
                 </div>
                 {scrollLoc < 40 && pathname === '/' && <SearchBar animateClassName={isEnter ? 'scale-up-top' : ''} />}
             </header>

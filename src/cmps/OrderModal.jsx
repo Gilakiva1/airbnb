@@ -33,14 +33,6 @@ export class _OrderModal extends React.Component {
 
     inputRef = React.createRef(null)
 
-    componentDidUpdate() {
-        // const { order } = this.state
-        // const { currOrder } = this.props
-        // if (order.checkIn !== currOrder.checkIn || order.checkOut !== currOrder.checkOut) {
-        //     ..this.setState({ order: this.props.currOrder })
-        // }
-    }
-
     componentWillUnmount() {
         window.removeEventListener('click', this.closeInputs)
     }

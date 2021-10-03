@@ -7,7 +7,6 @@ export const orderService = {
 const STORAGE_KEY = 'orderDB'
 
 function save(order) {
-    debugger
     if (order._id) {
         return storageService.put(STORAGE_KEY, order);
     } else {

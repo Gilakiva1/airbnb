@@ -14,9 +14,14 @@ function GoogleMaps({ lat, lng }) {
   })
 
   const center = {
-    lat: lat,
-    lng: lng
+    lat: +lat,
+    lng: +lng
   };
+  
+  const marker = new google.maps.Marker({
+    position: center,
+    map: map,
+  });
   const [map, setMap] = React.useState(null)
 
   const onLoad = React.useCallback(function callback(map) {

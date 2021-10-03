@@ -43,18 +43,14 @@ export class _StayDetails extends Component {
         this.setState({ stay, order })
     }
 
-    handlePickingDates = async (start, end) => {
+    handlePickingDates =  (start, end) => {
         const { order } = this.state
-
-        let checkIn = ` ${start.toLocaleString('en-IL', { month: 'short', day: 'numeric' })} `
         if (end) {
-            var checkOut = ` ${end.toLocaleString('en-IL', { month: 'short', day: 'numeric' })} `
-            order.checkOut = checkOut
-        } else {
+            order.checkOut = Date.parse(end)
+        } else if (!order.checkOut) {
             order.checkOut = ''
         }
-        order.checkIn = checkIn
-
+        order.checkIn = Date.parse(start)
     }
 
 
@@ -141,25 +137,25 @@ export class _StayDetails extends Component {
                     <div className="user-header flex  gap10">
                         <img className="user-details-profile-img" src={stay.host.imgUrl} alt="" />
                         <div className="user-profile-name-date flex column">
-                         <span className="user-name medium fs22 fh26">Hosted by {stay.host.fullname}</span>
-                                <span className="fs14 fh18 book clr1">{stay.host.joinDate || 'joined in September 2016'}</span>
+                            <span className="user-name medium fs22 fh26">Hosted by {stay.host.fullname}</span>
+                            <span className="fs14 fh18 book clr1">{stay.host.joinDate || 'joined in September 2016'}</span>
                         </div>
                     </div>
-                        <div className="flex gap10">
-                            <div className="fs22 flex gap5">
-                                {<FontAwesomeIcon className="star-icon fs16 fh20" icon={faStar} />}
-                                <div className="fs16 fh20 book">{utilService.getRandomIntInclusive(100, 2000).toLocaleString('en-IL')} Reviews</div>
-                            </div>
-                            <div className=" flex gap10">
-                                {<IdentityVerified className="clr3"/>}
-                                <div className="fs16 fh20 book">Identity verified</div>
-                            </div>
+                    <div className="flex gap10">
+                        <div className="fs22 flex gap5">
+                            {<FontAwesomeIcon className="star-icon fs16 fh20" icon={faStar} />}
+                            <div className="fs16 fh20 book">{utilService.getRandomIntInclusive(100, 2000).toLocaleString('en-IL')} Reviews</div>
                         </div>
-                        <div className=" respond-container">
-                            <p className="fs16 fh20 book">Response rate: 99%</p>
-                            <p className="fs16 fh20 book">Response time: within an hour</p>
+                        <div className=" flex gap10">
+                            {<IdentityVerified className="clr3" />}
+                            <div className="fs16 fh20 book">Identity verified</div>
                         </div>
-                        <button className="contact-host fs16 fh20 medium">Contact host</button>
+                    </div>
+                    <div className=" respond-container">
+                        <p className="fs16 fh20 book">Response rate: 99%</p>
+                        <p className="fs16 fh20 book">Response time: within an hour</p>
+                    </div>
+                    <button className="contact-host fs16 fh20 medium">Contact host</button>
                     <div className="seperation-line"></div>
                 </section >
 

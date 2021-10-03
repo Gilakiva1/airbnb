@@ -24,7 +24,7 @@ export class _SearchBar extends React.Component {
     isPickingGuests: false,
     isPickingDates: false,
     isInsideHeader: true,
-    dateForamt: null
+    dateFormat: null
   }
 
   componentDidMount() {
@@ -52,21 +52,21 @@ export class _SearchBar extends React.Component {
   }
 
   handlePickingDates = (start, end) => {
-
     let { criteria } = this.state
     let { checkIn, checkOut } = criteria
-    checkIn = ` ${start.toLocaleString('en-IL', { month: 'short', day: 'numeric' })} `
-    if (end) checkOut = ` ${end.toLocaleString('en-IL', { month: 'short', day: 'numeric' })} `
-    this.setState({ criteria: { ...criteria, checkIn, checkOut }, dateForamt: { start, end } })
+    checkIn = start
+    if (end) checkOut = end
+    this.setState({ criteria: { ...criteria, checkIn, checkOut }, dateFormat: { start, end } })
     if (end && start !== end) this.activeInput('guest')
   }
 
   onSubmit = async (ev) => {
     ev.preventDefault()
-    const { criteria, dateForamt } = this.state
-    criteria.checkIn = Date.parse(dateForamt.start)
-    criteria.checkOut = Date.parse(dateForamt.end)
-
+    const { criteria, dateFormat } = this.state
+    if (dateFormat) {
+      criteria.checkIn = Date.parse(dateFormat.start)
+      criteria.checkOut = Date.parse(dateFormat.end)
+    }
     const queryString = utilService.makeQueryParams(criteria)
     this.props.history.push(`/stay?${queryString}`)
 
@@ -130,7 +130,7 @@ export class _SearchBar extends React.Component {
                   type="text"
                   placeholder="Add dates"
                   name="checkIn"
-                  value={checkIn}
+                  value={checkIn.toLocaleString('en-IL', { month: 'short', day: 'numeric' })}
                   autoComplete="off"
                   disabled
                   onChange={this.handleChange}
@@ -146,7 +146,7 @@ export class _SearchBar extends React.Component {
                   placeholder="Add dates"
                   autoComplete="off"
                   name="checkOut"
-                  value={checkOut}
+                  value={checkOut.toLocaleString('en-IL', { month: 'short', day: 'numeric' })}
                   disabled
                   onChange={this.handleChange}
 

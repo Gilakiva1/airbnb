@@ -1,4 +1,3 @@
-import { de } from "date-fns/locale";
 import { storageService } from "./async-storage.service"
 
 export const orderService = {
@@ -8,6 +7,7 @@ export const orderService = {
 const STORAGE_KEY = 'orderDB'
 
 function save(order) {
+    debugger
     if (order._id) {
         return storageService.put(STORAGE_KEY, order);
     } else {

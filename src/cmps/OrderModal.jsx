@@ -7,12 +7,14 @@ import { GuestsPicking } from './header/GuestsPicking';
 import { DatePicker } from './header/DatePicker';
 import { stayService } from '../services/stay.service';
 import { withRouter } from 'react-router';
+import { OrderMsg } from './OrderMsg';
 import { onAddOrder, onUpdateOrder, onSetOrder } from '../store/order.action';
 
 export class _OrderModal extends React.Component {
 
     state = {
         isReserve: false,
+        isFinalReserve: false,
         isPickingGuests: false,
         isPickingDates: false,
         reviewsNumber: 0,
@@ -25,7 +27,6 @@ export class _OrderModal extends React.Component {
         reviewsNumber = utilService.getRandomIntInclusive(30, 500)
         window.addEventListener('click', this.closeInputs)
         this.setState({ reviewsNumber })
-        this.props.onSetOrder(this.props.order)
 
     }
 
@@ -43,6 +44,7 @@ export class _OrderModal extends React.Component {
     }
 
     handleChange = (ev) => {
+
         const { currOrder } = this.props
         const orderCopy = { ...currOrder }
         const field = ev.target.name
@@ -109,21 +111,26 @@ export class _OrderModal extends React.Component {
 
     createFinalOrder = () => {
         const { currOrder, stay } = this.props
-        const finalOrder = {}
-        finalOrder.hostId = stay.host._id
-        finalOrder.createdAt = Date.now()
-        finalOrder.buyer = {}
-        finalOrder.buyer._id = 'userId'
-        finalOrder.buyer.fullname = 'user.fullname'
-        finalOrder.totalPrice = ((currOrder.checkOut - currOrder.checkIn) / (1000 * 60 * 60 * 24)) * stay.price
-        finalOrder.startDate = currOrder.checkIn
-        finalOrder.endDate = currOrder.checkOut
-        finalOrder.guests = currOrder.guests
-        finalOrder.stay = {}
-        finalOrder.stay._id = stay._id
-        finalOrder.stay.name = stay.name
-        finalOrder.stay.price = stay.price
-        finalOrder.status = 'pending'
+        const finalOrder = {
+            _id: '',
+            hostId: stay.host._id,
+            createdAt: Date.now(),
+            price: ((currOrder.checkOut - currOrder.checkIn) / (1000 * 60 * 60 * 24)) * stay.price,
+            startDate: currOrder.checkIn,
+            endDate: currOrder.checkOut,
+            guests: currOrder.guests,
+            img: stay.imgUrls[0],
+            status: 'pending',
+            buyer: {
+                _id: 'userId',
+                fullname: 'user.fullname'
+            },
+            stay: {
+                _id: stay._id,
+                name: stay.name,
+                address: stay.loc.address
+            }
+        }
         return finalOrder
     }
 
@@ -140,13 +147,17 @@ export class _OrderModal extends React.Component {
             //change to save id at stay or mini order
             const { stay } = this.props
             stay.orders.push(savedOrder)
+            this.setState({ isFinalReserve: true })
+            setTimeout(() => {
+                this.setState({ isFinalReserve: false })
+                this.props.history.push('/trip')
+            }, 2000);
         }
     }
 
     render() {
-        const { isPickingDates, isPickingGuests, isReserve, reviewsNumber } = this.state
+        const { isPickingDates, isPickingGuests, isFinalReserve, isReserve, reviewsNumber } = this.state
         const { stay, currOrder } = this.props
-        console.log('modal', currOrder);
         if (!currOrder) return <div>loading</div>
         return (
             <div className="order-modal">
@@ -208,12 +219,14 @@ export class _OrderModal extends React.Component {
                     <div className={`${isPickingGuests ? '' : 'none'}`}> {isPickingGuests && <GuestsPicking handleGuestsChanege={this.handleGuestsChanege} />} </div>
                     <div className={isPickingDates ? '' : 'none'}> {isPickingDates && <DatePicker order={currOrder} preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />} </div>
                 </form >
+                {isFinalReserve && <OrderMsg animateClassName={isFinalReserve ? 'slide-in-bottom' : ''} />}
             </div >
         )
     }
 }
 
 function mapStateToProps(state) {
+    console.log(state);
     return {
         stays: state.stayReducer.stays,
         currOrder: state.orderReducer.currOrder

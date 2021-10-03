@@ -36,16 +36,14 @@ function query(entityType, params = {}) {
                 return entitie.capacity >= params.guests.adult + params.guests.child + params.guests.infant
             })
         }
-    } 
-    
-   else if (entityType === 'orderDB') {
-    entities = JSON.parse(localStorage.getItem(entityType)) || orders
-
-   }
-    else {
+    } else if (entityType === 'orderDB') {
         entities = JSON.parse(localStorage.getItem(entityType)) || []
+        if (params) {
+            entities.filter(entitie => (entitie._id === params.userId))
+        }
 
     }
+
     return new Promise((resolve, reject) => {
         resolve(entities)
     })
@@ -170,7 +168,7 @@ const stays = [{
         by: {
             _id: 'u101',
             fullname: 'gilli2',
-            imgUrl:user2,
+            imgUrl: user2,
             desc: 'Very central apartment, clean and quiet. Walking distance from anywhere, close to grocery stores and the beach, and the marketVery fast feedback from the host.We had a great time'
         },
         date: ' May 2015'
@@ -348,7 +346,7 @@ const stays = [{
         by: {
             _id: 'u102',
             fullname: 'user2',
-            imgUrl:user4
+            imgUrl: user4
         },
         date: 'May 2015'
     }
@@ -382,7 +380,7 @@ const stays = [{
     host: {
         _id: '51392291',
         fullname: ' Davidi Pok',
-        imgUrl:user4,
+        imgUrl: user4,
     },
     orders: [{
         _id: 'u101',
@@ -668,7 +666,7 @@ const stays = [{
     host: {
         _id: '51392291',
         fullname: ' Davidi Pok',
-        imgUrl:user3,
+        imgUrl: user3,
     },
     orders: [
         {
@@ -1289,29 +1287,29 @@ const stays = [{
 }
 ]
 
-const orders = [[
-    {
-      _id: "o1225",
-      hostId: "u102",
-      createdAt: '9898988989',
-      buyer: {
-        _id: "u101",
-        fullname: "User 1"
-      },
-      totalPrice: 400,
-      startDate: "2025/10/15",
-      endDate: "2025/10/17",
-      guests: {
-        adult: 2,
-        child: 1,
-        infant: 0
-      },
-      stay: {
-        _id: "1000651123122",
-        name: "Stunning Shoreditch Loft Conversion + Movie Screen",
-        price: 200
-      },
-      status: "pending"
-    }    
-  ],
-]
+// const orders = [[
+//     {
+//         _id: "o1225",
+//         hostId: "u102",
+//         createdAt: '9898988989',
+//         buyer: {
+//             _id: "u101",
+//             fullname: "User 1"
+//         },
+//         totalPrice: 400,
+//         startDate: "2025/10/15",
+//         endDate: "2025/10/17",
+//         guests: {
+//             adult: 2,
+//             child: 1,
+//             infant: 0
+//         },
+//         stay: {
+//             _id: "1000651123122",
+//             name: "Stunning Shoreditch Loft Conversion + Movie Screen",
+//             price: 200
+//         },
+//         status: "pending"
+//     }
+// ],
+// ]

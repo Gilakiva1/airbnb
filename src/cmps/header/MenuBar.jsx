@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom"
-export function MenuBar() {
+export function MenuBar({ onCloseMenu }) {
 
     return (
         <div onClick={(ev) => { ev.stopPropagation() }} className="menu-dropdown white round-edge flex column ">
-            <Link to="/trip"><h1 className="link medium light txt-trip" >My trips</h1></Link>
-            <h1 className="link Notifcations">Notifcations</h1>
-            <h1 className="link Messeges">Messeges</h1>
-            <h1 className="link Log Out">Log Out</h1>
+            <Link onClick={onCloseMenu} to="/trip"><h1 className="link medium light txt-trip" >My trips</h1></Link>
+            <h1 onClick={onCloseMenu} className="link Notifcations">Notifcations</h1>
+            <h1 onClick={onCloseMenu} className="link Messeges">Messeges</h1>
+            <h1 onClick={onCloseMenu} className="link Log Out">Log Out</h1>
         </div>
     )
 

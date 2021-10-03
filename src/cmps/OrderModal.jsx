@@ -8,12 +8,14 @@ import { DatePicker } from './header/DatePicker';
 import { stayService } from '../services/stay.service';
 import { withRouter } from 'react-router';
 import { onAddOrder } from '../store/order.action';
+import { OrderMsg } from './orderMsg';
 
 export class _OrderModal extends React.Component {
 
     state = {
         order: null,
         isReserve: false,
+        isFinalReserve: false,
         isPickingGuests: false,
         isPickingDates: false,
         reviewsNumber: 0,
@@ -117,7 +119,7 @@ export class _OrderModal extends React.Component {
         let { checkIn, checkOut } = order
         checkIn = Date.parse(start)
         if (end) checkOut = Date.parse(end)
-        this.setState({ order: { ...order, checkIn, checkOut }, dateFormat : {start,end}  })
+        this.setState({ order: { ...order, checkIn, checkOut }, dateFormat: { start, end } })
     }
 
     createFinalOrder = () => {
@@ -143,25 +145,32 @@ export class _OrderModal extends React.Component {
 
     onSubmit = async (ev) => {
         ev.preventDefault()
-        const { isReserve,order, dateFormat } = this.state
+        const { isReserve, order, dateFormat } = this.state
         if (!isReserve) {
-            ev.target.type = 'submit'
             this.setState({ isReserve: true })
         }
         else {
             if (dateFormat) {
                 order.checkIn = Date.parse(dateFormat.start)
                 order.checkOut = Date.parse(dateFormat.end)
-              }
+            }
             const finalOrder = this.createFinalOrder()
             const savedOrder = await this.props.onAddOrder(finalOrder)
             const stay = await stayService.getById(this.props.match.params.stayId)
             stay.orders.push(savedOrder)
+            this.setState({ isFinalReserve: true })
+            setTimeout(() => {
+                this.setState({ isFinalReserve: false }, () => {
+                    this.props.history.push('/trip')
+                })
+
+
+            }, 2000);
         }
     }
 
     render() {
-        const { isPickingDates, isPickingGuests, isReserve, reviewsNumber, order } = this.state
+        const { isPickingDates, isPickingGuests, isReserve, isFinalReserve, reviewsNumber, order } = this.state
         const { stay } = this.props
         if (!order) return <div>loading</div>
         return (
@@ -223,7 +232,9 @@ export class _OrderModal extends React.Component {
                     </div>
                     <div className={`${isPickingGuests ? '' : 'none'}`}> {isPickingGuests && <GuestsPicking handleGuestsChanege={this.handleGuestsChanege} />} </div>
                     <div className={isPickingDates ? '' : 'none'}> {isPickingDates && <DatePicker order={order} preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />} </div>
+
                 </form >
+                {isFinalReserve && <OrderMsg animateClassName={isFinalReserve ? 'bounce-in-top' : ''} />}
             </div >
         )
     }

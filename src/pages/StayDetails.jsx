@@ -14,7 +14,7 @@ import { DatePicker } from '../cmps/header/DatePicker.jsx';
 import { onAddOrder } from '../store/order.action';
 import { ReviewPoints } from '../cmps/stay-details/ReviewPoints.jsx';
 import { ReviewList } from '../cmps/stay-details/ReviewList.jsx';
-import GoogleMaps from '../cmps/stay-details/Google-Maps.jsx';
+// import GoogleMaps from '../cmps/stay-details/Google-Maps.jsx';
 
 export class _StayDetails extends Component {
     state = {
@@ -135,7 +135,7 @@ export class _StayDetails extends Component {
                     <div className="seperation-line"></div>
                     <h2>Where you’ll be</h2>
                     <p>{stay.loc.address}</p>
-            <GoogleMaps/>        
+            {/* <GoogleMaps/>         */}
                 </section >
 
             </>

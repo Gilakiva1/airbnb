@@ -9,13 +9,14 @@ export function loadStays(params) {
       console.log(err, 'error is');
     }
   };
-}  
-
+}
 
 export function onSetFilter(filterBy) {
-
-  return dispatch => {
-    dispatch({ type: 'UPDATE_ORDER', filterBy })
+  stayService.query(filterBy)
+    .then(stays => {
+      dispatch({
+        type: 'SET_STAYS',
+        stays
+      })
+    }
   }
-}
-  

@@ -19,7 +19,6 @@ class _StayList extends React.Component {
     render() {
         const { stays } = this.props
         const { orderParams } = this.state
-
         if (!orderParams) return <div>loading...</div>
         return (
             <>

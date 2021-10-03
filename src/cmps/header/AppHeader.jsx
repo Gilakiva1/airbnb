@@ -87,7 +87,7 @@ class _AppHeader extends React.Component {
                                 </div>
                             </div>
                         </div>
-                        {isShowMenu && <MenuBar  />}
+                        {isShowMenu && <MenuBar onCloseMenu={this.onCloseMenu} />}
                     </nav>
                 </div>
                 {scrollLoc < 40 && pathname === '/' && <SearchBar animateClassName={isEnter ? 'scale-up-top' : ''} />}

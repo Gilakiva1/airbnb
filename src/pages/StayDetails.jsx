@@ -11,7 +11,7 @@ import { OrderModal } from '../cmps/OrderModal.jsx';
 import { stayService } from '../services/stay.service.js';
 import { Amenities } from '../cmps/stay-details/amenities.jsx';
 import { DatePicker } from '../cmps/header/DatePicker.jsx';
-import { onAddOrder, onUpdateOrder } from '../store/order.action';
+import { onAddOrder, onUpdateOrder, onSetOrder } from '../store/order.action';
 import { ReviewPoints } from '../cmps/stay-details/ReviewPoints.jsx';
 import { ReviewList } from '../cmps/stay-details/ReviewList.jsx';
 import GoogleMaps from '../cmps/stay-details/Google-Maps.jsx';
@@ -40,12 +40,13 @@ export class _StayDetails extends Component {
             order.checkIn = new Date(+order.checkIn)
             order.checkOut = new Date(+order.checkOut)
         }
-
+        await this.props.onSetOrder(order)
         this.setState({ stay, order })
+
     }
 
-    handlePickingDates =  (start, end) => {
-        const orderCopy = {...this.props.currOrder}
+    handlePickingDates = (start, end) => {
+        const orderCopy = { ...this.props.order }
         if (end) {
             orderCopy.checkOut = Date.parse(end)
         } else if (!orderCopy.checkOut) {
@@ -63,6 +64,8 @@ export class _StayDetails extends Component {
 
     render() {
         const { stay, order } = this.state
+        const { currOrder } = this.props 
+        console.log('orderrr details', currOrder);
 
         if (!stay) return <div>Loading...</div>
         return (
@@ -117,7 +120,7 @@ export class _StayDetails extends Component {
                                 <h2>Select check-in date</h2>
                                 <p className="fade-font">Add your travel dates for exact pricing</p>
                                 <div className="details-dates flex justify-center">
-                                    <DatePicker order={this.props.currOrder} className={'datepicker-details'} preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />
+                                     <DatePicker order={this.props.currOrder} className={'datepicker-details'} preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />
                                 </div>
                             </div>
                             <div className="seperation-line big"></div>
@@ -126,7 +129,7 @@ export class _StayDetails extends Component {
                                 {stay.rating}
                                 <span>·</span>{utilService.getRandomIntInclusive(30, 500)} reviews
                             </div>
-                        </div >
+                        </div >  
                         <OrderModal stay={stay} order={order} />
                     </div >
                     <ReviewPoints reviews={stay.reviews} />
@@ -168,6 +171,7 @@ export class _StayDetails extends Component {
 
 
 function mapStateToProps(state) {
+    console.log(state);
     return {
         stays: state.stayReducer.stays,
         currOrder: state.orderReducer.currOrder
@@ -175,7 +179,8 @@ function mapStateToProps(state) {
 }
 const mapDispatchToProps = {
     onAddOrder,
-    onUpdateOrder
+    onUpdateOrder,
+    onSetOrder
 }
 
 export const StayDetails = connect(mapStateToProps, mapDispatchToProps)(_StayDetails)

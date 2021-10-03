@@ -2,23 +2,41 @@ import { orderService } from '../services/order.service'
 import { stayService } from '../services/stay.service';
 
 
+
+
+export function onLoadOrders(userId) {
+    try {
+        return async dispatch => {
+            const orders = await orderService.query(userId)
+            dispatch({ type: 'LOAD_ORDERS', orders })
+            return orders
+        }
+    } catch (err) {
+        console.log('err', err);
+        throw err
+    }
+
+}
 export function onAddOrder(orderDetails) {
     try {
         return async dispatch => {
             const order = await orderService.save(orderDetails)
-            dispatch({ type: 'ADD_ORDER', order })
+            dispatch({ type: 'SET_ORDERS', order })
             return order
         }
     } catch (err) {
         console.log('err', err);
         throw err
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4ef04fc5591778d8835008eeffb780d97b090210
 }
 export function onUpdateOrder(order) {
     try {
         return async dispatch => {
-            const updatedOrder = await orderService.save(order)
-            dispatch({ type: 'UPDATE_ORDER', updatedOrder })
+            dispatch({ type: 'UPDATE_ORDER', order })
         }
     } catch (err) {
         console.log('err', err);
@@ -26,7 +44,6 @@ export function onUpdateOrder(order) {
     }
 
 }
-
 
 export function onSetOrder(order) {
     try {

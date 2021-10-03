@@ -1,4 +1,3 @@
-import { de } from "date-fns/locale";
 import { storageService } from "./async-storage.service"
 
 export const orderService = {

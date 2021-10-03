@@ -34,16 +34,14 @@ function query(entityType, params = {}) {
                 return entitie.capacity >= params.guests.adult + params.guests.child + params.guests.infant
             })
         }
-    }
-    
-    else if (entityType === 'orderDB') {
-        entities = JSON.parse(localStorage.getItem(entityType)) || orders
-
-    }
-    else {
+    } else if (entityType === 'orderDB') {
         entities = JSON.parse(localStorage.getItem(entityType)) || []
+        if (params) {
+            entities.filter(entitie => (entitie._id === params.userId))
+        }
 
     }
+
     return new Promise((resolve, reject) => {
         resolve(entities)
     })
@@ -1287,29 +1285,29 @@ const stays = [{
 }
 ]
 
-const orders = [[
-    {
-        _id: "o1225",
-        hostId: "u102",
-        createdAt: '9898988989',
-        buyer: {
-            _id: "u101",
-            fullname: "User 1"
-        },
-        totalPrice: 400,
-        startDate: "2025/10/15",
-        endDate: "2025/10/17",
-        guests: {
-            adult: 2,
-            child: 1,
-            infant: 0
-        },
-        stay: {
-            _id: "1000651123122",
-            name: "Stunning Shoreditch Loft Conversion + Movie Screen",
-            price: 200
-        },
-        status: "pending"
-    }
-],
-]
+// const orders = [[
+//     {
+//         _id: "o1225",
+//         hostId: "u102",
+//         createdAt: '9898988989',
+//         buyer: {
+//             _id: "u101",
+//             fullname: "User 1"
+//         },
+//         totalPrice: 400,
+//         startDate: "2025/10/15",
+//         endDate: "2025/10/17",
+//         guests: {
+//             adult: 2,
+//             child: 1,
+//             infant: 0
+//         },
+//         stay: {
+//             _id: "1000651123122",
+//             name: "Stunning Shoreditch Loft Conversion + Movie Screen",
+//             price: 200
+//         },
+//         status: "pending"
+//     }
+// ],
+// ]

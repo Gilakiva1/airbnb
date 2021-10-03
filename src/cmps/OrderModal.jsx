@@ -119,7 +119,7 @@ export class _OrderModal extends React.Component {
         if (end) checkOut = Date.parse(end)
         this.setState({ order: { ...order, checkIn, checkOut }, dateFormat: { start, end } })
     }
-
+ 
     createFinalOrder = () => {
         const { order } = this.state
         const { stay } = this.props

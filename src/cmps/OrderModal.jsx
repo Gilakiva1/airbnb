@@ -37,7 +37,7 @@ export class _OrderModal extends React.Component {
         // const { order } = this.state
         // const { currOrder } = this.props
         // if (order.checkIn !== currOrder.checkIn || order.checkOut !== currOrder.checkOut) {
-        //     this.setState({ order: this.props.currOrder })
+        //     ..this.setState({ order: this.props.currOrder })
         // }
     }
 

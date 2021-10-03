@@ -97,10 +97,41 @@
     justify-self: center;
 }
 
-.details-reviews-header {
-    font-size: rem(22px);
+.big {
+    width: 1120px ;
 }
 
+.user-header {
+    margin-bottom: 25px;
+}
 
-   
+.user-details-profile-img {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+}
 
+.respond-container {
+    margin-top: 40px;
+
+    p {
+        margin: 0;
+    }
+    p:not(:first-child) {
+        margin-top: 15px;
+    }
+
+}
+.contact-host {
+    border-radius: 8px;
+    border: 1px solid $clr2;
+    background-color: transparent;
+    text-align: center;
+    margin-top: 35px;
+    padding: 13px 23px;
+    transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s ;
+}
+
+.contact-host:hover {
+ background-color: rgb(247, 247, 247);   
+}

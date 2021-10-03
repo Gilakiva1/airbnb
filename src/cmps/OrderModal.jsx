@@ -7,17 +7,16 @@ import { GuestsPicking } from './header/GuestsPicking';
 import { DatePicker } from './header/DatePicker';
 import { stayService } from '../services/stay.service';
 import { withRouter } from 'react-router';
-import { onAddOrder } from '../store/order.action';
+import { onAddOrder, onUpdateOrder, onSetOrder } from '../store/order.action';
 
 export class _OrderModal extends React.Component {
 
     state = {
-        order: null,
         isReserve: false,
         isPickingGuests: false,
         isPickingDates: false,
         reviewsNumber: 0,
-        orderParams: null
+        orderParams: null,
 
     }
 
@@ -25,20 +24,12 @@ export class _OrderModal extends React.Component {
         let { reviewsNumber } = this.state
         reviewsNumber = utilService.getRandomIntInclusive(30, 500)
         window.addEventListener('click', this.closeInputs)
-        const { order } = this.props
-        this.setState({ order, reviewsNumber })
+        this.setState({ reviewsNumber })
+        this.props.onSetOrder(this.props.order)
+
     }
 
     inputRef = React.createRef(null)
-
-    componentDidUpdate() {
-        // debugger
-        // const { order } = this.state
-        // const { currOrder } = this.props
-        // if (order.checkIn !== currOrder.checkIn || order.checkOut !== currOrder.checkOut) {
-        //     this.setState({ order: this.props.currOrder })
-        // }
-    }
 
     componentWillUnmount() {
         window.removeEventListener('click', this.closeInputs)
@@ -52,10 +43,12 @@ export class _OrderModal extends React.Component {
     }
 
     handleChange = (ev) => {
-        const { order } = this.state
+        const { currOrder } = this.props
+        const orderCopy = { ...currOrder }
         const field = ev.target.name
         const value = ev.target.value
-        this.setState({ order: { ...order, [field]: value } })
+        orderCopy[field] = value
+        this.props.onUpdateOrder(orderCopy)
     }
 
     closeInputs = () => {
@@ -78,19 +71,13 @@ export class _OrderModal extends React.Component {
         }
     }
 
-    setIsPickingGuests = () => {
-        let { isPickingGuests } = this.state
-        isPickingGuests = false
-        this.setState({ isPickingGuests })
-    }
-
-    preventPropagation = event => {
-        event.stopPropagation()
+    preventPropagation = ev => {
+        ev.stopPropagation()
     }
 
     getTotalGuests = () => {
-        if (this.state.order.guests) {
-            let { adult, child, infant } = this.state.order.guests
+        if (this.props.currOrder.guests) {
+            let { adult, child, infant } = this.props.currOrder.guests
             var guests = `guests:${adult + child + infant}`
             return guests
         } else {
@@ -98,43 +85,68 @@ export class _OrderModal extends React.Component {
         }
     }
 
-    handleKeyPress = () => {
-        return false
-    }
-
     handleGuestsChanege = (field, value) => {
-        let { order } = this.state
-        let { guests } = order
-        this.setState({ order: { ...order, guests: { ...guests, [field]: value } } })
+        const orderCopy = { ...this.props.currOrder }
+        if (!orderCopy.guests) {
+            orderCopy.guests = {
+                adult: 0,
+                child: 0,
+                infant: 0
+            }
+        }
+        orderCopy.guests[field] = value
+        this.props.onUpdateOrder(orderCopy)
     }
 
     handlePickingDates = (start, end) => {
-        let { order } = this.state
-        let { checkIn, checkOut } = order
-        checkIn = ` ${start.toLocaleString('en-IL', { month: 'short', day: 'numeric' })} `
-        if (end) checkOut = ` ${end.toLocaleString('en-IL', { month: 'short', day: 'numeric' })} `
-        this.setState({ order: { ...order, checkIn, checkOut } })
+        const orderCopy = { ...this.props.currOrder }
+        orderCopy.checkIn = Date.parse(start)
+        if (end) {
+            orderCopy.checkOut = Date.parse(end)
+        }
+        this.props.onUpdateOrder(orderCopy)
+    }
+
+    createFinalOrder = () => {
+        const { currOrder, stay } = this.props
+        const finalOrder = {}
+        finalOrder.hostId = stay.host._id
+        finalOrder.createdAt = Date.now()
+        finalOrder.buyer = {}
+        finalOrder.buyer._id = 'userId'
+        finalOrder.buyer.fullname = 'user.fullname'
+        finalOrder.totalPrice = ((currOrder.checkOut - currOrder.checkIn) / (1000 * 60 * 60 * 24)) * stay.price
+        finalOrder.startDate = currOrder.checkIn
+        finalOrder.endDate = currOrder.checkOut
+        finalOrder.guests = currOrder.guests
+        finalOrder.stay = {}
+        finalOrder.stay._id = stay._id
+        finalOrder.stay.name = stay.name
+        finalOrder.stay.price = stay.price
+        finalOrder.status = 'pending'
+        return finalOrder
     }
 
     onSubmit = async (ev) => {
         ev.preventDefault()
-        const { order, isReserve } = this.state
+        const { isReserve } = this.state
         if (!isReserve) {
             ev.target.type = 'submit'
             this.setState({ isReserve: true })
         }
         else {
-            const savedOrder = await this.props.onAddOrder(order)
-            const stay = await stayService.getById(this.props.match.params.stayId)
+            const finalOrder = this.createFinalOrder()
+            const savedOrder = await this.props.onAddOrder(finalOrder)
+            //change to save id at stay or mini order
+            const { stay } = this.props
             stay.orders.push(savedOrder)
-            console.log('stay', stay);
         }
     }
 
     render() {
-        const { isPickingDates, isPickingGuests, isReserve, reviewsNumber, order, orderParams } = this.state
-        const { stay } = this.props
-        if (!order) return <div>loading</div>
+        const { isPickingDates, isPickingGuests, isReserve, reviewsNumber } = this.state
+        const { stay, currOrder } = this.props
+        if (!currOrder) return <div>loading</div>
         return (
             <div className="order-modal">
                 <div className="flex space-between align-center">
@@ -158,7 +170,7 @@ export class _OrderModal extends React.Component {
                                     type="text"
                                     placeholder="Add dates"
                                     name="checkIn"
-                                    value={order.checkIn|| ''}
+                                    value={new Date(currOrder.checkIn).toLocaleString('en-IL', { month: 'short', day: 'numeric' }) || ''}
                                     disabled
                                     style={{ outline: 'none' }}
                                     onChange={this.handleChange}
@@ -171,9 +183,9 @@ export class _OrderModal extends React.Component {
                                 <input
                                     className="light fs14"
                                     type="text"
-                                    placeholder="Add dates" 
+                                    placeholder="Add dates"
                                     name="checkOut"
-                                    value={order.checkOut|| ''}
+                                    value={new Date(currOrder.checkOut).toLocaleString('en-IL', { month: 'short', day: 'numeric' }) || ''}
                                     disabled
                                     style={{ outline: 'none' }}
                                     onChange={this.handleChange}
@@ -183,18 +195,18 @@ export class _OrderModal extends React.Component {
                         <label className={`guests ${isPickingGuests ? 'focus' : ''}`}>
                             <div className="flex column  ">
                                 <span className="bold fs10">GUESTS</span>
-                                <button onClick={() => this.activeInput('guest')} className="fs14 confirm-guests light clr2" type="button" >{this.getTotalGuests()} guest</button>
+                                <button onClick={() => this.activeInput('guest')} className="fs14 confirm-guests light clr2" type="button" ><span></span>{this.getTotalGuests()}</button>
                             </div>
                         </label>
                     </div>
                     <div className="flex column">
                         {!isReserve && <button onMouseMove={this.onSetColor} ref={this.inputRef} className="confirm-order fs16" type="button" onClick={this.onSubmit}><span>Check availability</span></button>}
                         {isReserve &&
-                            <button onMouseMove={this.onSetColor} ref={this.inputRef} className="confirm-order fs16 medium" type="button" onClick={this.onSubmit}>Reserve</button>}
+                            <button onMouseMove={this.onSetColor} ref={this.inputRef} className="confirm-order fs16 medium" onClick={this.onSubmit}>Reserve</button>}
                     </div>
                     <div className={`${isPickingGuests ? '' : 'none'}`}> {isPickingGuests && <GuestsPicking handleGuestsChanege={this.handleGuestsChanege} />} </div>
+                    <div className={isPickingDates ? '' : 'none'}> {isPickingDates && <DatePicker order={currOrder} preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />} </div>
                 </form >
-                <div className={isPickingDates ? '' : 'none'}> {isPickingDates && <DatePicker order={order} preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />} </div>
             </div >
         )
     }
@@ -203,10 +215,13 @@ export class _OrderModal extends React.Component {
 function mapStateToProps(state) {
     return {
         stays: state.stayReducer.stays,
+        currOrder: state.orderReducer.currOrder
     }
 }
 const mapDispatchToProps = {
     onAddOrder,
+    onUpdateOrder,
+    onSetOrder
 }
 
 export const OrderModal = connect(mapStateToProps, mapDispatchToProps)(withRouter(_OrderModal))

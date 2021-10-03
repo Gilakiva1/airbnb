@@ -11,7 +11,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <Router>
-      <ScrollToTop/>
+      {/* <ScrollToTop/> */}
         <App />
       </Router>
     </Provider>  

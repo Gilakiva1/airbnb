@@ -11,10 +11,12 @@ import { OrderModal } from '../cmps/OrderModal.jsx';
 import { stayService } from '../services/stay.service.js';
 import { Amenities } from '../cmps/stay-details/amenities.jsx';
 import { DatePicker } from '../cmps/header/DatePicker.jsx';
-import { onAddOrder } from '../store/order.action';
+import { onAddOrder, onUpdateOrder } from '../store/order.action';
 import { ReviewPoints } from '../cmps/stay-details/ReviewPoints.jsx';
 import { ReviewList } from '../cmps/stay-details/ReviewList.jsx';
-// import GoogleMaps from '../cmps/stay-details/Google-Maps.jsx';
+import GoogleMaps from '../cmps/stay-details/Google-Maps.jsx';
+import { IdentityVerified } from '../cmps/svgs/IdentityVerified.jsx';
+
 
 export class _StayDetails extends Component {
     state = {
@@ -24,14 +26,14 @@ export class _StayDetails extends Component {
     componentDidMount() {
         this.loadStay()
 
-    } 
+    }
 
     loadStay = async () => {
         const id = this.props.match.params.stayId;
         const stay = await stayService.getById(id)
-        if (!stay) this.props.history.push("/")
-
         const searchParams = new URLSearchParams(this.props.location.search);
+        if (!stay) this.props.history.push(`/stay?${searchParams}`)
+
         const order = utilService.getQueryParams(searchParams)
         if (order.checkIn && order.checkOut) {
 
@@ -42,18 +44,15 @@ export class _StayDetails extends Component {
         this.setState({ stay, order })
     }
 
-    handlePickingDates = async (start, end) => {
-        const { order } = this.state
-
-        let checkIn = ` ${start.toLocaleString('en-IL', { month: 'short', day: 'numeric' })} `
+    handlePickingDates =  (start, end) => {
+        const orderCopy = {...this.props.currOrder}
         if (end) {
-            var checkOut = ` ${end.toLocaleString('en-IL', { month: 'short', day: 'numeric' })} `
-            order.checkOut = checkOut
-        } else {
-            order.checkOut = ''
+            orderCopy.checkOut = Date.parse(end)
+        } else if (!orderCopy.checkOut) {
+            orderCopy.checkOut = ''
         }
-        order.checkIn = checkIn
-
+        orderCopy.checkIn = Date.parse(start)
+        this.props.onUpdateOrder(orderCopy)
     }
 
 
@@ -118,14 +117,14 @@ export class _StayDetails extends Component {
                                 <h2>Select check-in date</h2>
                                 <p className="fade-font">Add your travel dates for exact pricing</p>
                                 <div className="details-dates flex justify-center">
-                                    <DatePicker order={order} className={'datepicker-details'} preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />
+                                    <DatePicker order={this.props.currOrder} className={'datepicker-details'} preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />
                                 </div>
                             </div>
-                            <div className="seperation-line"></div>
-                            <div className="details-reviews-header flex gap5">
+                            <div className="seperation-line big"></div>
+                            <div className="details-reviews-header medium fh26 flex gap5">
                                 {<FontAwesomeIcon className="star-icon" icon={faStar} />}
                                 {stay.rating}
-                                ({utilService.getRandomIntInclusive(30, 500)} reviews)
+                                <span>·</span>{utilService.getRandomIntInclusive(30, 500)} reviews
                             </div>
                         </div >
                         <OrderModal stay={stay} order={order} />
@@ -135,7 +134,31 @@ export class _StayDetails extends Component {
                     <div className="seperation-line"></div>
                     <h2>Where you’ll be</h2>
                     <p>{stay.loc.address}</p>
-            {/* <GoogleMaps/>         */}
+                    <GoogleMaps lat={stay.loc.lat} lng={stay.loc.lng} />
+                    <div className="seperation-line"></div>
+                    <div className="user-header flex  gap10">
+                        <img className="user-details-profile-img" src={stay.host.imgUrl} alt="" />
+                        <div className="user-profile-name-date flex column">
+                            <span className="user-name medium fs22 fh26">Hosted by {stay.host.fullname}</span>
+                            <span className="fs14 fh18 book clr1">{stay.host.joinDate || 'joined in September 2016'}</span>
+                        </div>
+                    </div>
+                    <div className="flex gap10">
+                        <div className="fs22 flex gap5">
+                            {<FontAwesomeIcon className="star-icon fs16 fh20" icon={faStar} />}
+                            <div className="fs16 fh20 book">{utilService.getRandomIntInclusive(100, 2000).toLocaleString('en-IL')} Reviews</div>
+                        </div>
+                        <div className=" flex gap10">
+                            {<IdentityVerified className="clr3" />}
+                            <div className="fs16 fh20 book">Identity verified</div>
+                        </div>
+                    </div>
+                    <div className=" respond-container">
+                        <p className="fs16 fh20 book">Response rate: 99%</p>
+                        <p className="fs16 fh20 book">Response time: within an hour</p>
+                    </div>
+                    <button className="contact-host fs16 fh20 medium">Contact host</button>
+                    <div className="seperation-line"></div>
                 </section >
 
             </>
@@ -147,10 +170,12 @@ export class _StayDetails extends Component {
 function mapStateToProps(state) {
     return {
         stays: state.stayReducer.stays,
+        currOrder: state.orderReducer.currOrder
     }
 }
 const mapDispatchToProps = {
-    onAddOrder
+    onAddOrder,
+    onUpdateOrder
 }
 
 export const StayDetails = connect(mapStateToProps, mapDispatchToProps)(_StayDetails)

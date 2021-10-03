@@ -16,5 +16,4 @@ export function PopularImgPreview({ link, idx }) {
             </div>
         </Link>
     )
-
 }

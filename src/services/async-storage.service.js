@@ -1,5 +1,9 @@
 import { de } from "date-fns/locale";
 import user1 from '../assets/img/profiles/user1.png'
+import user2 from '../assets/img/profiles/user2.jpg'
+import user3 from '../assets/img/profiles/user3.jpg'
+import user4 from '../assets/img/profiles/user4.jpg'
+import user5 from '../assets/img/profiles/user5.jpg'
 
 export const storageService = {
     query,
@@ -15,7 +19,7 @@ function query(entityType, params = {}) {
     let entities;
     if (entityType === 'stayDB') {
 
-        entities = JSON.parse(localStorage.getItem(entityType)) || dummyData
+        entities = JSON.parse(localStorage.getItem(entityType)) || stays
         if (params.address) {
             params.address = params.address.split('-').join(' ')
             const regex = new RegExp(params.address, 'i');
@@ -31,7 +35,13 @@ function query(entityType, params = {}) {
                 return entitie.capacity >= params.guests.adult + params.guests.child + params.guests.infant
             })
         }
-    } else {
+    } 
+    
+   else if (entityType === 'orderDB') {
+    entities = JSON.parse(localStorage.getItem(entityType)) || orders
+
+   }
+    else {
         entities = JSON.parse(localStorage.getItem(entityType)) || []
 
     }
@@ -96,23 +106,7 @@ function _makeId(length = 5) {
     }
     return text
 }
-// if (!filterBy) {
-//     return new Promise((resolve, reject) => {
-//         resolve(entities)
-//     })
-// }
-// if (filterBy.checkin) {
-//     entities = entities.filter(entitie => {
-//        if (entitie.orders.forEach(order=>{
-//         if (order)
-//        })) return entitiy
-//     })
-// }
-// if (params.price) {
-//     entities = entities.filter(entitie => {
-//         return entitie.price >= filterBy.price.minPrice && entitie.price <= filterBy.price.maxPrice
-//     })
-// }
+
 
 function postMany(entityType, newEntities) {
     return query(entityType)
@@ -127,7 +121,7 @@ function postMany(entityType, newEntities) {
         })
 }
 
-const dummyData = [{
+const stays = [{
     _id: '10006546',
     name: 'Ribeira Charming Duplex',
     imgUrls: ['https://a0.muscache.com/im/pictures/19699192/1db389e2_original.jpg?im_w=1200', 'https://a0.muscache.com/im/pictures/19699115/da835cad_original.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/19699172/fcdea060_original.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/19699165/665a1533_original.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/19699218/ea3a4033_original.jpg?im_w=720'],
@@ -152,7 +146,7 @@ const dummyData = [{
     host: {
         _id: '51399391',
         fullname: ' Davit Pok',
-        imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
+        imgUrl: user1,
     },
     orders: [
         {
@@ -175,7 +169,7 @@ const dummyData = [{
         by: {
             _id: 'u101',
             fullname: 'gilli2',
-            imgUrl: 'https://a0.muscache.com/defaults/user_pic-225x225.png?im_w=240',
+            imgUrl:user2,
             desc: 'Very central apartment, clean and quiet. Walking distance from anywhere, close to grocery stores and the beach, and the marketVery fast feedback from the host.We had a great time'
         },
         date: ' May 2015'
@@ -187,7 +181,7 @@ const dummyData = [{
         by: {
             _id: 'u102',
             fullname: 'guy',
-            imgUrl: 'https://a0.muscache.com/defaults/user_pic-225x225.png?im_w=240',
+            imgUrl: user3,
             desc: 'perfect for couples you are 5 minutesaway from everywherewe had a really good time!',
         },
         date: 'sep 2020',
@@ -200,7 +194,7 @@ const dummyData = [{
         by: {
             _id: 'u103',
             fullname: 'guy',
-            imgUrl: 'https://a0.muscache.com/defaults/user_pic-225x225.png?im_w=240',
+            imgUrl: user4,
             desc: `The location is great!! Short walk to the beach, shopping center, restaurants etc.
             The host is super fast responding and can share tips about anything you would like to do in the city.
             The flat has all that one needs, including an espresso machine, big screen TV (for the kids) and a reliable WiFi connection.
@@ -216,7 +210,7 @@ const dummyData = [{
         by: {
             _id: 'u104',
             fullname: 'omri',
-            imgUrl: 'https://a0.muscache.com/defaults/user_pic-225x225.png?im_w=240',
+            imgUrl: user5,
             desc: 'Exactly what we looked for in a fair price. Clean easy and great Thanks a lot',
         },
         date: 'july 2020',
@@ -229,7 +223,7 @@ const dummyData = [{
         by: {
             _id: 'u105',
             fullname: 'oded',
-            imgUrl: 'https://a0.muscache.com/defaults/user_pic-225x225.png?im_w=240',
+            imgUrl: user1,
             desc: 'Amazing location with a great view from the balcony, sunset was beautiful. Walking distance to the market and beaches, apartment is a little basic but had everything I needed',
         },
         date: 'nov 2020',
@@ -241,7 +235,7 @@ const dummyData = [{
         by: {
             _id: 'u105',
             fullname: 'shmulik',
-            imgUrl: 'https://a0.muscache.com/defaults/user_pic-225x225.png?im_w=240',
+            imgUrl: user1,
             desc: `We enjoyed the cleanliness of the place. Excellent location. close to the beach and everything is within walking distance very convenient. Place was simple and we'll kept and Everything you need is in the room. We will definitely stay here again `,
         },
         date: 'nov 2020',
@@ -277,7 +271,7 @@ const dummyData = [{
     host: {
         _id: '51329391',
         fullname: ' Davit puka',
-        imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
+        imgUrl: user2
     },
     orders: [{
         _id: 'u101',
@@ -300,7 +294,7 @@ const dummyData = [{
         by: {
             _id: 'u102',
             fullname: 'user2',
-            imgUrl: '/img/img2.jpg'
+            imgUrl: user2
         },
         date: 'May 2015'
     }],
@@ -331,7 +325,7 @@ const dummyData = [{
     host: {
         _id: '51392291',
         fullname: ' Davidi Pok',
-        imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
+        imgUrl: user3,
     },
     orders: [{
         _id: 'u101',
@@ -353,7 +347,7 @@ const dummyData = [{
         by: {
             _id: 'u102',
             fullname: 'user2',
-            imgUrl: '/img/img2.jpg'
+            imgUrl:user4
         },
         date: 'May 2015'
     }
@@ -387,7 +381,7 @@ const dummyData = [{
     host: {
         _id: '51392291',
         fullname: ' Davidi Pok',
-        imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
+        imgUrl:user4,
     },
     orders: [{
         _id: 'u101',
@@ -409,7 +403,7 @@ const dummyData = [{
         by: {
             _id: 'u102',
             fullname: 'user2',
-            imgUrl: '/img/img2.jpg'
+            imgUrl: user4
         },
         date: 'May 2015'
     }
@@ -443,7 +437,7 @@ const dummyData = [{
     host: {
         _id: '51392291',
         fullname: ' Davidi Pok',
-        imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
+        imgUrl: user1,
     },
     orders: [{
         _id: 'u101',
@@ -465,7 +459,7 @@ const dummyData = [{
         by: {
             _id: 'u102',
             fullname: 'user2',
-            imgUrl: '/img/img2.jpg'
+            imgUrl: user4
         },
         date: 'May 2015'
     }
@@ -498,8 +492,8 @@ const dummyData = [{
     ],
     host: {
         _id: '51392291',
-        fullname: ' Davidi Pok',
-        imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
+        fullname: 'Shlomo Creepy',
+        imgUrl: user1,
     },
     orders: [{
         _id: 'u101',
@@ -520,8 +514,8 @@ const dummyData = [{
         rate: 4,
         by: {
             _id: 'u102',
-            fullname: 'user2',
-            imgUrl: '/img/img2.jpg'
+            fullname: 'Dudu Shem Tov',
+            imgUrl: user3
         },
         date: 'May 2015'
     }
@@ -554,8 +548,8 @@ const dummyData = [{
     ],
     host: {
         _id: '51392291',
-        fullname: ' Davidi Pok',
-        imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
+        fullname: ' Dani California',
+        imgUrl: user4,
     },
     orders: [{
         _id: 'u101',
@@ -576,8 +570,8 @@ const dummyData = [{
         rate: 4,
         by: {
             _id: 'u102',
-            fullname: 'user2',
-            imgUrl: '/img/img2.jpg'
+            fullname: 'Daniel Smithson',
+            imgUrl: user3
         },
         date: 'May 2015'
     }
@@ -611,8 +605,8 @@ const dummyData = [{
     ],
     host: {
         _id: '51392291',
-        fullname: ' Davidi Pok',
-        imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
+        fullname: 'Kenny Rock',
+        imgUrl: user5,
     },
     orders: [
         {
@@ -636,8 +630,8 @@ const dummyData = [{
             rate: 4,
             by: {
                 _id: 'u102',
-                fullname: 'user2',
-                imgUrl: '/img/img2.jpg'
+                fullname: 'Jhonny Sinai',
+                imgUrl: user2
             },
             date: 'May 2015'
         }
@@ -673,7 +667,7 @@ const dummyData = [{
     host: {
         _id: '51392291',
         fullname: ' Davidi Pok',
-        imgUrl: ' https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
+        imgUrl:user3,
     },
     orders: [
         {
@@ -707,7 +701,7 @@ const dummyData = [{
         by: {
             _id: 'u101',
             fullname: 'gilli2',
-            imgUrl: 'https://a0.muscache.com/defaults/user_pic-225x225.png?im_w=240',
+            imgUrl: user4,
             desc: 'Very central apartment, clean and quiet. Walking distance from anywhere, close to grocery stores and the beach, and the marketVery fast feedback from the host.We had a great time'
         },
         date: ' May 2015'
@@ -728,7 +722,7 @@ const dummyData = [{
         by: {
             _id: 'u102',
             fullname: 'guy',
-            imgUrl: 'https://a0.muscache.com/defaults/user_pic-225x225.png?im_w=240',
+            imgUrl: user4,
             desc: 'perfect for couples you are 5 minutesaway from everywherewe had a really good time!',
         },
         date: 'sep 2020',
@@ -750,7 +744,7 @@ const dummyData = [{
         by: {
             _id: 'u103',
             fullname: 'guy',
-            imgUrl: 'https://a0.muscache.com/defaults/user_pic-225x225.png?im_w=240',
+            imgUrl: user2,
             desc: `The location is great!! Short walk to the beach, shopping center, restaurants etc.
             The host is super fast responding and can share tips about anything you would like to do in the city.
             The flat has all that one needs, including an espresso machine, big screen TV (for the kids) and a reliable WiFi connection.
@@ -775,7 +769,7 @@ const dummyData = [{
         by: {
             _id: 'u104',
             fullname: 'omri',
-            imgUrl: 'https://a0.muscache.com/defaults/user_pic-225x225.png?im_w=240',
+            imgUrl: user1,
             desc: 'Exactly what we looked for in a fair price. Clean easy and great Thanks a lot',
         },
         date: 'july 2020',
@@ -797,7 +791,7 @@ const dummyData = [{
         by: {
             _id: 'u105',
             fullname: 'oded',
-            imgUrl: 'https://a0.muscache.com/defaults/user_pic-225x225.png?im_w=240',
+            imgUrl: user1,
             desc: 'Amazing location with a great view from the balcony, sunset was beautiful. Walking distance to the market and beaches, apartment is a little basic but had everything I needed',
         },
         date: 'nov 2020',
@@ -818,7 +812,7 @@ const dummyData = [{
         by: {
             _id: 'u105',
             fullname: 'shmulik',
-            imgUrl: 'https://a0.muscache.com/defaults/user_pic-225x225.png?im_w=240',
+            imgUrl: user1,
             desc: `We enjoyed the cleanliness of the place. Excellent location. close to the beach and everything is within walking distance very convenient. Place was simple and we'll kept and Everything you need is in the room. We will definitely stay here again `,
         },
         date: 'nov 2020',
@@ -936,7 +930,7 @@ const dummyData = [{
             by: {
                 _id: 'u102',
                 fullname: 'user2',
-                imgUrl: 'https://a0.muscache.com/defaults/user_pic-225x225.png?im_w=240'
+                imgUrl: user2
             },
             date: ' May 2015'
         }
@@ -993,7 +987,7 @@ const dummyData = [{
             by: {
                 _id: 'u102',
                 fullname: 'user2',
-                imgUrl: 'https://a0.muscache.com/defaults/user_pic-225x225.png?im_w=240'
+                imgUrl: user2
             },
             date: ' May 2015'
         }
@@ -1051,7 +1045,7 @@ const dummyData = [{
             by: {
                 _id: 'u102',
                 fullname: 'user2',
-                imgUrl: 'https://a0.muscache.com/defaults/user_pic-225x225.png?im_w=240'
+                imgUrl: user5
             },
             date: ' May 2015'
         }
@@ -1109,7 +1103,7 @@ const dummyData = [{
             by: {
                 _id: 'u102',
                 fullname: 'user2',
-                imgUrl: 'https://a0.muscache.com/defaults/user_pic-225x225.png?im_w=240'
+                imgUrl: user5
             },
             date: ' May 2015'
         }
@@ -1167,7 +1161,7 @@ const dummyData = [{
             by: {
                 _id: 'u102',
                 fullname: 'user2',
-                imgUrl: 'https://a0.muscache.com/defaults/user_pic-225x225.png?im_w=240'
+                imgUrl: user4
             },
             date: ' May 2015'
         }
@@ -1225,7 +1219,7 @@ const dummyData = [{
             by: {
                 _id: 'u102',
                 fullname: 'user2',
-                imgUrl: 'https://a0.muscache.com/defaults/user_pic-225x225.png?im_w=240'
+                imgUrl: user4
             },
             date: ' May 2015'
         }
@@ -1283,7 +1277,7 @@ const dummyData = [{
             by: {
                 _id: 'u102',
                 fullname: 'user2',
-                imgUrl: 'https://a0.muscache.com/defaults/user_pic-225x225.png?im_w=240'
+                imgUrl: user2
             },
             date: ' May 2015'
         }
@@ -1292,4 +1286,31 @@ const dummyData = [{
     likedByUserIds: ['u101', 'u102']
 
 }
+]
+
+const orders = [[
+    {
+      _id: "o1225",
+      hostId: "u102",
+      createdAt: '9898988989',
+      buyer: {
+        _id: "u101",
+        fullname: "User 1"
+      },
+      totalPrice: 400,
+      startDate: "2025/10/15",
+      endDate: "2025/10/17",
+      guests: {
+        adult: 2,
+        child: 1,
+        infant: 0
+      },
+      stay: {
+        _id: "1000651123122",
+        name: "Stunning Shoreditch Loft Conversion + Movie Screen",
+        price: 200
+      },
+      status: "pending"
+    }    
+  ],
 ]

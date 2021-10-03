@@ -11,12 +11,16 @@ export function loadStays(params) {
   };
 }
 
+
 export function onSetFilter(filterBy) {
-  stayService.query(filterBy)
-    .then(stays => {
-      dispatch({
-        type: 'SET_STAYS',
-        stays
-      })
-    }
+  return (dispatch) => {
+    stayService.query(filterBy)
+          .then(stays => {
+              dispatch({
+                  type: 'SET_STAYS',
+                  stays
+              })
+          })
   }
+}
+

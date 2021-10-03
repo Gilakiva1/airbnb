@@ -17,11 +17,11 @@ import { ReviewList } from '../cmps/stay-details/ReviewList.jsx';
 import GoogleMaps from '../cmps/stay-details/Google-Maps.jsx';
 import { IdentityVerified } from '../cmps/svgs/IdentityVerified.jsx';
 
-
+ 
 export class _StayDetails extends Component {
     state = {
         stay: null,
-        order: null
+        order: null  
     };
     componentDidMount() {
         this.loadStay()
@@ -59,10 +59,11 @@ export class _StayDetails extends Component {
     preventPropagation = event => {
         event.stopPropagation()
     }
-
+ 
 
     render() {
         const { stay, order } = this.state
+        console.log('order');
 
         if (!stay) return <div>Loading...</div>
         return (
@@ -132,7 +133,7 @@ export class _StayDetails extends Component {
                     <ReviewPoints reviews={stay.reviews} />
                     <ReviewList reviews={stay.reviews} />
                     <div className="seperation-line"></div>
-                    <h2>Where you’ll be</h2>
+                    <h2>Where you'll be</h2>
                     <p>{stay.loc.address}</p>
                     <GoogleMaps lat={stay.loc.lat} lng={stay.loc.lng} />
                     <div className="seperation-line"></div>
@@ -179,4 +180,3 @@ const mapDispatchToProps = {
 }
 
 export const StayDetails = connect(mapStateToProps, mapDispatchToProps)(_StayDetails)
-

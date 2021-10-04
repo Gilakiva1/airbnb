@@ -9,6 +9,7 @@ import imgUser from '../../assets/img/home-page/user.jpg'
 import { SearchBar } from "./SearchBar";
 import { MiniSearchBar } from './MiniSearchBar';
 import { MenuBar } from './MenuBar'
+import { LogIn } from '../LogIn';
 
 
 class _AppHeader extends React.Component {
@@ -16,7 +17,8 @@ class _AppHeader extends React.Component {
     state = {
         scrollLoc: 0,
         isEnter: false,
-        isShowMenu: false
+        isShowMenu: false,
+        isLogIn: false
     }
 
     componentDidMount() {
@@ -24,12 +26,24 @@ class _AppHeader extends React.Component {
         window.addEventListener('click', this.onCloseMenu)
     }
 
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.onToggleHeader)
+        window.removeEventListener('click', this.onCloseMenu)
+    }
+    
+
     componentDidUpdate() {
         if (this.props.history.location.pathname !== '/') {
             window.removeEventListener('scroll', this.onToggleHeader)
         } else {
             window.addEventListener('scroll', this.onToggleHeader)
         }
+    }
+
+    toggleLogIn = () => {
+        this.onCloseMenu()
+        let {isLogIn} = this.state
+        this.setState({isLogIn: !isLogIn})
     }
 
     onToggleHeader = (ev) => {
@@ -59,7 +73,7 @@ class _AppHeader extends React.Component {
     }
 
     render() {
-        const { scrollLoc, isEnter, isShowMenu } = this.state
+        const { scrollLoc, isEnter, isShowMenu, isLogIn } = this.state
         const { pathname } = this.props.history.location
 
         return (
@@ -87,7 +101,8 @@ class _AppHeader extends React.Component {
                                 </div>
                             </div>
                         </div>
-                        {isShowMenu && <MenuBar onCloseMenu={this.onCloseMenu} />}
+                        {isShowMenu && <MenuBar toggleLogIn={this.toggleLogIn} onCloseMenu={this.onCloseMenu} />}
+                        {isLogIn && <LogIn toggleLogIn={this.toggleLogIn} animateClassName={isLogIn ? 'slide-in-bottom' : ''} />}
                     </nav>
                 </div>
                 {scrollLoc < 40 && pathname === '/' && <SearchBar animateClassName={isEnter ? 'scale-up-top' : ''} />}

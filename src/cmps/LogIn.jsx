@@ -89,7 +89,7 @@ export class _LogIn extends React.Component {
                 name='password'
                 type='password'
                 onChange={this.handleChange}
-              />
+              /> 
               {isSignup && <TextField
                 id="outlined-basic-3"
                 label="Enter fullname"

@@ -15,7 +15,8 @@ class _StayList extends React.Component {
             },
             propertyTypes: [],
             amenities: []
-        },
+        },  
+        isOpenFilter: false
 
     }
 
@@ -28,8 +29,8 @@ class _StayList extends React.Component {
     }
 
     setCheckedPropertyType = (propertyTypes, property) => {
-        let key = property ==='types'?'propertyTypes':property
-        this.setState({ filterBy: { ...this.state.filterBy, [key]: propertyTypes } },()=>{
+        let key = property === 'types' ? 'propertyTypes' : property
+        this.setState({ filterBy: { ...this.state.filterBy, [key]: propertyTypes } }, () => {
         })
     }
 
@@ -78,12 +79,12 @@ class _StayList extends React.Component {
     }
 
     render() {
-        const stays = this.getStaysForDisplay()
+        const stays = this.getStaysForDisplay() 
         const { orderParams } = this.state
         if (!orderParams) return <div>loading...</div>
         return (
             <>
-                
+
                 <h1 className="count-stays airbnb-book fs14 fh18 fw-unset">{stays.length} stays </h1>
                 <h1 className="city-name">Stays in {orderParams.address}</h1>
                 <div className="list-filter">

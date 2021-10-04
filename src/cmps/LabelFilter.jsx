@@ -5,7 +5,7 @@ export class LabelFilter extends Component {
         types: [],
         amenities: []
     }
-    
+
     componentDidMount() {
         this.checkTypeExists()
     }
@@ -40,13 +40,13 @@ export class LabelFilter extends Component {
     saveChecked = (ev) => {
         const { property } = this.props
         const { name: value, checked } = ev.target
-        let key = property==='type' ? 'types' : [property]
-       
+        let key = property === 'type' ? 'types' : [property]
+
         const types = this.state[key].map(currType => {
             if (currType.name === value) currType.isChecked = checked
             return currType
         })
-        this.setState({ [key]:types })
+        this.setState({ [key]: types })
     }
     renderByProperty = () => {
         const { types, amenities } = this.state
@@ -56,53 +56,55 @@ export class LabelFilter extends Component {
                 return (
                     amenities.map((type, idx) => (
                         <label key={idx}>
-                        <input type="checkbox" name={type.name} value={type.isChecked}
-                            checked={type.isChecked}
-                            onChange={this.saveChecked}
+                            <input type="checkbox" name={type.name} value={type.isChecked}
+                                checked={type.isChecked}
+                                onChange={this.saveChecked}
                             />
-                        {type.name}
-                    </label>
-                ))
+                            {type.name}
+                        </label>
+                    ))
                 )
             }
-        }else {
+        } else {
             return (
                 types.map((type, idx) => (
                     <label key={idx}>
-                    <input type="checkbox" name={type.name} value={type.isChecked}
-                        checked={type.isChecked}
-                        onChange={this.saveChecked}
+                        <input type="checkbox" name={type.name} value={type.isChecked}
+                            checked={type.isChecked}
+                            onChange={this.saveChecked}
                         />
-                    {type.name}
-                </label>
-            ))
+                        {type.name}
+                    </label>
+                ))
             )
         }
     }
 
     render() {
-        const {property} = this.props
-        let key = property==='type' ? 'types' : [property]
+        const { property } = this.props
+        let key = property === 'type' ? 'types' : [property]
         return (
-            <>
-                {
-                         this.state[key].map((type, idx) => (
-                            <label key={idx}>
-                            <input type="checkbox" name={type.name} value={type.isChecked}
-                                checked={type.isChecked}
-                                onChange={this.saveChecked}
-                                />
-                            {type.name}
-                        </label>
-                    ))
-                    
+            <div className="type-filter space-between flex column gap10 round-edge">
+                {this.state[key].map((type, idx) => (
+                    <label key={idx}>
+                        <input type="checkbox" name={type.name} value={type.isChecked}
+                            checked={type.isChecked}
+                            onChange={this.saveChecked}
+                        />
+                        {type.name}
+                    </label>
+                ))
                 }
-                <button onClick={() =>
-                    this.props.setCheckedPropertyType(this.state[key].reduce((acc, type) => {
-                        if (type.isChecked) acc.push(type.name)
-                        return acc
-                    }, []),key)}>Save</button>
-            </>
+                <div className="btn-inputs flex white space-between">
+                    <button className="btn" onClick={() =>
+                        this.props.setCheckedPropertyType(this.state[key].reduce((acc, type) => {
+                            if (type.isChecked) acc.push(type.name)
+                            return acc
+                        }, []), key)}>Save</button>
+                    <button className="btn" >Clear (not-working)</button>
+                </div>
+
+            </div>
         )
 
     }

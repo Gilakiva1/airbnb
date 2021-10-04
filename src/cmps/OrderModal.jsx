@@ -79,6 +79,7 @@ export class _OrderModal extends React.Component {
 
     getTotalGuests = () => {
         if (this.props.currOrder.guests) {
+            console.log(this.props.currOrder);
             let { adult, child, infant } = this.props.currOrder.guests
             var guests = `guests:${adult + child + infant}`
             return guests

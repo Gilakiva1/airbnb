@@ -17,7 +17,12 @@ export const storageService = {
 
 function query(entityType, params = {}) {
     let entities;
-    if (entityType === 'stayDB') {
+    if (params.hostId) {
+        
+        entities = JSON.parse(localStorage.getItem(entityType)) || stays
+        entities = entities.filter(entitie => entitie.host._id === params.hostId)
+    }
+    else if (entityType === 'stayDB') {
         entities = JSON.parse(localStorage.getItem(entityType)) || stays
         if (params.address) {
             params.address = params.address.split('-').join(' ')

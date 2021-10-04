@@ -1,18 +1,10 @@
 
 import { Link } from "react-router-dom"
 import { utilService } from "../../services/util.service"
-import { onSetOrder } from "../../store/order.action"
 export function TripPreview({ order, onSetOrder }) {
-    // const stayParams = {
-    //     address: order.stay.address,
-    //     checkIn: order.startDate,
-    //     checkOut: order.startDate,
-    //     guests: { ...order.guests }
-
-    // }
+ 
     const stayId = order.stay._id
     const queryString = utilService.makeQueryParams(order)
-    console.log('string',queryString);
 
 
     return (

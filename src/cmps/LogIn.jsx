@@ -2,16 +2,20 @@ import { TextField } from "@material-ui/core";
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-import {userService} from "../services/user.service"
-import {onAddUser} from "../store/user.action"
-
+import { userService } from "../services/user.service"
+import { onAddUser, onSetUser } from "../store/user.action"
+import user1 from "../assets/img/profiles/user1.png"
 export class _LogIn extends React.Component {
 
   state = {
     credentials: {
       username: '',
-      password: ''
-    }
+      password: '',
+      fullname: '',
+      imgUrl: user1,
+      isAdmin: false
+    },
+    isSignup: false
 
   }
   inputRef = React.createRef(null)
@@ -40,27 +44,32 @@ export class _LogIn extends React.Component {
     this.inputRef.current.style.setProperty('--mouse-y', y)
   }
 
+  toggleSignup = () => {
+    this.setState({ isSignup: true })
+  }
+
 
   onSubmit = async (ev) => {
-    debugger
     ev.preventDefault()
-    const {credentials} = this.state
-    let user = await userService.login(credentials)
-    if (user==='signup') {
-  user = await userService.signup(credentials)
-      onAddUser(user)
+    const { credentials,isSignup } = this.state
+    if (isSignup){
+      const user = await userService.signup(credentials)
+      await this.props.onAddUser(user)
+      this.props.onSetUser(user)
+    } 
+     else {
+       const user = await userService.login(credentials)
+       this.props.onSetUser(user)
+     } 
       this.props.toggleLogIn()
-}
-
-    return
   }
 
   render() {
-    const { animateClassName } = this.props
+    const { isSignup } = this.state
     return (
       <section>
         <div className="screen"></div>
-        <form className={`login-form flex column align-center ${animateClassName}`} onClick={(ev) => ev.stopPropagation()} onSubmit={this.onSubmit}>
+        <form className={`login-form flex column align-center`} onClick={(ev) => ev.stopPropagation()} onSubmit={this.onSubmit}>
           <p className="login-header fs16 fh20 bold">Log in or sign up</p>
           <div className="seperation-line-login "></div>
           <div className="login-main-container">
@@ -81,15 +90,14 @@ export class _LogIn extends React.Component {
                 type='password'
                 onChange={this.handleChange}
               />
-              {/* <TextField
-                id="outlined-basic-2"
+              {isSignup && <TextField
+                id="outlined-basic-3"
                 label="Enter fullname"
                 variant="outlined"
                 name='fullname'
-                type='password'
                 onChange={this.handleChange}
-              />
-              <p>New to Homeaway? <span>Sign up!</span></p> */}
+              />}
+              <p>New to Homeaway? <span onClick={this.toggleSignup}>Sign up!</span></p>
             </div>
             <button ref={this.inputRef} onMouseMove={this.onSetColor} className="continue-btn fs16 fh20 medium ">Continue</button>
           </div>
@@ -104,7 +112,7 @@ function mapStateToProps(state) {
 }
 const mapDispatchToProps = {
   onAddUser,
-  
+  onSetUser
 
 }
 

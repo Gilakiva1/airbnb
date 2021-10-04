@@ -1,6 +1,5 @@
 import { Component } from "react";
 import { connect } from 'react-redux'
-import { ex1 } from "../cmps/host-page/ex1";
 
 import { HostList } from "../cmps/host-page/HostList";
 import { SideNav } from '../cmps/host-page/SideNav'

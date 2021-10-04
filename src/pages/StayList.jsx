@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { StayPreview } from '../cmps/StayPreview.jsx'
 import { StayFilter } from '../cmps/StayFilter.jsx'
-import { loadStays, onSetFilter } from '../store/stay.action.js'
+import { loadStays } from '../store/stay.action.js'
 import { utilService } from '../services/util.service.js'
 import { onSetOrder } from '../store/order.action.js'
 class _StayList extends React.Component {

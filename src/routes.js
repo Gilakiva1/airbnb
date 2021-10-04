@@ -2,6 +2,7 @@ import { HomePage } from './pages/HomePage';
 import { TripPage } from './pages/TripPage';
 import { StayDetails } from './pages/StayDetails';
 import { StayList } from './pages/StayList';
+import { HostPage } from './pages/HostPage';
 
 const routes = [
   {
@@ -11,6 +12,10 @@ const routes = [
   {
     path: '/stay',
     component: StayList
+  },
+  {
+    path: '/host',
+    component: HostPage
   },
   {
     path: '/trip',

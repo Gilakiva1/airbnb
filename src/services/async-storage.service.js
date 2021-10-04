@@ -17,7 +17,12 @@ export const storageService = {
 
 function query(entityType, params = {}) {
     let entities;
-    if (entityType === 'stayDB') {
+    if (params.hostId) {
+        
+        entities = JSON.parse(localStorage.getItem(entityType)) || stays
+        entities = entities.filter(entitie => entitie.host._id === params.hostId)
+    }
+    else if (entityType === 'stayDB') {
         entities = JSON.parse(localStorage.getItem(entityType)) || stays
         if (params.address) {
             params.address = params.address.split('-').join(' ')
@@ -39,7 +44,8 @@ function query(entityType, params = {}) {
         if (params) {
             entities.filter(entitie => (entitie._id === params.userId))
         }
-
+    } else if (entityType === 'userDB') {
+        entities = JSON.parse(localStorage.getItem(entityType)) || []
     }
 
     return new Promise((resolve, reject) => {
@@ -1279,29 +1285,22 @@ const stays = [{
 }
 ]
 
-// const orders = [[
-//     {
-//         _id: "o1225",
-//         hostId: "u102",
-//         createdAt: '9898988989',
-//         buyer: {
-//             _id: "u101",
-//             fullname: "User 1"
-//         },
-//         totalPrice: 400,
-//         startDate: "2025/10/15",
-//         endDate: "2025/10/17",
-//         guests: {
-//             adult: 2,
-//             child: 1,
-//             infant: 0
-//         },
-//         stay: {
-//             _id: "1000651123122",
-//             name: "Stunning Shoreditch Loft Conversion + Movie Screen",
-//             price: 200
-//         },
-//         status: "pending"
-//     }
-// ],
-// ]
+const users = [
+    {
+        _id: "u101",
+        fullname: "User 1",
+        imgUrl: "/img/img1.jpg",
+        isAdmin: false,
+        username: "user1",
+        password: "secret"
+    },
+    {
+        _id: "u102",
+        fullname: "User 2",
+        imgUrl: "/img/img2.jpg",
+        isAdmin: false,
+        username: "user2",
+        password: "secret"
+    }
+]
+

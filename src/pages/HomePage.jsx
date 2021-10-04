@@ -23,7 +23,6 @@ export class HomePage extends React.Component {
                     <img src={imgHero} />
                 </div >
                 <section className="home-page">
-                    {/* <LogIn/> */}
                     <h1 className="title-popular fs30">Popular Destinations</h1>
                     <PopularImgList links={utilService.HomePageImgPopular()} />
                     <h1 className="title-label">Live Anywhere</h1>

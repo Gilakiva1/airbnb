@@ -51,17 +51,17 @@ export class _LogIn extends React.Component {
 
   onSubmit = async (ev) => {
     ev.preventDefault()
-    const { credentials, isSignup } = this.state
-    if (isSignup) {
+    const { credentials,isSignup } = this.state
+    if (isSignup){
       const user = await userService.signup(credentials)
       await this.props.onAddUser(user)
       this.props.onSetUser(user)
-    }
-    else {
-      const user = await userService.login(credentials)
-      this.props.onSetUser(user)
-    }
-    this.props.toggleLogIn()
+    } 
+     else {
+       const user = await userService.login(credentials)
+       this.props.onSetUser(user)
+     } 
+      this.props.toggleLogIn()
   }
 
   render() {
@@ -99,6 +99,7 @@ export class _LogIn extends React.Component {
               />}
               <p>New to Homeaway? <span onClick={this.toggleSignup}>Sign up!</span></p>
             </div>
+            <button ref={this.inputRef} onMouseMove={this.onSetColor} className="continue-btn fs16 fh20 medium ">Continue</button>
           </div>
         </form>
       </section>

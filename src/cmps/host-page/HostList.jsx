@@ -6,10 +6,14 @@ export class HostList extends Component {
     render() {
         const { stays } = this.props
         return (
-            <div className="host-list">
-                <table>
+            
+                <table className="host-list">
                     <thead>
                         <tr>
+                            <th> <input type="checkbox" 
+                            // checked={type.isChecked}
+                            onChange={this.saveChecked}
+                            /></th>
                             <th>Name</th>
                             <th>Type</th>
                             <th>Address</th>
@@ -26,7 +30,6 @@ export class HostList extends Component {
 
                     </tbody>
                 </table>
-            </div>
         )
     }
 }

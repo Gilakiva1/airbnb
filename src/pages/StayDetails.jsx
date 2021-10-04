@@ -40,13 +40,13 @@ export class _StayDetails extends Component {
             order.checkIn = new Date(+order.checkIn)
             order.checkOut = new Date(+order.checkOut)
         }
-        
-        this.props.onSetOrder(order)
+        await this.props.onSetOrder(order)
         this.setState({ stay, order })
+
     }
 
-    handlePickingDates =  (start, end) => {
-        const orderCopy = {...this.props.currOrder}
+    handlePickingDates = (start, end) => {
+        const orderCopy = { ...this.props.order }
         if (end) {
             orderCopy.checkOut = Date.parse(end)
         } else if (!orderCopy.checkOut) {
@@ -64,6 +64,8 @@ export class _StayDetails extends Component {
 
     render() {
         const { stay, order } = this.state
+        const { currOrder } = this.props 
+        console.log('orderrr details', currOrder);
 
         if (!stay) return <div>Loading...</div>
         return (
@@ -118,7 +120,7 @@ export class _StayDetails extends Component {
                                 <h2>Select check-in date</h2>
                                 <p className="fade-font">Add your travel dates for exact pricing</p>
                                 <div className="details-dates flex justify-center">
-                                    <DatePicker order={this.props.currOrder} className={'datepicker-details'} preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />
+                                     <DatePicker order={this.props.currOrder} className={'datepicker-details'} preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />
                                 </div>
                             </div>
                             <div className="seperation-line big"></div>
@@ -127,13 +129,13 @@ export class _StayDetails extends Component {
                                 {stay.rating}
                                 <span>·</span>{utilService.getRandomIntInclusive(30, 500)} reviews
                             </div>
-                        </div >
+                        </div >  
                         <OrderModal stay={stay} order={order} />
                     </div >
                     <ReviewPoints reviews={stay.reviews} />
                     <ReviewList reviews={stay.reviews} />
                     <div className="seperation-line"></div>
-                    <h2>Where you’ll be</h2>
+                    <h2>Where you'll be</h2>
                     <p>{stay.loc.address}</p>
                     <GoogleMaps lat={stay.loc.lat} lng={stay.loc.lng} />
                     <div className="seperation-line"></div>
@@ -169,6 +171,7 @@ export class _StayDetails extends Component {
 
 
 function mapStateToProps(state) {
+    console.log(state);
     return {
         stays: state.stayReducer.stays,
         currOrder: state.orderReducer.currOrder
@@ -181,4 +184,3 @@ const mapDispatchToProps = {
 }
 
 export const StayDetails = connect(mapStateToProps, mapDispatchToProps)(_StayDetails)
-

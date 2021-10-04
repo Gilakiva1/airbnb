@@ -6,7 +6,7 @@ export function MenuBar() {
             <Link to="/trip"><h1 className="link medium light txt-trip" >My trips</h1></Link>
             <h1 className="link Notifcations">Notifcations</h1>
             <h1 className="link Messeges">Messeges</h1>
-            <h1 className="link Log Out">Log Out</h1>
+            <h1 className="link Log Out">Log In</h1>
         </div>
     )
 

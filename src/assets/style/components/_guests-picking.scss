@@ -1,5 +1,5 @@
 .guests-container {
-    padding: 10px;
+    padding: 16px 32px;
     margin-top: 20px;
     max-width: 385px;
     height: 240px;
@@ -12,22 +12,22 @@
         flex-grow: 1;
         .btn-counter {
             border-radius: 50%;
-            // size: 20px ;
             font-size: 2rem;
-            color: grey;
-            border:none;
-            width: rem(35px);
-            height: rem(35px);
+            color: $clr1;
+            border: 1px solid;
+            background: inherit;
+            width: rem(32px);
+            height: rem(32px);
             justify-content: center;
             align-items: center;
+            &:hover{
+                color: $clr5;
+            }
         }
         .fade {
             opacity: 0.35;
         }
-        span {
-            font-size: 1rem;
-            font-weight: bold;
-        }
+
         .counter-container {
             align-items: center;
             gap: 5px;
@@ -38,3 +38,17 @@
         border-top: 1px solid rgba(128, 128, 128, 0.514);
     }
 }
+// width: 32px !important;
+// height: 32px !important;
+// text-align: center !important;
+// text-decoration: none !important;
+// border-width: 1px !important;
+// border-style: solid !important;
+// border-color: rgb(176, 176, 176) !important;
+// color: rgb(113, 113, 113) !important;
+// font-family: inherit !important;
+// outline: none !important;
+// align-items: center !important;
+// justify-content: center !important;
+// background: rgb(255, 255, 255) !important;
+// border-radius: 50% !important;

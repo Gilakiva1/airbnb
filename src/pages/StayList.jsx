@@ -4,6 +4,7 @@ import { StayPreview } from '../cmps/StayPreview.jsx'
 import { StayFilter } from '../cmps/StayFilter.jsx'
 import { loadStays, onSetFilter } from '../store/stay.action.js'
 import { utilService } from '../services/util.service.js'
+import { onSetOrder } from '../store/order.action.js'
 class _StayList extends React.Component {
     state = {
         orderParams: null,
@@ -22,6 +23,7 @@ class _StayList extends React.Component {
         const searchParams = new URLSearchParams(this.props.location.search);
         const getParms = utilService.getQueryParams(searchParams)
         await this.props.loadStays(getParms)
+        await this.props.onSetOrder(null)
         this.setState({ orderParams: getParms })
     }
 
@@ -109,6 +111,6 @@ function mapStateToProps(state) {
 }
 const mapDispatchToProps = {
     loadStays,
-    onSetFilter
+    onSetOrder
 }
 export const StayList = connect(mapStateToProps, mapDispatchToProps)(_StayList)

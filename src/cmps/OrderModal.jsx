@@ -78,7 +78,9 @@ export class _OrderModal extends React.Component {
     }
 
     getTotalGuests = () => {
+        debugger
         if (this.props.currOrder.guests) {
+            console.log(this.props.currOrder);
             let { adult, child, infant } = this.props.currOrder.guests
             var guests = `guests:${adult + child + infant}`
             return guests
@@ -99,7 +101,7 @@ export class _OrderModal extends React.Component {
         orderCopy.guests[field] = value
         this.props.onUpdateOrder(orderCopy)
     }
-
+ 
     handlePickingDates = (start, end) => {
         const orderCopy = { ...this.props.currOrder }
         orderCopy.checkIn = Date.parse(start)
@@ -112,12 +114,12 @@ export class _OrderModal extends React.Component {
     createFinalOrder = () => {
         const { currOrder, stay } = this.props
         const finalOrder = {
-            _id: '',
+            _id: currOrder._id || '',
             hostId: stay.host._id,
             createdAt: Date.now(),
             price: ((currOrder.checkOut - currOrder.checkIn) / (1000 * 60 * 60 * 24)) * stay.price,
-            startDate: currOrder.checkIn,
-            endDate: currOrder.checkOut,
+            checkIn: currOrder.checkIn,
+            checkOut: currOrder.checkOut,
             guests: currOrder.guests,
             img: stay.imgUrls[0],
             status: 'pending',
@@ -144,6 +146,7 @@ export class _OrderModal extends React.Component {
         else {
             const finalOrder = this.createFinalOrder()
             const savedOrder = await this.props.onAddOrder(finalOrder)
+            // await this.props.onSetOrder(null)
             //change to save id at stay or mini order
             const { stay } = this.props
             stay.orders.push(savedOrder)

@@ -12,7 +12,7 @@ export const stayService = {
 const STORAGE_KEY = 'stayDB';
 
 function query(params) {
-  const filter = {...params}
+ 
   return storageService.query(STORAGE_KEY, params);
 }
 

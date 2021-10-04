@@ -88,7 +88,7 @@ class _AppHeader extends React.Component {
                     <nav className="nav-header">
                         <div className="nav-header flex align-center">
                             <NavLink className={`link-host border-round fs14 ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-black hover-bcg'}`} to={`/stay`} >Explore</NavLink>
-                            <NavLink className={`link-host border-round fs14 ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-black hover-bcg'}`} to={`/ `} >Become a host</NavLink>
+                            <NavLink className={`link-host border-round fs14 ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-black hover-bcg'}`} to={`/host `} >Become a host</NavLink>
                             <div className="menu-container border-round">
                                 <div className="menu-container">
                                     <button onClick={this.onToggoleMenu} className="menu-btn border-round flex align-center">

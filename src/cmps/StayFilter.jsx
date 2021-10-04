@@ -1,8 +1,6 @@
-import { connect } from 'react-redux'
 import { Component } from 'react'
 import PriceFilter from './PriceFilter.jsx';
 import { LabelFilter } from './LabelFilter.jsx';
-import { AmenitiesFilter } from './AmenitiesFilter.jsx';
 
 export class StayFilter extends Component {
 

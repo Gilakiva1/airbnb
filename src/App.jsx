@@ -18,7 +18,7 @@ class _App extends React.Component {
             < >
 
                 <AppHeader />
-                <main className={`${pathname === '/' ? 'main-container-home' : 'main-container'}`}>
+                <main className={`${pathname === '/' || pathname === '/stay' ? 'main-container-home' : 'main-container'}`}>
                     <Switch>
                         {routes.map(route => <Route key={route.path} exact component={route.component} path={route.path} />)}
                     </Switch>

@@ -44,18 +44,18 @@ export class StayFilter extends Component {
         const { stays, setCheckedPropertyType } = this.props
         return (
             <section className="filter-container flex">
-                <div>
+                <div className="price-container">
                     <button onClick={this.toggelPriceFilter}>{this.props.minPrice()}</button>
                     {isPrice && <PriceFilter stays={stays} onSavePrice={this.props.onSavePrice} />}
                 </div>
-                <div>
+                <div className="type-container">
                     <button onClick={this.toggelPropertyTypeFilter}>Property Type</button>
                     {isPropertyType && <LabelFilter
                         property="type"
                         stays={stays}
                         setCheckedPropertyType={setCheckedPropertyType} />}
                 </div>
-                <div>
+                <div className="amenities-container-filter">
                     <button onClick={this.toggelAmenitiesFilter}>Amenities</button>
                     {isAmenities && <LabelFilter
                         property="amenities"

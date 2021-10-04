@@ -60,7 +60,7 @@ export class _OrderModal extends React.Component {
         isPickingDates = false
         this.setState({ isPickingGuests, isPickingDates })
     }
-
+  
     activeInput = (input) => {
         this.closeInputs()
         switch (input) {

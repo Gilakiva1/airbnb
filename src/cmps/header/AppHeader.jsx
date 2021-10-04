@@ -83,7 +83,7 @@ class _AppHeader extends React.Component {
         const { pathname } = this.props.history.location
 
         return (
-            <header className={`${scrollLoc > 40 ? 'white' : ''} ${pathname === '/' ? 'fixed home main-container-home' : 'sticky-color main-container'} header-container`}>
+            <header className={`${scrollLoc > 40 ? 'white' : ''} ${pathname === '/' || pathname == '/stay'||pathname === '/host' ? 'fixed home main-container-home' : 'sticky-color main-container'} header-container`}>
                 <div className="header-func flex">
                     <div className="logo-container flex align-center pointer" onClick={this.backToHome}>
                         <button className="btn-logo border-none"><LogoSvg className={`${(pathname === '/' && scrollLoc > 40) || pathname !== '/' ? 'logo-pink' : 'logo-white'} `} /></button>
@@ -93,8 +93,8 @@ class _AppHeader extends React.Component {
                     {pathname !== '/' && <MiniSearchBar />}
                     <nav className="nav-header">
                         <div className="nav-header flex align-center">
-                            <NavLink className={`link-host border-round fs14 ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-black hover-bcg'}`} to={`/stay`} >Explore</NavLink>
-                            <NavLink className={`link-host border-round fs14 ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-black hover-bcg'}`} to={`/host `} >Become a host</NavLink>
+                            <NavLink className={`link-host border-round fs14 medium  ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-black hover-bcg'}`} to={`/stay`} >Explore</NavLink>
+                            <NavLink className={`link-host border-round fs14 medium  ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-black hover-bcg'}`} to={`/ `} >Become a host</NavLink>
                             <div className="menu-container border-round">
                                 <div className="menu-container">
                                     <button onClick={this.onToggoleMenu} className="menu-btn border-round flex align-center">

@@ -1,7 +1,73 @@
-// .host-list{
-//     border: 1px solid black;
-// }
+.host-list {
+    // border: 1px solid rgb(150, 145, 145);
+    border-collapse: collapse;
+    width: 100%;
+    thead {
+        tr {
+            border-bottom: 1px solid #ebebeb;
+        }
+        th {
+            text-align: left;
 
-table, th, td {
-    border:1px solid black;
-  }
+            & :not(:first-child) {
+                padding: 8px;
+                font-size: 12px;
+                line-height: 16px;
+                color: #717171;
+                text-transform: uppercase;
+                white-space: nowrap;
+                position: -webkit-sticky;
+                position: sticky;
+                top: 0px;
+                background: #ffffff;
+                z-index: 4;
+                box-shadow: 0 -1px 0 #ffffff, 12px 0 0 #ffffff, 0 1px 0 #ebebeb;
+                width: 1px;
+            }
+        }
+    }
+    tbody {
+        tr {
+            border-top: 1px solid #f7f7f7 !important;
+            --table-row-background-color: #f7f7f7 !important;
+            /* border-radius: 8px !important; */
+            background: #f7f7f7 !important;
+            box-shadow: #f7f7f7 -12px 0px 0px 0px, #f7f7f7 12px 0px 0px 0px !important;
+
+            box-shadow: #f7f7ed -12px 0px 0px 0px, #f7f7ed 12px 0px 0px 0px, #ffffff -12px -1px, #ffffff 12px -1px;
+            &:last-child {
+                border-bottom: 1px solid transparent;
+            }
+        }
+        td {
+            &:first-child {
+                margin: 0;
+                padding: 0;
+                width: 10px;
+            }
+            &:nth-child(2){
+                align-items: center;
+
+            }
+            // min-width: 300px;
+            padding-left: 8px;
+            padding-right: 8px;
+            padding-top: 16px;
+            padding-bottom: 16px;
+            img {
+                width: 56px !important;
+                height: 40px !important;
+                border-radius: 4px;
+                margin-right: 12px;
+            }
+
+            &:nth-child(2) {
+                color: #484848;
+            }
+        }
+    }
+}
+
+.host-page {
+    margin-top: 80px;
+}

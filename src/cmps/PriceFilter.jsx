@@ -46,8 +46,8 @@ export default function PriceFilter(props) {
           value={price}
           onChange={handleChange1}
           valueLabelDisplay="auto"
-          min={minPrice()}
-          max={maxPrice()}
+          min={0}
+          max={500}
           disableSwap
         />
         <div className="flex space-between">

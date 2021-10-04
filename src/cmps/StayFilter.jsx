@@ -57,7 +57,11 @@ export class StayFilter extends Component {
                 </div>
                 <div>
                     <button onClick={this.toggelAmenitiesFilter}>Amenities</button>
-                    {isAmenities && <AmenitiesFilter stays={stays} removePropertyType={this.props.removePropertyType} setCheckedPropertyType={this.props.setCheckedPropertyType} />}
+                    {isAmenities && <PropertyTypeFilter
+                        property="amenities"
+                        stays={stays}
+                        setCheckedPropertyType={setCheckedPropertyType} />}
+                    {/* {isAmenities && <AmenitiesFilter stays={stays} removePropertyType={this.props.removePropertyType} setCheckedPropertyType={this.props.setCheckedPropertyType} />} */}
 
                 </div>
             </section>

@@ -28,10 +28,6 @@ export function onAddOrder(orderDetails) {
         console.log('err', err);
         throw err
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> 4ef04fc5591778d8835008eeffb780d97b090210
 }
 export function onUpdateOrder(order) {
     try {

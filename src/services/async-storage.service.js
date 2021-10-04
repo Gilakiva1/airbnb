@@ -308,7 +308,6 @@ const stays = [{
     amenities: [
         'TV',
         'Wifi',
-        'kitchen',
         'Smoke alarm',
         'long stay',
         'hangers'
@@ -362,10 +361,7 @@ const stays = [{
     capacity: 4,
     amenities: [
         'Home',
-        'TV',
         'Wifi',
-        'Kitchen',
-        'Smoking allowed',
         'Pets allowed',
         'Cooking basics'
     ],
@@ -420,7 +416,6 @@ const stays = [{
         'Home',
         'TV',
         'Wifi',
-        'Kitchen',
         'Smoking allowed',
         'Pets allowed',
         'Cooking basics'
@@ -474,7 +469,6 @@ const stays = [{
     capacity: 5,
     amenities: [
         'Home',
-        'TV',
         'Wifi',
         'Kitchen',
         'Smoking allowed',

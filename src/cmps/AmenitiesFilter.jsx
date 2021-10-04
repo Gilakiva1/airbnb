@@ -14,7 +14,6 @@ export class AmenitiesFilter extends Component {
         stays.map(stay => {
             stay.amenities.map(amenitie => {
                 amenitie =  amenitie[0].toUpperCase() + amenitie.substring(1)
-                console.log(amenitie);
                 if (!amenities.length)
                     amenities.push(amenitie)
                 if (!amenities.includes(amenitie))
@@ -25,7 +24,7 @@ export class AmenitiesFilter extends Component {
                 // }
             })
         })
-        // console.log('amenities', amenities);
+        console.log('amenities', amenities);
         this.setState({ amenities })
     }
 

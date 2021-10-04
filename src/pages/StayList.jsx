@@ -13,6 +13,7 @@ class _StayList extends React.Component {
                 maxPrice: Infinity
             },
             propertyTypes: [],
+            amenities: []
         },
 
     }
@@ -24,8 +25,10 @@ class _StayList extends React.Component {
         this.setState({ orderParams: getParms })
     }
 
-    setCheckedPropertyType = (propertyTypes) => {
-        this.setState({ filterBy: { ...this.state.filterBy, propertyTypes } })
+    setCheckedPropertyType = (propertyTypes, key) => {
+        console.log('propertyTypes', propertyTypes);
+        console.log('key', key);
+        this.setState({ filterBy: { ...this.state.filterBy, [key]: propertyTypes } })
     }
 
     onSavePrice = (price) => {
@@ -40,7 +43,7 @@ class _StayList extends React.Component {
 
     minPrice = () => {
         const { minPrice, maxPrice } = this.state.filterBy.price
-        if (minPrice === -Infinity  && (maxPrice === Infinity || maxPrice === 500)) {
+        if (minPrice === -Infinity && (maxPrice === Infinity || maxPrice === 500)) {
             return `Price`
         } else if ((maxPrice === Infinity || maxPrice === 500) && minPrice !== -Infinity) {
             return `$${minPrice}+`
@@ -52,15 +55,27 @@ class _StayList extends React.Component {
             return `$${minPrice} - $${maxPrice}`
         }
     }
-
+    checkAmenities = (amenities, stayAmenities) => {
+        let newStayAmenities = stayAmenities.map(amenitie => amenitie[0].toUpperCase() + amenitie.substring(1))
+        for (let amenitie of amenities) {
+            amenitie = amenitie[0].toUpperCase() + amenitie.substring(1)
+            console.log('newAmenities =', amenities,'|||,amenitie = ', amenitie, );
+            if (!newStayAmenities.includes(amenitie)) return false
+        }
+        return true
+    }
     getStaysForDisplay = () => {
         let { stays } = this.props
-        const { propertyTypes, price } = this.state.filterBy
+        const { propertyTypes, price, amenities } = this.state.filterBy
+        console.log(amenities.length);
         stays = stays.filter(stay => {
-            return propertyTypes.length ? propertyTypes.includes(stay.type) : true &&
+            const type = stay.type[0].toUpperCase() + stay.type.substring(1)
+            return propertyTypes.length ? propertyTypes.includes(type) : true &&
+                amenities.length ? this.checkAmenities(amenities, stay.amenities) : true &&
                 (stay.price >= price.minPrice) &&
-                (stay.price <= price.maxPrice)
+            (stay.price <= price.maxPrice)
         })
+        console.log('stays', stays);
         return stays
     }
 

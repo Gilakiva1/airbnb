@@ -5,12 +5,12 @@ import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { LogoSvg } from "../svgs/LogoSvg"
-import imgUser from '../../assets/img/home-page/user.jpg'
 import { SearchBar } from "./SearchBar";
 import { MiniSearchBar } from './MiniSearchBar';
 import { MenuBar } from './MenuBar'
 import { LogIn } from '../LogIn';
-
+import { userService } from '../../services/user.service';
+import user1 from '../../assets/img/profiles/user1.png'
 
 class _AppHeader extends React.Component {
 
@@ -69,7 +69,13 @@ class _AppHeader extends React.Component {
     }
     onCloseMenu = () => {
         this.setState({ isShowMenu: false })
+    }
 
+    getUserImg = () => {
+        const user = userService.getLoggedinUser()
+        if (user)  {
+            return user.imgUrl
+        } else return null
     }
 
     render() {
@@ -77,7 +83,7 @@ class _AppHeader extends React.Component {
         const { pathname } = this.props.history.location
 
         return (
-            <header className={`${scrollLoc > 40 ? 'white' : ''} ${pathname === '/' || pathname == '/stay' ? 'fixed home main-container-home' : 'sticky-color main-container'} header-container`}>
+            <header className={`${scrollLoc > 40 ? 'white' : ''} ${pathname === '/' || pathname == '/stay'||pathname === '/host' ? 'fixed home main-container-home' : 'sticky-color main-container'} header-container`}>
                 <div className="header-func flex">
                     <div className="logo-container flex align-center pointer" onClick={this.backToHome}>
                         <button className="btn-logo border-none"><LogoSvg className={`${(pathname === '/' && scrollLoc > 40) || pathname !== '/' ? 'logo-pink' : 'logo-white'} `} /></button>
@@ -94,7 +100,7 @@ class _AppHeader extends React.Component {
                                     <button onClick={this.onToggoleMenu} className="menu-btn border-round flex align-center">
                                         <div className="menu-details flex align-center">
                                             <FontAwesomeIcon className="hamburger-menu" icon={faBars} />
-                                            <img src={imgUser} alt="" className="user-img border-round" />
+                                            <img src={this.getUserImg() || user1} alt="" className="user-img border-round" />
                                         </div>
                                     </button>
 
@@ -102,7 +108,7 @@ class _AppHeader extends React.Component {
                             </div>
                         </div>
                         {isShowMenu && <MenuBar toggleLogIn={this.toggleLogIn} onCloseMenu={this.onCloseMenu} />}
-                        {isLogIn && <LogIn toggleLogIn={this.toggleLogIn} animateClassName={isLogIn ? 'slide-in-bottom' : ''} />}
+                        {isLogIn && <LogIn toggleLogIn={this.toggleLogIn}  />}
                     </nav>
                 </div>
                 {scrollLoc < 40 && pathname === '/' && <SearchBar animateClassName={isEnter ? 'scale-up-top' : ''} />}

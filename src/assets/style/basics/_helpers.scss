@@ -46,9 +46,10 @@
   line-height: rem(32px);
 }
 
-// flex helpers
 
-
+.text-align {
+  text-align: center;
+}
 
 .fw-unset {
   font-weight: unset;
@@ -62,6 +63,7 @@
 .airbnb-bold {
   font-family: airbnb-cereal-bold;
 }
+// flex helpers
 
 .flex {
   display: flex;

@@ -7,6 +7,8 @@ import { withRouter } from 'react-router'
 import { DatePicker } from './DatePicker.jsx'
 import { utilService } from '../../services/util.service'
 import { GuestsPicking } from './GuestsPicking.jsx'
+import { onSetOrder } from '../../store/order.action';
+
 
 export class _SearchBar extends React.Component {
 
@@ -29,6 +31,9 @@ export class _SearchBar extends React.Component {
 
   componentDidMount() {
     window.addEventListener('click', this.closeInputs)
+    if (this.props.history.location.pathname==='/') {
+      this.props.onSetOrder(null)
+    }
 
   }
 
@@ -183,6 +188,7 @@ function mapStateToProps(state) {
 }
 const mapDispatchToProps = {
   onSetFilter,
+  onSetOrder
 
 }
 

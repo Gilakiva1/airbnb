@@ -17,7 +17,7 @@ export class _GuestsPicking extends React.Component {
             this.setState({ adult: 0 })
             return
         }
-        this.setState(this.props.order.guests)
+        this.setState(this.props.currOrder.guests)
     }
 
 
@@ -75,7 +75,6 @@ export class _GuestsPicking extends React.Component {
         event.stopPropagation()
     }
     render() {
-        const { pathnme } = this.props.location
         const { adult, child, infant } = this.state
         if (adult === null) return 'loading...'
         return (
@@ -120,7 +119,7 @@ export class _GuestsPicking extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        order: state.orderReducer.order
+        currOrder: state.orderReducer.currOrder
     }
 }
 export const GuestsPicking = connect(mapStateToProps)(withRouter(_GuestsPicking))

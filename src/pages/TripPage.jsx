@@ -2,7 +2,7 @@ import React from "react"
 import { connect } from 'react-redux'
 import { orderService } from '../services/order.service'
 import { TripHero } from "../cmps/svgs/TripHero.jsx"
-import { onLoadOrders } from "../store/order.action"
+import { onLoadOrders, onSetOrder } from "../store/order.action"
 import { TripList } from "../cmps/trip/TripList"
 
 class _TripPage extends React.Component {
@@ -12,7 +12,6 @@ class _TripPage extends React.Component {
         isOrders: false
 
     }
-
     componentDidMount() {
         //getLoggedInuser !!
         const userId = 'userId'
@@ -21,16 +20,18 @@ class _TripPage extends React.Component {
 
     onLoadOrders = async userId => {
         const orders = await this.props.onLoadOrders(userId)
-        console.log('orderrr', orders);
         if (orders.length) {
             this.setState({ isOrders: true })
         }
+    }
+    onSetOrder = (order) => {
+        this.props.onSetOrder(order)
 
     }
 
     render() {
         const { isUpcoming, isOrders } = this.state
-        const { orders } = this.props 
+        const { orders } = this.props
         if (!orders) return <div>loading</div>
         return (
 
@@ -44,7 +45,7 @@ class _TripPage extends React.Component {
                     <div className="trip-hero">
                         {!isOrders && <TripHero className="trip-hero" />}
                     </div>
-                    {isOrders && <TripList orders={orders} />}
+                    {isOrders && <TripList orders={orders} onSetOrder={this.onSetOrder} />}
                 </div>
             </section>
         )
@@ -56,7 +57,8 @@ function mapStateToProps(state) {
     }
 }
 const mapDispatchToProps = {
-    onLoadOrders
+    onLoadOrders,
+    onSetOrder
 }
 
 export const TripPage = connect(mapStateToProps, mapDispatchToProps)(_TripPage)

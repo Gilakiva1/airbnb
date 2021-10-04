@@ -1,24 +1,35 @@
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
-import { SearchBar } from "./SearchBar"
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 
-export class MiniSearchBar extends React.Component {
+
+class _MiniSearchBar extends React.Component {
 
     state = {
-        isClicked: false
+        isClicked: false,
     }
 
 
 
     onSearchBarClicked = () => {
-        this.setState({ isClicked: true })
+        this.props.toggleSearchBar('on')
     }
 
     render() {
-        const { isClicked } = this.state
-        if (isClicked) return <SearchBar />
-        return (
+        // const { order } = this.props.currOrder
+        // if (this.props.history.location.pathname === '/stay') return (
+        //     <div className="mini-search-bar flex " onClick={this.onSearchBarClicked}>
+        //         <span>{order?.adress || 'Location'}</span>
+        //         <div className="seperation-line-vertical"></div>
+        //         <span>{`${order?.checkIn} ${order?.checkOut}`  }</span>
+
+        //         <button className="search-bar-submit-mini flex">{<FontAwesomeIcon className='search-icon' icon={faSearch} />}</button>
+        //     </div>
+        // )
+        // else
+         return (
             <div className="mini-search-bar flex space-between" onClick={this.onSearchBarClicked}>
                 <span>Start your search</span>
                 <button className="search-bar-submit-mini flex">{<FontAwesomeIcon className='search-icon' icon={faSearch} />}</button>
@@ -26,3 +37,15 @@ export class MiniSearchBar extends React.Component {
         )
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        currOrder: state.orderReducer.currOrder
+
+    }
+}
+const mapDispatchToProps = {
+
+}
+
+export const MiniSearchBar = connect(mapStateToProps, mapDispatchToProps)(withRouter(_MiniSearchBar))

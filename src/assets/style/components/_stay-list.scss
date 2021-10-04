@@ -1,12 +1,5 @@
 .list-filter {
-    .price-filter {
-        border: 0.5px solid rgba(118, 118, 118, 0.28);
-        border-radius: 12px;
-        box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.15);
-        display: inline-block;
-        padding: 10px;
-    }
-    .filter-container{
+    .filter-container {
         position: relative;
     }
     div {
@@ -23,9 +16,51 @@
             text-align: center;
         }
     }
+    // {CustomizedSlider()}
+    .price-filter {
+        border: 0.5px solid rgba(118, 118, 118, 0.28);
+        border-radius: 12px;
+        box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.15);
+        display: inline-block;
+        padding: 10px;
+        position: absolute;
+        background: white;
+        width: 440px;
+        height: 325px;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: column;
+
+        label:focus {
+            border: 1px solid $clr1;
+        }
+
+        input {
+            outline: none;
+            width: 100%;
+            border: none;
+
+        }
+        .price-input {
+            padding: 0px 10px;
+            width: 160px;
+            height: 56px;
+            border: 1px solid $clr2;
+
+
+        }
+
+        .btn-save {
+            width: 100%;
+            justify-content: space-around;
+        }
+    }
 }
-.count-stays{
-    margin-top: rem(50px);
+
+.count-stays {
+    margin-block-start: rem(111px);
 }
 .stay-list {
     display: grid;
@@ -34,11 +69,11 @@
     grid-auto-flow: dense;
 }
 
-
-.city-name{
+.city-name {
     font-size: rem(32px);
     line-height: rem(32px);
     margin: 30px 0;
 }
-
-
+.price-container {
+    width: 400px;
+}

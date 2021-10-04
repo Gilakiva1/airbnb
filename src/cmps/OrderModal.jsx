@@ -60,7 +60,7 @@ export class _OrderModal extends React.Component {
         isPickingDates = false
         this.setState({ isPickingGuests, isPickingDates })
     }
-
+  
     activeInput = (input) => {
         this.closeInputs()
         switch (input) {
@@ -78,7 +78,6 @@ export class _OrderModal extends React.Component {
     }
 
     getTotalGuests = () => {
-        debugger
         if (this.props.currOrder.guests) {
             console.log(this.props.currOrder);
             let { adult, child, infant } = this.props.currOrder.guests

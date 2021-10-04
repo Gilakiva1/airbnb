@@ -9,6 +9,7 @@ import imgUser from '../../assets/img/home-page/user.jpg'
 import { SearchBar } from "./SearchBar";
 import { MiniSearchBar } from './MiniSearchBar';
 import { MenuBar } from './MenuBar'
+import { LogIn } from '../LogIn';
 
 
 class _AppHeader extends React.Component {
@@ -16,7 +17,8 @@ class _AppHeader extends React.Component {
     state = {
         scrollLoc: 0,
         isEnter: false,
-        isShowMenu: false
+        isShowMenu: false,
+        isLogIn: false
     }
 
     componentDidMount() {
@@ -24,12 +26,24 @@ class _AppHeader extends React.Component {
         window.addEventListener('click', this.onCloseMenu)
     }
 
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.onToggleHeader)
+        window.removeEventListener('click', this.onCloseMenu)
+    }
+    
+
     componentDidUpdate() {
         if (this.props.history.location.pathname !== '/') {
             window.removeEventListener('scroll', this.onToggleHeader)
         } else {
             window.addEventListener('scroll', this.onToggleHeader)
         }
+    }
+
+    toggleLogIn = () => {
+        this.onCloseMenu()
+        let {isLogIn} = this.state
+        this.setState({isLogIn: !isLogIn})
     }
 
     onToggleHeader = (ev) => {
@@ -59,11 +73,11 @@ class _AppHeader extends React.Component {
     }
 
     render() {
-        const { scrollLoc, isEnter, isShowMenu } = this.state
+        const { scrollLoc, isEnter, isShowMenu, isLogIn } = this.state
         const { pathname } = this.props.history.location
 
         return (
-            <header className={`${scrollLoc > 40 ? 'white' : ''} ${pathname === '/' || pathname === '/host' ? 'fixed home main-container-home' : 'sticky-color main-container'} header-container`}>
+            <header className={`${scrollLoc > 40 ? 'white' : ''} ${pathname === '/' || pathname == '/stay'||pathname === '/host' ? 'fixed home main-container-home' : 'sticky-color main-container'} header-container`}>
                 <div className="header-func flex">
                     <div className="logo-container flex align-center pointer" onClick={this.backToHome}>
                         <button className="btn-logo border-none"><LogoSvg className={`${(pathname === '/' && scrollLoc > 40) || pathname !== '/' ? 'logo-pink' : 'logo-white'} `} /></button>
@@ -73,8 +87,8 @@ class _AppHeader extends React.Component {
                     {pathname !== '/' && <MiniSearchBar />}
                     <nav className="nav-header">
                         <div className="nav-header flex align-center">
-                            <NavLink className={`link-host border-round fs14 ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-black hover-bcg'}`} to={`/stay`} >Explore</NavLink>
-                            <NavLink className={`link-host border-round fs14 ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-black hover-bcg'}`} to={`/host `} >Become a host</NavLink>
+                            <NavLink className={`link-host border-round fs14 medium  ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-black hover-bcg'}`} to={`/stay`} >Explore</NavLink>
+                            <NavLink className={`link-host border-round fs14 medium  ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-black hover-bcg'}`} to={`/ `} >Become a host</NavLink>
                             <div className="menu-container border-round">
                                 <div className="menu-container">
                                     <button onClick={this.onToggoleMenu} className="menu-btn border-round flex align-center">
@@ -87,7 +101,8 @@ class _AppHeader extends React.Component {
                                 </div>
                             </div>
                         </div>
-                        {isShowMenu && <MenuBar onCloseMenu={this.onCloseMenu} />}
+                        {isShowMenu && <MenuBar toggleLogIn={this.toggleLogIn} onCloseMenu={this.onCloseMenu} />}
+                        {isLogIn && <LogIn toggleLogIn={this.toggleLogIn} animateClassName={isLogIn ? 'slide-in-bottom' : ''} />}
                     </nav>
                 </div>
                 {scrollLoc < 40 && pathname === '/' && <SearchBar animateClassName={isEnter ? 'scale-up-top' : ''} />}

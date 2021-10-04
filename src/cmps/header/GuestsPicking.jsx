@@ -5,13 +5,17 @@ import { withRouter } from "react-router"
 export class _GuestsPicking extends React.Component {
 
     state = {
-        adult: 0,
+        adult: null,
         child: 0,
         infant: 0
     }
 
     componentDidMount() {
-        if (!this.props.order) return
+        debugger
+        if (!this.props.order) {
+            this.setState({ adult: 0 })
+            return
+        }
         this.setState(this.props.order.guests)
     }
 
@@ -73,6 +77,7 @@ export class _GuestsPicking extends React.Component {
         console.log('');
         const { pathnme } = this.props.location
         const { adult, child, infant } = this.state
+        if (adult===null) return 'loading...'
         return (
             <section className="guests-container flex column" onClick={this.preventPropagation} >
                 <div className="guest-card flex">

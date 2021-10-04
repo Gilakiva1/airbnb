@@ -1,6 +1,8 @@
 import React from "react"
 import { connect } from "react-redux"
 import { withRouter } from "react-router"
+import { Plus } from "../svgs/Plus"
+import { Minus } from "../svgs/Minus"
 
 export class _GuestsPicking extends React.Component {
 
@@ -11,7 +13,6 @@ export class _GuestsPicking extends React.Component {
     }
 
     componentDidMount() {
-        debugger
         if (!this.props.order) {
             this.setState({ adult: 0 })
             return
@@ -74,10 +75,9 @@ export class _GuestsPicking extends React.Component {
         event.stopPropagation()
     }
     render() {
-        console.log('');
         const { pathnme } = this.props.location
         const { adult, child, infant } = this.state
-        if (adult===null) return 'loading...'
+        if (adult === null) return 'loading...'
         return (
             <section className="guests-container flex column" onClick={this.preventPropagation} >
                 <div className="guest-card flex">
@@ -86,20 +86,20 @@ export class _GuestsPicking extends React.Component {
                         <span className="book fs14 clr1 ">Aged 13 or above</span>
                     </div>
                     <div className="counter-container flex">
-                        <button onClick={(event) => this.updateCount(event, 'subtract adult')} className={adult === 0 ? "btn-counter flex fade" : "btn-counter flex"}>-</button>
+                        <button onClick={(event) => this.updateCount(event, 'subtract adult')} className={adult === 0 ? "btn-counter flex fade" : "btn-counter flex"}><span><Minus /></span></button>
                         <span>{adult}</span>
-                        <button onClick={(event) => this.updateCount(event, 'add adult')} className="btn-counter flex">+</button>
+                        <button onClick={(event) => this.updateCount(event, 'add adult')} className="btn-counter flex"><span><Plus /></span></button>
                     </div>
-                </div> 
+                </div>
                 <div className="guest-card flex">
                     <div className="flex column">
                         <span className="medium fs16 clr2" >Children:</span>
                         <span className="book fs14 clr1 ">Ages 2-12</span>
                     </div>
                     <div className="counter-container flex">
-                        <button onClick={(event) => this.updateCount(event, 'subtract child')} className={child === 0 ? "btn-counter flex fade" : "btn-counter flex"}>-</button>
+                        <button onClick={(event) => this.updateCount(event, 'subtract child')} className={child === 0 ? "btn-counter flex fade" : "btn-counter flex"}><Minus /></button>
                         <span>{child}</span>
-                        <button onClick={(event) => this.updateCount(event, 'add child')} className="btn-counter flex">+</button>
+                        <button onClick={(event) => this.updateCount(event, 'add child')} className="btn-counter flex"><span><Plus /></span></button>
                     </div>
                 </div>
                 <div className="guest-card flex">
@@ -108,9 +108,9 @@ export class _GuestsPicking extends React.Component {
                         <span className="book fs14 clr1 ">Under 2</span>
                     </div>
                     <div className="counter-container flex">
-                        <button onClick={(event) => this.updateCount(event, 'subtract infant')} className={infant === 0 ? "btn-counter flex fade" : "btn-counter flex"}>-</button>
+                        <button onClick={(event) => this.updateCount(event, 'subtract infant')} className={infant === 0 ? "btn-counter flex fade" : "btn-counter flex"}><Minus /></button>
                         <span>{infant}</span>
-                        <button onClick={(event) => this.updateCount(event, 'add infant')} className="btn-counter flex"><span>+</span></button>
+                        <button onClick={(event) => this.updateCount(event, 'add infant')} className="btn-counter flex"><span><Plus /></span></button>
                     </div>
                 </div>
             </section>

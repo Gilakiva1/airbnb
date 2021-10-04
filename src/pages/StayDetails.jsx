@@ -18,7 +18,7 @@ import GoogleMaps from '../cmps/stay-details/Google-Maps.jsx';
 import { IdentityVerified } from '../cmps/svgs/IdentityVerified.jsx';
 
 
-export class _StayDetails extends Component {
+ class _StayDetails extends Component {
     state = {
         stay: null,
         order: null

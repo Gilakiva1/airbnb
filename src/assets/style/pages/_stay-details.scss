@@ -31,6 +31,12 @@
         grid-template: 1fr 1fr /2fr 1fr 1fr;
         gap: rem(10px);
 
+
+        img:hover {
+            filter:brightness(0.85);
+            transition:  0.5s;
+        }
+
         div:not(:first-child) {
             height: 175px;
         }
@@ -95,6 +101,7 @@
 .datepicker-details {
     align-self: center;
     justify-self: center;
+    width: 100%;
 }
 
 .big {
@@ -134,3 +141,12 @@
 .contact-host:hover {
  background-color: rgb(247, 247, 247);   
 }
+
+.rdrMonth {
+    width: 100%;
+}
+
+.rdrCalendarWrapper {
+    width: 100%;
+}
+

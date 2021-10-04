@@ -73,6 +73,8 @@ export class _SearchBar extends React.Component {
       criteria.checkOut = Date.parse(dateFormat.end)
     }
     const queryString = utilService.makeQueryParams(criteria)
+    this.props.toggleSearchBar()
+    this.props.onSetOrder(criteria)
     this.props.history.push(`/stay?${queryString}`)
 
   }

@@ -27,14 +27,13 @@ class _StayList extends React.Component {
         this.setState({ orderParams: getParms })
     }
 
-    setCheckedPropertyType = (propertyTypes, key) => {
-        console.log('propertyTypes', propertyTypes);
-        console.log('key', key);
-        this.setState({ filterBy: { ...this.state.filterBy, [key]: propertyTypes } })
+    setCheckedPropertyType = (propertyTypes, property) => {
+        let key = property ==='types'?'propertyTypes':property
+        this.setState({ filterBy: { ...this.state.filterBy, [key]: propertyTypes } },()=>{
+        })
     }
 
     onSavePrice = (price) => {
-        console.log(price);
         const filterPrice = {
             maxPrice: price[1],
             minPrice: price[0],
@@ -61,7 +60,6 @@ class _StayList extends React.Component {
         let newStayAmenities = stayAmenities.map(amenitie => amenitie[0].toUpperCase() + amenitie.substring(1))
         for (let amenitie of amenities) {
             amenitie = amenitie[0].toUpperCase() + amenitie.substring(1)
-            console.log('newAmenities =', amenities,'|||,amenitie = ', amenitie, );
             if (!newStayAmenities.includes(amenitie)) return false
         }
         return true
@@ -69,7 +67,6 @@ class _StayList extends React.Component {
     getStaysForDisplay = () => {
         let { stays } = this.props
         const { propertyTypes, price, amenities } = this.state.filterBy
-        console.log(amenities.length);
         stays = stays.filter(stay => {
             const type = stay.type[0].toUpperCase() + stay.type.substring(1)
             return propertyTypes.length ? propertyTypes.includes(type) : true &&
@@ -77,7 +74,6 @@ class _StayList extends React.Component {
                 (stay.price >= price.minPrice) &&
             (stay.price <= price.maxPrice)
         })
-        console.log('stays', stays);
         return stays
     }
 

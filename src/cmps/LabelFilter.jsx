@@ -1,11 +1,11 @@
 import { Component } from "react";
 
-export class PropertyTypeFilter extends Component {
+export class LabelFilter extends Component {
     state = {
         types: [],
         amenities: []
     }
-
+    
     componentDidMount() {
         this.checkTypeExists()
     }

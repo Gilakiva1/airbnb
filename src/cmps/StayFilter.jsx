@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { Component } from 'react'
 import PriceFilter from './PriceFilter.jsx';
-import { PropertyTypeFilter } from './PropertyTypeFilter.jsx';
+import { LabelFilter } from './LabelFilter.jsx';
 import { AmenitiesFilter } from './AmenitiesFilter.jsx';
 
 export class StayFilter extends Component {
@@ -50,14 +50,14 @@ export class StayFilter extends Component {
                 </div>
                 <div>
                     <button onClick={this.toggelPropertyTypeFilter}>Property Type</button>
-                    {isPropertyType && <PropertyTypeFilter
+                    {isPropertyType && <LabelFilter
                         property="type"
                         stays={stays}
                         setCheckedPropertyType={setCheckedPropertyType} />}
                 </div>
                 <div>
                     <button onClick={this.toggelAmenitiesFilter}>Amenities</button>
-                    {isAmenities && <PropertyTypeFilter
+                    {isAmenities && <LabelFilter
                         property="amenities"
                         stays={stays}
                         setCheckedPropertyType={setCheckedPropertyType} />}

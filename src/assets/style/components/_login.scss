@@ -1,0 +1,31 @@
+.login-form {
+    width: 570px;
+    height: 640px;
+    background-color: white;
+    outline: 1px solid black;
+
+    .login-header {
+        margin-top: 25px;
+        margin-bottom: 0;
+    }
+
+    .seperation-line-login {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        border-top: 1px solid rgba(131, 126, 126, 0.5);
+        width: inherit;
+    }
+
+    .login-welcome {
+        align-self: flex-start;
+        margin-bottom: 25px;
+    }
+
+    .login-main-container {
+        padding: 24px;
+    }
+
+    .login-input-continer{
+        width: 100%;
+    }
+}

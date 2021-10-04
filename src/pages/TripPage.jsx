@@ -34,7 +34,6 @@ class _TripPage extends React.Component {
         const { orders } = this.props
         if (!orders) return <div>loading</div>
         return (
-
             <section className="trip-container" >
                 <h1 className="txt-trip bold fs32 clr2">Trips</h1>
                 <div className="trip-btn flex column">

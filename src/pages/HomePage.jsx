@@ -5,6 +5,7 @@ import imgHero from '../assets/img/hero-cut.jpg'
 import { PopularImgList } from "../cmps/home-page/PopularImgList";
 import { LabelsImgList } from "../cmps/home-page/LabelsImgList"
 import { utilService } from "../services/util.service";
+import { LogIn } from "../cmps/LogIn";
 
 
 
@@ -22,6 +23,7 @@ export class HomePage extends React.Component {
                     <img src={imgHero} />
                 </div >
                 <section className="home-page">
+                    {/* <LogIn/> */}
                     <h1 className="title-popular fs30">Popular Destinations</h1>
                     <PopularImgList links={utilService.HomePageImgPopular()} />
                     <h1 className="title-label">Live Anywhere</h1>

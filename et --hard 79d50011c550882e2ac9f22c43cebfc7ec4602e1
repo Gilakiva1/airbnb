@@ -1,0 +1,287 @@
+[33mcommit 6bf53d8f5c8b222e9ba49237f049ff1a6400e63d[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: d144195 79d5001
+Author: Guy snir <guy.snir97@gmail.com>
+Date:   Tue Oct 5 02:01:19 2021 +0300
+
+    Merge branch 'main' of https://github.com/Gilakiva1/airbnb
+
+[33mcommit d144195969fd6e3b078cf940e084f697fa1c810a[m
+Merge: 81903f7 54e9b3f
+Author: Guy snir <guy.snir97@gmail.com>
+Date:   Tue Oct 5 02:01:12 2021 +0300
+
+    Merge branch 'main' of https://github.com/Gilakiva1/airbnb
+
+[33mcommit 79d50011c550882e2ac9f22c43cebfc7ec4602e1[m
+Author: Daniel Schwartz <danielonai14@gmail.com>
+Date:   Tue Oct 5 01:59:38 2021 +0300
+
+    shalala
+
+[33mcommit 81903f71dc75334da62474d903ddcbb8a7586231[m
+Author: Guy snir <guy.snir97@gmail.com>
+Date:   Tue Oct 5 01:59:32 2021 +0300
+
+    commit
+
+[33mcommit 54e9b3fca82ad2a155f711f306a2e3c43211abaf[m
+Merge: 84efbf1 655ac5c
+Author: Daniel Schwartz <danielonai14@gmail.com>
+Date:   Mon Oct 4 23:42:35 2021 +0300
+
+    Merge branch 'main' of https://github.com/Gilakiva1/airbnb
+
+[33mcommit 84efbf1ce8e713ff880decf5fd58a9aa63186d63[m
+Author: Daniel Schwartz <danielonai14@gmail.com>
+Date:   Mon Oct 4 23:42:32 2021 +0300
+
+    blotcff
+
+[33mcommit 655ac5c7789e70d62499c8c4fb8b3443eac8173e[m
+Merge: f8af07b 4457514
+Author: Gilakiva1 <gilakiva3@gmail.com>
+Date:   Mon Oct 4 23:23:45 2021 +0300
+
+    Merge branch 'main' of https://github.com/Gilakiva1/airbnb
+
+[33mcommit f8af07b205650c328d93fdbfee43212c1c680e9d[m
+Author: Gilakiva1 <gilakiva3@gmail.com>
+Date:   Mon Oct 4 23:18:32 2021 +0300
+
+    add host
+
+[33mcommit 44575140824c784467b79b5cd6d15c5217151507[m
+Author: Guy snir <guy.snir97@gmail.com>
+Date:   Mon Oct 4 20:52:52 2021 +0300
+
+    commit
+
+[33mcommit d358bee4ae386f0b62fa29a4b353ea6211a5c41c[m
+Merge: e80ea4f b05219f
+Author: Guy snir <guy.snir97@gmail.com>
+Date:   Mon Oct 4 20:52:42 2021 +0300
+
+    Merge branch 'main' of https://github.com/Gilakiva1/airbnb
+
+[33mcommit e80ea4fec217b3fbbc8d857f75a5b6a37c376acd[m
+Author: Guy snir <guy.snir97@gmail.com>
+Date:   Mon Oct 4 20:51:38 2021 +0300
+
+    stay-cont
+
+[33mcommit b05219f7e78f8396d7d46454be6244237a6d9302[m
+Merge: d6b8311 f613b51
+Author: Daniel Schwartz <danielonai14@gmail.com>
+Date:   Mon Oct 4 20:50:15 2021 +0300
+
+    Merge branch 'main' of https://github.com/Gilakiva1/airbnb
+
+[33mcommit d6b8311ae702b843622ce83fdc9e7b88a0c6d12c[m
+Author: Daniel Schwartz <danielonai14@gmail.com>
+Date:   Mon Oct 4 20:50:11 2021 +0300
+
+    blotlgf
+
+[33mcommit f613b51cc7be0636ced1573fdfd08fb9dd1f6988[m
+Merge: 6529b74 5a05a46
+Author: Gilakiva1 <gilakiva3@gmail.com>
+Date:   Mon Oct 4 19:52:12 2021 +0300
+
+    Merge branch 'main' of https://github.com/Gilakiva1/airbnb
+
+[33mcommit 6529b74538a172efd5dc349db4a112cb36be152b[m
+Author: Gilakiva1 <gilakiva3@gmail.com>
+Date:   Mon Oct 4 19:51:44 2021 +0300
+
+    add host pages
+
+[33mcommit dab4dbe61c2dc8845291e2ec6481b2bca2189c5a[m
+Author: Gilakiva1 <gilakiva3@gmail.com>
+Date:   Mon Oct 4 16:49:48 2021 +0300
+
+    k
+
+[33mcommit 92ca2405ebcb830e2737ec6160e2e20685ff6596[m
+Merge: 7dbe697 5a05a46
+Author: Guy snir <guy.snir97@gmail.com>
+Date:   Mon Oct 4 16:47:51 2021 +0300
+
+    Merge branch 'main' of https://github.com/Gilakiva1/airbnb
+
+[33mcommit 7dbe6976ff8638d1ffca6fac45efc98a24e49afc[m
+Author: Guy snir <guy.snir97@gmail.com>
+Date:   Mon Oct 4 16:47:48 2021 +0300
+
+    commit
+
+[33mcommit 5a05a46d78d89a8ccb7dfefdec6782f218619c3c[m
+Merge: 2bd1d07 fce17b5
+Author: Daniel Schwartz <danielonai14@gmail.com>
+Date:   Mon Oct 4 16:36:55 2021 +0300
+
+    Merge branch 'main' of https://github.com/Gilakiva1/airbnb
+
+[33mcommit 2bd1d0774ea026ec68055745c184d69ba775bd0b[m
+Author: Daniel Schwartz <danielonai14@gmail.com>
+Date:   Mon Oct 4 16:36:12 2021 +0300
+
+    blotlg
+
+[33mcommit fce17b54a61fe86e6ccdd5ee38b1b353130816c9[m
+Author: Gilakiva1 <gilakiva3@gmail.com>
+Date:   Mon Oct 4 14:03:20 2021 +0300
+
+    add filters
+
+[33mcommit 7327bdb3da3b7f9a5a4f32c0472db7d5cc6e49ab[m
+Merge: b8608a7 5551b69
+Author: Gilakiva1 <gilakiva3@gmail.com>
+Date:   Mon Oct 4 13:54:04 2021 +0300
+
+    Merge branch 'main' of https://github.com/Gilakiva1/airbnb
+
+[33mcommit b8608a7699982f1ecb332453495f27068e089e46[m
+Author: Gilakiva1 <gilakiva3@gmail.com>
+Date:   Mon Oct 4 13:53:30 2021 +0300
+
+    hola
+
+[33mcommit 5551b6987734ee2882e470677c779070ed30ac1e[m
+Author: Guy snir <guy.snir97@gmail.com>
+Date:   Mon Oct 4 13:53:07 2021 +0300
+
+    commit
+
+[33mcommit 6ad06a31352448813a93d9b53853731281ee6c3c[m
+Merge: 6aab7b5 dad8e96
+Author: Guy snir <guy.snir97@gmail.com>
+Date:   Mon Oct 4 13:30:47 2021 +0300
+
+    Merge branch 'main' of https://github.com/Gilakiva1/airbnb
+
+[33mcommit 6aab7b5e2c3a74cd5c34764ec9fb454d9851b596[m
+Author: Guy snir <guy.snir97@gmail.com>
+Date:   Mon Oct 4 13:30:36 2021 +0300
+
+    commit
+
+[33mcommit dad8e963a55436b487734040fc7f1f89f131100a[m
+Merge: af0b255 9777808
+Author: Daniel Schwartz <danielonai14@gmail.com>
+Date:   Mon Oct 4 12:37:30 2021 +0300
+
+    Merge branch 'main' of https://github.com/Gilakiva1/airbnb
+
+[33mcommit af0b25544a7127855cd10e58b26e3da29c00a217[m
+Author: Daniel Schwartz <danielonai14@gmail.com>
+Date:   Mon Oct 4 12:37:21 2021 +0300
+
+    fuck you guy
+
+[33mcommit 9777808c94b404780fc4017df2a37f71d6280475[m
+Author: Guy snir <guy.snir97@gmail.com>
+Date:   Mon Oct 4 12:30:11 2021 +0300
+
+    commit upadte
+
+[33mcommit b6ff19809cc2a307b673896604629e1cae2e0398[m
+Author: Guy snir <guy.snir97@gmail.com>
+Date:   Mon Oct 4 12:21:02 2021 +0300
+
+    finish update
+
+[33mcommit e651c102701fe888f33b27f57c3537536eb47a62[m
+Merge: 0262f59 fd0c0c7
+Author: Guy snir <guy.snir97@gmail.com>
+Date:   Mon Oct 4 12:20:46 2021 +0300
+
+    Merge branch 'main' of https://github.com/Gilakiva1/airbnb
+
+[33mcommit 0262f59d3f4be6ec5ec0b58885a77d841c62b6e8[m
+Author: Guy snir <guy.snir97@gmail.com>
+Date:   Mon Oct 4 12:20:26 2021 +0300
+
+    finish update!
+
+[33mcommit fd0c0c7ab83b1ee09ee3ae2c0c00a4c282c21156[m
+Merge: 06d53b5 4ef04fc
+Author: Daniel Schwartz <danielonai14@gmail.com>
+Date:   Mon Oct 4 09:32:23 2021 +0300
+
+    Merge branch 'main' of https://github.com/Gilakiva1/airbnb
+
+[33mcommit 06d53b57ee1d79fba997490336c4e7a8777a1d6c[m
+Author: Daniel Schwartz <danielonai14@gmail.com>
+Date:   Mon Oct 4 09:31:17 2021 +0300
+
+    someting smoenthing
+
+[33mcommit 8e1c0922008e47e108a69185b646f98736c582ea[m
+Merge: a935cd1 4ef04fc
+Author: Gilakiva1 <gilakiva3@gmail.com>
+Date:   Sun Oct 3 23:21:13 2021 +0300
+
+    Merge branch 'main' of https://github.com/Gilakiva1/airbnb
+
+[33mcommit a935cd1803066e405e4bfcdb4e6c9ae51a5bfbb1[m
+Author: Gilakiva1 <gilakiva3@gmail.com>
+Date:   Sun Oct 3 23:19:28 2021 +0300
+
+    hola
+
+[33mcommit 4ef04fc5591778d8835008eeffb780d97b090210[m
+Author: Guy snir <guy.snir97@gmail.com>
+Date:   Sun Oct 3 23:06:46 2021 +0300
+
+    commit!!!
+
+[33mcommit c43f1402b397548972fbc99b6effc4fa15a7646a[m
+Merge: 1b3d07d bedf460
+Author: Guy snir <guy.snir97@gmail.com>
+Date:   Sun Oct 3 23:05:32 2021 +0300
+
+    Merge branch 'main' of https://github.com/Gilakiva1/airbnb
+
+[33mcommit 1b3d07d367fa51a46cca3b4a7f2c3a9c4f5a7f02[m
+Author: Guy snir <guy.snir97@gmail.com>
+Date:   Sun Oct 3 23:04:23 2021 +0300
+
+    tripppp
+
+[33mcommit bedf460c2f4585824eba2d5cf67754413c92b9c3[m
+Author: Daniel Schwartz <danielonai14@gmail.com>
+Date:   Sun Oct 3 19:41:40 2021 +0300
+
+    complicated mac
+
+[33mcommit fe0e0ab8612a54f56bdf3e97343b3b63aed3ecd9[m
+Author: Guy snir <guy.snir97@gmail.com>
+Date:   Sun Oct 3 19:05:18 2021 +0300
+
+    commit
+
+[33mcommit f0a3e44245eb8caf2996bd5b8965f0ea80bfa3bb[m
+Author: Daniel Schwartz <danielonai14@gmail.com>
+Date:   Sun Oct 3 17:50:46 2021 +0300
+
+    complicatehc
+
+[33mcommit cef94ce17d665ca2fe5d1dbe78e6c67c746ac6ba[m
+Author: Guy snir <guy.snir97@gmail.com>
+Date:   Sun Oct 3 15:06:17 2021 +0300
+
+    commit
+
+[33mcommit a04e71c09f745a970e866d955f159c345ce4d1d2[m
+Merge: 6aea654 d99f3a4
+Author: Guy snir <guy.snir97@gmail.com>
+Date:   Sun Oct 3 15:06:05 2021 +0300
+
+    commit
+
+[33mcommit de184d476db7cd08fb859db84089a0d14c9183a5[m
+Merge: 2e5d147 d99f3a4
+Author: Gilakiva1 <gilakiva3@gmail.com>
+Date:   Sun Oct 3 14:52:46 2021 +0300
+
+    Merge branch 'main' of https://github

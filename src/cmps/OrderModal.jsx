@@ -114,6 +114,7 @@ export class _OrderModal extends React.Component {
     createFinalOrder = () => {
         const { currOrder, stay } = this.props
         const finalOrder = {
+            _id: currOrder._id || '',
             hostId: stay.host._id,
             createdAt: Date.now(),
             price: ((currOrder.checkOut - currOrder.checkIn) / (1000 * 60 * 60 * 24)) * stay.price,
@@ -123,10 +124,8 @@ export class _OrderModal extends React.Component {
             img: stay.imgUrls[0],
             status: 'pending',
             buyer: {
-                _id: 'userId',
-                fullname: 'user.fullname'
-    
-
+                _id: "615c81afe6b3e62a1bab3f75",
+                fullname: 'guy'
             },
             stay: {
                 _id: stay._id,

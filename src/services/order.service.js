@@ -12,10 +12,11 @@ function save(order) {
     } else {
         // order.owner = userService.getLoggedinUser();
         return httpService.post('order', order)
-    }
+    }   
 }
-function query(filter) {
-    return httpService.get(`order${filter}`);
+function query(userId) {
+    debugger
+    return httpService.get(`order?userId=${userId}`);
 }
 
 

@@ -12,7 +12,7 @@ export class _LogIn extends React.Component {
       username: '',
       password: '',
       fullname: '',
-      imgUrl: user1,
+      imgUrl: '',
       isAdmin: false
     },
     isSignup: false

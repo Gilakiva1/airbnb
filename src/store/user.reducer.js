@@ -1,6 +1,8 @@
+import { userService } from "../services/user.service"
+
 const initialState = {
     users: [],
-    loggedInUser: null
+    loggedInUser: userService.getLoggedinUser() || null
 }
 
 

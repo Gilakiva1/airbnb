@@ -14,7 +14,7 @@ import { DatePicker } from '../cmps/header/DatePicker.jsx';
 import { onAddOrder, onUpdateOrder, onSetOrder } from '../store/order.action';
 import { ReviewPoints } from '../cmps/stay-details/ReviewPoints.jsx';
 import { ReviewList } from '../cmps/stay-details/ReviewList.jsx';
-// import { MapDetails } from '../cmps/stay-details/MapDetails.jsx';
+import { MapDetails } from '../cmps/stay-details/MapDetails.jsx';
 import { IdentityVerified } from '../cmps/svgs/IdentityVerified.jsx';
 
 
@@ -138,7 +138,7 @@ import { IdentityVerified } from '../cmps/svgs/IdentityVerified.jsx';
                     <div className="seperation-line"></div>
                     <h2>Where you'll be</h2>
                     <p>{stay.loc.address}</p>
-                    {/* <MapDetails lat={stay.loc.lat} lng={stay.loc.lng} /> */}
+                    <MapDetails lat={stay.loc.lat} lng={stay.loc.lng} />
                     <div className="seperation-line"></div>
                     <div className="user-header flex  gap10">
                         <img className="user-details-profile-img" src={stay.host.imgUrl} alt="" />

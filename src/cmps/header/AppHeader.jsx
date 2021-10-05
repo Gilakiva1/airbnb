@@ -44,6 +44,8 @@ class _AppHeader extends React.Component {
 
         if (scrollLocaion < 40 && pathname === '/') {
             this.setState({ isEnter: true })
+        } else {
+            this.setState({ isEnter: false })
         }
         this.setState({ scrollLoc: scrollLocaion, isMiniSearchClicked: false })
     }
@@ -76,16 +78,11 @@ class _AppHeader extends React.Component {
         let { scrollLoc } = this.state
         scrollLoc = 39
         if (action === 'on') {
-            this.setState({ isMiniSearchClicked: true, scrollLoc })
+            this.setState({ isMiniSearchClicked: true, scrollLoc, isEnter: true })
         }
         else this.setState({ isMiniSearchClicked: false })
     }
 
-    toggleSearchBarHome = () => {
-        let { scrollLoc } = this.state
-        scrollLoc = 39
-        this.setState({ scrollLoc })
-    }
 
     render() {
         const { scrollLoc, isEnter, isShowMenu, isLogIn, isMiniSearchClicked } = this.state
@@ -96,10 +93,8 @@ class _AppHeader extends React.Component {
                 <div className="header-func flex">
                     <div className="logo-container flex align-center pointer" onClick={this.backToHome}>
                         <button className="btn-logo border-none"><LogoSvg className={`${(pathname === '/' && scrollLoc > 40) || pathname !== '/' ? 'logo-pink' : 'logo-white'} `} /></button>
-                        <h3 className={`logo-txt ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-pink'}`}>Home Away</h3>
+                        <h3 className={`logo-txt fs22 medium ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-pink'}`}>Home Away</h3>
                     </div>
-                    {scrollLoc > 40 && pathname === '/' && <MiniSearchBar toggleSearchBar={this.toggleSearchBarHome} />}
-                    {pathname !== '/' && !isMiniSearchClicked && <MiniSearchBar toggleSearchBar={this.toggleSearchBar} />}
                     <nav className="nav-header">
                         <div className="nav-header flex align-center">
                             <NavLink className={`link-host border-round fs14 medium  ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-black hover-bcg'}`} to={`/stay`} >Explore</NavLink>
@@ -112,7 +107,6 @@ class _AppHeader extends React.Component {
                                             <img src={this.getUserImg() || user1} alt="" className="user-img border-round" />
                                         </div>
                                     </button>
-
                                 </div>
                             </div>
                         </div>
@@ -120,8 +114,10 @@ class _AppHeader extends React.Component {
                         {isLogIn && <LogIn toggleLogIn={this.toggleLogIn} />}
                     </nav>
                 </div>
-                {scrollLoc < 40 && pathname === '/' && <SearchBar toggleSearchBar={this.toggleSearchBar} animateClassName={isEnter ? 'scale-up-top' : ''} />}
-                {pathname !== '/' && isMiniSearchClicked && <SearchBar toggleSearchBar={this.toggleSearchBar} animateClassName={isEnter ? 'scale-up-top' : ''} />}
+                {scrollLoc > 40 && pathname === '/' && <MiniSearchBar toggleSearchBar={this.toggleSearchBar} />}
+                {pathname !== '/' && !isMiniSearchClicked && <MiniSearchBar toggleSearchBar={this.toggleSearchBar} />}
+                 <SearchBar toggleSearchBar={this.toggleSearchBar} animateClassName={isEnter ? 'scale-up-top-search-bar' : ''} />
+                {/* {pathname !== '/' && isMiniSearchClicked && <SearchBar toggleSearchBar={this.toggleSearchBar} animateClassName={isEnter ? 'scale-up-top-search-bar' : ''} />} */}
             </header>
         )
 

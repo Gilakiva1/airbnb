@@ -9,7 +9,7 @@
 
 html {
   font-family: airbnb-cereal-book, sans-serif;
-  scroll-behavior: smooth;
+  // scroll-behavior: smooth;
 }
 
 
@@ -60,6 +60,7 @@ button {
 
 .scale-up-top {
   animation: scale-up-top 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+
 }
 
 .slide-in-bottom {

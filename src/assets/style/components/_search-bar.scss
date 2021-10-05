@@ -1,6 +1,10 @@
 .mini-search-bar {
-    align-self: center;
-    justify-self: center;
+    // align-self: center;
+    // justify-self: center;
+    position: fixed;
+    top: 5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     align-items: center;
     justify-content: center;
     width: rem(290px);
@@ -59,20 +63,37 @@
     .input-container {
         background-color: transparent;
         padding: 10px;
+
         &:hover {
             background-color: rgb(235, 235, 235);
             border-radius: 30px;
-        } 
+        }
         span {
             font-size: rem(12px);
             font-weight: bold;
-        } 
+        }
         input {
             background-color: inherit;
             cursor: pointer;
         }
     }
 }
+
+.search-bar-main-container {
+    transform: scale(0.28, 0.65) translate(-3px, -84px);
+    transform-origin: 50% 0%;
+    opacity: 0;
+
+    transition: all 0.6s;
+    pointer-events: none;
+
+    &.scale-up-top-search-bar {
+        transform: scale(1);
+        opacity: 1;
+        pointer-events: all;
+    }
+}
+
 .picking-guest-container {
     align-self: flex-end;
     width: rem(385px);

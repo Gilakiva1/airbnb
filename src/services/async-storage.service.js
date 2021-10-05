@@ -155,19 +155,19 @@ const stays = [{
         {
             _id: 'u101',
             checkIn: '21.04.2021',
-            checkOut: ' 25.04.2021'
+            checkOut: '25.04.2021'
         }],
     loc: {
         country: 'Portugal',
         countryCode: 'PT',
-        address: ' Porto, Portugal',
+        address: 'Porto, Portugal',
         lat: -8.61308,
         lng: 41.1413,
 
     },
     reviews: [{
         id: '596587',
-        txt: ' Very helpful hosts. Cooked traditional...',
+        txt: 'Very helpful hosts. Cooked traditional...',
         rate: 4,
         by: {
             _id: 'u101',
@@ -385,7 +385,8 @@ const stays = [{
     orders: [{
         _id: 'u101',
         checkIn: '21.03.2021',
-        checkOut: ' 25.03.2021'
+        checkOut: ' 25.03.2021',
+        
     }],
     loc: {
         country: 'The United States',

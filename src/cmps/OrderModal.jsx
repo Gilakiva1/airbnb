@@ -44,7 +44,7 @@ export class _OrderModal extends React.Component {
     }
 
     handleChange = (ev) => {
-
+        ev.preventDefault()
         const { currOrder } = this.props
         const orderCopy = { ...currOrder }
         const field = ev.target.name
@@ -60,7 +60,7 @@ export class _OrderModal extends React.Component {
         isPickingDates = false
         this.setState({ isPickingGuests, isPickingDates })
     }
-  
+
     activeInput = (input) => {
         this.closeInputs()
         switch (input) {
@@ -100,7 +100,7 @@ export class _OrderModal extends React.Component {
         orderCopy.guests[field] = value
         this.props.onUpdateOrder(orderCopy)
     }
- 
+
     handlePickingDates = (start, end) => {
         const orderCopy = { ...this.props.currOrder }
         orderCopy.checkIn = Date.parse(start)
@@ -110,10 +110,10 @@ export class _OrderModal extends React.Component {
         this.props.onUpdateOrder(orderCopy)
     }
 
+
     createFinalOrder = () => {
         const { currOrder, stay } = this.props
         const finalOrder = {
-            _id: currOrder._id || '',
             hostId: stay.host._id,
             createdAt: Date.now(),
             price: ((currOrder.checkOut - currOrder.checkIn) / (1000 * 60 * 60 * 24)) * stay.price,
@@ -125,6 +125,8 @@ export class _OrderModal extends React.Component {
             buyer: {
                 _id: 'userId',
                 fullname: 'user.fullname'
+    
+
             },
             stay: {
                 _id: stay._id,
@@ -134,21 +136,19 @@ export class _OrderModal extends React.Component {
         }
         return finalOrder
     }
-
     onSubmit = async (ev) => {
         ev.preventDefault()
         const { isReserve } = this.state
         if (!isReserve) {
-            ev.target.type = 'submit'
+            ev.target.type = 'submit' //?
             this.setState({ isReserve: true })
         }
         else {
-            const finalOrder = this.createFinalOrder()
-            const savedOrder = await this.props.onAddOrder(finalOrder)
+
             // await this.props.onSetOrder(null)
             //change to save id at stay or mini order
-            const { stay } = this.props
-            stay.orders.push(savedOrder)
+            const finalOrder = this.createFinalOrder()
+            await this.props.onAddOrder(finalOrder)
             this.setState({ isFinalReserve: true })
             setTimeout(() => {
                 this.setState({ isFinalReserve: false })
@@ -156,6 +156,8 @@ export class _OrderModal extends React.Component {
             }, 2000);
         }
     }
+
+
 
     render() {
         const { isPickingDates, isPickingGuests, isFinalReserve, isReserve, reviewsNumber } = this.state

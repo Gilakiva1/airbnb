@@ -1,5 +1,7 @@
 import { storageService } from './async-storage.service';
 import { userService } from './user.service';
+import { httpService } from './http.service';
+import { utilService } from './util.service';
 // import { utilService } from './util.service';
 export const stayService = {
   query,
@@ -11,15 +13,17 @@ export const stayService = {
 
 const STORAGE_KEY = 'stayDB';
 
-function query(params) {
- 
-  return storageService.query(STORAGE_KEY, params);
+function query(filterBy) {
+
+  const queryString = (!filterBy) ? '' : '?' + utilService.makeQueryParams(filterBy)
+  return httpService.get(`stay${queryString}`)
 }
 
 async function getById(stayId) {
+  return httpService.get(`stay/${stayId}`)
   const stay = await storageService.get(STORAGE_KEY, stayId);
   return stay
-}   
+}
 
 function remove(stayId) {
   return storageService.remove(stayId);
@@ -34,8 +38,8 @@ function save(stay) {
   }
 }
 function placeOrder(stay, order) {
-  
-  
+
+
   return storageService.put(STORAGE_KEY, stay, order)
 
 }

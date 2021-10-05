@@ -4,7 +4,7 @@ const initialState = {
 };
 
 export function stayReducer(state = initialState, action) {
-  
+
   switch (action.type) {
     case 'SET_STAYS':
       return { ...state, stays: action.stays };
@@ -35,11 +35,11 @@ export function stayReducer(state = initialState, action) {
             })
           }
 
-        }else {
+        } else {
           return {
 
             ...state, stays: state.stays.filter(stay => {
-                return stay.type !== types[0]
+              return stay.type !== types[0]
             })
           }
 

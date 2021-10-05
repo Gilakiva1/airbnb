@@ -114,11 +114,12 @@ export class _SearchBar extends React.Component {
     return (
       <section className={`flex column align-center search-bar-main-container ${animateClassName}`}>
         <div>
-          <div className="flex column">
+          <div className="flex column margin-top20">
             <form className="search-bar-container flex" onClick={this.preventPropagation} onSubmit={this.onSubmit}>
               <div className="input-container flex column" onClick={() => this.inputRef.current.focus()} >
                 <span>Location:</span>
                 <input
+                  ref={this.inputRef}
                   type="search"
                   placeholder="Where are you going?"
                   name="address"

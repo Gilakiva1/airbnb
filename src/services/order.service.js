@@ -1,5 +1,5 @@
 import { storageService } from "./async-storage.service"
-
+import { httpService } from "./http.service";
 export const orderService = {
     save,
     query
@@ -8,15 +8,15 @@ const STORAGE_KEY = 'orderDB'
 
 function save(order) {
     if (order._id) {
-        return storageService.put(STORAGE_KEY, order);
+        return httpService.put('order', order);
     } else {
         // order.owner = userService.getLoggedinUser();
-        return storageService.post(STORAGE_KEY, order)
-    } 
+        return httpService.post('order', order)
+    }
 }
 function query(filter) {
-    return storageService.query(STORAGE_KEY, filter);
+    return httpService.get(`order${filter}`);
 }
- 
+
 
 

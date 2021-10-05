@@ -112,7 +112,7 @@ export class _SearchBar extends React.Component {
     const { animateClassName } = this.props
     const { checkIn, checkOut } = criteria
     return (
-      <section className={`flex column align-center ${animateClassName}`}>
+      <section className={`flex column align-center search-bar-main-container ${animateClassName}`}>
         <div>
           <div className="flex column">
             <form className="search-bar-container flex" onClick={this.preventPropagation} onSubmit={this.onSubmit}>

@@ -31,10 +31,9 @@
         grid-template: 1fr 1fr /2fr 1fr 1fr;
         gap: rem(10px);
 
-
         img:hover {
-            filter:brightness(0.85);
-            transition:  0.5s;
+            filter: brightness(0.85);
+            transition: 0.5s;
         }
 
         div:not(:first-child) {
@@ -67,10 +66,10 @@
         border-radius: 10px 0 0 10px;
     }
     .img2 {
-        border-radius: 0 10px 10px 0;
+        border-radius: 0 10px 0 0;
     }
     .img4 {
-        border-radius: 0 10px 10px 0;
+        border-radius: 0 0 10px 0;
     }
 }
 .details-info {
@@ -105,7 +104,7 @@
 }
 
 .big {
-    width: 1120px ;
+    width: 1120px;
 }
 
 .user-header {
@@ -126,7 +125,6 @@
     p:not(:first-child) {
         margin-top: 15px;
     }
-
 }
 .contact-host {
     border-radius: 8px;
@@ -135,11 +133,12 @@
     text-align: center;
     margin-top: 35px;
     padding: 13px 23px;
-    transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s ;
+    transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s,
+        transform 0.1s ease 0s;
 }
 
 .contact-host:hover {
- background-color: rgb(247, 247, 247);   
+    background-color: rgb(247, 247, 247);
 }
 
 .rdrMonth {
@@ -149,4 +148,3 @@
 .rdrCalendarWrapper {
     width: 100%;
 }
-

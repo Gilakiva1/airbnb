@@ -14,11 +14,11 @@ import { DatePicker } from '../cmps/header/DatePicker.jsx';
 import { onAddOrder, onUpdateOrder, onSetOrder } from '../store/order.action';
 import { ReviewPoints } from '../cmps/stay-details/ReviewPoints.jsx';
 import { ReviewList } from '../cmps/stay-details/ReviewList.jsx';
-import GoogleMaps from '../cmps/stay-details/Google-Maps.jsx';
+import { MapDetails } from '../cmps/stay-details/MapDetails.jsx';
 import { IdentityVerified } from '../cmps/svgs/IdentityVerified.jsx';
 
 
-export class _StayDetails extends Component {
+ class _StayDetails extends Component {
     state = {
         stay: null,
         order: null
@@ -67,7 +67,6 @@ export class _StayDetails extends Component {
     render() {
         const { stay, order } = this.state
         const { currOrder } = this.props
-        console.log('orderrr details', currOrder);
 
         if (!stay) return <div>Loading...</div>
         return (
@@ -139,7 +138,7 @@ export class _StayDetails extends Component {
                     <div className="seperation-line"></div>
                     <h2>Where you'll be</h2>
                     <p>{stay.loc.address}</p>
-                    <GoogleMaps lat={stay.loc.lat} lng={stay.loc.lng} />
+                    <MapDetails lat={stay.loc.lat} lng={stay.loc.lng} />
                     <div className="seperation-line"></div>
                     <div className="user-header flex  gap10">
                         <img className="user-details-profile-img" src={stay.host.imgUrl} alt="" />

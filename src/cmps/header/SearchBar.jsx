@@ -73,6 +73,8 @@ export class _SearchBar extends React.Component {
       criteria.checkOut = Date.parse(dateFormat.end)
     }
     const queryString = utilService.makeQueryParams(criteria)
+    this.props.toggleSearchBar()
+    this.props.onSetOrder(criteria)
     this.props.history.push(`/stay?${queryString}`)
 
   }
@@ -120,7 +122,6 @@ export class _SearchBar extends React.Component {
                 <span>Location:</span>
                 <input
                   type="search"
-                  ref={this.inputRef}
                   placeholder="Where are you going?"
                   name="address"
                   autoComplete="off"
@@ -139,7 +140,6 @@ export class _SearchBar extends React.Component {
                   autoComplete="off"
                   disabled
                   onChange={this.handleChange}
-
                 />
               </div>
               <div className="seperation-line-vertical"></div>

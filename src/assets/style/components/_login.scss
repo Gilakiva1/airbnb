@@ -1,14 +1,19 @@
 .login-form {
     width: 570px;
     // height: 640px;
-    position: absolute;
-    top: 50vh;
+    position: fixed;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: white;
     outline: 1px solid black;
     z-index: 201;
     border-radius: 30px;
+
+    span {
+        color: cornflowerblue;
+        cursor: pointer;
+    }
 
     .login-header {
         margin-top: 25px;

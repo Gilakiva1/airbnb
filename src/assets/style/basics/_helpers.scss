@@ -46,7 +46,6 @@
   line-height: rem(32px);
 }
 
-
 .text-align {
   text-align: center;
 }
@@ -91,7 +90,6 @@
 .gap10 {
   gap: 10px;
 }
-
 
 .pointer {
   cursor: pointer;
@@ -147,10 +145,9 @@
 .clr4 {
   color: white;
 }
-.clr5{
+.clr5 {
   color: black;
 }
-
 
 // Display helpers
 
@@ -193,9 +190,16 @@
   height: 35px;
 }
 
-.mrb2{
+.mrb2 {
   margin-bottom: 2px;
 }
-.mrt10{
+.mrt10 {
   margin-top: 10px;
+}
+.margin0 {
+  margin: 0px !important;
+}
+.hover-grey:hover {
+  background-color: $clr6;
+  transition: 0.4s;
 }

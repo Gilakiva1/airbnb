@@ -62,8 +62,6 @@ export class StayFilter extends Component {
                         property="amenities"
                         stays={stays}
                         setCheckedPropertyType={setCheckedPropertyType} />}
-                    {/* {isAmenities && <AmenitiesFilter stays={stays} removePropertyType={this.props.removePropertyType} setCheckedPropertyType={this.props.setCheckedPropertyType} />} */}
-
                 </div>
             </section >
         )

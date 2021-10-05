@@ -32,15 +32,6 @@ class _AppHeader extends React.Component {
         window.removeEventListener('click', this.onCloseMenu)
     }
 
-
-    componentDidUpdate() {
-        // if (this.props.history.location.pathname !== '/') {
-        //     window.removeEventListener('scroll', this.onToggleHeader)
-        // } else {
-        //     window.addEventListener('scroll', this.onToggleHeader)
-        // }
-    }
-
     toggleLogIn = () => {
         this.onCloseMenu()
         let { isLogIn } = this.state

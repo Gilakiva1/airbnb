@@ -12,13 +12,12 @@ export const storageService = {
     put,
     remove,
     postMany
-
 }
 
 function query(entityType, params = {}) {
     let entities;
+    console.log('params',params);
     if (params.hostId) {
-        
         entities = JSON.parse(localStorage.getItem(entityType)) || stays
         entities = entities.filter(entitie => entitie.host._id === params.hostId)
     }
@@ -27,7 +26,6 @@ function query(entityType, params = {}) {
         if (params.address) {
             params.address = params.address.split('-').join(' ')
             const regex = new RegExp(params.address, 'i');
-
             entities = entities.filter(entitie => {
                 entitie.loc.address = entitie.loc.address.split('-').join(' ')
                 return regex.test(entitie.loc.address)
@@ -42,7 +40,17 @@ function query(entityType, params = {}) {
     } else if (entityType === 'orderDB') {
         entities = JSON.parse(localStorage.getItem(entityType)) || []
         if (params) {
-            entities.filter(entitie => (entitie._id === params.userId))
+            if (params.idHost) {
+    
+                entities = JSON.parse(localStorage.getItem(entityType)) || stays
+                entities = entities.filter(entitie => entitie.hostId === params.idHost)
+            }
+
+            if(params.hostId){
+                entities.filter(entitie => (entitie.hostId === params.hostId))
+            }
+
+            else entities.filter(entitie => (entitie._id === params.userId))
         }
     } else if (entityType === 'userDB') {
         entities = JSON.parse(localStorage.getItem(entityType)) || []

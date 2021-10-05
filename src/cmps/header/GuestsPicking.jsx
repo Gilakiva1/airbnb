@@ -23,6 +23,7 @@ export class _GuestsPicking extends React.Component {
 
     updateCount = (ev, action) => {
         ev.stopPropagation()
+        ev.preventDefault()
         let { adult, child, infant } = this.state
         let field
         let value

@@ -112,7 +112,6 @@ class _AppHeader extends React.Component {
                                             <img src={this.getUserImg() || user1} alt="" className="user-img border-round" />
                                         </div>
                                     </button>
-
                                 </div>
                             </div>
                         </div>

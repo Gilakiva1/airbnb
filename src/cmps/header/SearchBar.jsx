@@ -74,7 +74,7 @@ export class _SearchBar extends React.Component {
     }
     const queryString = utilService.makeQueryParams(criteria)
     this.props.toggleSearchBar()
-    this.props.onSetOrder(criteria)
+    await this.props.onSetOrder(criteria)
     this.props.history.push(`/stay?${queryString}`)
 
   }
@@ -116,9 +116,7 @@ export class _SearchBar extends React.Component {
         <div>
           <div className="flex column margin-top20">
             <form className="search-bar-container flex" onClick={this.preventPropagation} onSubmit={this.onSubmit}>
-              <div className="input-container flex column"
-                onClick={() => this.inputRef.current.focus()}
-              >
+              <div className="input-container flex column" onClick={() => this.inputRef.current.focus()} >
                 <span>Location:</span>
                 <input
                   ref={this.inputRef}
@@ -126,6 +124,7 @@ export class _SearchBar extends React.Component {
                   placeholder="Where are you going?"
                   name="address"
                   autoComplete="off"
+                  ref={this.inputRef}
                   onChange={this.handleChange}
                   onClick={this.closeInputs}
                 />

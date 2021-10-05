@@ -162,7 +162,7 @@ const stays = [{
     },
     reviews: [{
         id: '596587',
-        txt: ' Very helpful hosts. Cooked traditional...',
+        txt: 'Very helpful hosts. Cooked traditional...',
         rate: 4,
         by: {
             _id: 'u101',
@@ -366,7 +366,6 @@ const stays = [{
         fullname: 'Davidi Pok',
         imgUrl: "https://a0.muscache.com/im/pictures/user/5fc6a5a6-c55a-4b0c-b2d7-d9f0ad731b76.jpg?im_w=240"
     },
-
     loc: {
         country: 'The United States',
         countryCode: 'USA',

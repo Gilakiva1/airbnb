@@ -3,34 +3,42 @@
     border-collapse: collapse;
     width: 100%;
     thead {
+        .sort {
+            cursor: pointer;
+            &:hover {
+                color: $clr2;
+            }
+            &.black {
+                color: $clr2;
+            }
+        }
         tr {
             border-bottom: 1px solid #ebebeb;
         }
         th {
-            text-align: left;
+            color: $clr1;
 
-            & :not(:first-child) {
-                padding: 8px;
-                font-size: 12px;
-                line-height: 16px;
-                color: #717171;
-                text-transform: uppercase;
-                white-space: nowrap;
-                position: -webkit-sticky;
-                position: sticky;
-                top: 0px;
-                background: #ffffff;
-                z-index: 4;
-                box-shadow: 0 -1px 0 #ffffff, 12px 0 0 #ffffff, 0 1px 0 #ebebeb;
-                width: 1px;
-            }
+            text-align: left;
+            font-size: rem(14px);
+            line-height: rem(16px);
+            font-family: airbnb-cereal-bold;
+
+            padding: 8px;
+            color: #717171;
+            text-transform: uppercase;
+            white-space: nowrap;
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0px;
+            background: #ffffff;
+            z-index: 4;
+            box-shadow: 0 -1px 0 #ffffff, 12px 0 0 #ffffff, 0 1px 0 #ebebeb;
+            width: 1px;
         }
     }
     tbody {
         tr {
             border-top: 1px solid #f7f7f7 !important;
-            --table-row-background-color: #f7f7f7 !important;
-            /* border-radius: 8px !important; */
             background: #f7f7f7 !important;
             box-shadow: #f7f7f7 -12px 0px 0px 0px, #f7f7f7 12px 0px 0px 0px !important;
 
@@ -40,20 +48,16 @@
             }
         }
         td {
-            &:first-child {
-                margin: 0;
-                padding: 0;
-                width: 10px;
-            }
-            &:nth-child(2){
-                align-items: center;
-
-            }
-            // min-width: 300px;
+            font-size: rem(14px);
+            line-height: rem(18px);
             padding-left: 8px;
             padding-right: 8px;
             padding-top: 16px;
             padding-bottom: 16px;
+            &:first-child {
+                align-items: center;
+            }
+            
             img {
                 width: 56px !important;
                 height: 40px !important;

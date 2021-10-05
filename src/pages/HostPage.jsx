@@ -2,6 +2,7 @@ import { Component } from "react";
 import { connect } from 'react-redux'
 
 import { HostList } from "../cmps/host-page/HostList";
+import { HostOrder } from "../cmps/host-page/HostOrder";
 import { SideNav } from '../cmps/host-page/SideNav'
 import { loadStays } from '../store/stay.action.js'
 
@@ -31,7 +32,6 @@ class _HostPage extends Component {
         const { isAddStays, isMyStays, isOrders, isRates } = this.state.component
         return (
             <div className="host-page">
-
                 <div className="host-container">
                     <div className="nav-bar">
                         <SideNav toggleComponent={this.toggleComponent} />
@@ -39,7 +39,7 @@ class _HostPage extends Component {
                     <div className="stay-details">
                         {isAddStays && <div>add stay</div>}
                         {isMyStays && <HostList stays={stays} />}
-                        {isOrders && <div>Orders</div>}
+                        {isOrders &&  <HostOrder stays={stays}/>}
                         {isRates && <div>Rates</div>}
                     </div>
                 </div>

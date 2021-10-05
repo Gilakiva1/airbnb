@@ -24,6 +24,7 @@ class _StayList extends React.Component {
         const searchParams = new URLSearchParams(this.props.location.search);
         const getParms = utilService.getQueryParams(searchParams)
         await this.props.loadStays(getParms)
+        
         await this.props.onSetOrder(null)
         this.setState({ orderParams: getParms })
     }

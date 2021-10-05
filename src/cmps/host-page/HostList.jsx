@@ -2,7 +2,9 @@ import { Component } from "react";
 import { HostStayPreview } from "./HostStayPreview";
 export class HostList extends Component {
 
-
+    state = {
+        
+    }
     render() {
         const { stays } = this.props
         return (

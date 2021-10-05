@@ -7,7 +7,12 @@
             border-bottom: 1px solid #ebebeb;
         }
         th {
+            color: $clr1;
+            padding-left: 8px;
+            padding-right: 8px;
             text-align: left;
+            font-size: rem(14px);
+            line-height: rem(16px);
 
             & :not(:first-child) {
                 padding: 8px;
@@ -40,21 +45,21 @@
             }
         }
         td {
-            &:first-child {
-                margin: 0;
-                padding: 0;
-                width: 10px;
-            }
-            &:nth-child(2){
-                align-items: center;
-
-            }
-            // min-width: 300px;
+            font-size: rem(14px);
+            line-height: rem(18px);
             padding-left: 8px;
             padding-right: 8px;
             padding-top: 16px;
             padding-bottom: 16px;
+            &:first-child {
+                width: 10px;
+            }
+            &:nth-child(2){
+                align-items: center;
+                
+            }
             img {
+            
                 width: 56px !important;
                 height: 40px !important;
                 border-radius: 4px;

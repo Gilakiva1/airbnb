@@ -30,6 +30,7 @@ class _HostPage extends Component {
     render() {
         const { stays } = this.props
         const { isAddStays, isMyStays, isOrders, isRates } = this.state.component
+        console.log('stays',stays);
         return (
             <div className="host-page">
                 <div className="host-container">
@@ -39,7 +40,7 @@ class _HostPage extends Component {
                     <div className="stay-details">
                         {isAddStays && <div>add stay</div>}
                         {isMyStays && <HostList stays={stays} />}
-                        {isOrders &&  <HostOrder stays={stays}/>}
+                        {isOrders &&  <HostOrder />}
                         {isRates && <div>Rates</div>}
                     </div>
                 </div>

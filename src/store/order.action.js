@@ -38,6 +38,19 @@ export function onUpdateOrder(order) {
 
 }
 
+export  function onUpdateStatusOrder(order) {
+    try {
+        return async dispatch => {
+             await orderService.save(order)
+            dispatch({ type: 'UPDATE_STATUS_ORDER', order })
+        }
+    } catch (err) {
+        console.log('err', err);
+        throw err
+    }
+
+}
+
 export function onSetOrder(order) {
     try {
         return async dispatch => {

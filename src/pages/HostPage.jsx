@@ -4,6 +4,7 @@ import { HostList } from "../cmps/host-page/HostList";
 import { HostOrder } from "../cmps/host-page/HostOrder";
 import { SideNav } from '../cmps/host-page/SideNav'
 import { loadAssets } from '../store/host.action.js'
+import { AddStay } from '../cmps/host-page/AddStay'
 
 class _HostPage extends Component {
     state = {
@@ -26,9 +27,9 @@ class _HostPage extends Component {
 
     }
     render() {
+        const { user } = this.props
         const { assets } = this.props
         const { isAddAsset, isMyAsset, isOrders, isRates } = this.state.component
-        console.log('assets', assets);
         if (!assets.length) return <div>loading...</div>
         return (
             <div className="host-page">
@@ -37,7 +38,7 @@ class _HostPage extends Component {
                         <SideNav toggleComponent={this.toggleComponent} />
                     </div>
                     <div className="stay-details">
-                        {isAddAsset && <div>add asset</div>}
+                        {isAddAsset && <AddStay host={user} />}
                         {isMyAsset && <HostList assets={assets} />}
                         {isOrders && <HostOrder />}
                         {isRates && <div>Rates</div>}
@@ -49,7 +50,6 @@ class _HostPage extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log('state', state);
     return {
         assets: state.hostReducer.assets,
         user: state.userReducer.loggedInUser

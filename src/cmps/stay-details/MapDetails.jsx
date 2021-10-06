@@ -5,7 +5,6 @@ class _Map extends React.Component {
 
     render() {
         const { lat, lng } = this.props
-        console.log(lat, lng);
         const containerStyle = {
             position: 'relative',
             width: '100%',

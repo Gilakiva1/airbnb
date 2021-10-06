@@ -33,7 +33,6 @@ export class HostList extends Component {
             if (sortByType === 'up') sortByType = 'down'
             else sortByType = 'up'
             this.setState({ sortType: { ...sortType, sortByType } }, () => {
-                console.log(this.state.sortType);
             })
         }
         else {
@@ -43,7 +42,6 @@ export class HostList extends Component {
     sortPrice = () => {
         const { assets } = this.props
         const { sortByPrice } = this.state.sortPrice
-
         return assets.sort((a, b) => sortByPrice === 'up' ? a.price - b.price : b.price - a.price)
     }
     sortType = () => {

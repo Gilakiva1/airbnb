@@ -172,7 +172,6 @@ import { IdentityVerified } from '../cmps/svgs/IdentityVerified.jsx';
 
 
 function mapStateToProps(state) {
-    console.log(state);
     return {
         stays: state.stayReducer.stays,
         currOrder: state.orderReducer.currOrder

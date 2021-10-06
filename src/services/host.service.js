@@ -4,6 +4,5 @@ export const hostService = {
 }
 
 function query(hostId) {
-    debugger
     return httpService.get(`stay?hostId=${hostId}`)
 }

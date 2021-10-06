@@ -4,11 +4,13 @@ import thunk from 'redux-thunk';
 import { stayReducer } from './stay.reducer.js';
 import { orderReducer } from './order.reducer.js';
 import { userReducer } from './user.reducer.js';
+import { hostReducer } from './host.reducer.js';
 
 const rootReducer = combineReducers({
   stayReducer,
   orderReducer,
   userReducer,
+  hostReducer
 });
 
 // export const store = createStore(rootReducer, applyMiddleware(thunk))

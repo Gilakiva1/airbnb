@@ -38,16 +38,16 @@ async function update(user) {
   // await storageService.put('userDB', user);
   user = await httpService.put(`user/${user._id}`, user)
   // Handle case in which admin updates other user's details
-  if (getLoggedinUser()._id === user._id) _saveLocalUser(user);
+  // if (getLoggedinUser()._id === user._id) _saveLocalUser(user);
   return user;
 }
 
 async function login(userCred) {
+  const user = await httpService.post('auth/login', userCred)
   // const users = await storageService.query('userDB');
   // const user = users.find((user) => user.username === userCred.username);
   // return _saveLocalUser(user);
 
-  const user = await httpService.post('auth/login', userCred)
   // socketService.emit('set-user-socket', user._id);
   if (user) return _saveLocalUser(user)
 }
@@ -69,8 +69,8 @@ function _saveLocalUser(user) {
 }
 
 function getLoggedinUser() {
-  return JSON.parse(
-    sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER) || 'null'
+  return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER) || 'null'
+
   );
 }
 

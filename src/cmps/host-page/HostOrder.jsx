@@ -14,15 +14,20 @@ class _HostOrder extends Component {
         }
     }
 
-    async componentDidMount() {
-        await this.props.onLoadOrders({ idHost: '51392291' })
+
+    componentDidMount() {
+        const filter = {
+            type: 'host',
+            _id: this.props.user._id
+        }
+        this.props.onLoadOrders(filter)
     }
 
     milisecToDate = (property, order) => {
         console.log(order.buyer, property);
-        let temp = new Date(order[property] ).toLocaleString('en-IL', { year: "numeric", month: 'short', day: 'numeric' }) || ''
-       
-        console.log( new Date(temp).toUTCString());
+        let temp = new Date(order[property]).toLocaleString('en-IL', { year: "numeric", month: 'short', day: 'numeric' }) || ''
+
+        console.log(new Date(temp).toUTCString());
         return temp
     }
 
@@ -44,11 +49,9 @@ class _HostOrder extends Component {
                         <th>Actions</th>
                     </tr>
                 </thead>
-
                 <tbody>
                     {
                         orders.map(order => (
-
                             // <img src={order.imgUrls[0]} />
                             <tr key={order._id}>
                                 <td className='bold flex'>{order.buyer.fullname}</td>
@@ -70,6 +73,7 @@ class _HostOrder extends Component {
 function mapStateToProps(state) {
     return {
         orders: state.orderReducer.orders,
+        user: state.userReducer.loggedInUser
     }
 }
 const mapDispatchToProps = {

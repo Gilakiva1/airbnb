@@ -2,12 +2,10 @@ import { orderService } from '../services/order.service'
 import { stayService } from '../services/stay.service';
 
 
-
-
-export function onLoadOrders(userId) {
+export function onLoadOrders(filterBy) {
     try {
         return async dispatch => {
-            const orders = await orderService.query(userId)
+            const orders = await orderService.query(filterBy)
             dispatch({ type: 'LOAD_ORDERS', orders })
             return orders
         }
@@ -22,7 +20,6 @@ export function onAddOrder(orderDetails) {
         return async dispatch => {
             const order = await orderService.save(orderDetails)
             dispatch({ type: 'SET_ORDERS', order })
-            return order
         }
     } catch (err) {
         console.log('err', err);

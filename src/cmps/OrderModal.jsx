@@ -112,9 +112,13 @@ export class _OrderModal extends React.Component {
 
 
     createFinalOrder = () => {
-        const { currOrder, stay } = this.props
+        const { currOrder, stay, user } = this.props
         const finalOrder = {
-            hostId: stay.host._id,
+            _id: currOrder._id || null,
+            host: {
+                _id: stay.host._id,
+                fullname: stay.host.fullname
+            },
             createdAt: Date.now(),
             price: ((currOrder.checkOut - currOrder.checkIn) / (1000 * 60 * 60 * 24)) * stay.price,
             checkIn: currOrder.checkIn,
@@ -123,10 +127,8 @@ export class _OrderModal extends React.Component {
             img: stay.imgUrls[0],
             status: 'pending',
             buyer: {
-                _id: 'userId',
-                fullname: 'user.fullname'
-    
-
+                _id: user._id,
+                fullname: user.fullname
             },
             stay: {
                 _id: stay._id,
@@ -230,10 +232,10 @@ export class _OrderModal extends React.Component {
 }
 
 function mapStateToProps(state) {
-    console.log(state);
     return {
         stays: state.stayReducer.stays,
-        currOrder: state.orderReducer.currOrder
+        currOrder: state.orderReducer.currOrder,
+        user: state.userReducer.loggedInUser
     }
 }
 const mapDispatchToProps = {

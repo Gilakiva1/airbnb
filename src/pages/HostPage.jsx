@@ -1,36 +1,35 @@
 import { Component } from "react";
 import { connect } from 'react-redux'
-
 import { HostList } from "../cmps/host-page/HostList";
 import { HostOrder } from "../cmps/host-page/HostOrder";
 import { SideNav } from '../cmps/host-page/SideNav'
-import { loadStays } from '../store/stay.action.js'
+import { loadAssets } from '../store/host.action.js'
 
 class _HostPage extends Component {
     state = {
-        stays: [],
+        asset: [],
         component: {
-            isAddStays: false,
-            isMyStays: true,
+            isAddasset: false,
+            isMyAsset: true,
             isOrders: false,
             isRates: false
         }
     }
 
     async componentDidMount() {
-        await this.props.loadStays({ hostId: '51392291' })
+        await this.props.loadAssets(this.props.user._id) // for develop right now user has assets
     }
 
 
     toggleComponent = (property) => {
-        this.setState({ component: property }, () => {
-        })
+        this.setState({ component: property })
 
     }
     render() {
-        const { stays } = this.props
-        const { isAddStays, isMyStays, isOrders, isRates } = this.state.component
-        console.log('stays',stays);
+        const { assets } = this.props
+        const { isAddAsset, isMyAsset, isOrders, isRates } = this.state.component
+        console.log('assets', assets);
+        if (!assets.length) return <div>loading...</div>
         return (
             <div className="host-page">
                 <div className="host-container">
@@ -38,9 +37,9 @@ class _HostPage extends Component {
                         <SideNav toggleComponent={this.toggleComponent} />
                     </div>
                     <div className="stay-details">
-                        {isAddStays && <div>add stay</div>}
-                        {isMyStays && <HostList stays={stays} />}
-                        {isOrders &&  <HostOrder />}
+                        {isAddAsset && <div>add asset</div>}
+                        {isMyAsset && <HostList assets={assets} />}
+                        {isOrders && <HostOrder />}
                         {isRates && <div>Rates</div>}
                     </div>
                 </div>
@@ -50,12 +49,13 @@ class _HostPage extends Component {
 }
 
 function mapStateToProps(state) {
+    console.log('state', state);
     return {
-        stays: state.stayReducer.stays,
+        assets: state.hostReducer.assets,
+        user: state.userReducer.loggedInUser
     }
 }
 const mapDispatchToProps = {
-    loadStays
-
+    loadAssets
 }
 export const HostPage = connect(mapStateToProps, mapDispatchToProps)(_HostPage)

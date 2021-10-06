@@ -12,6 +12,8 @@ export class _LogIn extends React.Component {
       username: '',
       password: '',
       fullname: '',
+      imgUrl: '',
+      isAdmin: false
     },
     isSignup: false
 
@@ -48,18 +50,16 @@ export class _LogIn extends React.Component {
 
 
   onSubmit = async (ev) => {
+    //login and signup works !
     ev.preventDefault()
-    const { credentials,isSignup } = this.state
-    if (isSignup){
-      const user = await userService.signup(credentials)
-      await this.props.onAddUser(user)
-      this.props.onSetUser(user)
-    } 
-     else {
-       const user = await userService.login(credentials)
-       this.props.onSetUser(user)
-     } 
-      this.props.toggleLogIn()
+    const { credentials, isSignup } = this.state
+    const { username, password } = this.state.credentials
+    if (isSignup) {
+      await this.props.onAddUser(credentials)
+    } else {
+      await this.props.onSetUser({ username, password })
+    }
+    this.props.toggleLogIn()
   }
 
   render() {
@@ -87,7 +87,7 @@ export class _LogIn extends React.Component {
                 name='password'
                 type='password'
                 onChange={this.handleChange}
-              /> 
+              />
               {isSignup && <TextField
                 id="outlined-basic-3"
                 label="Enter fullname"

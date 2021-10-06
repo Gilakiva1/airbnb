@@ -18,33 +18,36 @@ import { MapDetails } from '../cmps/stay-details/MapDetails.jsx';
 import { IdentityVerified } from '../cmps/svgs/IdentityVerified.jsx';
 
 
- class _StayDetails extends Component {
+class _StayDetails extends Component {
+
     state = {
         stay: null,
-        order: null
     };
+
     componentDidMount() {
         this.loadStay()
-
     }
 
     loadStay = async () => {
-        console.log(this.props);
         const id = this.props.match.params.stayId;
-        const stay = await stayService.getById(id)
         const searchParams = new URLSearchParams(this.props.location.search);
-        if (!stay) this.props.history.push(`/stay?${searchParams}`)
+        try {
+            const stay = await stayService.getById(id)
+            if (!this.props.currOrder) {
+                const order = utilService.getQueryParams(searchParams)
+                if (order.checkIn && order.checkOut) {
+                    order.checkIn = new Date(+order.checkIn)
+                    order.checkOut = new Date(+order.checkOut)
+                }
 
-        const order = utilService.getQueryParams(searchParams)
-        if (order.checkIn && order.checkOut) {
+                await this.props.onSetOrder(order)
+            }
+            this.setState({ stay })
 
-            order.checkIn = new Date(+order.checkIn)
-            order.checkOut = new Date(+order.checkOut)
+        } catch (err) {
+            this.props.history.push(`/stay?${searchParams}`)
         }
-        if (!this.props.currOrder) {
-            await this.props.onSetOrder(order)
-        }
-        this.setState({ stay, order })
+
 
     }
 
@@ -66,10 +69,11 @@ import { IdentityVerified } from '../cmps/svgs/IdentityVerified.jsx';
 
 
     render() {
-        const { stay, order } = this.state
+        const { stay } = this.state
         const { currOrder } = this.props
 
-        if (!stay) return <div>Loading...</div>
+
+        if (!stay || !currOrder) return <div>Loading...</div>
         return (
             <>
                 <section className="stay-details-container">
@@ -122,7 +126,9 @@ import { IdentityVerified } from '../cmps/svgs/IdentityVerified.jsx';
                                 <h2>Select check-in date</h2>
                                 <p className="fade-font">Add your travel dates for exact pricing</p>
                                 <div className="details-dates flex justify-center">
-                                    <DatePicker order={this.props.currOrder} className={'datepicker-details'} preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />
+                                    <DatePicker order={currOrder} className={'datepicker-details'}
+                                        preventPropagation={this.preventPropagation}
+                                        handlePickingDates={this.handlePickingDates} />
                                 </div>
                             </div>
                             <div className="seperation-line big"></div>
@@ -132,14 +138,14 @@ import { IdentityVerified } from '../cmps/svgs/IdentityVerified.jsx';
                                 <span>·</span>{utilService.getRandomIntInclusive(30, 500)} reviews
                             </div>
                         </div >
-                        <OrderModal stay={stay} order={order} />
+                        <OrderModal stay={stay} order={currOrder} />
                     </div >
                     <ReviewPoints reviews={stay.reviews} />
                     <ReviewList reviews={stay.reviews} />
                     <div className="seperation-line"></div>
                     <h2>Where you'll be</h2>
                     <p>{stay.loc.address}</p>
-                    <MapDetails lat={stay.loc.lat} lng={stay.loc.lng} />
+                    {/* <MapDetails lat={stay.loc.lat} lng={stay.loc.lng} /> */}
                     <div className="seperation-line"></div>
                     <div className="user-header flex  gap10">
                         <img className="user-details-profile-img" src={stay.host.imgUrl} alt="" />
@@ -173,7 +179,6 @@ import { IdentityVerified } from '../cmps/svgs/IdentityVerified.jsx';
 
 
 function mapStateToProps(state) {
-    console.log(state);
     return {
         stays: state.stayReducer.stays,
         currOrder: state.orderReducer.currOrder

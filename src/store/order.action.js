@@ -48,6 +48,21 @@ export function onSetOrder(order) {
     }
 }
 
+export function onRemoveOrder(orderId) {
+    return async (dispatch) => {
+        try {
+            await orderService.remove(orderId)
+            dispatch({ type: 'REMOVE_ORDER', orderId })
+        } catch (err) {
+            console.log('err', err);
+            throw err
+        }
+
+    }
+
+}
+
+
 
 
 

@@ -2,7 +2,8 @@ import { storageService } from "./async-storage.service"
 import { httpService } from "./http.service";
 export const orderService = {
     save,
-    query
+    query,
+    remove
 }
 
 function save(order) {
@@ -21,6 +22,9 @@ function query(filterBy) {
         return httpService.get(`order?host=${_id}`);
 
     }
+}
+function remove(orderId) {
+    return httpService.delete(`order/${orderId}`)
 }
 
 

@@ -2,14 +2,14 @@ import React from "react"
 import { connect } from 'react-redux'
 import { orderService } from '../services/order.service'
 import { TripHero } from "../cmps/svgs/TripHero.jsx"
-import { onLoadOrders, onSetOrder } from "../store/order.action"
+import { onLoadOrders, onSetOrder, onRemoveOrder } from "../store/order.action"
 import { TripList } from "../cmps/trip/TripList"
 import { userReducer } from "../store/user.reducer"
 
 class _TripPage extends React.Component {
 
     state = {
-        isUpcoming: false,
+        isUpcoming: true,
         isPast: false,
         isOrders: false
 
@@ -37,8 +37,13 @@ class _TripPage extends React.Component {
         } else {
             this.setState({ isPast: true, isUpcoming: false })
         }
+    }
+    onRemoveOrder = (orderId) => {
+        this.props.onRemoveOrder(orderId)
 
-        // diff === 'upcoming' ? this.setState({ isUpcoming: true }) : this.setState({})
+    }
+    onUpdateTrip = () => {
+
     }
 
     render() {
@@ -50,13 +55,13 @@ class _TripPage extends React.Component {
                 <h1 className="txt-trip bold fs32 clr2">Trips</h1>
                 <div className="trip-btn flex column">
                     <div className="btn-menu flex ">
-                        <button onClick={() => { this.toggleTripStatus('upcoming') }} className="btn-trip fs16 pointer medium clr5">Upcoming</button>
-                        <button onClick={() => { this.toggleTripStatus('past') }} className="btn-trip fs16 pointer past medium clr5">Past</button>
+                        <button onClick={() => { this.toggleTripStatus('upcoming') }} className={`${isUpcoming ? 'active' : ''} btn-trip fs16 pointer medium clr5`}>Upcoming</button>
+                        <button onClick={() => { this.toggleTripStatus('past') }} className={`${isPast ? 'active' : ''} btn-trip  fs16 pointer past medium clr5`}>Past</button>
                     </div>
                     <div className="trip-hero">
                         {!orders.length || isPast && < TripHero className="trip-hero" />}
                     </div>
-                    {orders.length && !isPast && < TripList orders={orders} onSetOrder={this.onSetOrder} />}
+                    {orders.length && !isPast && < TripList orders={orders} onSetOrder={this.onSetOrder} onRemoveOrder={this.onRemoveOrder} />}
 
                 </div>
             </section>
@@ -71,7 +76,8 @@ function mapStateToProps(state) {
 }
 const mapDispatchToProps = {
     onLoadOrders,
-    onSetOrder
+    onSetOrder,
+    onRemoveOrder
 }
 
 export const TripPage = connect(mapStateToProps, mapDispatchToProps)(_TripPage)

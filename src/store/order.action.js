@@ -35,7 +35,6 @@ export function onUpdateOrder(order) {
         console.log('err', err);
         throw err
     }
-
 }
 
 export  function onUpdateStatusOrder(order) {
@@ -61,6 +60,21 @@ export function onSetOrder(order) {
         throw err
     }
 }
+
+export function onRemoveOrder(orderId) {
+    return async (dispatch) => {
+        try {
+            await orderService.remove(orderId)
+            dispatch({ type: 'REMOVE_ORDER', orderId })
+        } catch (err) {
+            console.log('err', err);
+            throw err
+        }
+
+    }
+
+}
+
 
 
 

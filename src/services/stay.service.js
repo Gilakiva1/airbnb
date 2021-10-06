@@ -20,9 +20,13 @@ function query(filterBy) {
 }
 
 async function getById(stayId) {
-  return httpService.get(`stay/${stayId}`)
-  const stay = await storageService.get(STORAGE_KEY, stayId);
-  return stay
+  try {
+    return httpService.get(`stay/${stayId}`)
+  } catch (err) {
+    throw err
+  }
+  // const stay = await storageService.get(STORAGE_KEY, stayId);
+  // return stay
 }
 
 function remove(stayId) {

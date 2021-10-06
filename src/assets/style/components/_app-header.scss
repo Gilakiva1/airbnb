@@ -10,8 +10,10 @@
 
   .header-func {
     justify-content: space-between;
+    align-items: center;
     margin-block-start: 15px;
     position: relative;
+    margin-top: 10px;
 
     .link-host {
       text-decoration: none;
@@ -78,14 +80,12 @@
     color: $clr3;
   }
   .menu-dropdown {
-    
     z-index: 10;
     right: 0;
     top: 70px;
     line-height: 40px;
     position: absolute;
     width: rem(240px);
-    
   }
   // .txt-black {
   //   color: $clr1;
@@ -102,4 +102,7 @@
     background-color: rgba(93, 85, 85, 0.15);
     transition: 0.4s;
   }
+}
+.shadow {
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.08);
 }

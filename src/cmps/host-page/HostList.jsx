@@ -90,9 +90,9 @@ export class HostList extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    {assets.map((asset, idx) => {
-                        return <HostAssetPreview key={idx} asset={asset} />
-                    })}
+                    {assets.map((asset, idx) => (
+                        <HostAssetPreview key={idx} asset={asset} />
+                    ))}
                 </tbody>
             </table>
         )

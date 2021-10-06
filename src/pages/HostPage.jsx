@@ -24,7 +24,6 @@ class _HostPage extends Component {
 
     toggleComponent = (property) => {
         this.setState({ component: property })
-
     }
     render() {
         const { user } = this.props

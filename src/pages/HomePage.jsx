@@ -5,15 +5,21 @@ import imgHero from '../assets/img/hero-cut.jpg'
 import { PopularImgList } from "../cmps/home-page/PopularImgList";
 import { LabelsImgList } from "../cmps/home-page/LabelsImgList"
 import { utilService } from "../services/util.service";
-import { LogIn } from "../cmps/LogIn";
+import { onSetOrder } from '../store/order.action';
+import { withRouter } from 'react-router'
+import { connect } from "react-redux";
 
 
 
-export class HomePage extends React.Component {
+export class _HomePage extends React.Component {
     state = {
         popularImgs: '',
         labelsImgs: ''
     }
+    componentDidMount() {
+        this.props.onSetOrder(null)
+    }
+
 
     render() {
         return (
@@ -42,3 +48,14 @@ export class HomePage extends React.Component {
         )
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        currOrder: state.orderReducer.currOrder,
+    }
+}
+const mapDispatchToProps = {
+    onSetOrder
+}
+
+export const HomePage = connect(mapStateToProps, mapDispatchToProps)(withRouter(_HomePage))

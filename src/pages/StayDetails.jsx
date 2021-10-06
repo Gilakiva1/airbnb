@@ -14,8 +14,9 @@ import { DatePicker } from '../cmps/header/DatePicker.jsx';
 import { onAddOrder, onUpdateOrder, onSetOrder } from '../store/order.action';
 import { ReviewPoints } from '../cmps/stay-details/ReviewPoints.jsx';
 import { ReviewList } from '../cmps/stay-details/ReviewList.jsx';
-import { MapDetails } from '../cmps/stay-details/MapDetails.jsx';
+// import { MapDetails } from '../cmps/stay-details/MapDetails';
 import { IdentityVerified } from '../cmps/svgs/IdentityVerified.jsx';
+import { userService } from '../services/user.service.js';
 
 
 class _StayDetails extends Component {
@@ -33,6 +34,7 @@ class _StayDetails extends Component {
         const searchParams = new URLSearchParams(this.props.location.search);
         try {
             const stay = await stayService.getById(id)
+            // const host = await userService.getById(stay.host)
             if (!this.props.currOrder) {
                 const order = utilService.getQueryParams(searchParams)
                 if (order.checkIn && order.checkOut) {
@@ -47,7 +49,6 @@ class _StayDetails extends Component {
         } catch (err) {
             this.props.history.push(`/stay?${searchParams}`)
         }
-
 
     }
 

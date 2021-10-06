@@ -2,7 +2,7 @@ import { connent } from 'react-redux'
 import React, { Component } from 'react'
 
 
-export class _OrderStay extends Component {
+ class _OrderStay extends Component {
     state = {
     }
 

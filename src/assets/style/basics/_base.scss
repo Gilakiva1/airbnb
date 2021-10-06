@@ -12,8 +12,6 @@ html {
   // scroll-behavior: smooth;
 }
 
-
-
 body {
   margin: 0;
   background-size: 40%;
@@ -34,7 +32,6 @@ h5,
 h6 {
   font-size: rem(14px);
   margin: 0;
-
 }
 
 p {
@@ -54,19 +51,31 @@ button {
   font-family: airbnb-cereal-book, sans-serif;
 }
 
+.user-msg {
+  position: fixed;
+  top: 20%;
+  right: 10%;
+  z-index: 99;
+  &.success {
+    background-color: rgb(140, 240, 140);
+  }
+  &.error {
+    background-color: rgb(236, 37, 37);
+  }
+  &.new-order {
+    background-color: rgba(197, 79, 197, 0.829);
+  }
+}
+
 //ANIMATIONS
-
-
 
 .scale-up-top {
   animation: scale-up-top 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
-
 }
 
 .slide-in-bottom {
   animation: slide-in-bottom 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
-
 
 @keyframes scale-up-top {
   0% {

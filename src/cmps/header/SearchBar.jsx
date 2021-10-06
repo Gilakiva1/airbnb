@@ -26,7 +26,8 @@ export class _SearchBar extends React.Component {
     isPickingGuests: false,
     isPickingDates: false,
     isInsideHeader: true,
-    dateFormat: null
+    dateFormat: null,
+    tempName: false
   }
 
   componentDidMount() {
@@ -41,6 +42,32 @@ export class _SearchBar extends React.Component {
     window.removeEventListener('click', this.closeInputs)
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps !== this.props) this.closeInputs()
+    if (this.props.clearSearchBar && this.props.history.location.pathname === '/') {
+      this.initState()
+      this.props.setClearSearchBar()
+    }
+  }
+
+  initState = () => {
+    this.setState({
+      criteria: {
+        address: '',
+        checkIn: '',
+        checkOut: '',
+        guests: {
+          adult: 0,
+          child: 0,
+          infant: 0
+        },
+      },
+      isPickingGuests: false,
+      isPickingDates: false,
+      isInsideHeader: true,
+      dateFormat: null
+    })
+  }
   inputRef = React.createRef(null)
 
   handleChange = (ev) => {
@@ -91,6 +118,11 @@ export class _SearchBar extends React.Component {
     }
   }
 
+  getDateValue = (date) => {
+    if (new Date(date).toLocaleString('en-IL', { month: 'short', day: 'numeric' }) === 'Invalid Date') return 'Add Dates'
+    else return new Date(date).toLocaleString('en-IL', { month: 'short', day: 'numeric' })
+  }
+
   getTotalGuests = () => {
     let { adult, child, infant } = this.state.criteria.guests
     return adult + child + infant
@@ -110,7 +142,7 @@ export class _SearchBar extends React.Component {
   render() {
     const { isPickingGuests, isPickingDates, criteria } = this.state
     const { animateClassName } = this.props
-    const { checkIn, checkOut } = criteria
+    const { checkIn, checkOut, address } = criteria
     return (
       <section className={`flex column align-center search-bar-main-container ${animateClassName}`}>
         <div>
@@ -123,6 +155,7 @@ export class _SearchBar extends React.Component {
                   type="search"
                   placeholder="Where are you going?"
                   name="address"
+                  value={address}
                   autoComplete="off"
                   ref={this.inputRef}
                   onChange={this.handleChange}
@@ -136,7 +169,7 @@ export class _SearchBar extends React.Component {
                   type="text"
                   placeholder="Add dates"
                   name="checkIn"
-                  value={checkIn.toLocaleString('en-IL', { month: 'short', day: 'numeric' })}
+                  value={this.getDateValue(checkIn)}
                   autoComplete="off"
                   disabled
                   onChange={this.handleChange}
@@ -151,7 +184,7 @@ export class _SearchBar extends React.Component {
                   placeholder="Add dates"
                   autoComplete="off"
                   name="checkOut"
-                  value={checkOut.toLocaleString('en-IL', { month: 'short', day: 'numeric' })}
+                  value={this.getDateValue(checkOut)}
                   disabled
                   onChange={this.handleChange}
 

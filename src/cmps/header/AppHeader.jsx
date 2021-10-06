@@ -16,10 +16,11 @@ class _AppHeader extends React.Component {
 
     state = {
         scrollLoc: 0,
-        isEnter: false,
+        isEnter: true,
         isShowMenu: false,
         isLogIn: false,
-        isMiniSearchClicked: false
+        closeSearchBarInputs: false,
+        isClearSearchBar: false
     }
 
     componentDidMount() {
@@ -27,10 +28,22 @@ class _AppHeader extends React.Component {
         window.addEventListener('click', this.onCloseMenu)
     }
 
+    componentDidUpdate() {
+        const { isEnter, scrollLoc } = this.state
+        if (isEnter && this.props.history.location.pathname !== '/' && !scrollLoc) {
+            this.setState({ isEnter: false })
+        }
+        if (!isEnter && this.props.history.location.pathname === '/' && !scrollLoc) {
+            this.setState({ isEnter: true })
+        }
+    }
+
+
     componentWillUnmount() {
         window.removeEventListener('scroll', this.onToggleHeader)
         window.removeEventListener('click', this.onCloseMenu)
     }
+
 
     toggleLogIn = () => {
         this.onCloseMenu()
@@ -47,13 +60,13 @@ class _AppHeader extends React.Component {
         } else {
             this.setState({ isEnter: false })
         }
-        this.setState({ scrollLoc: scrollLocaion, isMiniSearchClicked: false })
+        this.setState({ scrollLoc: scrollLocaion })
     }
 
     backToHome = () => {
         if (this.props.history.location.pathname !== '/') {
             this.props.history.push('/')
-            this.setState({ isMiniSearchClicked: false })
+            this.setState({ isClearSearchBar: true })
         } else {
             document.documentElement.scrollTop = 0
         }
@@ -78,14 +91,17 @@ class _AppHeader extends React.Component {
         let { scrollLoc } = this.state
         scrollLoc = 39
         if (action === 'on') {
-            this.setState({ isMiniSearchClicked: true, scrollLoc, isEnter: true })
+            this.setState({  scrollLoc, isEnter: true })
         }
-        else this.setState({ isMiniSearchClicked: false })
+    }
+
+    setClearSearchBar = () => {
+        this.setState({ clearSearchBar: false })
     }
 
 
     render() {
-        const { scrollLoc, isEnter, isShowMenu, isLogIn, isMiniSearchClicked } = this.state
+        const { scrollLoc, isEnter, isShowMenu, isLogIn,  isClearSearchBar } = this.state
         const { pathname } = this.props.history.location
 
         return (
@@ -114,9 +130,9 @@ class _AppHeader extends React.Component {
                         {isLogIn && <LogIn toggleLogIn={this.toggleLogIn} />}
                     </nav>
                 </div>
-                {scrollLoc > 40 && pathname === '/' && <MiniSearchBar toggleSearchBar={this.toggleSearchBar} />}
-                {pathname !== '/' && !isMiniSearchClicked && <MiniSearchBar toggleSearchBar={this.toggleSearchBar} />}
-                 <SearchBar toggleSearchBar={this.toggleSearchBar} animateClassName={isEnter ? 'scale-up-top-search-bar' : ''} />
+                {<MiniSearchBar toggleSearchBar={this.toggleSearchBar} animateClassName={isEnter ? '' : 'scale-up-top-mini-search-bar'} />}
+                {/* {pathname !== '/' && !isMiniSearchClicked && <MiniSearchBar toggleSearchBar={this.toggleSearchBar} animateClassName={isEnter ? '' : 'scale-up-top-mini-search-bar'} />} */}
+                <SearchBar setClearSearchBar={this.setClearSearchBar} isClearSearchBar={isClearSearchBar} closeSearchBarInputs={this.closeSearchBarInputs} toggleSearchBar={this.toggleSearchBar} animateClassName={isEnter ? 'scale-up-top-search-bar' : ''} />
                 {/* {pathname !== '/' && isMiniSearchClicked && <SearchBar toggleSearchBar={this.toggleSearchBar} animateClassName={isEnter ? 'scale-up-top-search-bar' : ''} />} */}
             </header>
         )

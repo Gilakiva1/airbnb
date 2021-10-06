@@ -1,9 +1,7 @@
 .mini-search-bar {
-    // align-self: center;
-    // justify-self: center;
-    position: fixed;
-    top: 5%;
-    left: 50%;
+    position: absolute;
+    top: 159%;
+    left: 34%;
     transform: translate(-50%, -50%);
     align-items: center;
     justify-content: center;
@@ -15,6 +13,20 @@
     box-shadow: inset #000000b0 0px 0px 1px;
     color: $clr2;
     cursor: pointer;
+    transform: scale(3.28, 0.65) translate(-3px, -84px);
+    transform-origin: 50% 0%;
+    opacity: 0;
+
+    transition: all 0.6s;
+    pointer-events: none;
+    &.scale-up-top-mini-search-bar {
+        transform: scale(1);
+        opacity: 1;
+        pointer-events: all;
+        position: fixed;
+        top: 2%;
+        left: 36%;
+    }
     span {
         color: $clr2;
         font-size: rem(12px);
@@ -41,7 +53,7 @@
     border-radius: rem(40px);
     background-color: white;
     cursor: pointer;
-    box-shadow: 0 0 3px rgba(10, 10, 10,0.5);
+    box-shadow: 0 0 3px rgba(10, 10, 10, 0.5);
     position: absolute;
     input {
         width: 100%;
@@ -96,12 +108,17 @@
 }
 
 .picking-guest-container {
-    align-self: flex-end;
+    position: relative;
+    top: 65px;
+    right: -273px;
     width: rem(385px);
     height: rem(240px);
 }
 
 .picking-dates-container {
+    position: relative;
+    top: 65px;
+    right: 30px;
     align-self: center;
     margin-top: 10px;
 }

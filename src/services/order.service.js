@@ -4,19 +4,23 @@ export const orderService = {
     save,
     query
 }
-const STORAGE_KEY = 'orderDB'
 
 function save(order) {
     if (order._id) {
         return httpService.put('order', order);
     } else {
-        // order.owner = userService.getLoggedinUser();
+        delete order._id // needs to change !
         return httpService.post('order', order)
-    }   
+    }
 }
-function query(userId) {
-    debugger
-    return httpService.get(`order?userId=${userId}`);
+function query(filterBy) {
+    const { _id, type } = filterBy
+    if (type === 'user') {
+        return httpService.get(`order?user=${_id}`);
+    } else {
+        return httpService.get(`order?host=${_id}`);
+
+    }
 }
 
 

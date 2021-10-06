@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { HostStayPreview } from "./HostStayPreview";
+import { HostAssetPreview } from "./HostAssetPreview";
 export class HostList extends Component {
 
     state = {
@@ -41,15 +41,15 @@ export class HostList extends Component {
         }
     }
     sortPrice = () => {
-        const { stays } = this.props
+        const { assets } = this.props
         const { sortByPrice } = this.state.sortPrice
 
-        return stays.sort((a, b) => sortByPrice === 'up' ? a.price - b.price : b.price - a.price)
+        return assets.sort((a, b) => sortByPrice === 'up' ? a.price - b.price : b.price - a.price)
     }
     sortType = () => {
-        const { stays } = this.props
+        const { assets } = this.props
         const { sortByType } = this.state.sortType
-        return stays.sort((a, b) => {
+        return assets.sort((a, b) => {
             if (sortByType === 'up') {
                 if (a.type < b.type) return -1
                 else if (a.type > b.type) return 1
@@ -63,23 +63,23 @@ export class HostList extends Component {
         })
     }
 
-    getStaysForDisplay = () => {
-        let { stays } = this.props
+    getAssetsForDisplay = () => {
+        let { assets } = this.props
         const { isOnPrice } = this.state.sortPrice
         const { isOnType } = this.state.sortType
         if (isOnPrice) {
-            stays = this.sortPrice()
+            assets = this.sortPrice()
         }
         if (isOnType) {
-            stays = this.sortType()
+            assets = this.sortType()
         }
-        return stays
+        return assets
     }
 
     render() {
         const { isOnPrice } = this.state.sortPrice
         const { isOnType } = this.state.sortType
-        const stays = this.getStaysForDisplay()
+        const assets = this.getAssetsForDisplay()
         return (
             <table className="host-list">
                 <thead>
@@ -92,8 +92,8 @@ export class HostList extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    {stays.map((stay, idx) => {
-                        return <HostStayPreview key={idx} stay={stay} />
+                    {assets.map((asset, idx) => {
+                        return <HostAssetPreview key={idx} asset={asset} />
                     })}
                 </tbody>
             </table>

@@ -1,47 +1,13 @@
 
 import { Component } from "react";
 
-export class SideNav extends Component {
-
-
-
-    render() {
-
-        return (
-            <div className="side-nav">
-                <button onClick={() => {
-                    this.props.toggleComponent({
-                        isAddStays: true,
-                        isMyStays: false,
-                        isOrders: false,
-                        isRates: false
-                    })
-                }}>Add Stays</button>
-                <button onClick={() => {
-                    this.props.toggleComponent({
-                        isAddStays: false,
-                        isMyStays: true,
-                        isOrders: false,
-                        isRates: false
-                    })
-                }}>My Stays</button>
-                <button onClick={() => {
-                    this.props.toggleComponent({
-                        isAddStays: false,
-                        isMyStays: false,
-                        isOrders: true,
-                        isRates: false
-                    })
-                }}>Orders</button>
-                <button onClick={() => {
-                    this.props.toggleComponent({
-                        isAddStays: false,
-                        isMyStays: false,
-                        isOrders: false,
-                        isRates: true
-                    })
-                }}>Rates</button>
-            </div>
-        )
-    }
+export function SideNav({ toggleComponent }) {
+    return (
+        <div className="side-nav">
+            <button onClick={() => { toggleComponent({ isAddAsset: true, isMyAsset: false, isOrders: false, isRates: false }) }}>Add Asset</button>
+            <button onClick={() => { toggleComponent({ isAddAsset: false, isMyAsset: true, isOrders: false, isRates: false }) }}>My Asset</button>
+            <button onClick={() => { toggleComponent({ isAddAsset: false, isMyAsset: false, isOrders: true, isRates: false }) }}>Orders</button>
+            <button onClick={() => { toggleComponent({ isAddAsset: false, isMyAsset: false, isOrders: false, isRates: true }) }}>Rates</button>
+        </div>
+    )
 }

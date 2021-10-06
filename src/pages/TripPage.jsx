@@ -4,6 +4,7 @@ import { orderService } from '../services/order.service'
 import { TripHero } from "../cmps/svgs/TripHero.jsx"
 import { onLoadOrders, onSetOrder } from "../store/order.action"
 import { TripList } from "../cmps/trip/TripList"
+import { userReducer } from "../store/user.reducer"
 
 class _TripPage extends React.Component {
 
@@ -13,13 +14,15 @@ class _TripPage extends React.Component {
 
     }
     componentDidMount() {
-        //getLoggedInuser !!
-        const userId = '615c81afe6b3e62a1bab3f75'
-        this.onLoadOrders(userId)
+        const filter = {
+            type: 'user',
+            _id: this.props.user._id
+        }
+        this.onLoadOrders(filter)
     }
 
-    onLoadOrders = async userId => {
-        const orders = await this.props.onLoadOrders(userId)
+    onLoadOrders = async (filter) => {
+        const orders = await this.props.onLoadOrders(filter)
         if (orders.length) {
             this.setState({ isOrders: true })
         }
@@ -52,7 +55,8 @@ class _TripPage extends React.Component {
 }
 function mapStateToProps(state) {
     return {
-        orders: state.orderReducer.orders
+        orders: state.orderReducer.orders,
+        user: state.userReducer.loggedInUser
     }
 }
 const mapDispatchToProps = {

@@ -10,8 +10,10 @@
 
   .header-func {
     justify-content: space-between;
+    align-items: center;
     margin-block-start: 15px;
     position: relative;
+    margin-top: 10px;
 
     .link-host {
       text-decoration: none;

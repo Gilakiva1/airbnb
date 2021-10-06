@@ -3,7 +3,6 @@ const initialState = {
     currOrder: null
 }
 
-
 export function orderReducer(state = initialState, action) {
 
     switch (action.type) {

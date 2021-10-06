@@ -89,7 +89,7 @@ class _AppHeader extends React.Component {
         const { pathname } = this.props.history.location
 
         return (
-            <header className={`${scrollLoc > 40 ? 'white' : ''} ${pathname === '/' || pathname == '/stay' || pathname === '/host' ? 'fixed home main-container-home' : 'sticky-color main-container'} header-container`}>
+            <header className={`${scrollLoc > 40 ? 'white shadow' : ''} ${pathname === '/' || pathname == '/stay' || pathname === '/host' || pathname === '/trip' ? 'fixed home main-container-home' : 'sticky-color main-container'} ${pathname !== '/' ? 'shadow' : ''}  header-container`}>
                 <div className="header-func flex">
                     <div className="logo-container flex align-center pointer" onClick={this.backToHome}>
                         <button className="btn-logo border-none"><LogoSvg className={`${(pathname === '/' && scrollLoc > 40) || pathname !== '/' ? 'logo-pink' : 'logo-white'} `} /></button>
@@ -116,7 +116,7 @@ class _AppHeader extends React.Component {
                 </div>
                 {scrollLoc > 40 && pathname === '/' && <MiniSearchBar toggleSearchBar={this.toggleSearchBar} />}
                 {pathname !== '/' && !isMiniSearchClicked && <MiniSearchBar toggleSearchBar={this.toggleSearchBar} />}
-                 <SearchBar toggleSearchBar={this.toggleSearchBar} animateClassName={isEnter ? 'scale-up-top-search-bar' : ''} />
+                <SearchBar toggleSearchBar={this.toggleSearchBar} animateClassName={isEnter ? 'scale-up-top-search-bar' : ''} />
                 {/* {pathname !== '/' && isMiniSearchClicked && <SearchBar toggleSearchBar={this.toggleSearchBar} animateClassName={isEnter ? 'scale-up-top-search-bar' : ''} />} */}
             </header>
         )

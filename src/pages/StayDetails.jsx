@@ -29,6 +29,7 @@ import { IdentityVerified } from '../cmps/svgs/IdentityVerified.jsx';
     }
 
     loadStay = async () => {
+        console.log(this.props);
         const id = this.props.match.params.stayId;
         const stay = await stayService.getById(id)
         const searchParams = new URLSearchParams(this.props.location.search);

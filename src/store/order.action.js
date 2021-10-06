@@ -35,7 +35,6 @@ export function onUpdateOrder(order) {
         console.log('err', err);
         throw err
     }
-
 }
 
 export function onSetOrder(order) {

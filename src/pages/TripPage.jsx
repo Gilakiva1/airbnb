@@ -9,7 +9,8 @@ import { userReducer } from "../store/user.reducer"
 class _TripPage extends React.Component {
 
     state = {
-        // isUpcoming: true,
+        isUpcoming: false,
+        isPast: false,
         isOrders: false
 
     }
@@ -29,11 +30,19 @@ class _TripPage extends React.Component {
     }
     onSetOrder = (order) => {
         this.props.onSetOrder(order)
+    }
+    toggleTripStatus = (diff) => {
+        if (diff === 'upcoming') {
+            this.setState({ isUpcoming: true, isPast: false })
+        } else {
+            this.setState({ isPast: true, isUpcoming: false })
+        }
 
+        // diff === 'upcoming' ? this.setState({ isUpcoming: true }) : this.setState({})
     }
 
     render() {
-        const { isUpcoming, isOrders } = this.state
+        const { isUpcoming, isOrders, isPast } = this.state
         const { orders } = this.props
         if (!orders) return <div>loading</div>
         return (
@@ -41,13 +50,14 @@ class _TripPage extends React.Component {
                 <h1 className="txt-trip bold fs32 clr2">Trips</h1>
                 <div className="trip-btn flex column">
                     <div className="btn-menu flex ">
-                        <h2 className="fs16 txt pointer meduim clr5">Upcoming</h2>
-                        <h2 className="fs16 txt pointer past meduim clr5">Past</h2>
+                        <button onClick={() => { this.toggleTripStatus('upcoming') }} className="btn-trip fs16 pointer medium clr5">Upcoming</button>
+                        <button onClick={() => { this.toggleTripStatus('past') }} className="btn-trip fs16 pointer past medium clr5">Past</button>
                     </div>
                     <div className="trip-hero">
-                        {!isOrders && <TripHero className="trip-hero" />}
+                        {!orders.length || isPast && < TripHero className="trip-hero" />}
                     </div>
-                    {isOrders && <TripList orders={orders} onSetOrder={this.onSetOrder} />}
+                    {orders.length && !isPast && < TripList orders={orders} onSetOrder={this.onSetOrder} />}
+
                 </div>
             </section>
         )

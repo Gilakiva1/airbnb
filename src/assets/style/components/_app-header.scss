@@ -7,7 +7,6 @@
     background: inherit;
     padding: 0px 10px 0px 0px;
   }
-  
 
   .header-func {
     justify-content: space-between;
@@ -79,14 +78,12 @@
     color: $clr3;
   }
   .menu-dropdown {
-    
     z-index: 10;
     right: 0;
     top: 70px;
     line-height: 40px;
     position: absolute;
     width: rem(240px);
-    
   }
   // .txt-black {
   //   color: $clr1;
@@ -105,5 +102,5 @@
   }
 }
 .shadow {
-  box-shadow: 0 0 2px rgba(136, 161, 182, 0.66);
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.08);
 }

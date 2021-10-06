@@ -1,5 +1,4 @@
 .host-list {
-    // border: 1px solid rgb(150, 145, 145);
     border-collapse: collapse;
     width: 100%;
     thead {
@@ -38,40 +37,46 @@
     }
     tbody {
         tr {
-            border-top: 1px solid #f7f7f7 !important;
-            background: #f7f7f7 !important;
-            box-shadow: #f7f7f7 -12px 0px 0px 0px, #f7f7f7 12px 0px 0px 0px !important;
+            box-shadow: 0 0 0;
+            border-top: 1px solid #f7f7f7;
+            background: #f7f7f7;
+            box-shadow: #ffffff 0px -3px 0;
+            // box-shadow: #f7f7f7 -12px 0px 0px 0px, #f7f7f7 12px 0px 0px 0px ;
 
-            box-shadow: #f7f7ed -12px 0px 0px 0px, #f7f7ed 12px 0px 0px 0px, #ffffff -12px -1px, #ffffff 12px -1px;
+            // box-shadow: #f7f7ed -12px 0px 0px 0px, #f7f7ed 12px 0px 0px 0px, #ffffff -12px -1px, #ffffff 12px -1px;
             &:last-child {
-                border-bottom: 1px solid transparent;
+                // border-bottom: 1px solid transparent;
             }
-        }
-        td {
-            font-size: rem(14px);
-            line-height: rem(18px);
-            padding-left: 8px;
-            padding-right: 8px;
-            padding-top: 16px;
-            padding-bottom: 16px;
-            &:first-child {
-                align-items: center;
-            }
-            
-            img {
-                width: 56px !important;
-                height: 40px !important;
-                border-radius: 4px;
-                margin-right: 12px;
-            }
+            td {
+                font-size: rem(14px);
+                line-height: rem(18px);
+                padding-left: 8px;
+                padding-right: 8px;
+                padding-top: 16px;
+                padding-bottom: 16px;
+                flex: auto;
 
-            &:nth-child(2) {
-                color: #484848;
+                &:first-child {
+                    align-items: center;
+                    flex: 1;
+                }
+
+                img {
+                    width: 92px;
+                    height: 70px;
+                    border-radius: 4px;
+                    margin-right: 12px;
+                    object-fit: cover;
+                }
+
+                &:nth-child(2) {
+                    color: #484848;
+                }
             }
         }
     }
 }
 
 .host-page {
-    margin-top: 100px;
+    margin-top: 150px;
 }

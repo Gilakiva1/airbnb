@@ -38,6 +38,7 @@ export class LabelFilter extends Component {
         }
     }
     saveChecked = (ev) => {
+        ev.stopPropagation()
         const { property } = this.props
         const { name: value, checked } = ev.target
         let key = property === 'type' ? 'types' : [property]
@@ -48,7 +49,7 @@ export class LabelFilter extends Component {
         })
         this.setState({ [key]: types })
     }
-    
+
     renderByProperty = () => {
         const { types, amenities } = this.state
         const { property } = this.props

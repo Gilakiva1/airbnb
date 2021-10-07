@@ -18,6 +18,7 @@ export function onLoadOrders(filterBy) {
 export function onAddOrder(orderDetails) {
     try {
         return async dispatch => {
+            
             const order = await orderService.save(orderDetails)
             dispatch({ type: 'SET_ORDERS', order })
         }

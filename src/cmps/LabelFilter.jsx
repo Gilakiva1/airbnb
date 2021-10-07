@@ -49,7 +49,7 @@ export class LabelFilter extends Component {
         })
         this.setState({ [key]: types })
     }
-    
+
     renderByProperty = () => {
         const { types, amenities } = this.state
         const { property } = this.props

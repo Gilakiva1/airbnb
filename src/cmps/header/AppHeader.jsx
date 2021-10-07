@@ -11,6 +11,8 @@ import { MenuBar } from './MenuBar'
 import { LogIn } from '../LogIn';
 import { userService } from '../../services/user.service';
 import user1 from '../../assets/img/profiles/user1.png'
+import { socketService } from '../../services/socket.service';
+import { onSetMsg } from '../../store/user.action'
 
 class _AppHeader extends React.Component {
 
@@ -26,6 +28,10 @@ class _AppHeader extends React.Component {
     componentDidMount() {
         window.addEventListener('scroll', this.onToggleHeader)
         window.addEventListener('click', this.onCloseMenu)
+        socketService.setup()
+        socketService.on('on-new-order', () => {
+            this.props.onSetMsg({ type: 'new-order', txt: 'New order recived' })
+        })
     }
 
     componentDidUpdate() {
@@ -91,17 +97,17 @@ class _AppHeader extends React.Component {
         let { scrollLoc } = this.state
         scrollLoc = 39
         if (action === 'on') {
-            this.setState({  scrollLoc, isEnter: true })
+            this.setState({ scrollLoc, isEnter: true })
         }
     }
 
     setClearSearchBar = () => {
-        this.setState({ clearSearchBar: false })
+        this.setState({ isClearSearchBar: false })
     }
 
 
     render() {
-        const { scrollLoc, isEnter, isShowMenu, isLogIn,  isClearSearchBar } = this.state
+        const { scrollLoc, isEnter, isShowMenu, isLogIn, isClearSearchBar } = this.state
         const { pathname } = this.props.history.location
 
         return (
@@ -143,6 +149,11 @@ const mapStateToProps = state => {
     return {
         state
     }
+
 }
 
-export const AppHeader = connect(mapStateToProps)(withRouter(_AppHeader))
+const mapDispatchToProps = {
+    onSetMsg
+}
+
+export const AppHeader = connect(mapStateToProps, mapDispatchToProps)(withRouter(_AppHeader))

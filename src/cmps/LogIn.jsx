@@ -15,7 +15,8 @@ export class _LogIn extends React.Component {
       imgUrl: '',
       isAdmin: false
     },
-    isSignup: false
+    isSignup: false,
+    msg: ''
 
   }
   inputRef = React.createRef(null)
@@ -54,16 +55,26 @@ export class _LogIn extends React.Component {
     ev.preventDefault()
     const { credentials, isSignup } = this.state
     const { username, password } = this.state.credentials
-    if (isSignup) {
-      await this.props.onAddUser(credentials)
-    } else {
-      await this.props.onSetUser({ username, password })
+    if (!username || !password) {
+      this.setState({ msg: 'All inputs required' })
+      return
     }
-    this.props.toggleLogIn()
+    try {
+      if (isSignup) {
+        await this.props.onAddUser(credentials)
+      } else {
+        await this.props.onSetUser(credentials)
+      }
+      this.props.toggleLogIn()
+
+    } catch (err) {
+      this.setState({ msg: 'Invalid username | password' })
+    }
+
   }
 
   render() {
-    const { isSignup } = this.state
+    const { isSignup, msg } = this.state
     return (
       <section>
         <div className="screen"></div>
@@ -72,6 +83,7 @@ export class _LogIn extends React.Component {
           <div className="seperation-line-login "></div>
           <div className="login-main-container">
             <h2 className="login-welcome fw-unset fs22 fh26 medium">Welcome to Homeaway</h2>
+            {msg && <h3>{msg}</h3>}
             <div className="login-input-continer flex column gap10">
               <TextField
                 id="outlined-basic"

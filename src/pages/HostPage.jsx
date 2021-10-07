@@ -30,18 +30,19 @@ class _HostPage extends Component {
         const { assets } = this.props
         const { isAddAsset, isMyAsset, isOrders, isRates } = this.state.component
         if (!assets.length) return <div>loading...</div>
+
         return (
             <div className="host-page">
                 <div className="host-container">
-                    <div className="nav-bar">
-                        <SideNav toggleComponent={this.toggleComponent} />
+                    <div className="nav-bar flex justify-center">
+                        <SideNav isAddAsset={isAddAsset} isMyAsset={isMyAsset} isOrders={isOrders} isRates={isRates} toggleComponent={this.toggleComponent} />
                     </div>
-                    <div className="stay-details">
+                    <nav className="stay-details">
                         {isAddAsset && <AddStay host={user} />}
                         {isMyAsset && <HostList assets={assets} />}
                         {isOrders && <HostOrder />}
                         {isRates && <div>Rates</div>}
-                    </div>
+                    </nav>
                 </div>
             </div>
         )

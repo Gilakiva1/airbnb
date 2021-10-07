@@ -2,10 +2,11 @@ import { Component } from "react";
 import { connect } from 'react-redux'
 import { HostList } from "../cmps/host-page/HostList";
 import { HostOrder } from "../cmps/host-page/HostOrder";
-import { SideNav } from '../cmps/host-page/SideNav'
-import { loadAssets } from '../store/host.action.js'
-import { AddStay } from '../cmps/host-page/AddStay'
-
+import { SideNav } from '../cmps/host-page/SideNav';
+import { loadAssets } from '../store/host.action.js';
+import { AddStay } from '../cmps/host-page/AddStay';
+import { CardList } from '../cmps/host-page/CardList'
+import { onLoadOrders } from "../store/order.action";
 class _HostPage extends Component {
     state = {
         asset: [],
@@ -14,11 +15,36 @@ class _HostPage extends Component {
             isMyAsset: true,
             isOrders: false,
             isRates: false
-        }
+        },
+        types: []
     }
 
     async componentDidMount() {
         await this.props.loadAssets(this.props.user._id) // for develop right now user has assets
+        const filter = {
+            type: 'host',
+            _id: this.props.user._id
+        }
+        await this.props.onLoadOrders(filter)
+        this.onCalcDetails()
+    }
+
+    onCalcDetails = () => {
+
+        const PriceMonth = this.props.orders.reduce((acc, order) => {
+            acc += order.price
+            return Math.floor(acc / 30) 
+        }, 0)
+        console.log('price', PriceMonth);
+        const topRated = this.props.assets.reduce((acc, asset) => {
+            acc += asset.rate?.summery
+            return acc / asset.length
+        }, 0)
+        const types = [
+            { property: 'Total rate', info: topRated },
+            { property: 'monthly earning', info: PriceMonth }
+        ]
+        this.setState({ types })
     }
 
 
@@ -34,15 +60,23 @@ class _HostPage extends Component {
         return (
             <div className="host-page">
                 <div className="host-container">
-                    <div className="nav-bar flex justify-center">
+
+                    <nav className="nav-bar flex justify-center">
                         <SideNav isAddAsset={isAddAsset} isMyAsset={isMyAsset} isOrders={isOrders} isRates={isRates} toggleComponent={this.toggleComponent} />
-                    </div>
-                    <nav className="stay-details">
-                        {isAddAsset && <AddStay host={user} />}
-                        {isMyAsset && <HostList assets={assets} />}
-                        {isOrders && <HostOrder />}
-                        {isRates && <div>Rates</div>}
                     </nav>
+                    <div className="stay-details-container">
+                        <div>
+                            <div className="card-container">
+                                <CardList types={this.state.types} />
+                            </div>
+                            <div className="stay-details">
+                                {isMyAsset && <HostList assets={assets} />}
+                                {isOrders && <HostOrder />}
+                                {isRates && <div>Rates</div>}
+                                {isAddAsset && <AddStay host={user} />}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         )
@@ -50,12 +84,15 @@ class _HostPage extends Component {
 }
 
 function mapStateToProps(state) {
+    console.log(state);
     return {
         assets: state.hostReducer.assets,
-        user: state.userReducer.loggedInUser
+        user: state.userReducer.loggedInUser,
+        orders: state.orderReducer.orders,
     }
 }
 const mapDispatchToProps = {
-    loadAssets
+    loadAssets,
+    onLoadOrders
 }
 export const HostPage = connect(mapStateToProps, mapDispatchToProps)(_HostPage)

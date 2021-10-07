@@ -27,8 +27,8 @@ export function TripPreview({ order, onSetOrder, onRemoveOrder }) {
                 <h3 className="trip-price">Total Price: {order.price}</h3>
                 <h3 className="trip-price">status: {order.status}</h3>
                 <div className="update-trip">
-                    {/* <button onClick={() => onRemoveOrder(order._id)} className="btn-cancel-trip">cancel</button> */}
-                    {/* <Link onClick={() => onSetOrder(order)} to={`/stay/${stayId}?${queryString}`} className='btn-cancel-trip' >edit</Link> */}
+                    <button onClick={() => onRemoveOrder(order._id)} className="btn-trip">cancel</button>
+                    <Link onClick={() => onSetOrder(order)} to={`/stay/${stayId}?${queryString}`} className='btn-trip' >edit</Link>
                 </div>
             </div>
         </li>

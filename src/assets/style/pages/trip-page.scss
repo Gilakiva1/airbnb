@@ -40,7 +40,7 @@
             border: none;
             padding: 10px 20px;
             &:hover {
-                transition: .4s;
+                transition: 0.4s;
                 background-color: #f1f1f1;
             }
         }
@@ -51,5 +51,27 @@
     }
     &:last-child {
         margin-inline-start: 20px;
+    }
+    .update-trip {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+        .btn-trip {
+            
+            border-radius: 30px;
+            cursor: pointer;
+            color: #222222;
+            padding: 8px 16px;
+            font-size: 0.75rem;
+            line-height: 1rem;
+            background-color: #fff;
+            border: 1px solid #b0b0b0;
+            text-align: center;
+            &:hover {
+                background-color: $clr6;
+                transition: 0.4s;
+                outline: 1px solid $clr2;
+            }
+        }
     }
 }

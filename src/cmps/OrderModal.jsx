@@ -9,6 +9,8 @@ import { stayService } from '../services/stay.service';
 import { withRouter } from 'react-router';
 import { OrderMsg } from './OrderMsg';
 import { onAddOrder, onUpdateOrder, onSetOrder } from '../store/order.action';
+import { onSetMsg } from '../store/user.action'
+import { socketService } from '../services/socket.service';
 
 export class _OrderModal extends React.Component {
 
@@ -115,10 +117,7 @@ export class _OrderModal extends React.Component {
         const { currOrder, stay, user } = this.props
         const finalOrder = {
             _id: currOrder._id || null,
-            host: {
-                _id: stay.host._id,
-                fullname: stay.host.fullname
-            },
+            host: stay.host._id,
             createdAt: Date.now(),
             price: ((currOrder.checkOut - currOrder.checkIn) / (1000 * 60 * 60 * 24)) * stay.price,
             checkIn: currOrder.checkIn,
@@ -140,6 +139,11 @@ export class _OrderModal extends React.Component {
     }
     onSubmit = async (ev) => {
         ev.preventDefault()
+        const {user} = this.props
+        if (!user) {
+            this.props.onSetMsg({type: 'error', txt:'Please Sign up/log in to continue'})
+            return
+        }
         const { isReserve } = this.state
         if (!isReserve) {
             ev.target.type = 'submit' //?
@@ -152,6 +156,7 @@ export class _OrderModal extends React.Component {
             const finalOrder = this.createFinalOrder()
             await this.props.onAddOrder(finalOrder)
             this.setState({ isFinalReserve: true })
+            socketService.emit('on-reserve-order', finalOrder.host)
             setTimeout(() => {
                 this.setState({ isFinalReserve: false })
                 this.props.history.push('/trip')
@@ -241,7 +246,8 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
     onAddOrder,
     onUpdateOrder,
-    onSetOrder
+    onSetOrder,
+    onSetMsg
 }
 
 export const OrderModal = connect(mapStateToProps, mapDispatchToProps)(withRouter(_OrderModal))

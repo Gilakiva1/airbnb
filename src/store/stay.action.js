@@ -13,14 +13,18 @@ export function loadStays(filterBy) {
 
 
 export function onSetFilter(filterBy) {
-  return (dispatch) => {
-    stayService.query(filterBy)
-          .then(stays => {
-              dispatch({
-                  type: 'SET_STAYS',
-                  stays
-              })
-          })
+  try {
+    return (dispatch) => {
+      stayService.query(filterBy)
+            .then(stays => {
+                dispatch({
+                    type: 'SET_STAYS',
+                    stays
+                })
+            })
+    }
+  } catch (err) {
+ console.log('err',err);
   }
 }
 

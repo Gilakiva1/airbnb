@@ -44,7 +44,7 @@ export class _SearchBar extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps !== this.props) this.closeInputs()
-    if (this.props.clearSearchBar && this.props.history.location.pathname === '/') {
+    if (this.props.isClearSearchBar && this.props.location.pathname === '/') {
       this.initState()
       this.props.setClearSearchBar()
     }

@@ -1,7 +1,6 @@
 import { storageService } from './async-storage.service';
 import { httpService } from './http.service';
 // import { httpService } from './http.service'
-// import { socketService, SOCKET_EVENT_USER_UPDATED } from './socket.service';
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser';
 var gWatchedUser = null;
 
@@ -43,18 +42,26 @@ async function update(user) {
 }
 
 async function login(userCred) {
-  const user = await httpService.post('auth/login', userCred)
+  try {
+    const user = await httpService.post('auth/login', userCred)
+    if (user) return _saveLocalUser(user)
+  } catch (err) {
+    throw err
+  }
   // const users = await storageService.query('userDB');
   // const user = users.find((user) => user.username === userCred.username);
   // return _saveLocalUser(user);
 
   // socketService.emit('set-user-socket', user._id);
-  if (user) return _saveLocalUser(user)
 }
 async function signup(userCred) {
-  const user = await httpService.post('auth/signup', userCred)
-  // socketService.emit('set-user-socket', user._id);
-  return _saveLocalUser(user);
+  try {
+    const user = await httpService.post('auth/signup', userCred)
+    // socketService.emit('set-user-socket', user._id);
+    return _saveLocalUser(user);
+  } catch (err) {
+    throw err
+  }
 }
 async function logout() {
   sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER);

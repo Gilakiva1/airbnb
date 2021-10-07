@@ -4,6 +4,7 @@ const initialState = {
 }
 
 export function orderReducer(state = initialState, action) {
+    let orders;
     switch (action.type) {
         case 'SET_ORDER':
             return { ...state, currOrder: action.order }
@@ -13,9 +14,15 @@ export function orderReducer(state = initialState, action) {
             return { ...state, currOrder: action.order }
         case 'LOAD_ORDERS':
             return { ...state, orders: action.orders }
-        case 'UPDATE_STATUS_ORDER':{
-            let orders = state.orders.map(order => (order._id === action.order._id)? action.order : order)
-            return  { ...state, orders}
+        case 'UPDATE_STATUS_ORDER': {
+            orders = state.orders.map(order => (order._id === action.order._id) ? action.order : order)
+            return { ...state, orders }
+        }
+        case 'REMOVE_ORDER': {
+            debugger
+            orders = state.orders.filter(order => order._id !== action.orderId)
+            return { ...state, orders }
+
         }
         default: return { ...state }
     }

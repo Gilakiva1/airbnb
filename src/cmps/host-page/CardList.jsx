@@ -1,9 +1,9 @@
 import { CardPreview } from "./CardPreview"
-export function CardList({ types }) {
+export function CardList({ hostDetails }) {
 
     return (
         <ul className="card-list flex gap10">
-            {types.map((type, idx) => <CardPreview type={type} key={idx} />)}
+            {hostDetails.map((detail, idx) => <CardPreview detail={detail} key={idx} />)}
         </ul>
     )
 

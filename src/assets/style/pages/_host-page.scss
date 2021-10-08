@@ -31,12 +31,51 @@
             text-decoration: underline;
         }
     }
+    .cards-container {
+        margin-bottom: 20px;
+        .card-container {
+            box-shadow: 0 6px 16px -2px #d8d8d8;
+            position: relative;
+            padding: 10px 20px;
+            width: rem(300px);
+            height: rem(150px);
+        }
+        .icon-container {
+            height: rem(60px);
+            width: rem(60px);
+            position: absolute;
+            top: -17px;
+            left: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 3px;
+            color: white;
 
-    .stay-details-container {
-        background: $clr6;
-        padding: 10px 20px;
-    }
-    h1 {
-        text-align: center;
+            &.star {
+                background: linear-gradient(60deg, #ffa726, #fb8c00);
+                box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(255, 152, 0, 0.4);
+            }
+            &.dollar {
+                background: linear-gradient(60deg, #66bb6a, #43a047);
+                box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(76, 175, 80, 0.4);
+            }
+            &.info {
+                background: linear-gradient(60deg, #26c6da, #00acc1);
+                box-shadow: 0 4px 20px 0 rgba(0, 0, 0,0.14), 0 7px 10px -5px rgba(0, 172, 193,  0.4);
+            }
+            &.guests{
+                background: linear-gradient(60deg, #6b0d34, #6e0b29);
+                box-shadow: 0 4px 20px 0 rgba(0, 0, 0,0.14), 0 7px 10px -5px rgba(231, 36, 62, 0.4);
+
+            }
+        }
+
+        .stay-details-container {
+            background: $clr6;
+            padding: 10px 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
     }
 }

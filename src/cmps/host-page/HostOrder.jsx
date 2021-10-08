@@ -45,6 +45,7 @@ class _HostOrder extends Component {
                 <thead>
                     <tr>
                         <th>Guest Name</th>
+                        <th>Property Name</th>
                         <th>Check in</th>
                         <th>Check out</th>
                         <th>Status</th>

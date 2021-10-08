@@ -86,12 +86,26 @@
     align-items: center;
   }
 }
-
+.wrap{
+  flex-wrap: wrap;
+}
 .gap5 {
   gap: 5px;
 }
 .gap10 {
   gap: 10px;
+}
+.gap15 {
+  gap: 15px;
+}
+.gap20 {
+  gap: 20px;
+}
+.gap25 {
+  gap: 25px;
+}
+.gap30 {
+  gap: 30px;
 }
 
 .pointer {
@@ -210,3 +224,4 @@
   background-color: $clr6;
   transition: 0.4s;
 }
+

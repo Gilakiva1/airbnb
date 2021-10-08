@@ -1,21 +1,20 @@
 
 
 
-export function HostOrderPreview(props) {
+export function HostOrderPreview({ order, milisecToDate, updateStatusOrder }) {
 
     return (
         // <img src={order.imgUrls[0]} />
-        <tr key={props.order._id}>
-            <td className='bold flex'>{props.order.buyer.fullname}</td>
-            <td>{props.milisecToDate('checkIn', props.order)}</td>
-            <td>{props.milisecToDate('checkOut', props.order)}</td>
-            <td>{props.order.status}</td>
-            <td>${props.order.price}</td>
+        <tr key={order._id}>
+            <td className='bold flex'>{order.buyer.fullname}</td>
+            <td>{milisecToDate('checkIn', order)}</td>
+            <td>{milisecToDate('checkOut', order)}</td>
+            <td>{order.status}</td>
+            <td>${order.price}</td>
             <td>
-                {props.order.status === 'pending' && <button onClick={() => { props.updateStatusOrder(props.order, 'Approved') }}>✓ Approve</button>}
-                {props.order.status === 'Approved' && <button onClick={() => { props.updateStatusOrder(props.order, 'Declined') }}>🗙 Decline</button>}
-                {props.order.status === 'Declined' && <button onClick={() => { props.updateStatusOrder(props.order, 'Approved') }}>✓ Re-Approve</button>}
-
+                {order.status === 'Pending' && <button onClick={() => { updateStatusOrder(order, 'Approved') }}>✓ Approve</button>}
+                {order.status === 'Approved' && <button onClick={() => { updateStatusOrder(order, 'Declined') }}>🗙 Decline</button>}
+                {order.status === 'Declined' && <button onClick={() => { updateStatusOrder(order, 'Approved') }}>✓ Re-Approve</button>}
             </td>
         </tr>
 

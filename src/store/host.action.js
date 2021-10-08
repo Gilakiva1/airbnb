@@ -5,7 +5,6 @@ import { hostService } from '../services/host.service'
 export function loadAssets(hostId) {
   return async (dispatch) => {
     try {
-      
       const assets = await hostService.query(hostId);
       dispatch({ type: 'LOAD_ASSETS', assets });
     } catch (err) {

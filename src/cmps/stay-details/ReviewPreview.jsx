@@ -9,7 +9,7 @@ export function ReviewPreview({ review }) {
                         <span className="fade-font">{review.date}</span> </p>
                 </div>
             </div>
-            <p>{review.by.desc}</p>
+            <p>{review.desc}</p>
         </div >
     )
 }

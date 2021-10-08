@@ -67,7 +67,8 @@ class _StayList extends React.Component {
         return true
     }
     getStaysForDisplay = () => {
-        let { stays } = this.props
+        let { stays } = this.props   
+        if(!stays.length) return
         const { propertyTypes, price, amenities } = this.state.filterBy
         stays = stays.filter(stay => {
             console.log('stay.type[0]',stay.type[0]);

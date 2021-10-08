@@ -11,6 +11,7 @@ import { OrderMsg } from './OrderMsg';
 import { onAddOrder, onUpdateOrder, onSetOrder } from '../store/order.action';
 import { onSetMsg } from '../store/user.action'
 import { socketService } from '../services/socket.service';
+import { FinalPrice } from './FinalPrice';
 
 export class _OrderModal extends React.Component {
 
@@ -117,14 +118,14 @@ export class _OrderModal extends React.Component {
         const { currOrder, stay, user } = this.props
         const finalOrder = {
             _id: currOrder._id || null,
-            host: stay.host._id,
+            hostId: stay.host._id,
             createdAt: Date.now(),
-            price: ((currOrder.checkOut - currOrder.checkIn) / (1000 * 60 * 60 * 24)) * stay.price,
+            price: ((currOrder.checkOut - currOrder.checkIn) / (1000 * 60 * 60 * 24)) * stay.price + 118,
             checkIn: currOrder.checkIn,
             checkOut: currOrder.checkOut,
             guests: currOrder.guests,
             img: stay.imgUrls[0],
-            status: 'pending',
+            status: 'Pending',
             buyer: {
                 _id: user._id,
                 fullname: user.fullname
@@ -139,9 +140,13 @@ export class _OrderModal extends React.Component {
     }
     onSubmit = async (ev) => {
         ev.preventDefault()
-        const {user} = this.props
+        const {user,order} = this.props
         if (!user) {
             this.props.onSetMsg({type: 'error', txt:'Please Sign up/log in to continue'})
+            return
+        }
+        if (!order.checkOut || !order.guests) {
+            this.props.onSetMsg({type: 'error', txt:'Please fill in all the fields to continue'})
             return
         }
         const { isReserve } = this.state
@@ -182,8 +187,8 @@ export class _OrderModal extends React.Component {
                         <span className="rating medium fs14 clr1 "> ({reviewsNumber} reviews)  </span>
                     </div>
                 </div>
-                <form className="" onClick={this.preventPropagation}>
-                    <div className="flex column">
+                <form className="" >
+                    <div className="flex column" onClick={this.preventPropagation}>
                         <div className={`input-container pointer flex ${isPickingDates ? 'focus' : ''}`}>
                             <div className={"check-in"}
                                 onClick={() => this.activeInput('date')}>
@@ -229,6 +234,7 @@ export class _OrderModal extends React.Component {
                     </div>
                     <div className={`${isPickingGuests ? '' : 'none'}`}> {isPickingGuests && <GuestsPicking handleGuestsChanege={this.handleGuestsChanege} />} </div>
                     <div className={isPickingDates ? '' : 'none'}> {isPickingDates && <DatePicker order={currOrder} preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />} </div>
+                    <div className={isReserve ? '' : 'none'}> {isReserve && <FinalPrice order={currOrder} stay={stay} />} </div>
                 </form >
                 {isFinalReserve && <OrderMsg animateClassName={isFinalReserve ? 'slide-in-bottom' : ''} />}
             </div >

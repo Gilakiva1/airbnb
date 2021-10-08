@@ -13,7 +13,7 @@ export const stayService = {
 
 const STORAGE_KEY = 'stayDB';
 
-function query(filterBy) {
+function query(filterBy={}) {
 
   const queryString = (!filterBy) ? '' : '?' + utilService.makeQueryParams(filterBy)
   return httpService.get(`stay${queryString}`)

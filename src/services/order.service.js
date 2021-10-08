@@ -20,7 +20,6 @@ function query(filterBy) {
         return httpService.get(`order?user=${_id}`);
     } else {
         return httpService.get(`order?host=${_id}`);
-
     }
 }
 function remove(orderId) {

@@ -71,6 +71,7 @@ class _StayList extends React.Component {
         if(!stays.length) return
         const { propertyTypes, price, amenities } = this.state.filterBy
         stays = stays.filter(stay => {
+            console.log('stay.type[0]',stay.type[0]);
             const type = stay.type[0].toUpperCase() + stay.type.substring(1)
             return propertyTypes.length ? propertyTypes.includes(type) : true &&
                 amenities.length ? this.checkAmenities(amenities, stay.amenities) : true &&

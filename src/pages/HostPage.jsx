@@ -16,6 +16,7 @@ class _HostPage extends Component {
             isOrders: false,
             isRates: false
         },
+        currAsset: '',
         types: []
     }
 
@@ -26,7 +27,9 @@ class _HostPage extends Component {
             _id: this.props.user._id
         }
         await this.props.onLoadOrders(filter)
-        this.onCalcDetails()
+        if(this.props.orders.length){
+            this.onCalcDetails()
+        }
     }
 
     onCalcDetails = () => {
@@ -56,12 +59,15 @@ class _HostPage extends Component {
     }
 
 
-    toggleComponent = (property) => {
-        this.setState({ component: property })
+    toggleComponent = (property, currAsset = '') => {
+        this.setState({ component: property, currAsset }, () => {
+            console.log(this.state);
+        })
     }
     render() {
         const { user } = this.props
         const { assets } = this.props
+        console.log(assets, 'assets');
         const { isAddAsset, isMyAsset, isOrders, isRates } = this.state.component
         if (!assets.length) return <div>loading...</div>
 
@@ -79,10 +85,10 @@ class _HostPage extends Component {
 
                             </div>
                             <div className="stay-details">
-                                {isMyAsset && <HostList assets={assets} />}
+                                {isAddAsset && <AddStay host={user} currAsset={this.state.currAsset} />}
+                                {isMyAsset && <HostList toggleComponent={this.toggleComponent} assets={assets} />}
                                 {isOrders && <HostOrder onCalcDetails={this.onCalcDetails} />}
                                 {isRates && <div>Rates</div>}
-                                {isAddAsset && <AddStay host={user} />}
                             </div>
                         </div>
                     </div>

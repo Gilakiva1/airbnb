@@ -1,5 +1,4 @@
 export function CardPreview({ type }) {
-    console.log(type);
     return (
 
         <div className={`preview ${type.property.split(' ').join('-').toLowerCase()} flex column gap10`}>

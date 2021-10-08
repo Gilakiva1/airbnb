@@ -19,7 +19,6 @@ export function orderReducer(state = initialState, action) {
             return { ...state, orders }
         }
         case 'REMOVE_ORDER': {
-            debugger
             orders = state.orders.filter(order => order._id !== action.orderId)
             return { ...state, orders }
 

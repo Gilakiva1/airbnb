@@ -14,7 +14,8 @@ class _HostPage extends Component {
             isMyAsset: true,
             isOrders: false,
             isRates: false
-        }
+        },
+        currAsset:''
     }
 
     async componentDidMount() {
@@ -22,14 +23,18 @@ class _HostPage extends Component {
     }
 
 
-    toggleComponent = (property) => {
-        this.setState({ component: property })
+    toggleComponent = (property,currAsset='') => {
+        this.setState({ component: property,currAsset },()=>{
+            console.log(this.state);
+        })
     }
     render() {
         const { user } = this.props
         const { assets } = this.props
+        console.log(assets,'assets');
         const { isAddAsset, isMyAsset, isOrders, isRates } = this.state.component
-        if (!assets.length) return <div>loading...</div>
+        const {currAsset} = this.state
+        if (!assets.length) return <AddStay host={user} />
         return (
             <div className="host-page">
                 <div className="host-container">
@@ -37,8 +42,8 @@ class _HostPage extends Component {
                         <SideNav toggleComponent={this.toggleComponent} />
                     </div>
                     <div className="stay-details">
-                        {isAddAsset && <AddStay host={user} />}
-                        {isMyAsset && <HostList assets={assets} />}
+                        {isAddAsset && <AddStay host={user} currAsset={currAsset} />}
+                        {isMyAsset && <HostList toggleComponent={this.toggleComponent}  assets={assets} />}
                         {isOrders && <HostOrder />}
                         {isRates && <div>Rates</div>}
                     </div>

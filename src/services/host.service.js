@@ -5,6 +5,7 @@ export const hostService = {
 }
 
 function query(hostId) {
+    console.log('hostId',hostId);
     return httpService.get(`stay?hostId=${hostId}`)
 }
 

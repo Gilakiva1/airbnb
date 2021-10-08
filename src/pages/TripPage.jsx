@@ -23,7 +23,6 @@ class _TripPage extends React.Component {
     }
 
     onLoadOrders = async (filter) => {
-        debugger
         const orders = await this.props.onLoadOrders(filter)
         if (orders.length) {
             this.setState({ isOrders: true })

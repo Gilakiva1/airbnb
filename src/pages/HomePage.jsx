@@ -33,7 +33,11 @@ export class _HomePage extends React.Component {
         return (
 
             <>
-                <div className="hero-logo full">
+                <div className="hero-logo full relative">
+                    <div className="btn-flex-container fh20  absolute flex align-center column">
+                        <h1 className="fs18">Not sure where to go? Perfect. </h1>
+                        <Link to="/stay" className="btn-flex"><span style={{ '-webkit-background-clip': 'text' }}>I'm flexiable</span></Link>
+                    </div>
                     <img src={imgHero} />
                 </div >
                 <section className="home-page">

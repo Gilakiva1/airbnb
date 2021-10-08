@@ -43,16 +43,17 @@ class _HostPage extends Component {
     }
 
     onCalcDetails = () => {
+        debugger
         const { orders, assets } = this.props
         let { price, rate, guests } = this.state.hostDetails
 
         if (!orders.length) return
 
         const status = { Approved: 0, Pending: 0, Declined: 0 }
-
         price = orders.reduce((acc, order) => {
             acc += order.price
             status[order.status] += 1
+            console.log(acc);
             return Math.floor(acc / 30)
         }, 0)
         rate = assets.reduce((acc, asset) => {

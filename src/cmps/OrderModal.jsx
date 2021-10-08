@@ -128,7 +128,8 @@ export class _OrderModal extends React.Component {
             status: 'Pending',
             buyer: {
                 _id: user._id,
-                fullname: user.fullname
+                fullname: user.fullname,
+                imgUrl:user.imgUrl
             },
             stay: {
                 _id: stay._id,

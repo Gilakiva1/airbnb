@@ -35,7 +35,7 @@ class _AddStay extends Component {
 
 
         },
-        propertyType: ['Villa', 'Studio', 'Apartment', 'Private room', 'Room in hotel', 'Home'],
+        propertyType: ['Villa', 'Studio', 'Apartment', 'Room in hotel', 'House'],
         amenitiesType: ['TV', 'Wifi', 'Air conditioning', 'Smoking allowed', 'Pets allowed', 'Cooking basics', 'Kitchen', 'Washer', 'Dryer', 'Hair dryer', 'Crib'],
         tagType: ['entire to yourself', 'enhanced clean', 'self check-in', 'free cancellation'],
         isEdit: false
@@ -143,29 +143,42 @@ class _AddStay extends Component {
         const { imgUrls, amenities } = asset
         const { propertyType, amenitiesType, tagType, isEdit } = this.state
         return (
-            <section className='add-stay-grid'>
+            <section className='add-stay-continer'>
                 <form >
-                    <div>
-                        <input onChange={this.handleChange} name='name' type='text' placeholder='Stay Name' value={asset.name} required />
-                        <input onChange={this.handleChangeLoc} name='country' type='text' placeholder='Country' value={asset.loc.country} required />
-                        <input onChange={this.handleChangeLoc} name='city' type='text' placeholder='City' value={asset.loc.city} />
-                    </div>
-                    {imgUrls.map((src, idx) => (
-                        <div key={idx} className={`grid-img${idx} pointer`}>
-                            <label>
-                                {!src && <input onChange={this.onUploadImg} className={`img${idx}`} type='file' accept='img/*' className='img-upload-btn' id='imgUpload' required />}
-                                Upload Image
-                            </label>
-                            {src && <img src={src} alt='add image' />}
-                        </div>
-                    ))
-                    }
-                    <div>
-                        <label>
-                            Capacity
-                            <input onChange={this.handleChange} value={asset.capacity} name='capacity' type='number' required />
+                    <div className="flex gap10 wrap">
+                        <label className="flex column wrap">
+                            Stay Name
+                            <input onChange={this.handleChange} name='name' type='text' value={asset.name} />
                         </label>
-                        <label htmlFor="type">
+                        <div className="flex gap10 wrap">
+                            <label className="flex column">
+                                Country
+                                <input onChange={this.handleChangeLoc} name='country' type='text' value={asset.loc.country} />
+                            </label>
+                            <label className="flex column">
+                                City
+                                <input onChange={this.handleChangeLoc} name='city' type='text' value={asset.loc.city} />
+                            </label>
+                        </div>
+                    </div>
+                    <div className="add-stay-grid">
+                        {imgUrls.map((src, idx) => (
+                            <div  key={idx} className={`grid-img grid-img${idx} medium pointer flex justify-center align-center`}>
+                                <label  className={`upload-img pointer ${isEdit?'f-white':'f-black'} `}>
+                                    <input onChange={this.onUploadImg} className={`img${idx}`} type='file' accept='img/*' className='img-upload-btn' id='imgUpload' />
+                                    Upload Image
+                                </label>
+                                {src && <img src={src} alt='add image' />}
+                            </div>
+                        ))
+                        }
+                    </div>
+                    <div className="flex wrap gap15">
+                        <label className="flex column" >
+                            Capacity
+                            <input onChange={this.handleChange} value={asset.capacity} name='capacity' type='number' />
+                        </label>
+                        <label htmlFor="type" className="flex column">
                             PropertyType
                             {/* <input onChange={this.handleChange} name='type' type='text' /> */}
                             <select id="type" name="type" value={asset.type} onChange={this.handleChange}>
@@ -176,35 +189,38 @@ class _AddStay extends Component {
                                 }
                             </select>
                         </label>
-                        <label>
+                        <label className="flex column">
                             Price
-                            <input onChange={this.handleChange} name='price' value={asset.price} type='number' required />
+                            <input onChange={this.handleChange} name='price' value={asset.price} type='number' />
                         </label>
+                    </div>
+                    <div className="flex gap30 wrap">
+                        <div className="flex column gap5 wrap">
+                            <span className="fs20 medium fw-unset ">Amenities</span>
+                            {amenitiesType.map((amenitie, idx) => (
+                                <label key={idx}>
+                                    <input type="checkbox" name={amenitie} value={amenitie}
+                                        onChange={this.saveCheckedAmenities} checked={this.isChecked('amenities', amenitie)}
+                                    />
+                                    {amenitie}
+                                </label>
+                            ))}
+                        </div>
+                        <div className="flex column gap5 wrap">
 
+                            <span className="fs20 medium fw-unset ">Tags</span>
+
+                            {tagType.map((tag, idx) => (
+                                <label key={idx}>
+                                    <input type="checkbox" name={tag} value={tag} checked={this.isChecked('tags', tag)}
+                                        onChange={this.saveCheckedTags}
+                                    />
+                                    {tag}
+                                </label>
+                            ))}
+                        </div>
                     </div>
-                    <div>
-                        Amenities
-                        {amenitiesType.map((amenitie, idx) => (
-                            <label key={idx}>
-                                <input type="checkbox" name={amenitie} value={amenitie}
-                                    onChange={this.saveCheckedAmenities} checked={this.isChecked('amenities', amenitie)}
-                                />
-                                {amenitie}
-                            </label>
-                        ))}
-                    </div>
-                    <div>
-                        Tags
-                        {tagType.map((tag, idx) => (
-                            <label key={idx}>
-                                <input type="checkbox" name={tag} value={tag} checked={this.isChecked('tags', tag)}
-                                    onChange={this.saveCheckedTags}
-                                />
-                                {tag}
-                            </label>
-                        ))}
-                    </div>
-                    <div className="description" >
+                    <div className="description flex column " >
                         <textarea onChange={this.handleChange} type="text" name="description" autoComplete="off" value={asset.description}  ></textarea>
                     </div>
                     <button onClick={this.onAddStay}>Save</button>

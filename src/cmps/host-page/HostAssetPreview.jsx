@@ -7,7 +7,7 @@ export function HostAssetPreview(props) {
             <td>{props.asset.type}</td>
             <td>{props.asset.loc.address}</td>
             <td>${props.asset.price}</td>
-            <td><button onClick={()=>{props.toggleComponent({ isAddAsset: true, isMyAsset: false, isOrders: false, isRates: false },props.asset)}}>Edit</button></td>
+            <td className='action-edit'><button onClick={()=>{props.toggleComponent({ isAddAsset: true, isMyAsset: false, isOrders: false, isRates: false },props.asset)}}>Edit</button></td>
         </tr>
 
     )

@@ -39,9 +39,12 @@
         color: $clr2;
     }
 } 
+.stay-img{
+    border-radius: 12px;
 
+}
 .slick-slide {
-    @include aspect-ratio(1, 1);
+    @include aspect-ratio(2, 1.4);
     img {
         border-radius: 12px;
         object-fit: cover;

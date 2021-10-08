@@ -35,7 +35,7 @@ class _AddStay extends Component {
 
 
         },
-        propertyType: ['Villa', 'Studio', 'Appartment', 'Private room', 'Room in hotel', 'Home'],
+        propertyType: ['Villa', 'Studio', 'Apartment', 'Private room', 'Room in hotel', 'Home'],
         amenitiesType: ['TV', 'Wifi', 'Air conditioning', 'Smoking allowed', 'Pets allowed', 'Cooking basics', 'Kitchen', 'Washer', 'Dryer', 'Hair dryer', 'Crib'],
         tagType: ['entire to yourself', 'enhanced clean', 'self check-in', 'free cancellation'],
         isEdit: false

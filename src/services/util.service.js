@@ -32,7 +32,7 @@ function HomePageImgPopular() {
         { city: 'Dubai', country: 'United Arab Emirates', img: imgDubai },
         { city: 'New York', country: 'United States of America', img: imgNewYork },
         { city: 'Amsterdam', country: 'Netherlands', img: imgAmsterdam },
-        { city: 'Hong-Kong', country: 'China', img: imgHongKong }
+        { city: 'Hong Kong', country: 'China', img: imgHongKong }
     ]
 }
 function HomePageImgLabels() {

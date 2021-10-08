@@ -88,7 +88,7 @@ class _StayList extends React.Component {
         return (
             <>
 
-                <h1 className="count-stays airbnb-book fs14 fh18 fw-unset">{stays.length} stays </h1>
+                <h1 className="count-stays airbnb-book fs14 fh18 fw-unset">{stays?.length} stays </h1>
                 <h1 className="city-name">Stays in {orderParams.address}</h1>
                 <div className="list-filter">
                     <StayFilter stays={stays} minPrice={this.minPrice}
@@ -97,7 +97,7 @@ class _StayList extends React.Component {
                         removePropertyType={this.removePropertyType} />
                 </div>
                 <div className="stay-list">
-                    {stays.map((stay, idx) => <StayPreview key={stay._id} stay={stay} orderParams={orderParams} />)}
+                    {stays?.map((stay, idx) => <StayPreview key={stay._id} stay={stay} orderParams={orderParams} />)}
                 </div>
             </>
         )

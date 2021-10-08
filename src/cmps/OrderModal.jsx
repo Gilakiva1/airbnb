@@ -115,10 +115,11 @@ export class _OrderModal extends React.Component {
 
 
     createFinalOrder = () => {
+        debugger
         const { currOrder, stay, user } = this.props
         const finalOrder = {
             _id: currOrder._id || null,
-            hostId: stay.host._id,
+            host: stay.host,
             createdAt: Date.now(),
             price: ((currOrder.checkOut - currOrder.checkIn) / (1000 * 60 * 60 * 24)) * stay.price + 118,
             checkIn: currOrder.checkIn,
@@ -129,7 +130,7 @@ export class _OrderModal extends React.Component {
             buyer: {
                 _id: user._id,
                 fullname: user.fullname,
-                imgUrl:user.imgUrl
+                imgUrl: user.imgUrl
             },
             stay: {
                 _id: stay._id,
@@ -141,13 +142,13 @@ export class _OrderModal extends React.Component {
     }
     onSubmit = async (ev) => {
         ev.preventDefault()
-        const {user,order} = this.props
+        const { user, order } = this.props
         if (!user) {
-            this.props.onSetMsg({type: 'error', txt:'Please Sign up/log in to continue'})
+            this.props.onSetMsg({ type: 'error', txt: 'Please Sign up/log in to continue' })
             return
         }
         if (!order.checkOut || !order.guests) {
-            this.props.onSetMsg({type: 'error', txt:'Please fill in all the fields to continue'})
+            this.props.onSetMsg({ type: 'error', txt: 'Please fill in all the fields to continue' })
             return
         }
         const { isReserve } = this.state

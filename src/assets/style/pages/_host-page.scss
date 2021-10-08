@@ -49,6 +49,7 @@
             border-radius: 5px;
             box-shadow: 0 0 3px;
             color: white;
+            
 
             &.star {
                 background: linear-gradient(60deg, #ffa726, #fb8c00);
@@ -67,6 +68,9 @@
                 box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(231, 36, 62, 0.4);
             }
         }
+        .star-red {
+            color: $clr3;
+        }
 
         .stay-details-container {
             background: $clr6;
@@ -76,17 +80,20 @@
         h1 {
             text-align: center;
         }
+        .status-info{
+            text-align: center;
+        }
         .circle {
             height: 20px;
             width: 20px;
             border-radius: 50%;
-            &.approved{
+            &.approved {
                 background-color: green;
             }
-            &.pending{
+            &.pending {
                 background-color: rgb(219, 206, 19);
             }
-            &.declined{
+            &.declined {
                 background-color: rgb(240, 45, 11);
             }
         }

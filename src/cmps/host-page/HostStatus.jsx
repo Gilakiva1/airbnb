@@ -20,7 +20,10 @@ export function HostStatus({ price, rate, status, guests }) {
                 <div className="flex high justify-end " >
                     <div className="flex space-between column">
                         <h1 className="wide book fw-unset clr1 ">Total Rate</h1>
-                        <span className="fs32 flex justify-center clr2">{rate || 0}</span>
+                        <div className="flex align-center gap10 justify-center align-center">
+                            <FontAwesomeIcon className="icon star-red" icon={faStar} />
+                            <span className="fs32 flex justify-center clr2">{rate || 0}</span>
+                        </div>
                     </div>
                 </div>
                 <div className="icon-container flex align-center justify-center star">
@@ -43,10 +46,10 @@ export function HostStatus({ price, rate, status, guests }) {
                     <div className="flex space-between column">
                         <h1 className="wide book flex  justify-end fw-unset clr1 ">Status</h1>
                     </div>
-                    <div className="status-info flex gap5">
-                        <div className="circle approved">{status.Approved}</div>
-                        <div className="circle pending">{status.Pending}</div>
-                        <div className="circle declined">{status.Declined}</div>
+                    <div className="status-info flex space-between gap5">
+                        <h3 className="fs16">Approved <span>{status.Approved}</span></h3>
+                        <h3 className="fs16">Pending {status.Pending}</h3>
+                        <h3 className="fs16">Declined {status.Declined}</h3>
                     </div>
                 </div>
                 <div className="icon-container flex align-center justify-center info">

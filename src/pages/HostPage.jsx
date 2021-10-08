@@ -71,7 +71,7 @@ class _HostPage extends Component {
         const { user, assets } = this.props
         const { price, rate, status, guests } = this.state.hostDetails
         const { isAddAsset, isMyAsset, isOrders, isRates } = this.state.component
-        if (!assets.length) return <div>loading...</div>
+        if (!assets) return <div>loading...</div>
 
         return (
             <div className="host-page">

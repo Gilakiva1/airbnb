@@ -30,20 +30,31 @@ class _HostPage extends Component {
     }
 
     onCalcDetails = () => {
+        let ordersDetails = {
+            Pending: 0,
+            Declined: 0,
+            Approved: 0
+        }
+        const { orders, assets } = this.props
+        console.log('detail', orders[0].status);
 
-        const PriceMonth = this.props.orders.reduce((acc, order) => {
+        const PriceMonth = orders.reduce((acc, order) => {
             acc += order.price
-            return Math.floor(acc / 30) 
+            return Math.floor(acc / 30)
         }, 0)
-        console.log('price', PriceMonth);
-        const topRated = this.props.assets.reduce((acc, asset) => {
+        const topRated = assets.reduce((acc, asset) => {
             acc += asset.rate?.summery
             return acc / asset.length
         }, 0)
+        orders.map(order => {
+            return ordersDetails[order.status] += 1
+        })
         const types = [
             { property: 'Total rate', info: topRated },
-            { property: 'monthly earning', info: PriceMonth }
+            { property: 'Monthly earning', price: PriceMonth },
+            { property: 'Orders Status', status: ordersDetails },
         ]
+        // { property: 'orders', info: ordersCalc }
         this.setState({ types })
     }
 
@@ -68,10 +79,11 @@ class _HostPage extends Component {
                         <div>
                             <div className="card-container">
                                 <CardList types={this.state.types} />
+
                             </div>
                             <div className="stay-details">
                                 {isMyAsset && <HostList assets={assets} />}
-                                {isOrders && <HostOrder />}
+                                {isOrders && <HostOrder onCalcDetails={this.onCalcDetails} />}
                                 {isRates && <div>Rates</div>}
                                 {isAddAsset && <AddStay host={user} />}
                             </div>

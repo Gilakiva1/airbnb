@@ -27,24 +27,37 @@ class _HostPage extends Component {
             _id: this.props.user._id
         }
         await this.props.onLoadOrders(filter)
-        this.onCalcDetails()
+        if(this.props.orders.length){
+            this.onCalcDetails()
+        }
     }
 
     onCalcDetails = () => {
+        let ordersDetails = {
+            Pending: 0,
+            Declined: 0,
+            Approved: 0
+        }
+        const { orders, assets } = this.props
+        console.log('detail', orders[0].status);
 
-        const PriceMonth = this.props.orders.reduce((acc, order) => {
+        const PriceMonth = orders.reduce((acc, order) => {
             acc += order.price
             return Math.floor(acc / 30)
         }, 0)
-        console.log('price', PriceMonth);
-        const topRated = this.props.assets.reduce((acc, asset) => {
+        const topRated = assets.reduce((acc, asset) => {
             acc += asset.rate?.summery
             return acc / asset.length
         }, 0)
+        orders.map(order => {
+            return ordersDetails[order.status] += 1
+        })
         const types = [
             { property: 'Total rate', info: topRated },
-            { property: 'monthly earning', info: PriceMonth }
+            { property: 'Monthly earning', price: PriceMonth },
+            { property: 'Orders Status', status: ordersDetails },
         ]
+        // { property: 'orders', info: ordersCalc }
         this.setState({ types })
     }
 
@@ -72,11 +85,12 @@ class _HostPage extends Component {
                         <div>
                             <div className="card-container">
                                 <CardList types={this.state.types} />
+
                             </div>
                             <div className="stay-details">
-                                {isAddAsset && <AddStay host={user} currAsset={currAsset} />}
+                                {isAddAsset && <AddStay host={user} currAsset={this.state.currAsset} />}
                                 {isMyAsset && <HostList toggleComponent={this.toggleComponent} assets={assets} />}
-                                {isOrders && <HostOrder />}
+                                {isOrders && <HostOrder onCalcDetails={this.onCalcDetails} />}
                                 {isRates && <div>Rates</div>}
                             </div>
                         </div>

@@ -1,8 +1,8 @@
 import imgTelAviv from '../assets/img/home-page/tel-aviv-yafo.jpg'
 import imgLondon from '../assets/img/home-page/london.jpg'
 import imgParis from '../assets/img/home-page/paris.jpg'
-import imgAmsterdam from '../assets/img/home-page/amsterdam.jpg'
-import imgDubai from '../assets/img/home-page/dubai.jpg'
+import imgBarcelona from '../assets/img/home-page/barcelona.jpg'
+import imgBali from '../assets/img/home-page/bali.jpg'
 import imgNewYork from '../assets/img/home-page/new york.jpg'
 import imgHongKong from '../assets/img/home-page/hong kong.jpg'
 import imgBangkok from '../assets/img/home-page/bangkok.jpg'
@@ -29,9 +29,9 @@ function HomePageImgPopular() {
         { city: 'London', country: 'England', img: imgLondon },
         { city: 'Bangkok', country: 'Thailand', img: imgBangkok },
         { city: 'Paris', country: 'France', img: imgParis },
-        { city: 'Dubai', country: 'United Arab Emirates', img: imgDubai },
+        { city: 'Bali', country: 'Indonesia', img: imgBali },
         { city: 'New York', country: 'United States of America', img: imgNewYork },
-        { city: 'Amsterdam', country: 'Netherlands', img: imgAmsterdam },
+        { city: 'Barcelona', country: 'Spain', img: imgBarcelona },
         { city: 'Hong Kong', country: 'China', img: imgHongKong }
     ]
 }

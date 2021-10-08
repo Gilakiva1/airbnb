@@ -21,6 +21,13 @@ export class _HomePage extends React.Component {
         this.props.onSetOrder(null)
     }
 
+    onImgClick = async (order) => {
+        const queryString = utilService.makeQueryParams(order)
+        await this.props.onSetOrder(order)
+        this.props.history.push(`/stay?${queryString}`)
+    }
+
+
 
     render() {
         return (
@@ -31,7 +38,7 @@ export class _HomePage extends React.Component {
                 </div >
                 <section className="home-page">
                     <h1 className="title-popular fs30">Popular Destinations</h1>
-                    <PopularImgList links={utilService.HomePageImgPopular()} />
+                    <PopularImgList onImgClick={this.onImgClick} links={utilService.HomePageImgPopular()} />
                     <h1 className="title-label">Live Anywhere</h1>
                     <LabelsImgList links={utilService.HomePageImgLabels()} />
                     <Link to='/host'>

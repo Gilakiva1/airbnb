@@ -711,12 +711,12 @@ const descriptions = (loc) => {
 
 const reviewsData = [{
     rate: {
-        cleanliness: getRandomInt(2.5, 6, true),
-        communication: getRandomInt(2.5, 6, true),
-        checkin: getRandomInt(2.5, 6, true),
-        accuracy: getRandomInt(2.5, 6, true),
-        value: getRandomInt(2.5, 6, true),
-        location: getRandomInt(2.5, 6, true)
+        cleanliness: getRandomInt(2, 6, true),
+        communication: getRandomInt(2.5, 5, true),
+        checkin: getRandomInt(1, 5, true),
+        accuracy: getRandomInt(2, 6, true),
+        value: getRandomInt(2.5, 5, true),
+        location: getRandomInt(3, 6, true)
 
 
     },

@@ -30,14 +30,12 @@ class _HostPage extends Component {
     }
 
     onCalcDetails = () => {
+        const { orders, assets } = this.props
         let ordersDetails = {
             Pending: 0,
             Declined: 0,
             Approved: 0
         }
-        const { orders, assets } = this.props
-        console.log('detail', orders[0].status);
-
         const PriceMonth = orders.reduce((acc, order) => {
             acc += order.price
             return Math.floor(acc / 30)
@@ -54,7 +52,6 @@ class _HostPage extends Component {
             { property: 'Monthly earning', price: PriceMonth },
             { property: 'Orders Status', status: ordersDetails },
         ]
-        // { property: 'orders', info: ordersCalc }
         this.setState({ types })
     }
 

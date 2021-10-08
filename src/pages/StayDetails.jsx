@@ -30,6 +30,7 @@ class _StayDetails extends Component {
     }
 
     loadStay = async () => {
+        debugger
         const id = this.props.match.params.stayId;
         const searchParams = new URLSearchParams(this.props.location.search);
         try {

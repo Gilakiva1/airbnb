@@ -43,7 +43,6 @@ class _HostPage extends Component {
     }
 
     onCalcDetails = () => {
-        debugger
         const { orders, assets } = this.props
         let { price, rate, guests } = this.state.hostDetails
 

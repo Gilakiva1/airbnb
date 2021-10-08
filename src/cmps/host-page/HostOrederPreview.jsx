@@ -13,9 +13,9 @@ export function HostOrderPreview({ order, milisecToDate, updateStatusOrder }) {
             <td>{order.status}</td>
             <td>${order.price}</td>
             <td className='action'>
-                {order.status === 'Pending' && <button onClick={() => { updateStatusOrder(order, 'Approved') }}>Approve</button>}
-                {order.status === 'Approved' && <button onClick={() => { updateStatusOrder(order, 'Declined') }}>Decline</button>}
-                {order.status === 'Declined' && <button onClick={() => { updateStatusOrder(order, 'Approved') }}>Re-Approve</button>}
+                {order.status === 'Pending' && <button className="bold" onClick={() => { updateStatusOrder(order, 'Approved') }}>Approve</button>}
+                {order.status === 'Approved' && <button className="bold" onClick={() => { updateStatusOrder(order, 'Declined') }}>Decline</button>}
+                {order.status === 'Declined' && <button className="bold" onClick={() => { updateStatusOrder(order, 'Approved') }}>Re-Approve</button>}
             </td>
         </tr>
 

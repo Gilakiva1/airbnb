@@ -12,6 +12,17 @@ export function loadAssets(hostId) {
     }
   };
 }
+export function addAsset(asset) {
+  return async (dispatch) => {
+    try {
+      
+      await hostService.save(asset);
+     dispatch({ type: 'ADD_ASSET', asset });
+    } catch (err) {
+      console.log(err, 'error is');
+    }
+  };
+}
 export function onLoadHostOrders(hostId) {
   return async (dispatch) => {
     try {

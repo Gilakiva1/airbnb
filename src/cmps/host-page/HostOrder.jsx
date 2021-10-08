@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux'
-import { onLoadOrders,onUpdateStatusOrder } from '../../store/order.action'
-import {HostOrderPreview} from './HostOrederPreview'
+import { onLoadOrders, onUpdateStatusOrder } from '../../store/order.action'
+import { HostOrderPreview } from './HostOrederPreview'
 class _HostOrder extends Component {
 
     state = {
@@ -29,9 +29,10 @@ class _HostOrder extends Component {
 
     }
 
-    updateStatusOrder = (order,value) => {
+    updateStatusOrder = async (order, value) => {
         order.status = value;
-        this.props.onUpdateStatusOrder(order)
+        await this.props.onUpdateStatusOrder(order)
+        this.props.onCalcDetails()
     }
 
     render() {
@@ -53,7 +54,7 @@ class _HostOrder extends Component {
                 </thead>
                 <tbody>
                     {
-                        orders.map((order,idx) => <HostOrderPreview key={idx} updateStatusOrder={this.updateStatusOrder} milisecToDate={this.milisecToDate} order={order}/>)
+                        orders.map((order, idx) => <HostOrderPreview key={idx} updateStatusOrder={this.updateStatusOrder} milisecToDate={this.milisecToDate} order={order} />)
                     }
                 </tbody>
             </table>

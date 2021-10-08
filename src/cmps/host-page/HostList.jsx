@@ -78,6 +78,7 @@ export class HostList extends Component {
         const { isOnPrice } = this.state.sortPrice
         const { isOnType } = this.state.sortType
         const assets = this.getAssetsForDisplay()
+        console.log('assets',);
         return (
             <table className="host-list">
                 <thead>
@@ -91,7 +92,7 @@ export class HostList extends Component {
                 </thead>
                 <tbody>
                     {assets.map((asset, idx) => (
-                        <HostAssetPreview key={idx} asset={asset} />
+                        <HostAssetPreview toggleComponent={this.props.toggleComponent} key={idx} asset={asset} />
                     ))}
                 </tbody>
             </table>

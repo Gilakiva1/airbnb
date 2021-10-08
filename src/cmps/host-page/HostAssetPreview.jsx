@@ -1,13 +1,13 @@
 
 
-export function HostAssetPreview({ asset }) {
+export function HostAssetPreview(props) {
     return (
         <tr>
-            <td className="bold flex"><img src={asset.imgUrls[0]} />{asset.name}</td>
-            <td>{asset.type}</td>
-            <td>{asset.loc.address}</td>
-            <td>${asset.price}</td>
-            <td>Actions</td>
+            <td className="bold flex"><img src={props.asset.imgUrls[0]} />{props.asset.name}</td>
+            <td>{props.asset.type}</td>
+            <td>{props.asset.loc.address}</td>
+            <td>${props.asset.price}</td>
+            <td><button onClick={()=>{props.toggleComponent({ isAddAsset: true, isMyAsset: false, isOrders: false, isRates: false },props.asset)}}>Edit</button></td>
         </tr>
 
     )

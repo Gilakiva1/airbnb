@@ -9,9 +9,6 @@ const minDistance = 20;
 export default function PriceFilter(props) {
 
   const [price, setPrice] = useState([0, 100]);
-
-
-
   const handleChange = (ev, newValue, activeThumb) => {
     if (!Array.isArray(newValue)) return;
     if (activeThumb === 0) {

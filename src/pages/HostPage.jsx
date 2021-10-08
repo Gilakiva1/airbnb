@@ -28,9 +28,7 @@ class _HostPage extends Component {
                 Declined: 0
             },
             guests: 0
-
         }
-
     }
 
     async componentDidMount() {
@@ -46,7 +44,7 @@ class _HostPage extends Component {
 
     onCalcDetails = () => {
         const { orders, assets } = this.props
-        let { price, rate } = this.state.hostDetails
+        let { price, rate, guests } = this.state.hostDetails
 
         if (!orders.length) return
 
@@ -62,7 +60,7 @@ class _HostPage extends Component {
             return acc / asset.length
         }, 0)
 
-        this.setState({ hostDetails: { price, rate, status } })
+        this.setState({ hostDetails: { price, rate, status, guests } })
     }
     toggleComponent = (property, currAsset = '') => {
         this.setState({ component: property, currAsset }, () => {

@@ -37,7 +37,7 @@
             box-shadow: 0 6px 16px -2px #d8d8d8;
             position: relative;
             padding: 10px 20px;
-            width: rem(300px);
+            width: rem(350px);
             height: rem(150px);
         }
         .icon-container {
@@ -60,12 +60,11 @@
             }
             &.info {
                 background: linear-gradient(60deg, #26c6da, #00acc1);
-                box-shadow: 0 4px 20px 0 rgba(0, 0, 0,0.14), 0 7px 10px -5px rgba(0, 172, 193,  0.4);
+                box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(0, 172, 193, 0.4);
             }
-            &.guests{
+            &.guests {
                 background: linear-gradient(60deg, #6b0d34, #6e0b29);
-                box-shadow: 0 4px 20px 0 rgba(0, 0, 0,0.14), 0 7px 10px -5px rgba(231, 36, 62, 0.4);
-
+                box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(231, 36, 62, 0.4);
             }
         }
 
@@ -76,6 +75,20 @@
 
         h1 {
             text-align: center;
+        }
+        .circle {
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            &.approved{
+                background-color: green;
+            }
+            &.pending{
+                background-color: rgb(219, 206, 19);
+            }
+            &.declined{
+                background-color: rgb(240, 45, 11);
+            }
         }
     }
 }

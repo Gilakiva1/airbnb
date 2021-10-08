@@ -1,8 +1,7 @@
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
+import { SearchMini } from '../svgs/SearchMini'
 
 
 class _MiniSearchBar extends React.Component {
@@ -44,8 +43,8 @@ class _MiniSearchBar extends React.Component {
         else
             return (
                 <div className={`mini-search-bar flex space-between ${animateClassName}`} onClick={this.onSearchBarClicked}>
-                    <span>Start your search</span>
-                    <button className="search-bar-submit-mini flex">{<FontAwesomeIcon className='search-icon' icon={faSearch} />}</button>
+                    <span className="fs14 fh18 medium fw-unset">Start your search</span>
+                    <button className="search-bar-submit-mini flex ">{<SearchMini />}</button>
                 </div>
             )
     }

@@ -1,12 +1,13 @@
 .order-modal {
     margin-block-end: rem(116px);
+    margin-block-start: rem(300px);
     height: 100%;
     position: sticky;
     display: flex;
     flex-direction: column;
     top: rem(80px);
     z-index: 10;
-    margin-top: rem(50px);
+    margin-top: rem(80px);
     margin-left: rem(20px);
     background-color: #fff;
     width: 371px;

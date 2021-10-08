@@ -1,13 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { onSetFilter } from '../../store/stay.action.js'
 import { withRouter } from 'react-router'
 import { DatePicker } from './DatePicker.jsx'
 import { utilService } from '../../services/util.service'
 import { GuestsPicking } from './GuestsPicking.jsx'
 import { onSetOrder } from '../../store/order.action';
+import { Search } from '../svgs/Search.jsx'
 
 
 export class _SearchBar extends React.Component {
@@ -205,7 +204,7 @@ export class _SearchBar extends React.Component {
                   onChange={this.handleChange}
                 />
               </div>
-              <button className="search-bar-submit flex">{<FontAwesomeIcon className='search-icon' icon={faSearch} />}</button>
+              <button className="search-bar-submit flex ">{<Search style={{height:'20px', width: '20px'}} />}</button>
             </form>
             <div className={isPickingGuests ? "picking-guest-container" : "picking-guest-container none"}> {isPickingGuests && <GuestsPicking handleGuestsChanege={this.handleGuestsChanege} />} </div>
             <div className={isPickingDates ? "picking-dates-container" : "checkin-container none"}> {isPickingDates && <DatePicker order={{}} preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />} </div>

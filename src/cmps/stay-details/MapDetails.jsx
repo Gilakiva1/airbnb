@@ -3,7 +3,7 @@ import GoogleMapReact from 'google-map-react';
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
-class mapDetails extends Component {
+class MapDetails extends Component {
   static defaultProps = {
     center: {
       lat: 59.95,
@@ -32,4 +32,4 @@ class mapDetails extends Component {
   }
 }
 
-export default mapDetails;
+export default MapDetails;

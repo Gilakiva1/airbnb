@@ -31,7 +31,6 @@ class _App extends React.Component {
                         {routes.map(route => <Route key={route.path} exact component={route.component} path={route.path} />)}
                     </Switch>
                 </main>
-                <AppFooter />
                 <UserMsg />
             </>
         )

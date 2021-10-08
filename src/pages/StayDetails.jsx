@@ -14,7 +14,7 @@ import { DatePicker } from '../cmps/header/DatePicker.jsx';
 import { onAddOrder, onUpdateOrder, onSetOrder } from '../store/order.action';
 import { ReviewPoints } from '../cmps/stay-details/ReviewPoints.jsx';
 import { ReviewList } from '../cmps/stay-details/ReviewList.jsx';
-// import { MapDetails } from '../cmps/stay-details/MapDetails';
+// import { MapDetails } from '../cmps/stay-details/MapDetails.jsx';
 import { IdentityVerified } from '../cmps/svgs/IdentityVerified.jsx';
 import { userService } from '../services/user.service.js';
 
@@ -88,9 +88,9 @@ class _StayDetails extends Component {
                             </div>
                             <div>{stay.loc.address}</div>
                         </div>
-                        <div className="flex gap5">
-                            <ShareSvg /> Share
-                            <HeartSvg /> Save
+                        <div className="flex gap10">
+                            <HeartSvg /> <span className="details-save-share fs14 fh18 medium">Save</span>
+                            <ShareSvg /> <span className="details-save-share fs14 fh18 medium">Share</span> 
                         </div>
                     </div>
                     <div className="stay-details-grid ">{stay.imgUrls.slice(0, 5).map((img, idx) => {
@@ -103,7 +103,7 @@ class _StayDetails extends Component {
                                     <h2>Entire {stay.type} hosted by {stay.host.fullname}</h2>
                                     <div className="flex">{stay.capacity} guests · {stay.type} ·  {utilService.getRandomIntInclusive(2, 6)} beds · {utilService.getRandomIntInclusive(1, 5)} baths </div>
                                 </div>
-                                <div ><img className="user-profile-img" src={imgUser} alt="" /></div>
+                                <div ><img className="user-profile-img" src={stay.host.imgUrl} alt="" /></div>
                             </div>
                             <div className="seperation-line"></div>
                             <div className="tag-container flex column">

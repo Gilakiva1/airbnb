@@ -50,7 +50,7 @@ export class AppFooter extends React.Component {
         // debugger
         const { staysTopRated, staysNearby } = this.state
         const makeQueryParams = this.makeQueryParams
-        if (!staysTopRated) return (
+        if (!staysTopRated.length) return (
             <div className="flex align-center justify-center full">
                 <Loader
                     type="ThreeDots"

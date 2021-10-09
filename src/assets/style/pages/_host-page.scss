@@ -41,6 +41,14 @@
             padding: 10px 20px;
             width: rem(350px);
             height: rem(150px);
+
+            .img-guest {
+                width: 3rem;
+                left: 10px;
+                img {
+                    border-radius: 50%;
+                }
+            }
         }
         .icon-container {
             height: rem(60px);

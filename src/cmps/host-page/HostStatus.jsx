@@ -1,14 +1,20 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faDollarSign, faInfo, faHome } from '@fortawesome/free-solid-svg-icons';
 
-export function HostStatus({ price, rate, status, guests }) {
+export function HostStatus({ price, rate, status, activeGuests }) {
     return (
         <div className="cards-container flex space-between ">
             <div className="card-container guests round-edge">
                 <div className="flex high justify-end " >
                     <div className="flex space-between column">
-                        <h1 className="wide book fw-unset clr1 ">Guests</h1>
-                        <span className="fs32 flex justify-center clr2">{guests}</span>
+                        <h1 className="wide book fw-unset clr1 flex justify-end">Active Guests</h1>
+                        <div className="img-guest-container relative flex justify-end">
+                            {activeGuests.map((guest, idx) => (
+                                <div className={`img-guest ${idx === 1 ? 'absolute' : ''} flex justify-center`}>
+                                    <img src={guest} className="" />
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
                 <div className="icon-container flex align-center justify-center guests">
@@ -16,7 +22,7 @@ export function HostStatus({ price, rate, status, guests }) {
                 </div>
             </div>
             <div className="card-container rate round-edge">
-                <div className="flex high justify-end " >
+                <div className="flex high justify-end">
                     <div className="flex space-between column">
                         <h1 className="wide book fw-unset clr1 ">Total Rate</h1>
                         <div className="flex align-center gap10 justify-center align-center">
@@ -32,7 +38,7 @@ export function HostStatus({ price, rate, status, guests }) {
             <div className="card-container price round-edge">
                 <div className="flex high justify-end " >
                     <div className="flex space-between column">
-                        <h1 className="wide book fw-unset clr1 ">Revenue</h1>
+                        <h1 className="wide book fw-unset clr1 ">Month Revenue</h1>
                         <span className="fs32 flex justify-center clr2">${price}</span>
                     </div>
                 </div>

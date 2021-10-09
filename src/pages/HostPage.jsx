@@ -28,8 +28,9 @@ class _HostPage extends Component {
                 Pending: 0,
                 Declined: 0
             },
-            guests: 0
+            activeGuests: []
         }
+
     }
 
     async componentDidMount() {
@@ -40,37 +41,57 @@ class _HostPage extends Component {
         }
         await this.props.onLoadOrders(filter)
         this.onCalcDetails()
-
     }
 
     onCalcDetails = () => {
         const { orders, assets } = this.props
-        let { price, rate, guests } = this.state.hostDetails
+        let hostDetails = {
+            price: 0,
+            rate: 0,
+            status: {
+                Approved: 0,
+                Pending: 0,
+                Declined: 0
+            },
+            activeGuests: []
+        }
 
         if (!orders.length) return
 
-        const status = { Approved: 0, Pending: 0, Declined: 0 }
-        price = orders.reduce((acc, order) => {
-            acc += order.price
-            status[order.status] += 1
-            console.log(acc);
-            return Math.floor(acc / 30)
-        }, 0)
-        rate = assets.reduce((acc, asset) => {
+        orders.reduce((hostDetails, order) => {
+            hostDetails.price += order.price
+            hostDetails.status[order.status] += 1
+            if (order.status === 'Approved') {
+                hostDetails.activeGuests.push(order.buyer.imgUrl)
+            }
+            return hostDetails
+        }, hostDetails)
+
+
+        let rate = assets.reduce((acc, asset) => {
             return acc += asset.rating
         }, 0)
-        rate = (rate / assets.length).toFixed(1)
 
-        this.setState({ hostDetails: { price, rate, status, guests } })
+        hostDetails.price = Math.floor(hostDetails.price / 30)
+        hostDetails.rate = (rate / assets.length).toFixed(1)
+
+
+        this.setState({ hostDetails })
     }
+    onCalcStatus = () => {
+
+    }
+
+
     toggleComponent = (property, currAsset = '') => {
         this.setState({ component: property, currAsset }, () => {
             console.log(this.state);
         })
     }
     render() {
+
         const { user, assets } = this.props
-        const { price, rate, status, guests } = this.state.hostDetails
+        const { price, rate, status, activeGuests } = this.state.hostDetails
         const { isAddAsset, isMyAsset, isOrders, isRates } = this.state.component
         if (!assets) return (<div className="flex align-center justify-center full">
             <Loader
@@ -88,7 +109,7 @@ class _HostPage extends Component {
                     <nav className="nav-bar flex justify-center">
                         <SideNav isAddAsset={isAddAsset} isMyAsset={isMyAsset} isOrders={isOrders} isRates={isRates} toggleComponent={this.toggleComponent} />
                     </nav>
-                    <HostStatus price={price} rate={rate} status={status} guests={guests} />
+                    <HostStatus price={price} rate={rate} status={status} activeGuests={activeGuests} />
                     <div className="stay-details-container">
                         <div className="stay-details">
                             {isAddAsset && <AddStay host={user} currAsset={this.state.currAsset} />}

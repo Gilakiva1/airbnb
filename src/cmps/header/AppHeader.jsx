@@ -121,7 +121,7 @@ class _AppHeader extends React.Component {
     render() {
         const { scrollLoc, isEnter, isShowMenu, isLogIn, isClearSearchBar, isHosting, screenWidth } = this.state
         const { pathname } = this.props.history.location
-        if (screenWidth > 550) {
+        // if (screenWidth > 550) {
 
             return (
                 <header className={`
@@ -159,9 +159,9 @@ class _AppHeader extends React.Component {
                     {/* {pathname !== '/' && isMiniSearchClicked && <SearchBar toggleSearchBar={this.toggleSearchBar} animateClassName={isEnter ? 'scale-up-top-search-bar' : ''} />} */}
                 </header>
             )
-        } else {
-            return <h1></h1>
-        }
+        // } else {
+        //     return <h1></h1>
+        // }
 
     }
 }

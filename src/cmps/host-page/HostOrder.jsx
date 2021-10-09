@@ -35,6 +35,7 @@ class _HostOrder extends Component {
         order.status = value;
         await this.props.onUpdateStatusOrder(order)
         this.props.onCalcDetails()
+
     }
 
     render() {
@@ -43,13 +44,13 @@ class _HostOrder extends Component {
         const { orders } = this.props
         if (!orders.length) return (
             <div className="flex align-center justify-center full">
-            <Loader
-                type="ThreeDots"
-                color='#FF385C'
-                height={100}
-                width={100}
-            />
-        </div>
+                <Loader
+                    type="ThreeDots"
+                    color='#FF385C'
+                    height={100}
+                    width={100}
+                />
+            </div>
         )
         return (
             <table className='host-list'>

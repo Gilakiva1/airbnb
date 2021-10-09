@@ -14,7 +14,7 @@ import { DatePicker } from '../cmps/header/DatePicker.jsx';
 import { onAddOrder, onUpdateOrder, onSetOrder } from '../store/order.action';
 import { ReviewPoints } from '../cmps/stay-details/ReviewPoints.jsx';
 import { ReviewList } from '../cmps/stay-details/ReviewList.jsx';
-// import { MapDetails } from '../cmps/stay-details/MapDetails.jsx';
+import { MapDetails } from '../cmps/stay-details/MapDetails.jsx';
 import { IdentityVerified } from '../cmps/svgs/IdentityVerified.jsx';
 import { userService } from '../services/user.service.js';
 
@@ -93,7 +93,7 @@ class _StayDetails extends Component {
                         </div>
                         <div className="flex gap10">
                             <HeartSvg /> <span className="details-save-share fs14 fh18 medium">Save</span>
-                            <ShareSvg /> <span className="details-save-share fs14 fh18 medium">Share</span> 
+                            <ShareSvg /> <span className="details-save-share fs14 fh18 medium">Share</span>
                         </div>
                     </div>
                     <div className="stay-details-grid ">{stay.imgUrls.slice(0, 5).map((img, idx) => {
@@ -146,10 +146,13 @@ class _StayDetails extends Component {
                     </div >
                     <ReviewPoints reviews={stay.reviews} />
                     <ReviewList reviews={stay.reviews} />
+                   
                     <div className="seperation-line"></div>
                     <h2>Where you'll be</h2>
                     <p>{stay.loc.address}</p>
-                    {/* <MapDetails lat={stay.loc.lat} lng={stay.loc.lng} /> */}
+                    <div className="map-container relative">
+                        <MapDetails lat={stay.loc.lat} lng={stay.loc.lng} />
+                    </div>
                     <div className="seperation-line"></div>
                     <div className="user-header flex  gap10">
                         <img className="user-details-profile-img" src={host.imgUrl} alt="" />
@@ -158,6 +161,7 @@ class _StayDetails extends Component {
                             <span className="fs14 fh18 book clr1">{host.joinDate || 'joined in September 2016'}</span>
                         </div>
                     </div>
+
                     <div className="flex gap10">
                         <div className="fs22 flex gap5">
                             {<FontAwesomeIcon className="star-icon fs16 fh20" icon={faStar} />}

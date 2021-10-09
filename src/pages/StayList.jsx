@@ -15,7 +15,7 @@ class _StayList extends React.Component {
             },
             propertyTypes: [],
             amenities: []
-        },  
+        },
         isOpenFilter: false
 
     }
@@ -24,8 +24,7 @@ class _StayList extends React.Component {
         const searchParams = new URLSearchParams(this.props.location.search);
         const getParms = utilService.getQueryParams(searchParams)
         await this.props.loadStays(getParms)
-        
-        // await this.props.onSetOrder(null)
+
         this.setState({ orderParams: getParms })
     }
 
@@ -66,23 +65,41 @@ class _StayList extends React.Component {
         }
         return true
     }
+    onRandomPhotos = (stays) => {
+
+        stays.map(stay => {
+            for (let i = stay.imgUrls.length - 1; i > 0; i--) {
+                let j = Math.floor(Math.random() * (i + 1));
+                [stay.imgUrls[i], stay.imgUrls[j]] = [stay.imgUrls[j], stay.imgUrls[i]];
+            }
+            return stay
+        })
+        return stays
+
+
+
+    }
+    // function shuffleArray(}) {
+
+    // }
     getStaysForDisplay = () => {
-        let { stays } = this.props   
-        if(!stays.length) return
+        let { stays } = this.props
+        if (!stays.length) return
         const { propertyTypes, price, amenities } = this.state.filterBy
         stays = stays.filter(stay => {
-            console.log('stay.type[0]',stay.type[0]);
+            console.log('stay.type[0]', stay.type[0]);
             const type = stay.type[0].toUpperCase() + stay.type.substring(1)
             return propertyTypes.length ? propertyTypes.includes(type) : true &&
                 amenities.length ? this.checkAmenities(amenities, stay.amenities) : true &&
                 (stay.price >= price.minPrice) &&
             (stay.price <= price.maxPrice)
         })
+        stays = this.onRandomPhotos(stays)
         return stays
     }
 
     render() {
-        const stays = this.getStaysForDisplay() 
+        const stays = this.getStaysForDisplay()
         const { orderParams } = this.state
         if (!orderParams) return <div>loading...</div>
         return (

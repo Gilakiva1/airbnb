@@ -115,7 +115,6 @@ export class _OrderModal extends React.Component {
 
 
     createFinalOrder = () => {
-        debugger
         const { currOrder, stay, user } = this.props
         const finalOrder = {
             _id: currOrder._id || null,

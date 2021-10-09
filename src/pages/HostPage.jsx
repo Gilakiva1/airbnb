@@ -115,7 +115,7 @@ class _HostPage extends Component {
                                 {isAddAsset && <AddStay host={user} currAsset={this.state.currAsset} />}
                                 {isMyAsset && <HostList toggleComponent={this.toggleComponent} assets={assets} />}
                                 {isOrders && <HostOrder onCalcDetails={this.onCalcDetails} />}
-                                {isRates && <div>Rates</div>}
+                                {isRates && <RateHost assets={assets}/>}
                             </div>
                         </div>}
                     {!assets.length &&

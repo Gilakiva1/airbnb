@@ -156,6 +156,7 @@ export class _SearchBar extends React.Component {
     const { isPickingGuests, isPickingDates, isPickingLocation, criteria } = this.state
     const { animateClassName } = this.props
     const { checkIn, checkOut, address } = criteria
+    if (this.props.location.pathname==='/host') return null
     return (
       <section className={`flex column align-center search-bar-main-container ${animateClassName}`}>
         <div>

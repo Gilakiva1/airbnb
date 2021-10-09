@@ -16,7 +16,7 @@ export class _HomePage extends React.Component {
     state = {
         popularImgs: '',
         labelsImgs: '',
-        screenWidth: ''
+        screenWidth: 600
     }
     componentDidMount() {
         window.addEventListener('resize', this.onResizeScreen)

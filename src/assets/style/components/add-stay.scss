@@ -12,16 +12,13 @@
             z-index: 5;
             background: aliceblue;
         }
-        .f-black{
+        .f-black {
             color: $clr2;
         }
-        .f-white{
+        .f-white {
             color: white;
             opacity: 0;
-           
         }
-     
-        
 
         div:not(:first-child) {
             height: 175px;
@@ -29,22 +26,29 @@
         .grid-img {
             width: 100%;
             background-color: #fff;
-            &:hover{
+
+            img {
+                z-index: 10;
+            }
+            &:hover {
                 filter: brightness(0.85);
                 transition: 0.5s;
-                .f-white{
+                .f-white {
                     opacity: 1;
                 }
-               
             }
-           
+        }
+
+        input {
+            font-family: airbnb-cereal-book;
+            font-size: 1rem;
         }
 
         .grid-img0 {
             border-radius: 5px 0 0 5px;
             grid-row: 1/-1;
             grid-column: 1;
-            img{
+            img {
                 border-radius: 5px 0 0 5px;
             }
             height: 360px;
@@ -57,9 +61,8 @@
             grid-row: 1;
             grid-column: 3;
             border-radius: 0 8px 0 0;
-            img{
+            img {
                 border-radius: 0 8px 0 0;
-
             }
         }
         .grid-img3 {
@@ -69,9 +72,8 @@
         .grid-img4 {
             grid-row: 2;
             grid-column: 3;
-            img{
+            img {
                 border-radius: 0 0 8px 0;
-
             }
         }
     }
@@ -99,10 +101,6 @@
         padding: 7px;
         margin: 1px;
         border-radius: 5px;
-        -webkit-transition: all 0.3s ease-in-out;
-        -moz-transition: all 0.3s ease-in-out;
-        -ms-transition: all 0.3s ease-in-out;
-        -o-transition: all 0.3s ease-in-out;
         outline: none;
         &:focus {
             box-shadow: 0 0 2px #030303;
@@ -114,5 +112,27 @@
         resize: none;
         padding: 30 px;
     }
-}
 
+    .add-stay-save {
+        margin-top: 10px;
+        width: 200px;
+        height: 45px;
+        border-radius: 8px;
+        border: none;
+        color: $clr4;
+        background-image: radial-gradient(
+            circle at center,
+            #ff385c 0%,
+            #e61e4d 27.5%,
+            #e31c5f 40%,
+            #d70466 57.5%,
+            #bd1e59 75%,
+            #bd1e59 100%
+        );
+        background-position: calc((100 - var(--mouse-x, 0)) * 1%) calc((100 - var(--mouse-y, 0)) * 1%);
+        background-size: 150% 150%;
+        & span:hover {
+            text-decoration: underline;
+        }
+    }
+}

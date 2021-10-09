@@ -103,7 +103,7 @@ export class LabelFilter extends Component {
                             if (type.isChecked) acc.push(type.name)
                             return acc
                         }, []), key)}>Save</button>
-                    <button className="btn" >Clear (not-working)</button>
+                    <button className="btn" >Clear</button>
                 </div>
 
             </div>

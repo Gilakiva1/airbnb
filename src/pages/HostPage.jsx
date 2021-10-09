@@ -8,6 +8,7 @@ import { AddStay } from '../cmps/host-page/AddStay';
 import { CardList } from '../cmps/host-page/CardList'
 import { onLoadOrders } from "../store/order.action";
 import { HostStatus } from "../cmps/host-page/HostStatus";
+import { RateHost } from "../cmps/host-page/rateHost";
 import Loader from "react-loader-spinner";
 
 class _HostPage extends Component {
@@ -84,9 +85,7 @@ class _HostPage extends Component {
 
 
     toggleComponent = (property, currAsset = '') => {
-        this.setState({ component: property, currAsset }, () => {
-            console.log(this.state);
-        })
+        this.setState({ component: property, currAsset })
     }
     render() {
 
@@ -121,7 +120,7 @@ class _HostPage extends Component {
                         </div>}
                     {!assets.length &&
                         <div className="create-asset">
-                           
+                           <h1>need to add func !</h1>
                         </div>
                     }
 
@@ -132,7 +131,6 @@ class _HostPage extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log(state);
     return {
         assets: state.hostReducer.assets,
         user: state.userReducer.loggedInUser,

@@ -23,13 +23,19 @@ class _StayDetails extends Component {
 
     state = {
         stay: null,
-        host: null
+        host: null,
+        reviews: 0,
+        beds: 0,
+        baths: 0
     };
 
     async componentDidMount() {
+        const reviews = utilService.getRandomIntInclusive(30, 500)
+        const beds = utilService.getRandomIntInclusive(2, 6)
+        const baths = utilService.getRandomIntInclusive(1, 5)
         await this.loadStay()
         const host = await userService.getById(this.state.stay.host)
-        this.setState({ host })
+        this.setState({ host, reviews, beds, baths })
     }
 
     loadStay = async () => {
@@ -72,19 +78,19 @@ class _StayDetails extends Component {
 
 
     render() {
-        const { stay, host } = this.state
+        const { stay, host, reviews, baths, beds } = this.state
         const { currOrder } = this.props
 
 
         if (!stay || !currOrder || !host) return (
-        <div className="flex align-center justify-center full">
-            <Loader
-                type="ThreeDots"
-                color='#FF385C'
-                height={100}
-                width={100}
-            />
-        </div>)
+            <div className="flex align-center justify-center full">
+                <Loader
+                    type="ThreeDots"
+                    color='#FF385C'
+                    height={100}
+                    width={100}
+                />
+            </div>)
         return (
             <>
                 <section className="stay-details-container">
@@ -94,7 +100,7 @@ class _StayDetails extends Component {
                             <div className="flex gap5">
                                 {<FontAwesomeIcon className='star-icon' icon={faStar} />}
                                 <span>{stay.rating}</span><span></span>
-                                ({utilService.getRandomIntInclusive(30, 500)} reviews) ·<span> </span>
+                                ({reviews} reviews) ·<span> </span>
                             </div>
                             <div>{stay.loc.address}</div>
                         </div>
@@ -111,7 +117,7 @@ class _StayDetails extends Component {
                             <div className="flex space-between">
                                 <div className=" flex column space-between">
                                     <h2>Entire {stay.type} hosted by {host.fullname}</h2>
-                                    <div className="flex">{stay.capacity} guests · {stay.type} ·  {utilService.getRandomIntInclusive(2, 6)} beds · {utilService.getRandomIntInclusive(1, 5)} baths </div>
+                                    <div className="flex">{stay.capacity} guests · {stay.type} ·  {beds} beds · {baths} baths </div>
                                 </div>
                                 <div ><img className="user-profile-img" src={host.imgUrl} alt="" /></div>
                             </div>

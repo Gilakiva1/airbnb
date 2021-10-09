@@ -61,7 +61,7 @@ class _AppFooter extends React.Component {
         const { pathname } = this.props.history.location
         const { staysTopRated, staysNearby, screenWidth } = this.state
         const makeQueryParams = this.makeQueryParams
-        if (!staysTopRated) return (
+        if (!staysTopRated.length) return (
             <div className="flex align-center justify-center full">
                 <Loader
                     type="ThreeDots"

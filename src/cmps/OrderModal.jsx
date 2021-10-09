@@ -59,21 +59,23 @@ export class _OrderModal extends React.Component {
     }
 
     closeInputs = () => {
-        let { isPickingGuests, isPickingDates } = this.state
+        let { isPickingGuests, isPickingDates, isReserve } = this.state
         if (!isPickingGuests && !isPickingDates) return
         isPickingGuests = false
         isPickingDates = false
-        this.setState({ isPickingGuests, isPickingDates })
+        this.setState(prevState => ({ ...prevState, isPickingGuests, isPickingDates }))
+        // this.setState({ isPickingGuests, isPickingDates, isReserve })
     }
 
     activeInput = (input) => {
         this.closeInputs()
+        const {isReserve} = this.state
         switch (input) {
             case 'guest':
-                this.setState({ isPickingGuests: true })
+                this.setState({ isPickingGuests: true,isReserve:false })
                 break;
             case 'date':
-                this.setState({ isPickingDates: true })
+                this.setState({ isPickingDates: true,isReserve:false })
                 break;
         }
     }
@@ -142,6 +144,7 @@ export class _OrderModal extends React.Component {
         return finalOrder
     }
     onSubmit = async (ev) => {
+        ev.stopPropagation()
         ev.preventDefault()
         const { user, order } = this.props
         if (!user) {
@@ -155,7 +158,7 @@ export class _OrderModal extends React.Component {
         const { isReserve } = this.state
         if (!isReserve) {
             ev.target.type = 'submit' //?
-            this.setState({ isReserve: true })
+            this.setState({ isReserve: true , isPickingGuests:false,isPickingDates:false})
         }
         else {
 
@@ -179,13 +182,13 @@ export class _OrderModal extends React.Component {
         const { stay, currOrder } = this.props
         if (!currOrder) return (
             <div className="flex align-center justify-center order-modal">
-            <Loader
-                type="ThreeDots"
-                color='#FF385C'
-                height={100}
-                width={100}
-            />
-        </div>
+                <Loader
+                    type="ThreeDots"
+                    color='#FF385C'
+                    height={100}
+                    width={100}
+                />
+            </div>
         )
         return (
             <div className="order-modal">

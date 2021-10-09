@@ -6,6 +6,7 @@ import { Calendar } from 'react-date-range';
 import { addDays } from 'date-fns';
 
 export const DatePicker = ({ order, handlePickingDates, preventPropagation, className = '' }) => {
+    
     const [dateState, setDateState] = useState([
  
         {

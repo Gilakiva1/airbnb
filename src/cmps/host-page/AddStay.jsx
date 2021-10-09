@@ -1,8 +1,9 @@
-import { Component } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import { addAsset, loadAssets } from '../../store/host.action'
 import { CloudService } from '../../services/cloudinary-service'
+import reactDom from 'react-dom'
 
 class _AddStay extends Component {
 
@@ -39,8 +40,10 @@ class _AddStay extends Component {
         amenitiesType: ['TV', 'Wifi', 'Air conditioning', 'Smoking allowed', 'Pets allowed', 'Cooking basics', 'Kitchen', 'Washer', 'Dryer', 'Hair dryer', 'Crib'],
         tagType: ['entire to yourself', 'enhanced clean', 'self check-in', 'free cancellation'],
         isEdit: false
-
     }
+
+    inputRef = React.createRef(null)
+
     componentDidMount() {
         if (this.props.currAsset) {
             this.editAsset()
@@ -126,7 +129,7 @@ class _AddStay extends Component {
 
     onAddStay = async (ev) => {
         ev.preventDefault()
-        const { asset, isEdit } = this.state
+        const { asset } = this.state
         const { amenities, tags } = asset
         let { imgUrls } = asset
         imgUrls = imgUrls.filter(img => img !== '')
@@ -138,19 +141,27 @@ class _AddStay extends Component {
 
     }
 
+    onSetColor = (ev) => {
+        let x = ev.clientX
+        let y = ev.clientY
+        this.inputRef.current.style.setProperty('--mouse-x', x)
+        this.inputRef.current.style.setProperty('--mouse-y', y)
+    }
+
+
     render() {
         const { asset } = this.state
-        const { imgUrls, amenities } = asset
+        const { imgUrls } = asset
         const { propertyType, amenitiesType, tagType, isEdit } = this.state
         return (
             <section className='add-stay-continer'>
                 <form >
-                    <div className="flex gap10 wrap">
+                    <h1>Start hosting at your place!</h1>
+                    <div className="flex gap30 align-center">
                         <label className="flex column wrap">
-                            Stay Name
+                            Asset Name
                             <input onChange={this.handleChange} name='name' type='text' value={asset.name} />
                         </label>
-                        <div className="flex gap10 wrap">
                             <label className="flex column">
                                 Country
                                 <input onChange={this.handleChangeLoc} name='country' type='text' value={asset.loc.country} />
@@ -159,7 +170,6 @@ class _AddStay extends Component {
                                 City
                                 <input onChange={this.handleChangeLoc} name='city' type='text' value={asset.loc.city} />
                             </label>
-                        </div>
                     </div>
                     <div className="add-stay-grid">
                         {imgUrls.map((src, idx) => (
@@ -168,20 +178,25 @@ class _AddStay extends Component {
                                     <input onChange={this.onUploadImg} className={`img${idx}`} type='file' accept='img/*' className='img-upload-btn' id='imgUpload' />
                                     Upload Image
                                 </label>
+                                {console.log(src)}
                                 {src && <img src={src} alt='add image' />}
                             </div>
                         ))
                         }
                     </div>
-                    <div className="flex wrap gap15">
+                    <div className="flex gap30 align-center">
                         <label className="flex column" >
                             Capacity
                             <input onChange={this.handleChange} value={asset.capacity} name='capacity' type='number' />
                         </label>
                         <label htmlFor="type" className="flex column">
                             PropertyType
-                            {/* <input onChange={this.handleChange} name='type' type='text' /> */}
-                            <select id="type" name="type" value={asset.type} onChange={this.handleChange}>
+                            <select 
+                            id="type"
+                             name="type" 
+                             style={{width:'190px'}}
+                             value={asset.type}
+                              onChange={this.handleChange}>
                                 {
                                     propertyType.map((type, idx) => {
                                         return <option key={idx} value={type}>{type}</option>
@@ -194,12 +209,12 @@ class _AddStay extends Component {
                             <input onChange={this.handleChange} name='price' value={asset.price} type='number' />
                         </label>
                     </div>
-                    <div className="flex gap30 wrap">
+                    <div className="flex gap30 column margin-top20">
                         <div className="flex column gap5 wrap">
                             <span className="fs20 medium fw-unset ">Amenities</span>
                             {amenitiesType.map((amenitie, idx) => (
-                                <label key={idx}>
-                                    <input type="checkbox" name={amenitie} value={amenitie}
+                                <label style={{width:'200px'}} key={idx}>
+                                    <input  type="checkbox" name={amenitie} value={amenitie}
                                         onChange={this.saveCheckedAmenities} checked={this.isChecked('amenities', amenitie)}
                                     />
                                     {amenitie}
@@ -211,8 +226,8 @@ class _AddStay extends Component {
                             <span className="fs20 medium fw-unset ">Tags</span>
 
                             {tagType.map((tag, idx) => (
-                                <label key={idx}>
-                                    <input type="checkbox" name={tag} value={tag} checked={this.isChecked('tags', tag)}
+                                <label style={{width:'200px'}} key={idx} >
+                                    <input  type="checkbox" name={tag} value={tag} checked={this.isChecked('tags', tag)}
                                         onChange={this.saveCheckedTags}
                                     />
                                     {tag}
@@ -220,10 +235,17 @@ class _AddStay extends Component {
                             ))}
                         </div>
                     </div>
-                    <div className="description flex column " >
-                        <textarea onChange={this.handleChange} type="text" name="description" autoComplete="off" value={asset.description}  ></textarea>
+                    <div className="description flex column margin-top20" >
+                        <textarea 
+                        onChange={this.handleChange} 
+                        type="text"
+                         name="description" 
+                         autoComplete="off" 
+                         value={asset.description}
+                         style={{height:'200px', fontFamily:'airbnb-cereal-book', fontSize:'1rem'}}
+                         ></textarea>
                     </div>
-                    <button onClick={this.onAddStay}>Save</button>
+                    <button onMouseMove={this.onSetColor} ref={this.inputRef} className="add-stay-save " onClick={this.onAddStay}>Save</button>
                 </form>
             </section>
         )

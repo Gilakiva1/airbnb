@@ -10,6 +10,7 @@ import { onLoadOrders } from "../store/order.action";
 import { HostStatus } from "../cmps/host-page/HostStatus";
 import { RateHost } from "../cmps/host-page/rateHost";
 import Loader from "react-loader-spinner";
+import { userService } from "../services/user.service";
 
 class _HostPage extends Component {
     state = {
@@ -35,6 +36,9 @@ class _HostPage extends Component {
     }
 
     async componentDidMount() {
+        if (!userService.getLoggedinUser()) {
+            return this.props.history.push('/')
+        }
         await this.props.loadAssets(this.props.user._id) // for develop right now user has assets
         const filter = {
             type: 'host',
@@ -115,12 +119,12 @@ class _HostPage extends Component {
                                 {isAddAsset && <AddStay host={user} currAsset={this.state.currAsset} />}
                                 {isMyAsset && <HostList toggleComponent={this.toggleComponent} assets={assets} />}
                                 {isOrders && <HostOrder onCalcDetails={this.onCalcDetails} />}
-                                {isRates && <RateHost assets={assets}/>}
+                                {isRates && <RateHost assets={assets} />}
                             </div>
                         </div>}
                     {!assets.length &&
                         <div className="create-asset">
-                           <h1>need to add func !</h1>
+                            <h1>need to add func !</h1>
                         </div>
                     }
 

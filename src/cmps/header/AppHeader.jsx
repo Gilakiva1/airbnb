@@ -29,6 +29,7 @@ class _AppHeader extends React.Component {
     }
 
     componentDidMount() {
+      
         window.addEventListener('scroll', this.onToggleHeader)
         window.addEventListener('click', this.onCloseMenu)
         window.addEventListener('resize', this.onResizeScreen)
@@ -39,6 +40,7 @@ class _AppHeader extends React.Component {
     }
 
     componentDidUpdate() {
+
         const { isEnter, scrollLoc } = this.state
         if (isEnter && this.props.history.location.pathname !== '/' && !scrollLoc) {
             this.setState({ isEnter: false })

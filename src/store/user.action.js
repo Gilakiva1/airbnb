@@ -38,7 +38,6 @@ export function onSetUser(userDetails) {
 }
 
 export function onLogout() {
-    debugger
     try {
         return async dispatch => {
             await userService.logout()

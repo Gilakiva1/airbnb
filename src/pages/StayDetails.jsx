@@ -36,7 +36,6 @@ class _StayDetails extends Component {
 
         await this.loadStay()
         console.log(this.state.stay.host);
-        debugger
         const host = await userService.getById(this.state.stay.host)
         console.log('host', host);
         this.setState({ host, reviews, beds, baths })
@@ -161,7 +160,7 @@ class _StayDetails extends Component {
                                 <span>·</span>{utilService.getRandomIntInclusive(30, 500)} reviews
                             </div>
                         </div >
-                        {/* <OrderModal stay={stay} order={currOrder} /> */}
+                        <OrderModal stay={stay} order={currOrder} />
                     </div >
                     <ReviewPoints reviews={stay.reviews} />
                     <ReviewList reviews={stay.reviews} />

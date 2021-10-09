@@ -10,7 +10,7 @@ export function HostStatus({ price, rate, status, activeGuests }) {
                         <h1 className="wide book fw-unset clr1 flex justify-end">Active Guests</h1>
                         <div className="img-guest-container relative flex justify-end">
                             {activeGuests.map((guest, idx) => (
-                                <div key={idx} className={`img-guest ${idx === 1 ? 'absolute' : ''} flex justify-center`}>
+                                <div key={idx} className={`img-guest ${idx > 0 ? 'absolute ' : ''}flex justify-center`}>
                                     <img src={guest} className="" />
                                 </div>
                             ))}

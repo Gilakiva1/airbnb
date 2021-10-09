@@ -7,7 +7,7 @@ import { utilService } from "../services/util.service";
 
 export function StayPreview({ stay, orderParams }) {
     const queryString = utilService.makeQueryParams(orderParams)
-
+console.log(queryString);
     return (
         <Link className="link-detail" to={`/stay/${stay._id}?${queryString}`}>
             <div className="stay-container">

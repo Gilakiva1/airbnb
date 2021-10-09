@@ -758,7 +758,7 @@ const reviewsData = [{
     The flat has all that one needs, including an espresso machine, big screen TV (for the kids) and a reliable WiFi connection.
     Recommended!`,
     by: {
-        fullname: 'Nora Jhones',
+        fullname: 'Nora Johnes',
         imgUrl: "https://a0.muscache.com/im/pictures/user/5d884620-0895-47d5-bab3-0fc850714190.jpg?im_w=240",
     },
     date: ' August 2018'

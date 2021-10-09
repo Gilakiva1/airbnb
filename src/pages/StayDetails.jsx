@@ -5,7 +5,6 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { ShareSvg } from '../assets/img/stay-details/ShareSvg.jsx';
 import { HeartSvg } from '../assets/img/stay-details/HeartSvg.jsx';
 import { utilService } from '../services/util.service.js';
-import imgUser from '../assets/img/home-page/user.jpg'
 import { Tags } from '../cmps/stay-details/Tags.jsx';
 import { OrderModal } from '../cmps/OrderModal.jsx';
 import { stayService } from '../services/stay.service.js';
@@ -17,6 +16,7 @@ import { ReviewList } from '../cmps/stay-details/ReviewList.jsx';
 import { MapDetails } from '../cmps/stay-details/MapDetails.jsx';
 import { IdentityVerified } from '../cmps/svgs/IdentityVerified.jsx';
 import { userService } from '../services/user.service.js';
+import Loader from "react-loader-spinner";
 
 
 class _StayDetails extends Component {
@@ -26,10 +26,10 @@ class _StayDetails extends Component {
         host: null
     };
 
-   async componentDidMount() {
+    async componentDidMount() {
         await this.loadStay()
-      const host = await userService.getById(this.state.stay.host)
-      this.setState({host})
+        const host = await userService.getById(this.state.stay.host)
+        this.setState({ host })
     }
 
     loadStay = async () => {
@@ -76,7 +76,15 @@ class _StayDetails extends Component {
         const { currOrder } = this.props
 
 
-        if (!stay || !currOrder || !host) return <div>Loading...</div>
+        if (!stay || !currOrder || !host) return (
+        <div className="flex align-center justify-center full">
+            <Loader
+                type="ThreeDots"
+                color='#FF385C'
+                height={100}
+                width={100}
+            />
+        </div>)
         return (
             <>
                 <section className="stay-details-container">
@@ -145,7 +153,7 @@ class _StayDetails extends Component {
                     </div >
                     <ReviewPoints reviews={stay.reviews} />
                     <ReviewList reviews={stay.reviews} />
-                   
+
                     <div className="seperation-line"></div>
                     <h2>Where you'll be</h2>
                     <p>{stay.loc.address}</p>

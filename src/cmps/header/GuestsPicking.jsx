@@ -3,6 +3,7 @@ import { connect } from "react-redux"
 import { withRouter } from "react-router"
 import { Plus } from "../svgs/Plus"
 import { Minus } from "../svgs/Minus"
+import Loader from "react-loader-spinner";
 
 export class _GuestsPicking extends React.Component {
 
@@ -77,7 +78,16 @@ export class _GuestsPicking extends React.Component {
     }
     render() {
         const { adult, child, infant } = this.state
-        if (adult === null) return 'loading...'
+        if (adult === null) return (
+            <div className="flex align-center justify-center full">
+            <Loader
+                type="ThreeDots"
+                color='#FF385C'
+                height={100}
+                width={100}
+            />
+        </div>
+        )
         return (
             <section className="guests-container flex column" onClick={this.preventPropagation} >
                 <div className="guest-card flex">

@@ -7,6 +7,7 @@ import { utilService } from '../../services/util.service'
 import { GuestsPicking } from './GuestsPicking.jsx'
 import { onSetOrder } from '../../store/order.action';
 import { Search } from '../svgs/Search.jsx'
+import { LocationPicking } from './LocationPicking.jsx'
 
 
 export class _SearchBar extends React.Component {
@@ -24,6 +25,7 @@ export class _SearchBar extends React.Component {
     },
     isPickingGuests: false,
     isPickingDates: false,
+    isPickingLocation: false,
     isInsideHeader: true,
     dateFormat: null,
     tempName: false
@@ -63,6 +65,7 @@ export class _SearchBar extends React.Component {
       },
       isPickingGuests: false,
       isPickingDates: false,
+      isPickingLocation: false,
       isInsideHeader: true,
       dateFormat: null
     })
@@ -105,7 +108,7 @@ export class _SearchBar extends React.Component {
 
   }
 
-  activeInput = (input) => {
+  activeInput = (input,loc) => {
     this.closeInputs()
     switch (input) {
       case 'guest':
@@ -113,6 +116,10 @@ export class _SearchBar extends React.Component {
         break;
       case 'date':
         this.setState({ isPickingDates: true })
+        break;
+      case 'location':
+        loc.focus()
+        this.setState({ isPickingLocation: true })
         break;
     }
   }
@@ -132,14 +139,21 @@ export class _SearchBar extends React.Component {
   }
 
   closeInputs = () => {
-    let { isPickingGuests, isPickingDates } = this.state
+    let { isPickingGuests, isPickingDates, isPickingLocation } = this.state
     isPickingGuests = false
     isPickingDates = false
-    this.setState({ isPickingGuests, isPickingDates })
+    isPickingLocation = false
+    this.setState({ isPickingGuests, isPickingDates, isPickingLocation })
   }
 
+  onLocationClick = async (order) => {
+    const queryString = utilService.makeQueryParams(order)
+    await this.props.onSetOrder(order)
+    this.props.history.push(`/stay?${queryString}`)
+}
+
   render() {
-    const { isPickingGuests, isPickingDates, criteria } = this.state
+    const { isPickingGuests, isPickingDates, isPickingLocation, criteria } = this.state
     const { animateClassName } = this.props
     const { checkIn, checkOut, address } = criteria
     return (
@@ -147,7 +161,7 @@ export class _SearchBar extends React.Component {
         <div>
           <div className="flex column margin-top20">
             <form className="search-bar-container flex" onClick={this.preventPropagation} onSubmit={this.onSubmit}>
-              <div className="input-container flex column" onClick={() => this.inputRef.current.focus()} >
+              <div className="input-container flex column" onClick={() => this.activeInput('location',this.inputRef.current)} >
                 <span>Location:</span>
                 <input
                   ref={this.inputRef}
@@ -204,10 +218,11 @@ export class _SearchBar extends React.Component {
                   onChange={this.handleChange}
                 />
               </div>
-              <button className="search-bar-submit flex ">{<Search style={{height:'20px', width: '20px'}} />}</button>
+              <button className="search-bar-submit flex ">{<Search style={{ height: '20px', width: '20px' }} />}</button>
+            <div className={isPickingGuests ? "picking-guest-container" : "none"}> {isPickingGuests && <GuestsPicking handleGuestsChanege={this.handleGuestsChanege} />} </div>
+            <div className={isPickingDates ? "picking-dates-container" : "none"}> {isPickingDates && <DatePicker order={{}} preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />} </div>
+            <div className={isPickingLocation ? "picking-location-container" : "none"}> {isPickingLocation && <LocationPicking  onImgClick={this.onLocationClick} links={utilService.HomePageImgPopular()} />} </div>
             </form>
-            <div className={isPickingGuests ? "picking-guest-container" : "picking-guest-container none"}> {isPickingGuests && <GuestsPicking handleGuestsChanege={this.handleGuestsChanege} />} </div>
-            <div className={isPickingDates ? "picking-dates-container" : "checkin-container none"}> {isPickingDates && <DatePicker order={{}} preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />} </div>
           </div>
         </div>
       </section>

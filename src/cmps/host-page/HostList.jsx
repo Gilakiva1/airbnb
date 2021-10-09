@@ -78,7 +78,6 @@ export class HostList extends Component {
         const { isOnPrice } = this.state.sortPrice
         const { isOnType } = this.state.sortType
         const assets = this.getAssetsForDisplay()
-        console.log('assets',);
         return (
             <table className="host-list">
                 <thead>

@@ -5,6 +5,7 @@ const _UserMsg = ({ msg }) => {
     const msgForDispaly = <div className={`user-msg ${msg?.type}`}>
         <h3>{msg?.txt}</h3>
     </div>
+    if (!msg) return null
     return (
         msg && msg.type === 'new-order' ? <Link to="/host">{msgForDispaly}</Link> : msgForDispaly
     )

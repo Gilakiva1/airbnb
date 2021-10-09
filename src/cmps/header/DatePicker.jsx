@@ -7,7 +7,6 @@ import { addDays } from 'date-fns';
 
 export const DatePicker = ({ order, handlePickingDates, preventPropagation, className = '' }) => {
     
-    // const to
     const [dateState, setDateState] = useState([
  
         {

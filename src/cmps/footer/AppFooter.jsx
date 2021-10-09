@@ -8,16 +8,25 @@ export class AppFooter extends React.Component {
 
     state = {
         staysTopRated: [],
-        staysNearby: []
+        staysNearby: [],
+        screenWidth: ''
     }
 
     async componentDidMount() {
+        window.addEventListener('resize', this.onResizeScreen)
         let { staysTopRated, staysNearby } = this.state
         staysTopRated = await this.getTopRated()
         staysNearby = await this.getNearby()
         this.setState({ staysTopRated, staysNearby })
     }
 
+    componentWillUnmount(){
+        window.addEventListener('resize', this.onResizeScreen)
+    }
+
+    onResizeScreen = ({ target }) => {
+        this.setState(prevState => ({ ...prevState, screenWidth: target.innerWidth }));
+    }
 
     makeQueryParams = (city) => {
         const order = { address: city }
@@ -48,7 +57,8 @@ export class AppFooter extends React.Component {
 
     render() {
         // debugger
-        const { staysTopRated, staysNearby } = this.state
+
+        const { staysTopRated, staysNearby, screenWidth } = this.state
         const makeQueryParams = this.makeQueryParams
         if (!staysTopRated.length) return (
             <div className="flex align-center justify-center full">
@@ -60,7 +70,7 @@ export class AppFooter extends React.Component {
                 />
             </div>
         )
-        if (window.innerWidth > 550) {
+        if (screenWidth > 550) {
             return (
                 <div className="footer-container full">
                     <footer className="main-footer main-container-home">

@@ -25,14 +25,16 @@ class _AppHeader extends React.Component {
         closeSearchBarInputs: false,
         isClearSearchBar: false,
         isHosting: false,
+        screenWidth: ''
     }
 
     componentDidMount() {
         window.addEventListener('scroll', this.onToggleHeader)
         window.addEventListener('click', this.onCloseMenu)
+        window.addEventListener('resize', this.onResizeScreen)
         socketService.setup()
         socketService.on('on-new-order', () => {
-            this.props.onSetMsg({ type: 'new-order', txt: 'New order recived' })
+            this.props.onSetMsg({ type: 'new-order', txt: 'New order recived!' })
         })
     }
 
@@ -45,11 +47,13 @@ class _AppHeader extends React.Component {
             this.setState({ isEnter: true })
         }
     }
-
-
     componentWillUnmount() {
         window.removeEventListener('scroll', this.onToggleHeader)
         window.removeEventListener('click', this.onCloseMenu)
+        window.removeEventListener('resize', this.onResizeScreen)
+    }
+    onResizeScreen = ({ target }) => {
+        this.setState(prevState => ({ ...prevState, screenWidth: target.innerWidth }));
     }
 
 
@@ -115,45 +119,49 @@ class _AppHeader extends React.Component {
 
 
     render() {
-        const { scrollLoc, isEnter, isShowMenu, isLogIn, isClearSearchBar, isHosting } = this.state
+        const { scrollLoc, isEnter, isShowMenu, isLogIn, isClearSearchBar, isHosting, screenWidth } = this.state
         const { pathname } = this.props.history.location
+        // if (screenWidth > 550) {
 
-        return (
-            <header className={`
-            ${scrollLoc > 40 ? 'white shadow' : ''}
-            ${pathname === '/' || pathname == '/stay' || pathname === '/host' || pathname === '/trip' ? 'fixed home main-container-home' : 'sticky-color main-container'}
-            ${pathname ==='/host' ? 'relative':'' }
-            ${pathname !== '/' ? 'shadow' : ''} header-container `}>
-                <div className="header-func flex">
-                    <div className="logo-container flex align-center pointer" onClick={this.backToHome}>
-                        <button className="btn-logo border-none"><LogoSvg className={`${(pathname === '/' && scrollLoc > 40) || pathname !== '/' ? 'logo-pink' : 'logo-white'} `} /></button>
-                        <h3 className={`logo-txt fs22 medium ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-pink'}`}>Home Away</h3>
-                    </div>
-                    <nav className="nav-header">
-                        <div className="nav-header flex align-center">
-                            <NavLink onClick={this.hideHost} className={`link-host border-round fs14 medium  ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-black hover-bcg'}`} to={`/stay`} >Explore</NavLink>
-                            {pathname !== '/host' && <NavLink onClick={this.onToggleUser} className={`link-host border-round fs14 medium  ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-black hover-bcg'}`} to={isHosting ? '/' : '/host'} >become a host</NavLink>}
-                            <div className="menu-container border-round">
-                                <div className="menu-container">
-                                    <button onClick={this.onToggoleMenu} className="menu-btn border-round flex align-center">
-                                        <div className="menu-details flex align-center">
-                                            <FontAwesomeIcon className="hamburger-menu" icon={faBars} />
-                                            <img src={this.getUserImg() || user1} alt="" className="user-img border-round" />
-                                        </div>
-                                    </button>
+            return (
+                <header className={`
+                ${scrollLoc > 40 ? 'white shadow' : ''}
+                ${pathname === '/' || pathname == '/stay' || pathname === '/host' || pathname === '/trip' ? 'fixed home main-container-home' : 'sticky-color main-container'}
+                ${pathname === '/host' ? 'relative' : ''}
+                ${pathname !== '/' ? 'shadow' : ''} header-container `}>
+                    <div className="header-func flex">
+                        <div className="logo-container flex align-center pointer" onClick={this.backToHome}>
+                            <button className="btn-logo border-none"><LogoSvg className={`${(pathname === '/' && scrollLoc > 40) || pathname !== '/' ? 'logo-pink' : 'logo-white'} `} /></button>
+                            <h3 className={`logo-txt fs22 medium ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-pink'}`}>Home Away</h3>
+                        </div>
+                        <nav className="nav-header">
+                            <div className="nav-header flex align-center">
+                                <NavLink onClick={this.hideHost} className={`link-host border-round fs14 medium  ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-black hover-bcg'}`} to={`/stay`} >Explore</NavLink>
+                                {pathname !== '/host' && <NavLink onClick={this.onToggleUser} className={`link-host border-round fs14 medium  ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-black hover-bcg'}`} to={isHosting ? '/' : '/host'} >become a host</NavLink>}
+                                <div className="menu-container border-round">
+                                    <div className="menu-container">
+                                        <button onClick={this.onToggoleMenu} className="menu-btn border-round flex align-center">
+                                            <div className="menu-details flex align-center">
+                                                <FontAwesomeIcon className="hamburger-menu" icon={faBars} />
+                                                <img src={this.getUserImg() || user1} alt="" className="user-img border-round" />
+                                            </div>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        {isShowMenu && <MenuBar toggleLogIn={this.toggleLogIn} onCloseMenu={this.onCloseMenu} />}
-                        {isLogIn && <LogIn toggleLogIn={this.toggleLogIn} />}
-                    </nav>
-                </div>
-                {pathname !== '/host' && < MiniSearchBar toggleSearchBar={this.toggleSearchBar} animateClassName={isEnter ? '' : 'scale-up-top-mini-search-bar'} />}
-                {/* {pathname !== '/' && !isMiniSearchClicked && <MiniSearchBar toggleSearchBar={this.toggleSearchBar} animateClassName={isEnter ? '' : 'scale-up-top-mini-search-bar'} />} */}
-                <SearchBar setClearSearchBar={this.setClearSearchBar} isClearSearchBar={isClearSearchBar} closeSearchBarInputs={this.closeSearchBarInputs} toggleSearchBar={this.toggleSearchBar} animateClassName={isEnter ? 'scale-up-top-search-bar' : ''} />
-                {/* {pathname !== '/' && isMiniSearchClicked && <SearchBar toggleSearchBar={this.toggleSearchBar} animateClassName={isEnter ? 'scale-up-top-search-bar' : ''} />} */}
-            </header>
-        )
+                            {isShowMenu && <MenuBar toggleLogIn={this.toggleLogIn} onCloseMenu={this.onCloseMenu} />}
+                            {isLogIn && <LogIn toggleLogIn={this.toggleLogIn} />}
+                        </nav>
+                    </div>
+                    {pathname !== '/host' && < MiniSearchBar toggleSearchBar={this.toggleSearchBar} animateClassName={isEnter ? '' : 'scale-up-top-mini-search-bar'} />}
+                    {/* {pathname !== '/' && !isMiniSearchClicked && <MiniSearchBar toggleSearchBar={this.toggleSearchBar} animateClassName={isEnter ? '' : 'scale-up-top-mini-search-bar'} />} */}
+                    <SearchBar setClearSearchBar={this.setClearSearchBar} isClearSearchBar={isClearSearchBar} closeSearchBarInputs={this.closeSearchBarInputs} toggleSearchBar={this.toggleSearchBar} animateClassName={isEnter ? 'scale-up-top-search-bar' : ''} />
+                    {/* {pathname !== '/' && isMiniSearchClicked && <SearchBar toggleSearchBar={this.toggleSearchBar} animateClassName={isEnter ? 'scale-up-top-search-bar' : ''} />} */}
+                </header>
+            )
+        // } else {
+        //     return <h1></h1>
+        // }
 
     }
 }

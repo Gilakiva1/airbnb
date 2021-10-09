@@ -1,7 +1,7 @@
 
 
 
-export function HostOrderPreview({ order, milisecToDate, updateStatusOrder }) {
+export function HostOrderPreview({ order, milisecToDate, updateStatusOrder,  }) {
 
     return (
         // <img src={order.imgUrls[0]} />

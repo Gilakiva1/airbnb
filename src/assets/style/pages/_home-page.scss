@@ -51,7 +51,8 @@
         }
 
         .popular-img {
-            width: 4rem;
+            max-width: 4rem;
+            max-height: 4rem;
             cursor: pointer;
         }
 

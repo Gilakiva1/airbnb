@@ -35,11 +35,20 @@
     .cards-container {
         margin-bottom: 20px;
         .card-container {
+            border-radius: 5px;
             box-shadow: 0 6px 16px -2px #d8d8d8;
             position: relative;
             padding: 10px 20px;
             width: rem(350px);
             height: rem(150px);
+
+            .img-guest {
+                width: 3rem;
+                left: 10px;
+                img {
+                    border-radius: 50%;
+                }
+            }
         }
         .icon-container {
             height: rem(60px);
@@ -85,6 +94,7 @@
         }
         .bcg {
             padding: 3px 7px;
+            border-radius: 5px;
         }
         .green {
             background: linear-gradient(to right, rgba(95, 227, 143, 0.55), rgba(164, 255, 207, 0.55));

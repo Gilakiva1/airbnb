@@ -46,13 +46,13 @@ export function HostStatus({ price, rate, status, guests }) {
                         <h1 className="wide book flex  justify-end fw-unset clr1 ">Status</h1>
                     </div>
                     <div className="status-info flex space-between gap5">
-                        <div className="round-edge flex align-center bcg green ">
+                        <div className="flex align-center bcg green ">
                             <h3 className="fs14">Approved {status.Approved}</h3>
                         </div>
-                        <div className="round-edge flex align-center bcg yellow">
+                        <div className="flex align-center bcg yellow">
                             <h3 className="fs14">Pending {status.Pending}</h3>
                         </div>
-                        <div className="round-edge flex align-center bcg red">
+                        <div className="flex align-center bcg red">
                             <h3 className="fs14">Declined {status.Declined}</h3>
                         </div>
                     </div>

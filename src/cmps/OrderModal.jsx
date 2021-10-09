@@ -86,7 +86,6 @@ export class _OrderModal extends React.Component {
 
     getTotalGuests = () => {
         if (this.props.currOrder.guests) {
-            console.log(this.props.currOrder);
             let { adult, child, infant } = this.props.currOrder.guests
             var guests = `guests:${adult + child + infant}`
             return guests
@@ -157,9 +156,18 @@ export class _OrderModal extends React.Component {
         }
         const { isReserve } = this.state
         if (!isReserve) {
-
             this.setState({ isReserve: true, isPickingGuests: false, isPickingDates: false })
-            return
+        } else {
+            // await this.props.onSetOrder(null)
+            //change to save id at stay or mini order
+            const finalOrder = this.createFinalOrder()
+            await this.props.onAddOrder(finalOrder)
+            socketService.emit('on-reserve-order', finalOrder.host)
+            // this.setState({ isFinalReserve: true })
+            // setTimeout(() => {
+            //     this.setState({ isFinalReserve: false })
+            //     this.props.history.push('/trip')
+            // }, 2000);
         }
 
         // await this.props.onSetOrder(null)

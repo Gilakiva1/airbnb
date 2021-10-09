@@ -30,6 +30,7 @@ export function onSetUser(userDetails) {
         return async dispatch => {
             const user = await userService.login(userDetails)
             dispatch({ type: 'SET_USER', user })
+            socketService.emit('on-login', user._id)
         }
     } catch (err) {
         console.log('err', err);

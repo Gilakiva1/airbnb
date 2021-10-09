@@ -108,7 +108,6 @@ export class RateHost extends React.Component {
     currAssent = (idx) => {
         const { assets } = this.props
         this.setState({ idx }, async () => {
-            console.log(this.state.idx);
             this.countStarReview(assets[idx])
             this.setDataChart(this.state.reviews)
             // window.scrollTo(0, 0)
@@ -117,7 +116,6 @@ export class RateHost extends React.Component {
     }
     render() {
         const { assets } = this.props
-        console.log('assets', assets);
         return (
             <div className="statistic flex space-between">
                 <div className=" flex column gap15 ">

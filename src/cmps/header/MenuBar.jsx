@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom"
 export function MenuBar({ onCloseMenu, onToggleLogin, onLogout, user }) {
 
-    console.log(user);
     return (
         <div onClick={(ev) => { ev.stopPropagation() }} className="menu-dropdown white round-edge flex column ">
             {!user && <h1 onClick={onToggleLogin} className="link Log Out">Log In</h1>}

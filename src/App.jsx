@@ -32,7 +32,7 @@ class _App extends React.Component {
                     </Switch>
                 </main>
                 <UserMsg />
-                {/* <AppFooter /> */}
+                <AppFooter />
             </>
         )
     }

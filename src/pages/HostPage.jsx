@@ -8,6 +8,7 @@ import { AddStay } from '../cmps/host-page/AddStay';
 import { CardList } from '../cmps/host-page/CardList'
 import { onLoadOrders } from "../store/order.action";
 import { HostStatus } from "../cmps/host-page/HostStatus";
+import { RateHost } from "../cmps/host-page/rateHost";
 
 class _HostPage extends Component {
     state = {
@@ -52,7 +53,6 @@ class _HostPage extends Component {
         price = orders.reduce((acc, order) => {
             acc += order.price
             status[order.status] += 1
-            console.log(acc);
             return Math.floor(acc / 30)
         }, 0)
         rate = assets.reduce((acc, asset) => {
@@ -63,9 +63,7 @@ class _HostPage extends Component {
         this.setState({ hostDetails: { price, rate, status, guests } })
     }
     toggleComponent = (property, currAsset = '') => {
-        this.setState({ component: property, currAsset }, () => {
-            console.log(this.state);
-        })
+        this.setState({ component: property, currAsset })
     }
     render() {
         const { user, assets } = this.props
@@ -86,7 +84,7 @@ class _HostPage extends Component {
                             {isAddAsset && <AddStay host={user} currAsset={this.state.currAsset} />}
                             {isMyAsset && <HostList toggleComponent={this.toggleComponent} assets={assets} />}
                             {isOrders && <HostOrder onCalcDetails={this.onCalcDetails} />}
-                            {isRates && <div>Rates</div>}
+                            {isRates && <RateHost host={user} assets={assets}/>}
                         </div>
                     </div>
                 </div>
@@ -96,7 +94,6 @@ class _HostPage extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log(state);
     return {
         assets: state.hostReducer.assets,
         user: state.userReducer.loggedInUser,

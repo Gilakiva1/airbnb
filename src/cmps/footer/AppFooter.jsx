@@ -2,6 +2,7 @@ import React from "react"
 import { Link } from "react-router-dom"
 import { stayService } from "../../services/stay.service"
 import { utilService } from "../../services/util.service"
+import Loader from "react-loader-spinner";
 
 export class AppFooter extends React.Component {
 
@@ -49,7 +50,16 @@ export class AppFooter extends React.Component {
         // debugger
         const { staysTopRated, staysNearby } = this.state
         const makeQueryParams = this.makeQueryParams
-        if (!staysTopRated.length) return 'loading...'
+        if (!staysTopRated) return (
+            <div className="flex align-center justify-center full">
+                <Loader
+                    type="ThreeDots"
+                    color='#FF385C'
+                    height={100}
+                    width={100}
+                />
+            </div>
+        )
         if (window.innerWidth > 550) {
             return (
                 <div className="footer-container full">
@@ -59,7 +69,7 @@ export class AppFooter extends React.Component {
                             <div className="flex column space-between gap25">
                                 <h3 className="footer-list-header fs22 fh26 book">Top rated</h3>
                                 {staysTopRated.map(stay => {
-                                    return <div className="flex column gap5" >
+                                    return <div key={stay._id} className="flex column gap5" >
                                         <Link to={`/stay/${stay._id}?${makeQueryParams(`${stay.loc.city}`)}`}> <div className="medium">{stay.name}</div>
                                             <span>{stay.loc.address}</span></Link>
                                     </div>
@@ -95,21 +105,27 @@ export class AppFooter extends React.Component {
                             <div className="flex column space-between">
                                 <h3 className="footer-list-header fs22 fh26 book">Nearby</h3>
                                 {staysNearby.map(stay => {
-                                    return <div className="flex column gap5" >
-                                       <Link to={`/stay/${stay._id}?${makeQueryParams(`${stay.loc.city}`)}`}> <div className="medium">{stay.name}</div>
-                                        <span>{stay.loc.address}</span> </Link>
-                                    </div> 
+                                    return <div key={stay._id} className="flex column gap5" >
+                                        <Link to={`/stay/${stay._id}?${makeQueryParams(`${stay.loc.city}`)}`}> <div className="medium">{stay.name}</div>
+                                            <span>{stay.loc.address}</span> </Link>
+                                    </div>
                                 })}
                             </div>
                         </div>
-                        <div className="seperation-line"></div>
+                        <div className="seperation-line last"></div>
+                        <div className="flex justify-center">
+                            <p className="fs16 fh20 book">© 2021 Home away, Inc.</p>
+                        </div>
                     </footer>
                 </div>
             )
         } else {
             return (
                 <footer className="main-footer-mobile main-container-home">
-                    <p>mini-fotter</p>
+                    <div className="seperation-line last"></div>
+                    <div className="flex justify-center">
+                        <p className="fs16 fh20 book">© 2021 Home away, Inc.</p>
+                    </div>
                 </footer>
             )
         }

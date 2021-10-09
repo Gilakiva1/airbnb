@@ -2,7 +2,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faDollarSign, faInfo, faHome } from '@fortawesome/free-solid-svg-icons';
 
 export function HostStatus({ price, rate, status, guests }) {
-    console.log('guesus', guests);
     return (
         <div className="cards-container flex space-between ">
             <div className="card-container guests round-edge">

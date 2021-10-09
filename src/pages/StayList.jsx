@@ -5,6 +5,8 @@ import { StayFilter } from '../cmps/StayFilter.jsx'
 import { loadStays } from '../store/stay.action.js'
 import { utilService } from '../services/util.service.js'
 import { onSetOrder } from '../store/order.action.js'
+import Loader from "react-loader-spinner";
+
 class _StayList extends React.Component {
     state = {
         orderParams: null,
@@ -84,7 +86,7 @@ class _StayList extends React.Component {
     // }
     getStaysForDisplay = () => {
         let { stays } = this.props
-        if (!stays.length) return
+        if (!stays.length) return 
         const { propertyTypes, price, amenities } = this.state.filterBy
         stays = stays.filter(stay => {
             console.log('stay.type[0]', stay.type[0]);
@@ -101,7 +103,16 @@ class _StayList extends React.Component {
     render() {
         const stays = this.getStaysForDisplay()
         const { orderParams } = this.state
-        if (!orderParams) return <div>loading...</div>
+        if (!orderParams) return (
+            <div className="flex align-center justify-center list-loader">
+                <Loader
+                    type="ThreeDots"
+                    color='#FF385C'
+                    height={100}
+                    width={100}
+                />
+            </div>
+        )
         return (
             <>
 

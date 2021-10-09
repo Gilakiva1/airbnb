@@ -8,6 +8,7 @@ import { AddStay } from '../cmps/host-page/AddStay';
 import { CardList } from '../cmps/host-page/CardList'
 import { onLoadOrders } from "../store/order.action";
 import { HostStatus } from "../cmps/host-page/HostStatus";
+import Loader from "react-loader-spinner";
 
 class _HostPage extends Component {
     state = {
@@ -71,7 +72,14 @@ class _HostPage extends Component {
         const { user, assets } = this.props
         const { price, rate, status, guests } = this.state.hostDetails
         const { isAddAsset, isMyAsset, isOrders, isRates } = this.state.component
-        if (!assets) return <div>loading...</div>
+        if (!assets) return (<div className="flex align-center justify-center full">
+            <Loader
+                type="ThreeDots"
+                color='#FF385C'
+                height={100}
+                width={100}
+            />
+        </div>)
 
         return (
             <div className="host-page">

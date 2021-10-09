@@ -12,6 +12,8 @@ import { onAddOrder, onUpdateOrder, onSetOrder } from '../store/order.action';
 import { onSetMsg } from '../store/user.action'
 import { socketService } from '../services/socket.service';
 import { FinalPrice } from './FinalPrice';
+import Loader from "react-loader-spinner";
+
 
 export class _OrderModal extends React.Component {
 
@@ -175,7 +177,16 @@ export class _OrderModal extends React.Component {
     render() {
         const { isPickingDates, isPickingGuests, isFinalReserve, isReserve, reviewsNumber } = this.state
         const { stay, currOrder } = this.props
-        if (!currOrder) return <div>loading</div>
+        if (!currOrder) return (
+            <div className="flex align-center justify-center order-modal">
+            <Loader
+                type="ThreeDots"
+                color='#FF385C'
+                height={100}
+                width={100}
+            />
+        </div>
+        )
         return (
             <div className="order-modal">
                 <div className="flex space-between align-center">

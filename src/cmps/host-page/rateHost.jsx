@@ -111,7 +111,7 @@ export class RateHost extends React.Component {
             console.log(this.state.idx);
             this.countStarReview(assets[idx])
             this.setDataChart(this.state.reviews)
-            window.scrollTo(0, 0)
+            // window.scrollTo(0, 0)
         })
 
     }

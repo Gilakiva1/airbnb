@@ -29,6 +29,9 @@
         .grid-img {
             width: 100%;
             background-color: #fff;
+            img{
+                z-index: 10;
+            }
             &:hover{
                 filter: brightness(0.85);
                 transition: 0.5s;

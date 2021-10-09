@@ -1,95 +1,118 @@
 import React from "react"
 import { Link } from "react-router-dom"
+import { stayService } from "../../services/stay.service"
 import { utilService } from "../../services/util.service"
 
-export function AppFooter() {
+export class AppFooter extends React.Component {
 
-    const makeQueryParams = (city) => {
+    state = {
+        staysTopRated: [],
+        staysNearby: []
+    }
+
+    async componentDidMount() {
+        let { staysTopRated, staysNearby } = this.state
+        staysTopRated = await this.getTopRated()
+        staysNearby = await this.getNearby()
+        this.setState({ staysTopRated, staysNearby })
+    }
+
+
+    makeQueryParams = (city) => {
         const order = { address: city }
         return utilService.makeQueryParams(order)
 
     }
 
-    if (window.innerWidth > 550) {
-        return (
-<div className="footer-container full">
-            <footer className="main-footer main-container-home">
-                <h2 className="footer-header fs30 fh40 bold">Explore the world</h2>
-                <div className="links-container flex ">
-                    <div className="flex column space-between">
-                        <h3 className="footer-list-header fs22 fh26 book">Top rated</h3>
-                        <div className="flex column gap5" >
-                            <span>Stay name</span>
-                            <span>Stay Address</span>
+    getTopRated = async () => {
+        const stays = await stayService.query()
+        const staysTopRated = []
+        let i = 0
+        while (staysTopRated.length < 6) {
+            if (stays[i].rating > 4.6) staysTopRated.push(stays[i])
+            i++
+        }
+        return staysTopRated
+    }
+    getNearby = async () => {
+        const stays = await stayService.query()
+        const staysNearby = []
+        let i = 0
+        while (staysNearby.length < 6) {
+            if (stays[i].loc.city === 'Tel Aviv' || stays[i].loc.city === 'Jerusalem') staysNearby.push(stays[i])
+            i++
+        }
+        return staysNearby
+    }
+
+    render() {
+        // debugger
+        const { staysTopRated, staysNearby } = this.state
+        const makeQueryParams = this.makeQueryParams
+        if (!staysTopRated.length) return 'loading...'
+        if (window.innerWidth > 550) {
+            return (
+                <div className="footer-container full">
+                    <footer className="main-footer main-container-home">
+                        <h2 className="footer-header fs30 fh40 bold">Explore the world</h2>
+                        <div className="links-container flex ">
+                            <div className="flex column space-between gap25">
+                                <h3 className="footer-list-header fs22 fh26 book">Top rated</h3>
+                                {staysTopRated.map(stay => {
+                                    return <div className="flex column gap5" >
+                                        <Link to={`/stay/${stay._id}?${makeQueryParams(`${stay.loc.city}`)}`}> <div>{stay.name}</div>
+                                            <span>{stay.loc.address}</span></Link>
+                                    </div>
+                                })}
+                            </div>
+                            <div className="flex column space-between ">
+                                <h3 className="footer-list-mid-header fs22 fh26 book">Most visited cities</h3>
+                                <div className="flex column gap5" >
+                                    <Link to={`/stay?${makeQueryParams('Bangkok')}`}><div>Bangkok</div>
+                                        <span>Thailand</span></Link>
+                                </div>
+                                <div className="flex column gap5" >
+                                    <Link to={`/stay?${makeQueryParams('London')}`}><div>London</div>
+                                        <span>England</span></Link>
+                                </div>
+                                <div className="flex column gap5" >
+                                    <Link to={`/stay?${makeQueryParams('Barcelona')}`}><div>Barcelona</div>
+                                        <span>Spain</span></Link>
+                                </div>
+                                <div className="flex column gap5" >
+                                    <Link to={`/stay?${makeQueryParams('New York')}`}><div>New York</div>
+                                        <span>USA</span></Link>
+                                </div>
+                                <div className="flex column gap5" >
+                                    <Link to={`/stay?${makeQueryParams('Paris')}`}><div>Paris</div>
+                                        <span>France</span></Link>
+                                </div>
+                                <div className="flex column gap5" >
+                                    <Link to={`/stay?${makeQueryParams('Bali')}`}><div>Bali</div>
+                                        <span>Indonesia</span></Link>
+                                </div>
+                            </div>
+                            <div className="flex column space-between">
+                                <h3 className="footer-list-header fs22 fh26 book">Nearby</h3>
+                                {staysNearby.map(stay => {
+                                    return <div className="flex column gap5" >
+                                       <Link to={`/stay/${stay._id}?${makeQueryParams(`${stay.loc.city}`)}`}> <div>{stay.name}</div>
+                                        <span>{stay.loc.address}</span> </Link>
+                                    </div> 
+                                })}
+                            </div>
                         </div>
-                        <div className="flex column gap5" >
-                            <span>Stay name</span>
-                            <span>Stay Address</span>
-                        </div>
-                        <div className="flex column gap5" >
-                            <span>Stay name</span>
-                            <span>Stay Address</span>
-                        </div>
-                        <div className="flex column gap5" >
-                            <span>Stay name</span>
-                            <span>Stay Address</span>
-                        </div>
-                        <div className="flex column gap5" >
-                            <span>Stay name</span>
-                            <span>Stay Address</span>
-                        </div>
-                        <div className="flex column gap5" >
-                            <span>Stay name</span>
-                            <span>Stay Address</span>
-                        </div>
-                    </div>
-                    <div className="footer-links-container flex column space-between">
-                    <h3 className="footer-list-header fs22 fh26 book">Most visited cities</h3>
-                       <div><Link to={`/stay?${makeQueryParams('Bangkok')}`}>Bangkok</Link></div> 
-                       <div><Link to={`/stay?${makeQueryParams('London')}`}>London</Link></div> 
-                       <div><Link to={`/stay?${makeQueryParams('Barcelona')}`}>Barcelona</Link></div> 
-                       <div><Link to={`/stay?${makeQueryParams('New York')}`}>New York</Link></div> 
-                       <div> <Link to={`/stay?${makeQueryParams('Paris')}`}>Paris</Link></div>
-                       <div><Link to={`/stay?${makeQueryParams('Bali')}`}>Bali</Link></div> 
-                    </div>
-                    <div className="flex column space-between">
-                    <h3 className="footer-list-header fs22 fh26 book">Nearby</h3>
-                        <div className="flex column gap5" >
-                            <span>Stay name in Tel Aviv/Jerusalem</span>
-                            <span>Tel Aviv/Jerusalem</span>
-                        </div>
-                        <div className="flex column gap5" >
-                            <span>Stay name in Tel Aviv/Jerusalem</span>
-                            <span>Tel Aviv/Jerusalem</span>
-                        </div>
-                        <div className="flex column gap5" >
-                            <span>Stay name in Tel Aviv/Jerusalem</span>
-                            <span>Tel Aviv/Jerusalem</span>
-                        </div>
-                        <div className="flex column gap5" >
-                            <span>Stay name in Tel Aviv/Jerusalem</span>
-                            <span>Tel Aviv/Jerusalem</span>
-                        </div>
-                        <div className="flex column gap5" >
-                            <span>Stay name in Tel Aviv/Jerusalem</span>
-                            <span>Tel Aviv/Jerusalem</span>
-                        </div>
-                        <div className="flex column gap5" >
-                            <span>Stay name in Tel Aviv/Jerusalem</span>
-                            <span>Tel Aviv/Jerusalem</span>
-                        </div>
-                    </div>
+                        <div className="seperation-line"></div>
+                    </footer>
                 </div>
-                <div className="seperation-line"></div>
-            </footer>
-            </div>
-        )
-    } else {
-        return (
-            <footer className="main-footer-mobile main-container-home">
-                <p>mini-fotter</p>
-            </footer>
-        )
+            )
+        } else {
+            return (
+                <footer className="main-footer-mobile main-container-home">
+                    <p>mini-fotter</p>
+                </footer>
+            )
+        }
     }
 }
 

@@ -52,7 +52,6 @@ export class _HomePage extends React.Component {
                         </div>
                     </Link>
                 </section>
-                <AppFooter />
             </>
         )
     }

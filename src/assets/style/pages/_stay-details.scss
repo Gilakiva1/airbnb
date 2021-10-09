@@ -1,7 +1,8 @@
 .stay-details-container {
     h1 {
         font-size: rem(26px);
-        margin-bottom: rem(10px);
+        margin-top: 25px;
+        margin-bottom: 10px;
     }
     h2 {
         font-size: rem(22px);
@@ -21,11 +22,11 @@
     }
     .user-profile-img {
         border-radius: 50%;
-        width: 55px;
-        height: 55px;
+        width: 60px;
+        height: 60px;
     }
 
-    .details-save-share{
+    .details-save-share {
         text-decoration: underline;
     }
     .stay-details-grid {

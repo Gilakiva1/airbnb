@@ -20,7 +20,7 @@ export function ReviewPoints({ reviews }) {
       <div className="flex full-bar align-center">
         <div className="review-point-bar">
           <div style={{ width: `${ratePoints.cleanliness / reviews.length / 5 * 100}%` }} className="review-point-inner-bar"></div>
-        </div>{ratePoints.cleanliness / reviews.length}
+        </div>{(ratePoints.cleanliness / reviews.length).toFixed(1)}
       </div>
     </div>
     <div className="flex space-between">
@@ -28,7 +28,7 @@ export function ReviewPoints({ reviews }) {
       <div className="flex full-bar align-center">
         <div className="review-point-bar">
           <div style={{ width: `${ratePoints.communication / reviews.length / 5 * 100}%` }} className="review-point-inner-bar"></div>
-        </div>{ratePoints.communication / reviews.length}
+        </div>{(ratePoints.communication / reviews.length).toFixed(1)}
       </div>
     </div>
     <div className="flex space-between">
@@ -36,7 +36,7 @@ export function ReviewPoints({ reviews }) {
       <div className="flex full-bar align-center">
         <div className="review-point-bar">
           <div style={{ width: `${ratePoints.checkin / reviews.length / 5 * 100}%` }} className="review-point-inner-bar"></div>
-        </div>{ratePoints.checkin / reviews.length}
+        </div>{(ratePoints.checkin / reviews.length).toFixed(1)}
       </div>
     </div>
     <div className="flex space-between">
@@ -44,7 +44,7 @@ export function ReviewPoints({ reviews }) {
       <div className="flex full-bar align-center">
         <div className="review-point-bar">
           <div style={{ width: `${ratePoints.accuracy / reviews.lengt / 5 * 100} % ` }} className="review-point-inner-bar"></div>
-        </div>{ratePoints.accuracy / reviews.length}
+        </div>{(ratePoints.accuracy / reviews.length).toFixed(1)}
       </div>
     </div>
     <div className="flex space-between">
@@ -52,13 +52,13 @@ export function ReviewPoints({ reviews }) {
       <div className="flex full-bar align-center">
         <div className="review-point-bar">
           <div style={{ width: `${ratePoints.location / reviews.length / 5 * 100}%` }} className="review-point-inner-bar"></div>
-        </div>{ratePoints.location / reviews.length}</div>
+        </div>{(ratePoints.location / reviews.length).toFixed(1)}</div>
     </div>
     <div className="flex space-between">
       <p>Value</p>
       <div className="flex full-bar align-center"><div className="review-point-bar">
         <div style={{ width: `${ratePoints.location / reviews.length / 5 * 100}%` }} className="review-point-inner-bar"></div>
-      </div>{ratePoints.value / reviews.length}
+      </div>{(ratePoints.value / reviews.length).toFixed(1)}
       </div>
     </div>
   </div>

@@ -57,9 +57,9 @@ class _HostPage extends Component {
             return Math.floor(acc / 30)
         }, 0)
         rate = assets.reduce((acc, asset) => {
-            acc += asset.rate?.summery
-            return acc / asset.length
+            return acc += asset.rating
         }, 0)
+        rate = (rate / assets.length).toFixed(1)
 
         this.setState({ hostDetails: { price, rate, status, guests } })
     }

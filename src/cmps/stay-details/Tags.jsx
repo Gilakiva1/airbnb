@@ -35,7 +35,8 @@ export function Tags({ tag, type }) {
             return <div className="tag-container flex">
                 <FreeCancel />
                 <div className="flex column">
-                    <span className="tag-header">Free cancellation up to 48 hours before the check-in.</span>
+                    <p> <span className="tag-header">Free cancellation up to 48 hours before the check-in.</span> <br />
+                        <span className="fade-font">You won't be charged for reservasion.</span></p>
                 </div>
             </div>
         case 'great check-in':

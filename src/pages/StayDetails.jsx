@@ -14,7 +14,7 @@ import { DatePicker } from '../cmps/header/DatePicker.jsx';
 import { onAddOrder, onUpdateOrder, onSetOrder } from '../store/order.action';
 import { ReviewPoints } from '../cmps/stay-details/ReviewPoints.jsx';
 import { ReviewList } from '../cmps/stay-details/ReviewList.jsx';
-// import { MapDetails } from '../cmps/stay-details/MapDetails.jsx';
+import { MapDetails } from '../cmps/stay-details/MapDetails.jsx';
 import { IdentityVerified } from '../cmps/svgs/IdentityVerified.jsx';
 import { userService } from '../services/user.service.js';
 
@@ -23,18 +23,21 @@ class _StayDetails extends Component {
 
     state = {
         stay: null,
+        host: null
     };
 
-    componentDidMount() {
-        this.loadStay()
+   async componentDidMount() {
+        await this.loadStay()
+      const host = await userService.getById(this.state.stay.host)
+      this.setState({host})
     }
 
     loadStay = async () => {
+        debugger
         const id = this.props.match.params.stayId;
         const searchParams = new URLSearchParams(this.props.location.search);
         try {
             const stay = await stayService.getById(id)
-            // const host = await userService.getById(stay.host)
             if (!this.props.currOrder) {
                 const order = utilService.getQueryParams(searchParams)
                 if (order.checkIn && order.checkOut) {
@@ -70,11 +73,11 @@ class _StayDetails extends Component {
 
 
     render() {
-        const { stay } = this.state
+        const { stay, host } = this.state
         const { currOrder } = this.props
 
 
-        if (!stay || !currOrder) return <div>Loading...</div>
+        if (!stay || !currOrder || !host) return <div>Loading...</div>
         return (
             <>
                 <section className="stay-details-container">
@@ -90,7 +93,7 @@ class _StayDetails extends Component {
                         </div>
                         <div className="flex gap10">
                             <HeartSvg /> <span className="details-save-share fs14 fh18 medium">Save</span>
-                            <ShareSvg /> <span className="details-save-share fs14 fh18 medium">Share</span> 
+                            <ShareSvg /> <span className="details-save-share fs14 fh18 medium">Share</span>
                         </div>
                     </div>
                     <div className="stay-details-grid ">{stay.imgUrls.slice(0, 5).map((img, idx) => {
@@ -100,10 +103,10 @@ class _StayDetails extends Component {
                         <div className="details-info flex column">
                             <div className="flex space-between">
                                 <div className=" flex column space-between">
-                                    <h2>Entire {stay.type} hosted by {stay.host.fullname}</h2>
+                                    <h2>Entire {stay.type} hosted by {host.fullname}</h2>
                                     <div className="flex">{stay.capacity} guests · {stay.type} ·  {utilService.getRandomIntInclusive(2, 6)} beds · {utilService.getRandomIntInclusive(1, 5)} baths </div>
                                 </div>
-                                <div ><img className="user-profile-img" src={stay.host.imgUrl} alt="" /></div>
+                                <div ><img className="user-profile-img" src={host.imgUrl} alt="" /></div>
                             </div>
                             <div className="seperation-line"></div>
                             <div className="tag-container flex column">
@@ -143,18 +146,22 @@ class _StayDetails extends Component {
                     </div >
                     <ReviewPoints reviews={stay.reviews} />
                     <ReviewList reviews={stay.reviews} />
+                   
                     <div className="seperation-line"></div>
                     <h2>Where you'll be</h2>
                     <p>{stay.loc.address}</p>
-                    {/* <MapDetails lat={stay.loc.lat} lng={stay.loc.lng} /> */}
+                    <div className="map-container relative">
+                        <MapDetails lat={stay.loc.lat} lng={stay.loc.lng} />
+                    </div>
                     <div className="seperation-line"></div>
                     <div className="user-header flex  gap10">
-                        <img className="user-details-profile-img" src={stay.host.imgUrl} alt="" />
+                        <img className="user-details-profile-img" src={host.imgUrl} alt="" />
                         <div className="user-profile-name-date flex column">
-                            <span className="user-name medium fs22 fh26">Hosted by {stay.host.fullname}</span>
-                            <span className="fs14 fh18 book clr1">{stay.host.joinDate || 'joined in September 2016'}</span>
+                            <span className="user-name medium fs22 fh26">Hosted by {host.fullname}</span>
+                            <span className="fs14 fh18 book clr1">{host.joinDate || 'joined in September 2016'}</span>
                         </div>
                     </div>
+
                     <div className="flex gap10">
                         <div className="fs22 flex gap5">
                             {<FontAwesomeIcon className="star-icon fs16 fh20" icon={faStar} />}

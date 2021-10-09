@@ -38,10 +38,13 @@
         margin-bottom: rem(10px);
         color: $clr2;
     }
-} 
-.stay-img{
+    h2 {
+        display: flex;
+        gap: 3px;
+    }
+}
+.stay-img {
     border-radius: 12px;
-
 }
 .slick-slide {
     @include aspect-ratio(2, 1.4);

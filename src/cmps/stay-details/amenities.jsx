@@ -9,13 +9,13 @@ import { WiFi } from "../svgs/WiFi"
 
 
 export function Amenities({ amenity }) {
-    switch (amenity) {
-        case 'kitchen':
+    switch (amenity.toLowerCase()) {
+        case 'kitchen' :
             return <div className="amenity-container flex gap5">
                 <Kitchen/>
                 <p>Kitchen</p>
             </div>
-        case 'TV':
+        case 'tv':
             return <div className="amenity-container flex gap5">
                 <TV/>
                 <p>TV</p>

@@ -86,7 +86,7 @@
     align-items: center;
   }
 }
-.wrap{
+.wrap {
   flex-wrap: wrap;
 }
 .gap5 {
@@ -118,6 +118,9 @@
 .round-edge {
   border-radius: rem(10px);
 }
+.justify-end {
+  justify-content: flex-end;
+}
 
 .wide {
   width: 100%;
@@ -128,10 +131,15 @@
 .fixed {
   position: fixed;
 }
-
 .sticky-color {
   position: sticky;
   background-color: white;
+}
+.relative {
+  position: relative;
+}
+.absolute {
+  position: absolute;
 }
 .border-round {
   border-radius: 2em;
@@ -224,4 +232,3 @@
   background-color: $clr6;
   transition: 0.4s;
 }
-

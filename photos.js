@@ -711,12 +711,12 @@ const descriptions = (loc) => {
 
 const reviewsData = [{
     rate: {
-        cleanliness: getRandomInt(2.5, 6, true),
-        communication: getRandomInt(2.5, 6, true),
-        checkin: getRandomInt(2.5, 6, true),
-        accuracy: getRandomInt(2.5, 6, true),
-        value: getRandomInt(2.5, 6, true),
-        location: getRandomInt(2.5, 6, true)
+        cleanliness: getRandomInt(2, 6, true),
+        communication: getRandomInt(2.5, 5, true),
+        checkin: getRandomInt(1, 5, true),
+        accuracy: getRandomInt(2, 6, true),
+        value: getRandomInt(2.5, 5, true),
+        location: getRandomInt(3, 6, true)
 
 
     },
@@ -758,7 +758,7 @@ const reviewsData = [{
     The flat has all that one needs, including an espresso machine, big screen TV (for the kids) and a reliable WiFi connection.
     Recommended!`,
     by: {
-        fullname: 'Nora Jhones',
+        fullname: 'Nora Johnes',
         imgUrl: "https://a0.muscache.com/im/pictures/user/5d884620-0895-47d5-bab3-0fc850714190.jpg?im_w=240",
     },
     date: ' August 2018'

@@ -67,38 +67,40 @@ export class AppFooter extends React.Component {
                             </div>
                             <div className="flex column space-between ">
                                 <h3 className="footer-list-mid-header fs22 fh26 book">Most visited cities</h3>
-                                <div className="flex column gap5" >
-                                    <Link to={`/stay?${makeQueryParams('Bangkok')}`}><div className="medium">Bangkok</div>
-                                        <span>Thailand</span></Link>
-                                </div>
-                                <div className="flex column gap5" >
-                                    <Link to={`/stay?${makeQueryParams('London')}`}><div className="medium">London</div>
-                                        <span>England</span></Link>
-                                </div>
-                                <div className="flex column gap5" >
-                                    <Link to={`/stay?${makeQueryParams('Barcelona')}`}><div className="medium">Barcelona</div>
-                                        <span>Spain</span></Link>
-                                </div>
-                                <div className="flex column gap5" >
-                                    <Link to={`/stay?${makeQueryParams('New York')}`}><div className="medium">New York</div>
-                                        <span>USA</span></Link>
-                                </div>
-                                <div className="flex column gap5" >
-                                    <Link to={`/stay?${makeQueryParams('Paris')}`}><div className="medium">Paris</div>
-                                        <span>France</span></Link>
-                                </div>
-                                <div className="flex column gap5" >
-                                    <Link to={`/stay?${makeQueryParams('Bali')}`}><div className="medium">Bali</div>
-                                        <span>Indonesia</span></Link>
+                                <div className="flex high column space-between">
+                                    <div className="flex column gap5" >
+                                        <Link to={`/stay?${makeQueryParams('Bangkok')}`}><div className="medium">Bangkok</div>
+                                            <span>Thailand</span></Link>
+                                    </div>
+                                    <div className="flex column gap5" >
+                                        <Link to={`/stay?${makeQueryParams('London')}`}><div className="medium">London</div>
+                                            <span>England</span></Link>
+                                    </div>
+                                    <div className="flex column gap5" >
+                                        <Link to={`/stay?${makeQueryParams('Barcelona')}`}><div className="medium">Barcelona</div>
+                                            <span>Spain</span></Link>
+                                    </div>
+                                    <div className="flex column gap5" >
+                                        <Link to={`/stay?${makeQueryParams('New York')}`}><div className="medium">New York</div>
+                                            <span>USA</span></Link>
+                                    </div>
+                                    <div className="flex column gap5" >
+                                        <Link to={`/stay?${makeQueryParams('Paris')}`}><div className="medium">Paris</div>
+                                            <span>France</span></Link>
+                                    </div>
+                                    <div className="flex column gap5" >
+                                        <Link to={`/stay?${makeQueryParams('Bali')}`}><div className="medium">Bali</div>
+                                            <span>Indonesia</span></Link>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="flex column space-between">
+                            <div className="flex column space-between fh23">
                                 <h3 className="footer-list-header fs22 fh26 book">Nearby</h3>
                                 {staysNearby.map(stay => {
                                     return <div className="flex column gap5" >
-                                       <Link to={`/stay/${stay._id}?${makeQueryParams(`${stay.loc.city}`)}`}> <div className="medium">{stay.name}</div>
-                                        <span>{stay.loc.address}</span> </Link>
-                                    </div> 
+                                        <Link to={`/stay/${stay._id}?${makeQueryParams(`${stay.loc.city}`)}`}> <div className="medium">{stay.name}</div>
+                                            <span>{stay.loc.address}</span> </Link>
+                                    </div>
                                 })}
                             </div>
                         </div>

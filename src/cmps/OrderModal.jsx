@@ -69,13 +69,13 @@ export class _OrderModal extends React.Component {
 
     activeInput = (input) => {
         this.closeInputs()
-        const {isReserve} = this.state
+        const { isReserve } = this.state
         switch (input) {
             case 'guest':
-                this.setState({ isPickingGuests: true,isReserve:false })
+                this.setState({ isPickingGuests: true, isReserve: false })
                 break;
             case 'date':
-                this.setState({ isPickingDates: true,isReserve:false })
+                this.setState({ isPickingDates: true, isReserve: false })
                 break;
         }
     }
@@ -145,7 +145,7 @@ export class _OrderModal extends React.Component {
     }
     onSubmit = async (ev) => {
         ev.stopPropagation()
-        ev.preventDefault()
+        ev.preventDefault()  
         const { user, order } = this.props
         if (!user) {
             this.props.onSetMsg({ type: 'error', txt: 'Please Sign up/log in to continue' })
@@ -157,22 +157,25 @@ export class _OrderModal extends React.Component {
         }
         const { isReserve } = this.state
         if (!isReserve) {
-            ev.target.type = 'submit' //?
-            this.setState({ isReserve: true , isPickingGuests:false,isPickingDates:false})
-        }
-        else {
 
-            // await this.props.onSetOrder(null)
-            //change to save id at stay or mini order
-            const finalOrder = this.createFinalOrder()
-            await this.props.onAddOrder(finalOrder)
-            this.setState({ isFinalReserve: true })
-            socketService.emit('on-reserve-order', finalOrder.host)
-            setTimeout(() => {
-                this.setState({ isFinalReserve: false })
-                this.props.history.push('/trip')
-            }, 2000);
+            this.setState({ isReserve: true, isPickingGuests: false, isPickingDates: false })
+            return
         }
+
+        // await this.props.onSetOrder(null)
+        //change to save id at stay or mini order
+        // this.setState({ isFinalReserve: true },()=>{
+
+        // })
+        const finalOrder = this.createFinalOrder()
+        await this.props.onAddOrder(finalOrder)
+        debugger
+        socketService.emit('on-reserve-order', finalOrder.host)
+        setTimeout(() => {
+            this.setState({ isFinalReserve: false })
+            this.props.history.push('/trip')
+        }, 2000);
+
     }
 
 

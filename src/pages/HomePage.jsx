@@ -15,11 +15,20 @@ import { AppFooter } from "../cmps/footer/AppFooter";
 export class _HomePage extends React.Component {
     state = {
         popularImgs: '',
-        labelsImgs: ''
+        labelsImgs: '',
+        screenWidth: ''
     }
     componentDidMount() {
+        window.addEventListener('resize', this.onResizeScreen)
         this.props.onSetOrder(null)
     }
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.onResizeScreen)
+    }
+    onResizeScreen = ({ target }) => {
+        this.setState(prevState => ({ ...prevState, screenWidth: target.innerWidth }));
+    }
+
 
     onImgClick = async (order) => {
         const queryString = utilService.makeQueryParams(order)
@@ -30,14 +39,19 @@ export class _HomePage extends React.Component {
 
 
     render() {
+        const { screenWidth } = this.state
+
         return (
 
             <>
                 <div className="hero-logo full relative">
-                    <div className="btn-flex-container fh20  absolute flex align-center column">
-                        <h1 className="fs18">Not sure where to go? Perfect. </h1>
-                        <Link to="/stay" className="btn-flex"><span style={{ '-webkit-background-clip': 'text' }}>I'm flexiable</span></Link>
-                    </div>
+                    {console.log(window.innerWidth)}
+                    {screenWidth > 550 &&
+                        <div className="btn-flex-container fh20  absolute flex align-center column">
+                            <h1 className="fs18">Not sure where to go? Perfect. </h1>
+                            <Link to="/stay" className="btn-flex"><span style={{ '-webkit-background-clip': 'text' }}>I'm flexiable</span></Link>
+                        </div>
+                    }
                     <img src={imgHero} />
                 </div >
                 <section className="home-page">
@@ -58,6 +72,7 @@ export class _HomePage extends React.Component {
                 </section>
             </>
         )
+
     }
 }
 

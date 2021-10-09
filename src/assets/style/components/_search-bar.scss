@@ -21,8 +21,8 @@
         opacity: 1;
         pointer-events: all;
         position: fixed;
-        top: 2%;
-        left: 36%;
+        top: 1.5%;
+        left: 41%;
         height: 50px;
         width: 300px;
     }
@@ -53,7 +53,6 @@
     gap: rem(15px);
     border-radius: rem(40px);
     background-color: white;
-    cursor: pointer;
     box-shadow: 0 0 3px rgba(10, 10, 10, 0.5);
     position: absolute;
     input {
@@ -81,6 +80,7 @@
     .input-container {
         background-color: transparent;
         padding: 10px;
+        cursor: pointer;
 
         &:hover {
             background-color: rgb(235, 235, 235);
@@ -108,21 +108,47 @@
         transform: scale(1);
         opacity: 1;
         pointer-events: all;
+        position: relative;
     }
 }
 
 .picking-guest-container {
-    position: relative;
+    position: absolute;
     top: 65px;
-    right: -273px;
+    right: 0px;
     width: rem(385px);
     height: rem(240px);
 }
 
 .picking-dates-container {
-    position: relative;
-    top: 65px;
-    right: 30px;
-    align-self: center;
-    margin-top: 10px;
+    position: absolute;
+    top: 80px;
+    right: 325px;
+}
+
+.picking-location-container {
+    position: absolute;
+    top: 42px;
+    right: 352px;
+    width: 250px;
+    border-radius: 30px;
+    padding: 10px;
+    
+    .popular-location-list {
+        background-color: rgb(255, 255, 255);
+        .popular-img {
+            width: 40px;
+        }
+        .popular-list {
+            cursor: pointer;
+        }
+        .popular-txt {
+            margin-inline-start: rem(10px);
+            line-height: rem(20px);
+            font-size: rem(16px);
+            .country {
+                font-weight: 500;
+            }
+        }
+    }
 }

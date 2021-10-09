@@ -2,6 +2,8 @@ import { Component } from 'react';
 import { connect } from 'react-redux'
 import { onLoadOrders, onUpdateStatusOrder } from '../../store/order.action'
 import { HostOrderPreview } from './HostOrederPreview'
+import Loader from "react-loader-spinner";
+
 class _HostOrder extends Component {
 
     state = {
@@ -33,13 +35,23 @@ class _HostOrder extends Component {
         order.status = value;
         await this.props.onUpdateStatusOrder(order)
         this.props.onCalcDetails()
+
     }
 
     render() {
         const { isOnPrice } = this.state.sortPrice
         const { isOnType } = this.state.sortType
         const { orders } = this.props
-        if (!orders.length) return <div>Loading</div>
+        if (!orders.length) return (
+            <div className="flex align-center justify-center full">
+                <Loader
+                    type="ThreeDots"
+                    color='#FF385C'
+                    height={100}
+                    width={100}
+                />
+            </div>
+        )
         return (
             <table className='host-list'>
                 <thead>

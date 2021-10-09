@@ -1,10 +1,9 @@
 import React from "react"
 import { connect } from 'react-redux'
-import { orderService } from '../services/order.service'
 import { TripHero } from "../cmps/svgs/TripHero.jsx"
 import { onLoadOrders, onSetOrder, onRemoveOrder } from "../store/order.action"
 import { TripList } from "../cmps/trip/TripList"
-import { userReducer } from "../store/user.reducer"
+import Loader from "react-loader-spinner";
 
 class _TripPage extends React.Component {
 
@@ -49,7 +48,16 @@ class _TripPage extends React.Component {
     render() {
         const { isUpcoming, isOrders, isPast } = this.state
         const { orders } = this.props
-        if (!orders) return <div>loading</div>
+        if (!orders) return(
+            <div className="flex align-center justify-center full">
+            <Loader
+                type="ThreeDots"
+                color='#FF385C'
+                height={100}
+                width={100}
+            />
+        </div>
+        )
         return (
             <section className="trip-container" >
                 <h1 className="txt-trip bold fs32 clr2">Trips</h1>

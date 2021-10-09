@@ -12,7 +12,7 @@ import { LogIn } from '../LogIn';
 import { userService } from '../../services/user.service';
 import user1 from '../../assets/img/profiles/user1.png'
 import { socketService } from '../../services/socket.service';
-import { onSetMsg } from '../../store/user.action'
+import { onSetMsg, onLogout } from '../../store/user.action'
 
 
 class _AppHeader extends React.Component {
@@ -55,13 +55,29 @@ class _AppHeader extends React.Component {
     onResizeScreen = ({ target }) => {
         this.setState(prevState => ({ ...prevState, screenWidth: target.innerWidth }));
     }
+    // onLogout = async () => {
+    //     this.onCloseMenu()
+    //     let { isLogIn } = this.state
+    //     await this.props.onLogout()
+    // }
+    // onLogin = async () => {
+    //     this.onCloseMenu()
+    //     let { isLogIn } = this.state
+    //     await this.props.onLogout()
+    //     this.setState({ isLogIn: !isLogIn })
 
-
-    toggleLogIn = () => {
-        this.onCloseMenu()
-        let { isLogIn } = this.state
-        this.setState({ isLogIn: !isLogIn })
+    // }
+    onToggleLogin = async () => {
+        await this.onCloseMenu()
+        this.setState({ isLogIn: !this.state.isLogIn })
     }
+    onLogout = async () => {
+        await this.onCloseMenu()
+        this.props.onLogout()
+    }
+
+
+
 
     onToggleHeader = (ev) => {
         const { pathname } = this.props.history.location
@@ -121,6 +137,8 @@ class _AppHeader extends React.Component {
     render() {
         const { scrollLoc, isEnter, isShowMenu, isLogIn, isClearSearchBar, isHosting, screenWidth } = this.state
         const { pathname } = this.props.history.location
+        console.log(this.props);
+        const { user } = this.props
         if (screenWidth > 550) {
 
             return (
@@ -149,8 +167,8 @@ class _AppHeader extends React.Component {
                                     </div>
                                 </div>
                             </div>
-                            {isShowMenu && <MenuBar toggleLogIn={this.toggleLogIn} onCloseMenu={this.onCloseMenu} />}
-                            {isLogIn && <LogIn toggleLogIn={this.toggleLogIn} />}
+                            {isShowMenu && <MenuBar onLogout={this.onLogout} user={user} isLogIn={isLogIn} onToggleLogin={this.onToggleLogin} onCloseMenu={this.onCloseMenu} />}
+                            {isLogIn && <LogIn onToggleLogin={this.onToggleLogin} />}
                         </nav>
                     </div>
                     {pathname !== '/host' && < MiniSearchBar toggleSearchBar={this.toggleSearchBar} animateClassName={isEnter ? '' : 'scale-up-top-mini-search-bar'} />}
@@ -167,13 +185,14 @@ class _AppHeader extends React.Component {
 }
 const mapStateToProps = state => {
     return {
-        state
+        user: state.userReducer.loggedInUser
     }
 
 }
 
 const mapDispatchToProps = {
-    onSetMsg
+    onSetMsg,
+    onLogout
 }
 
 export const AppHeader = connect(mapStateToProps, mapDispatchToProps)(withRouter(_AppHeader))

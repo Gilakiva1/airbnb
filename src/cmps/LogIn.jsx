@@ -65,7 +65,7 @@ export class _LogIn extends React.Component {
       } else {
         await this.props.onSetUser(credentials)
       }
-      this.props.toggleLogIn()
+      this.props.onToggleLogin()
 
     } catch (err) {
       this.setState({ msg: 'Invalid username | password' })

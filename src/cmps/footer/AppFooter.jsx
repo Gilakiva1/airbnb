@@ -2,14 +2,15 @@ import React from "react"
 import { Link } from "react-router-dom"
 import { stayService } from "../../services/stay.service"
 import { utilService } from "../../services/util.service"
+import { withRouter } from "react-router"
 import Loader from "react-loader-spinner";
 
-export class AppFooter extends React.Component {
+class _AppFooter extends React.Component {
 
     state = {
         staysTopRated: [],
         staysNearby: [],
-        screenWidth: ''
+        screenWidth: 600
     }
 
     async componentDidMount() {
@@ -20,7 +21,7 @@ export class AppFooter extends React.Component {
         this.setState({ staysTopRated, staysNearby })
     }
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         window.addEventListener('resize', this.onResizeScreen)
     }
 
@@ -57,7 +58,7 @@ export class AppFooter extends React.Component {
 
     render() {
         // debugger
-
+        const { pathname } = this.props.history.location
         const { staysTopRated, staysNearby, screenWidth } = this.state
         const makeQueryParams = this.makeQueryParams
         if (!staysTopRated) return (
@@ -73,7 +74,7 @@ export class AppFooter extends React.Component {
         if (screenWidth > 550) {
             return (
                 <div className="footer-container full">
-                    <footer className="main-footer main-container-home">
+                    <footer className={`main-footer ${pathname === '/' || pathname === '/host' || pathname === '/stay'||pathname==='/trip' ? 'main-container-home' : 'main-container'} `}>
                         <h2 className="footer-header fs30 fh40 bold">Explore the world</h2>
                         <div className="links-container flex ">
                             <div className="flex column space-between gap25">
@@ -143,4 +144,9 @@ export class AppFooter extends React.Component {
         }
     }
 }
+
+export const AppFooter = withRouter(_AppFooter)
+
+
+
 

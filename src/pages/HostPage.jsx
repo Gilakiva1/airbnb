@@ -110,14 +110,21 @@ class _HostPage extends Component {
                         <SideNav isAddAsset={isAddAsset} isMyAsset={isMyAsset} isOrders={isOrders} isRates={isRates} toggleComponent={this.toggleComponent} />
                     </nav>
                     <HostStatus price={price} rate={rate} status={status} activeGuests={activeGuests} />
-                    <div className="stay-details-container">
-                        <div className="stay-details">
-                            {isAddAsset && <AddStay host={user} currAsset={this.state.currAsset} />}
-                            {isMyAsset && <HostList toggleComponent={this.toggleComponent} assets={assets} />}
-                            {isOrders && <HostOrder onCalcDetails={this.onCalcDetails} />}
-                            {isRates && <div>Rates</div>}
+                    {assets.length &&
+                        <div className="stay-details-container">
+                            <div className="stay-details">
+                                {isAddAsset && <AddStay host={user} currAsset={this.state.currAsset} />}
+                                {isMyAsset && <HostList toggleComponent={this.toggleComponent} assets={assets} />}
+                                {isOrders && <HostOrder onCalcDetails={this.onCalcDetails} />}
+                                {isRates && <div>Rates</div>}
+                            </div>
+                        </div>}
+                    {!assets.length &&
+                        <div className="create-asset">
+                           
                         </div>
-                    </div>
+                    }
+
                 </div>
             </div>
         )

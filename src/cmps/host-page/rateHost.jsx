@@ -122,7 +122,7 @@ export class RateHost extends React.Component {
             <div className="statistic flex space-between">
                 <div className=" flex column gap15 ">
                     {assets.map((asset, idx) => (
-                        <div className="stay-statistic flex pointer gap10" onClick={() => { this.currAssent(idx) }}>
+                        <div key={idx} className="stay-statistic flex pointer gap10" onClick={() => { this.currAssent(idx) }}>
                             <div>
                                 <img src={asset.imgUrls[0]} />
                             </div>

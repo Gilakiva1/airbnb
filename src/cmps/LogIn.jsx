@@ -16,7 +16,7 @@ export class _LogIn extends React.Component {
       isAdmin: false
     },
     isSignup: false,
-    msg: ''
+    msg: '',
 
   }
   inputRef = React.createRef(null)

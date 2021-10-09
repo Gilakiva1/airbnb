@@ -68,11 +68,11 @@ class _AppHeader extends React.Component {
 
     // }
     onToggleLogin = async () => {
-        await this.onCloseMenu()
+         this.onCloseMenu()
         this.setState({ isLogIn: !this.state.isLogIn })
     }
     onLogout = async () => {
-        await this.onCloseMenu()
+         this.onCloseMenu()
         this.props.onLogout()
     }
 

@@ -1,5 +1,4 @@
 export function CardPreview({ detail }) {
-    console.log('deatils', detail);
     return (
 
         <div className={`preview ${detail} flex column gap10`}>

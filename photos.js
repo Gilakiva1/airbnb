@@ -1018,5 +1018,3 @@ function getStayRate(reviews) {
 }
 
 
-
-console.log(demoStays);

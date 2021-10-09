@@ -69,13 +69,13 @@ export class _OrderModal extends React.Component {
 
     activeInput = (input) => {
         this.closeInputs()
-        const {isReserve} = this.state
+        const { isReserve } = this.state
         switch (input) {
             case 'guest':
-                this.setState({ isPickingGuests: true,isReserve:false })
+                this.setState({ isPickingGuests: true, isReserve: false })
                 break;
             case 'date':
-                this.setState({ isPickingDates: true,isReserve:false })
+                this.setState({ isPickingDates: true, isReserve: false })
                 break;
         }
     }
@@ -86,7 +86,6 @@ export class _OrderModal extends React.Component {
 
     getTotalGuests = () => {
         if (this.props.currOrder.guests) {
-            console.log(this.props.currOrder);
             let { adult, child, infant } = this.props.currOrder.guests
             var guests = `guests:${adult + child + infant}`
             return guests
@@ -157,21 +156,18 @@ export class _OrderModal extends React.Component {
         }
         const { isReserve } = this.state
         if (!isReserve) {
-            ev.target.type = 'submit' //?
-            this.setState({ isReserve: true , isPickingGuests:false,isPickingDates:false})
-        }
-        else {
-
+            this.setState({ isReserve: true, isPickingGuests: false, isPickingDates: false })
+        } else {
             // await this.props.onSetOrder(null)
             //change to save id at stay or mini order
             const finalOrder = this.createFinalOrder()
             await this.props.onAddOrder(finalOrder)
-            this.setState({ isFinalReserve: true })
             socketService.emit('on-reserve-order', finalOrder.host)
-            setTimeout(() => {
-                this.setState({ isFinalReserve: false })
-                this.props.history.push('/trip')
-            }, 2000);
+            // this.setState({ isFinalReserve: true })
+            // setTimeout(() => {
+            //     this.setState({ isFinalReserve: false })
+            //     this.props.history.push('/trip')
+            // }, 2000);
         }
     }
 

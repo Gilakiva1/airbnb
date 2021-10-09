@@ -33,14 +33,18 @@ class _StayDetails extends Component {
         const reviews = utilService.getRandomIntInclusive(30, 500)
         const beds = utilService.getRandomIntInclusive(2, 6)
         const baths = utilService.getRandomIntInclusive(1, 5)
+
         await this.loadStay()
         console.log(this.state.stay.host);
         debugger
         const host = await userService.getById(this.state.stay.host)
+        console.log('host', host);
         this.setState({ host, reviews, beds, baths })
+
     }
 
     loadStay = async () => {
+        
         const id = this.props.match.params.stayId;
         const searchParams = new URLSearchParams(this.props.location.search);
         try {

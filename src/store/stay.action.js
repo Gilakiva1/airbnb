@@ -11,20 +11,33 @@ export function loadStays(filterBy) {
   };
 }
 
+export function onSetStays(stays) {
+  return async dispatch => {
+    try {
+      dispatch({ type: 'SET_STAYS', stays })
+    } catch (err) {
+      console.log('err', err);
+
+    }
+  }
+
+}
+
 
 export function onSetFilter(filterBy) {
   try {
     return (dispatch) => {
       stayService.query(filterBy)
-            .then(stays => {
-                dispatch({
-                    type: 'SET_STAYS',
-                    stays
-                })
-            })
+        .then(stays => {
+          dispatch({
+            type: 'SET_STAYS',
+            stays
+          })
+        })
     }
   } catch (err) {
- console.log('err',err);
+    console.log('err', err);
   }
 }
+
 

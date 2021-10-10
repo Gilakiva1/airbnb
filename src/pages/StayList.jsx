@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { StayPreview } from '../cmps/StayPreview.jsx'
 import { StayFilter } from '../cmps/StayFilter.jsx'
-import { loadStays } from '../store/stay.action.js'
+import { loadStays, onSetStays } from '../store/stay.action.js'
 import { utilService } from '../services/util.service.js'
 import { onSetOrder } from '../store/order.action.js'
 import Loader from "react-loader-spinner";
@@ -18,15 +18,16 @@ class _StayList extends React.Component {
             propertyTypes: [],
             amenities: []
         },
-        isOpenFilter: false
+        isOpenFilter: false,
+        // reviewsDisplay
 
     }
 
     async componentDidMount() {
         const searchParams = new URLSearchParams(this.props.location.search);
         const getParms = utilService.getQueryParams(searchParams)
-        await this.props.loadStays(getParms)
-
+        this.onRandomPhotos(getParms)
+        // this.onReviewsDisplay(getParms)
         this.setState({ orderParams: getParms })
     }
 
@@ -43,6 +44,14 @@ class _StayList extends React.Component {
         this.setState(({ filterBy: { ...this.state.filterBy, price: filterPrice } }))
 
     }
+    // onReviewsDisplay = (stays) => {
+    //     const reviewsDisplay = this.state
+    //     for (let i = 0; i < stays.length; i++) {
+    //         reviewsDisplay.push(utilService.getRandomIntInclusive(30, 500))
+    //     }
+    //     this.setState({reviewsDisplay})
+
+    // }
 
     minPrice = () => {
         const { minPrice, maxPrice } = this.state.filterBy.price
@@ -57,18 +66,20 @@ class _StayList extends React.Component {
         else if (maxPrice < 500 && minPrice !== -Infinity) {
             return `$${minPrice} - $${maxPrice}`
         }
+
     }
     checkAmenities = (amenities, stayAmenities) => {
         let newStayAmenities = stayAmenities.map(amenitie => amenitie[0].toUpperCase() + amenitie.substring(1))
-        console.log('amenities',amenities);
+        console.log('amenities', amenities);
         for (let amenitie of amenities) {
             amenitie = amenitie.name[0]?.toUpperCase() + amenitie.name.substring(1)
             if (!newStayAmenities.includes(amenitie)) return false
         }
         return true
     }
-    onRandomPhotos = (stays) => {
-
+    onRandomPhotos = async (params) => {
+        await this.props.loadStays(params)
+        const { stays } = this.props
         stays.map(stay => {
             for (let i = stay.imgUrls.length - 1; i > 0; i--) {
                 let j = Math.floor(Math.random() * (i + 1));
@@ -76,11 +87,9 @@ class _StayList extends React.Component {
             }
             return stay
         })
-        return stays
-
-
-
+        this.props.onSetStays(stays)
     }
+
 
     getStaysForDisplay = () => {
         let { stays } = this.props
@@ -93,13 +102,13 @@ class _StayList extends React.Component {
                 (stay.price >= price.minPrice) &&
             (stay.price <= price.maxPrice)
         })
-        stays = this.onRandomPhotos(stays)
+
         return stays
     }
 
     render() {
         const stays = this.getStaysForDisplay()
-        const { orderParams } = this.state
+        const { orderParams, displayReviews } = this.state
         const { propertyTypes, amenities } = this.state.filterBy
         if (!orderParams) return (
             <div className="flex align-center justify-center list-loader">
@@ -119,12 +128,12 @@ class _StayList extends React.Component {
                     <StayFilter stays={this.props.stays} minPrice={this.minPrice}
                         setCheckedPropertyType={this.setCheckedPropertyType}
                         onSavePrice={this.onSavePrice}
-                        currTypes = {propertyTypes}
-                        currAmenities = {amenities}
+                        currTypes={propertyTypes}
+                        currAmenities={amenities}
                     />
                 </div>
                 <div className="stay-list">
-                    {stays?.map((stay, idx) => <StayPreview key={stay._id} stay={stay} orderParams={orderParams} />)}
+                    {stays?.map((stay, idx) => (< StayPreview key={stay._id} stay={stay} orderParams={orderParams} />))}
                 </div>
             </>
         )
@@ -139,6 +148,7 @@ function mapStateToProps(state) {
 }
 const mapDispatchToProps = {
     loadStays,
-    onSetOrder
+    onSetOrder,
+    onSetStays
 }
 export const StayList = connect(mapStateToProps, mapDispatchToProps)(_StayList)

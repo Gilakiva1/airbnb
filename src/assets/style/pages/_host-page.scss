@@ -3,6 +3,10 @@
     margin-bottom: 54px;
     .host-container {
         position: relative;
+        .stay-details-container {
+            box-shadow: 0 6px 16px -2px #d8d8d8;
+            padding: 10px 20px;
+        }
     }
 
     .side-nav {
@@ -44,12 +48,20 @@
             width: rem(350px);
             height: rem(150px);
 
-            .img-guest {
+            .img {
                 width: 3rem;
+            }
+            .guest-1 {
                 left: 10px;
-                img {
-                    border-radius: 50%;
-                }
+            }
+            .guest-2 {
+                left: 20px;
+            }
+            .guest-3 {
+                left: 30px;
+            }
+            .guest-4 {
+                left: 40px;
             }
         }
         .icon-container {
@@ -81,11 +93,6 @@
         }
         .star-red {
             color: $clr3;
-        }
-
-        .stay-details-container {
-            background: $clr6;
-            padding: 10px 20px;
         }
 
         h1 {

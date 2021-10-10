@@ -46,8 +46,8 @@ export class _HomePage extends React.Component {
                 <div className="hero-logo full relative">
                     {screenWidth > 550 &&
                         <div className="btn-flex-container fh20  absolute flex align-center column">
-                            <h1 className="fs20 fh22 medium fw-unset">Not sure where to go? Perfect.</h1>
-                            <Link to="/stay" className="btn-flex"><span style={{ '-webkit-background-clip': 'text' }}>I'm flexiable</span></Link>
+                            <h1 className="fs18">Not sure where to go? Perfect.</h1>
+                            <Link to="/stay" className="btn-flex"><span style={{ 'WebkitBackgroundClip': 'text' }}>I'm flexiable</span></Link>
                         </div>
                     }
                     <img src={imgHero} />

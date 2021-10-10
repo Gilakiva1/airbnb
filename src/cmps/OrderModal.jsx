@@ -144,7 +144,7 @@ export class _OrderModal extends React.Component {
     }
     onSubmit = async (ev) => {
         ev.stopPropagation()
-        ev.preventDefault()  
+        ev.preventDefault()
         const { user, order } = this.props
         if (!user) {
             this.props.onSetMsg({ type: 'error', txt: 'Please Sign up/log in to continue' })
@@ -157,22 +157,19 @@ export class _OrderModal extends React.Component {
         const { isReserve } = this.state
         if (!isReserve) {
             this.setState({ isReserve: true, isPickingGuests: false, isPickingDates: false })
+            return
         } else {
             // await this.props.onSetOrder(null)
             //change to save id at stay or mini order
             const finalOrder = this.createFinalOrder()
             await this.props.onAddOrder(finalOrder)
             socketService.emit('on-reserve-order', finalOrder.host)
-            // this.setState({ isFinalReserve: true })
-            // setTimeout(() => {
-            //     this.setState({ isFinalReserve: false })
-            //     this.props.history.push('/trip')
-            // }, 2000);
+            setTimeout(() => {
+                this.props.history.push('/trip')
+            }, 2000);
+
         }
 
-        // await this.props.onSetOrder(null)
-        //change to save id at stay or mini order
-        // this.setState({ isFinalReserve: true },()=>{
 
         // })
         const finalOrder = this.createFinalOrder()

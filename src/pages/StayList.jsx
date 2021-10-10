@@ -89,7 +89,8 @@ class _StayList extends React.Component {
         const types = propertyTypes.filter(type=>type.isChecked)
         const currAmenities = amenities.filter(type=>type.isChecked)
         stays = stays.filter(stay => {
-            const type = stay.type.name
+            const type = stay.type[0].toUpperCase() + stay.type.substring(1)
+
             return types.length ? propertyTypes.some(currType => currType.isChecked && currType.name === type) : true &&
             currAmenities.length ? this.checkAmenities(amenities, stay.amenities) : true &&
                 (stay.price >= price.minPrice) &&

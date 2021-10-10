@@ -10,14 +10,17 @@ export class StayFilter extends Component {
         isAmenities: false
     }
     componentDidMount() {
-        window.addEventListener('click', this.onCloseFilters)
+        // window.addEventListener('click', this.onCloseFilters)
+
     }
 
     componentWillUnmount() {
-        window.removeEventListener('click', this.onCloseFilters)
+        // window.removeEventListener('click', this.onCloseFilters)
     }
 
     onCloseFilters = () => {
+        console.log('close ');
+
         this.setState({ isPrice: false, isPropertyType: false, isAmenities: false })
     }
 
@@ -42,27 +45,42 @@ export class StayFilter extends Component {
 
     render() {
         const { isPrice, isPropertyType, isAmenities } = this.state
-        const { stays, setCheckedPropertyType } = this.props
+        const { stays, setCheckedPropertyType, currAmenities, currTypes } = this.props
         return (
             <section className="filter-container flex gap10 ">
                 <div className="price-container ">
                     <button className="hover-grey" onClick={this.toggelPriceFilter}>{this.props.minPrice()}</button>
                     {isPrice && <PriceFilter stays={stays} onSavePrice={this.props.onSavePrice} />}
                 </div>
+
                 <div className="type-container ">
                     <button className="hover-grey" onClick={this.toggelPropertyTypeFilter}>Property Type</button>
-                    {isPropertyType && <LabelFilter
-                        property="type"
-                        stays={stays}
-                        setCheckedPropertyType={setCheckedPropertyType} />}
+                    {isPropertyType &&
+                        <LabelFilter
+                            property="type"
+                            stays={stays}
+                            setCheckedPropertyType={setCheckedPropertyType}
+                            currFilter={currTypes}
+                            onCloseFilters={this.onCloseFilters}
+                        />
+                    }
                 </div>
+                
                 <div className="amenities-container-filter ">
                     <button className="hover-grey" onClick={this.toggelAmenitiesFilter}>Amenities</button>
-                    {isAmenities && <LabelFilter
-                        property="amenities"
-                        stays={stays}
-                        setCheckedPropertyType={setCheckedPropertyType} />}
+                    {isAmenities &&
+                        <LabelFilter
+                            property="amenities"
+                            stays={stays}
+                            setCheckedPropertyType={setCheckedPropertyType}
+                            currFilter={currAmenities}
+                            onCloseFilters={this.onCloseFilters}
+                        />
+
+                    }
                 </div>
+                {/* </ClickAwayListener> */}
+
             </section >
         )
     }

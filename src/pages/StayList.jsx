@@ -31,9 +31,8 @@ class _StayList extends React.Component {
     }
 
     setCheckedPropertyType = (propertyTypes, property) => {
-        let key = property === 'types' ? 'propertyTypes' : property
-        this.setState({ filterBy: { ...this.state.filterBy, [key]: propertyTypes } }, () => {
-        })
+        const key = property === 'types' ? 'propertyTypes' : property
+        this.setState({ filterBy: { ...this.state.filterBy, [key]: propertyTypes } })
     }
 
     onSavePrice = (price) => {
@@ -62,7 +61,7 @@ class _StayList extends React.Component {
     checkAmenities = (amenities, stayAmenities) => {
         let newStayAmenities = stayAmenities.map(amenitie => amenitie[0].toUpperCase() + amenitie.substring(1))
         for (let amenitie of amenities) {
-            amenitie = amenitie[0].toUpperCase() + amenitie.substring(1)
+            amenitie = amenitie[0]?.toUpperCase() + amenitie.substring(1)
             if (!newStayAmenities.includes(amenitie)) return false
         }
         return true
@@ -81,17 +80,14 @@ class _StayList extends React.Component {
 
 
     }
-    // function shuffleArray(}) {
 
-    // }
     getStaysForDisplay = () => {
         let { stays } = this.props
-        if (!stays.length) return 
+        if (!stays.length) return
         const { propertyTypes, price, amenities } = this.state.filterBy
         stays = stays.filter(stay => {
-            console.log('stay.type[0]', stay.type[0]);
             const type = stay.type[0].toUpperCase() + stay.type.substring(1)
-            return propertyTypes.length ? propertyTypes.includes(type) : true &&
+            return propertyTypes.length ? propertyTypes.some(currType => currType.isChecked && currType.name === type) : true &&
                 amenities.length ? this.checkAmenities(amenities, stay.amenities) : true &&
                 (stay.price >= price.minPrice) &&
             (stay.price <= price.maxPrice)
@@ -103,6 +99,7 @@ class _StayList extends React.Component {
     render() {
         const stays = this.getStaysForDisplay()
         const { orderParams } = this.state
+        const { propertyTypes, amenities } = this.state.filterBy
         if (!orderParams) return (
             <div className="flex align-center justify-center list-loader">
                 <Loader
@@ -115,14 +112,15 @@ class _StayList extends React.Component {
         )
         return (
             <>
-
                 <h1 className="count-stays airbnb-book fs14 fh18 fw-unset">{stays?.length} stays </h1>
                 <h1 className="city-name">Stays in {orderParams.address}</h1>
                 <div className="list-filter">
-                    <StayFilter stays={stays} minPrice={this.minPrice}
+                    <StayFilter stays={this.props.stays} minPrice={this.minPrice}
                         setCheckedPropertyType={this.setCheckedPropertyType}
                         onSavePrice={this.onSavePrice}
-                        removePropertyType={this.removePropertyType} />
+                        currTypes = {propertyTypes}
+                        currAmenities = {amenities}
+                    />
                 </div>
                 <div className="stay-list">
                     {stays?.map((stay, idx) => <StayPreview key={stay._id} stay={stay} orderParams={orderParams} />)}

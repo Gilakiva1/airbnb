@@ -35,6 +35,7 @@ class _StayDetails extends Component {
         const baths = utilService.getRandomIntInclusive(1, 5)
 
         await this.loadStay()
+        console.log(this.state.stay.host);
         const host = await userService.getById(this.state.stay.host)
         console.log('host', host);
         this.setState({ host, reviews, beds, baths })

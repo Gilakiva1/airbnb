@@ -57,7 +57,6 @@ class _AppFooter extends React.Component {
     }
 
     render() {
-        // debugger
         const { pathname } = this.props.history.location
         const { staysTopRated, staysNearby, screenWidth } = this.state
         const makeQueryParams = this.makeQueryParams

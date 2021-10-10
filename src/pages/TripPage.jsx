@@ -77,7 +77,6 @@ class _TripPage extends React.Component {
     }
 }
 function mapStateToProps(state) {
-    console.log(state);
     return {
         orders: state.orderReducer.orders,
         user: state.userReducer.loggedInUser

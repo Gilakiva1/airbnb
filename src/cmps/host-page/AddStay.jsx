@@ -52,7 +52,6 @@ class _AddStay extends Component {
     }
     editAsset = () => {
         this.setState({ asset: this.props.currAsset, isEdit: true }, () => {
-            console.log('this.state.asset', this.state.asset);
         })
 
     }

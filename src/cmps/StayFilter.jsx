@@ -62,10 +62,8 @@ export class StayFilter extends Component {
                             setCheckedPropertyType={setCheckedPropertyType}
                             currFilter={currTypes}
                             onCloseFilters={this.onCloseFilters}
-                        />
-                    }
+                        />}
                 </div>
-
                 <div className="amenities-container-filter ">
                     <button className="hover-grey" onClick={this.toggelAmenitiesFilter}>Amenities</button>
                     {isAmenities &&

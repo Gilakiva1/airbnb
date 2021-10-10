@@ -60,8 +60,9 @@ class _StayList extends React.Component {
     }
     checkAmenities = (amenities, stayAmenities) => {
         let newStayAmenities = stayAmenities.map(amenitie => amenitie[0].toUpperCase() + amenitie.substring(1))
+        console.log('amenities',amenities);
         for (let amenitie of amenities) {
-            amenitie = amenitie[0]?.toUpperCase() + amenitie.substring(1)
+            amenitie = amenitie.name[0]?.toUpperCase() + amenitie.name.substring(1)
             if (!newStayAmenities.includes(amenitie)) return false
         }
         return true

@@ -48,7 +48,7 @@
         .grid-img0 {
             grid-row: 1/-1;
             grid-column: 1;
-            height: 360px;
+            height: 375px;
         }
         .grid-img1 {
             grid-row: 1;
@@ -138,6 +138,7 @@
     background-color: transparent;
     text-align: center;
     margin-top: 35px;
+    margin-bottom: 35px;
     padding: 13px 23px;
     transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s,
         transform 0.1s ease 0s;

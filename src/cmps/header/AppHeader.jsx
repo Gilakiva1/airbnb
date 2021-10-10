@@ -29,7 +29,7 @@ class _AppHeader extends React.Component {
     }
 
     componentDidMount() {
-      
+
         window.addEventListener('scroll', this.onToggleHeader)
         window.addEventListener('click', this.onCloseMenu)
         window.addEventListener('resize', this.onResizeScreen)
@@ -70,15 +70,17 @@ class _AppHeader extends React.Component {
 
     // }
     onToggleLogin = async () => {
-         this.onCloseMenu()
+        this.onCloseMenu()
         this.setState({ isLogIn: !this.state.isLogIn })
     }
     onLogout = async () => {
-         this.onCloseMenu()
+        this.onCloseMenu()
         this.props.onLogout()
     }
 
-
+    onCloseLogin = () => {
+        this.setState({ isLogIn: false })
+    }
 
 
     onToggleHeader = (ev) => {
@@ -170,13 +172,11 @@ class _AppHeader extends React.Component {
                                 </div>
                             </div>
                             {isShowMenu && <MenuBar onLogout={this.onLogout} user={user} isLogIn={isLogIn} onToggleLogin={this.onToggleLogin} onCloseMenu={this.onCloseMenu} />}
-                            {isLogIn && <LogIn onToggleLogin={this.onToggleLogin} />}
+                            {isLogIn && <LogIn onToggleLogin={this.onToggleLogin} onCloseLogin={this.onCloseLogin} />}
                         </nav>
                     </div>
                     {pathname !== '/host' && < MiniSearchBar toggleSearchBar={this.toggleSearchBar} animateClassName={isEnter ? '' : 'scale-up-top-mini-search-bar'} />}
-                    {/* {pathname !== '/' && !isMiniSearchClicked && <MiniSearchBar toggleSearchBar={this.toggleSearchBar} animateClassName={isEnter ? '' : 'scale-up-top-mini-search-bar'} />} */}
                     <SearchBar setClearSearchBar={this.setClearSearchBar} isClearSearchBar={isClearSearchBar} closeSearchBarInputs={this.closeSearchBarInputs} toggleSearchBar={this.toggleSearchBar} animateClassName={isEnter ? 'scale-up-top-search-bar' : ''} />
-                    {/* {pathname !== '/' && isMiniSearchClicked && <SearchBar toggleSearchBar={this.toggleSearchBar} animateClassName={isEnter ? 'scale-up-top-search-bar' : ''} />} */}
                 </header>
             )
         } else {

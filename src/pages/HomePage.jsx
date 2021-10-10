@@ -47,16 +47,16 @@ export class _HomePage extends React.Component {
                 <div className="hero-logo full relative">
                     {screenWidth > 550 &&
                         <div className="btn-flex-container fh20  absolute flex align-center column">
-                            <h1 className="fs18">Not sure where to go? Perfect. </h1>
+                            <h1 className="fs18">Not sure where to go? Perfect.</h1>
                             <Link to="/stay" className="btn-flex"><span style={{ '-webkit-background-clip': 'text' }}>I'm flexiable</span></Link>
                         </div>
                     }
                     <img src={imgHero} />
                 </div >
                 <section className="home-page">
-                    <h1 className="title-popular fs30">Popular Destinations</h1>
+                    <h1 className="title-popular fs32 fh52 fw-unset bold">Popular Destinations</h1>
                     <PopularImgList onImgClick={this.onImgClick} links={utilService.HomePageImgPopular()} />
-                    <h1 className="title-label">Live Anywhere</h1>
+                    <h1 className="title-label fs32 fh52 fw-unset bold">Live Anywhere</h1>
                     <LabelsImgList links={utilService.HomePageImgLabels()} />
                     <Link to='/host'>
                         <div className="host-container ">

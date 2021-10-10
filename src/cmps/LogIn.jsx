@@ -111,6 +111,7 @@ export class _LogIn extends React.Component {
             </div>
             <button ref={this.inputRef} onMouseMove={this.onSetColor} className="continue-btn fs16 fh20 medium ">Continue</button>
           </div>
+          <button onClick={()=>this.props.onCloseLogin()} className="login-close-btn fs22 fh26 bold">X</button>
         </form>
       </section>
     )

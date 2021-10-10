@@ -161,7 +161,7 @@ class _StayDetails extends Component {
                                 <span>·</span>{utilService.getRandomIntInclusive(30, 500)} reviews
                             </div>
                         </div >
-                        {/* <OrderModal stay={stay} order={currOrder} /> */}
+                        <OrderModal stay={stay} order={currOrder} />
                     </div >
                     <ReviewPoints reviews={stay.reviews} />
                     <ReviewList reviews={stay.reviews} />
@@ -196,9 +196,7 @@ class _StayDetails extends Component {
                         <p className="fs16 fh20 book">Response time: within an hour</p>
                     </div>
                     <button className="contact-host fs16 fh20 medium">Contact host</button>
-                    <div className="seperation-line"></div>
                 </section >
-
             </>
         )
     }

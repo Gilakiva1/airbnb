@@ -133,26 +133,27 @@ class _AppFooter extends React.Component {
             )
         } else {
             return (
-                <footer className="main-footer-mobile main-container-home">
-                    <nav className="mobile-container">
-                        <div className="explore">
-                            <Link to="/stay"></Link>
-                        </div>
-                        <div className="wish-list">
-                            <Link to="/stay"></Link>
-                        </div>
-                        <div className="inbox">
-                            <Link to="/"></Link>
-                        </div>
-                        <div className="trip">
-                            <Link to="/trip"></Link>
-                        </div>
-                        <div className="profile">
-                            <Link to="/"></Link>
-                        </div>
-                    </nav>
-                </footer>
-            )
+                <div></div>
+                )
+                // <footer className="main-footer-mobile main-container-home">
+                //     <nav className="mobile-container">
+                //         <div className="explore">
+                //             <Link to="/stay"></Link>
+                //         </div>
+                //         <div className="wish-list">
+                //             <Link to="/stay"></Link>
+                //         </div>
+                //         <div className="inbox">
+                //             <Link to="/"></Link>
+                //         </div>
+                //         <div className="trip">
+                //             <Link to="/trip"></Link>
+                //         </div>
+                //         <div className="profile">
+                //             <Link to="/"></Link>
+                //         </div>
+                //     </nav>
+                // </footer>
         }
     }
 }

@@ -11,6 +11,7 @@ import { userService } from '../../services/user.service';
 import user1 from '../../assets/img/profiles/user1.png'
 import { socketService } from '../../services/socket.service';
 import { onSetMsg, onLogout } from '../../store/user.action'
+import { MobileSearchBar } from './MobileSearchBar'
 import { Link } from 'react-router-dom'
 import { HamburgerMenu } from '../svgs/HamburgerMenu';
 
@@ -25,7 +26,7 @@ class _AppHeader extends React.Component {
         closeSearchBarInputs: false,
         isClearSearchBar: false,
         isHosting: false,
-        screenWidth: 600
+        screenWidth: window.innerWidth
     }
 
     componentDidMount() {
@@ -169,10 +170,8 @@ class _AppHeader extends React.Component {
                 </header>
             )
         } else {
-            return (
-                <div></div>
-                // < MobileSearchBar/>
-            )
+            return < MobileSearchBar />
+
 
         }
 

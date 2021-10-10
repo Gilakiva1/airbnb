@@ -171,6 +171,15 @@ export class _OrderModal extends React.Component {
         }
 
 
+        // })
+        const finalOrder = this.createFinalOrder()
+        await this.props.onAddOrder(finalOrder)
+        debugger
+        socketService.emit('on-reserve-order', finalOrder.host)
+        setTimeout(() => {
+            this.props.onSetMsg({ type: 'success', txt: 'Order Sent!' })            
+            this.props.history.push('/')
+        }, 2500);
 
     }
 

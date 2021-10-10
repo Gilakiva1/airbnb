@@ -8,7 +8,6 @@ import { utilService } from "../services/util.service";
 import { onSetOrder } from '../store/order.action';
 import { withRouter } from 'react-router'
 import { connect } from "react-redux";
-import { AppFooter } from "../cmps/footer/AppFooter";
 
 
 

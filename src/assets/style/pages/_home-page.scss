@@ -31,6 +31,9 @@
                 -webkit-text-fill-color: transparent;
                 background: linear-gradient(90deg, #6f019c 0%, #c6017e 135.12%);
             }
+            &:hover {
+                box-shadow: 0px 6px 16px 6px rgb(0 ,0, 0 / 12%);
+            }
         }
     }
 }

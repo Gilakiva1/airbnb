@@ -83,7 +83,7 @@ componentDidUpdate(prevProps, prevState) {
                     <div className="btn-inputs flex white space-between">
                         <button onClick={() => { this.props.setCheckedPropertyType([], key) }} className="btn" >Clear</button>
                         <button className="btn" onClick={() =>{
-                            this.props.setCheckedPropertyType(this.state[key], key)
+                            this.props.setCheckedPropertyType(this.state[key].length?this.state[key]:null, key)
                             this.props.onCloseFilters()
                         }}>Save</button>
                     </div>

@@ -32,6 +32,7 @@ class _StayList extends React.Component {
     }
 
     setCheckedPropertyType = (propertyTypes, property) => {
+        console.log('propertyTypes',propertyTypes,'property',property);
         const key = property === 'types' ? 'propertyTypes' : property
         this.setState({ filterBy: { ...this.state.filterBy, [key]: propertyTypes } })
     }
@@ -42,7 +43,6 @@ class _StayList extends React.Component {
             minPrice: price[0],
         }
         this.setState(({ filterBy: { ...this.state.filterBy, price: filterPrice } }))
-
     }
     // onReviewsDisplay = (stays) => {
     //     const reviewsDisplay = this.state
@@ -95,10 +95,14 @@ class _StayList extends React.Component {
         let { stays } = this.props
         if (!stays.length) return
         const { propertyTypes, price, amenities } = this.state.filterBy
+        console.log(propertyTypes);
+        const types = propertyTypes.filter(type=>type.isChecked)
+        const currAmenities = amenities.filter(type=>type.isChecked)
         stays = stays.filter(stay => {
             const type = stay.type[0].toUpperCase() + stay.type.substring(1)
-            return propertyTypes.length ? propertyTypes.some(currType => currType.isChecked && currType.name === type) : true &&
-                amenities.length ? this.checkAmenities(amenities, stay.amenities) : true &&
+
+            return types.length ? propertyTypes.some(currType => currType.isChecked && currType.name === type) : true &&
+            currAmenities.length ? this.checkAmenities(amenities, stay.amenities) : true &&
                 (stay.price >= price.minPrice) &&
             (stay.price <= price.maxPrice)
         })
@@ -110,6 +114,7 @@ class _StayList extends React.Component {
         const stays = this.getStaysForDisplay()
         const { orderParams, displayReviews } = this.state
         const { propertyTypes, amenities } = this.state.filterBy
+        console.log('propertyTypes',propertyTypes,'amenities',amenities);
         if (!orderParams) return (
             <div className="flex align-center justify-center list-loader">
                 <Loader

@@ -19,7 +19,7 @@ class _AppHeader extends React.Component {
 
     state = {
         scrollLoc: 0,
-        isEnter: true,
+        isEnter: false,
         isShowMenu: false,
         isLogIn: false,
         closeSearchBarInputs: false,
@@ -35,10 +35,9 @@ class _AppHeader extends React.Component {
         window.addEventListener('resize', this.onResizeScreen)
         socketService.setup()
         socketService.on('on-new-order', () => {
-            console.log('hello');
-            debugger
             this.props.onSetMsg({ type: 'new-order', txt: 'New order recived!' })
         })
+        if (this.props.location.pathname==='/') this.setState({isEnter: true})
     }
 
     componentDidUpdate() {

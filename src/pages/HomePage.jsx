@@ -27,7 +27,7 @@ export class _HomePage extends React.Component {
     onResizeScreen = ({ target }) => {
         this.setState(prevState => ({ ...prevState, screenWidth: target.innerWidth }));
     }
-
+  
 
     onImgClick = async (order) => {
         const queryString = utilService.makeQueryParams(order)

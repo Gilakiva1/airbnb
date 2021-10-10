@@ -159,7 +159,6 @@ export class _OrderModal extends React.Component {
             this.setState({ isReserve: true, isPickingGuests: false, isPickingDates: false })
             return
         } else {
-            // await this.props.onSetOrder(null)
             const finalOrder = this.createFinalOrder()
             await this.props.onAddOrder(finalOrder)
             debugger
@@ -170,8 +169,6 @@ export class _OrderModal extends React.Component {
             }, 1500);
         }
     }
-
-
 
     render() {
         const { isPickingDates, isPickingGuests, isFinalReserve, isReserve, reviewsNumber } = this.state

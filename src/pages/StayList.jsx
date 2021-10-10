@@ -26,11 +26,11 @@ class _StayList extends React.Component {
         const searchParams = new URLSearchParams(this.props.location.search);
         const getParms = utilService.getQueryParams(searchParams)
         await this.props.loadStays(getParms)
-
         this.setState({ orderParams: getParms })
     }
 
     setCheckedPropertyType = (propertyTypes, property) => {
+        console.log('propertyTypes',propertyTypes,'property',property);
         const key = property === 'types' ? 'propertyTypes' : property
         this.setState({ filterBy: { ...this.state.filterBy, [key]: propertyTypes } })
     }
@@ -41,7 +41,6 @@ class _StayList extends React.Component {
             minPrice: price[0],
         }
         this.setState(({ filterBy: { ...this.state.filterBy, price: filterPrice } }))
-
     }
 
     minPrice = () => {
@@ -60,8 +59,9 @@ class _StayList extends React.Component {
     }
     checkAmenities = (amenities, stayAmenities) => {
         let newStayAmenities = stayAmenities.map(amenitie => amenitie[0].toUpperCase() + amenitie.substring(1))
+        console.log('amenities',amenities);
         for (let amenitie of amenities) {
-            amenitie = amenitie[0]?.toUpperCase() + amenitie.substring(1)
+            amenitie = amenitie.name[0]?.toUpperCase() + amenitie.name.substring(1)
             if (!newStayAmenities.includes(amenitie)) return false
         }
         return true
@@ -85,10 +85,13 @@ class _StayList extends React.Component {
         let { stays } = this.props
         if (!stays.length) return
         const { propertyTypes, price, amenities } = this.state.filterBy
+        console.log(propertyTypes);
+        const types = propertyTypes.filter(type=>type.isChecked)
+        const currAmenities = amenities.filter(type=>type.isChecked)
         stays = stays.filter(stay => {
-            const type = stay.type[0].toUpperCase() + stay.type.substring(1)
-            return propertyTypes.length ? propertyTypes.some(currType => currType.isChecked && currType.name === type) : true &&
-                amenities.length ? this.checkAmenities(amenities, stay.amenities) : true &&
+            const type = stay.type.name
+            return types.length ? propertyTypes.some(currType => currType.isChecked && currType.name === type) : true &&
+            currAmenities.length ? this.checkAmenities(amenities, stay.amenities) : true &&
                 (stay.price >= price.minPrice) &&
             (stay.price <= price.maxPrice)
         })
@@ -100,6 +103,7 @@ class _StayList extends React.Component {
         const stays = this.getStaysForDisplay()
         const { orderParams } = this.state
         const { propertyTypes, amenities } = this.state.filterBy
+        console.log('propertyTypes',propertyTypes,'amenities',amenities);
         if (!orderParams) return (
             <div className="flex align-center justify-center list-loader">
                 <Loader

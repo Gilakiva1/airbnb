@@ -9,14 +9,6 @@ export class StayFilter extends Component {
         isPropertyType: false,
         isAmenities: false
     }
-    componentDidMount() {
-        // window.addEventListener('click', this.onCloseFilters)
-
-    }
-
-    componentWillUnmount() {
-        // window.removeEventListener('click', this.onCloseFilters)
-    }
 
     onCloseFilters = () => {
         console.log('close ');
@@ -40,7 +32,6 @@ export class StayFilter extends Component {
         ev.stopPropagation()
         await this.onCloseFilters()
         this.setState(prevState => ({ ...prevState, isAmenities: !this.state.isAmenities }))
-
     }
 
     render() {
@@ -52,7 +43,6 @@ export class StayFilter extends Component {
                     <button className="hover-grey" onClick={this.toggelPriceFilter}>{this.props.minPrice()}</button>
                     {isPrice && <PriceFilter stays={stays} onSavePrice={this.props.onSavePrice} onCloseFilters={this.onCloseFilters} />}
                 </div>
-
                 <div className="type-container ">
                     <button className="hover-grey" onClick={this.toggelPropertyTypeFilter}>Property Type</button>
                     {isPropertyType &&
@@ -62,10 +52,8 @@ export class StayFilter extends Component {
                             setCheckedPropertyType={setCheckedPropertyType}
                             currFilter={currTypes}
                             onCloseFilters={this.onCloseFilters}
-                        />
-                    }
+                        />}
                 </div>
-
                 <div className="amenities-container-filter ">
                     <button className="hover-grey" onClick={this.toggelAmenitiesFilter}>Amenities</button>
                     {isAmenities &&
@@ -79,8 +67,6 @@ export class StayFilter extends Component {
 
                     }
                 </div>
-                {/* </ClickAwayListener> */}
-
             </section >
         )
     }

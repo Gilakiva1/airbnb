@@ -180,9 +180,9 @@ export class _OrderModal extends React.Component {
         debugger
         socketService.emit('on-reserve-order', finalOrder.host)
         setTimeout(() => {
-            this.setState({ isFinalReserve: false })
-            this.props.history.push('/trip')
-        }, 2000);
+            this.props.onSetMsg({ type: 'success', txt: 'Order Sent!' })            
+            this.props.history.push('/')
+        }, 2500);
 
     }
 

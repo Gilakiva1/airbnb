@@ -1,5 +1,5 @@
 .footer-container {
-    background-color: rgba(128, 128, 128,0.1);
+    background-color: rgba(128, 128, 128, 0.1);
 }
 
 .main-footer {
@@ -30,6 +30,12 @@
 
     .footer-links-container {
         height: 85%;
-    
     }
+}
+.mobile-container {
+    z-index: 20;
+    position: fixed;
+    bottom: 0;
+    height: 80px;
+    background-color: beige;
 }

@@ -159,27 +159,16 @@ export class _OrderModal extends React.Component {
             this.setState({ isReserve: true, isPickingGuests: false, isPickingDates: false })
             return
         } else {
-            // await this.props.onSetOrder(null)
-            //change to save id at stay or mini order
+
             const finalOrder = this.createFinalOrder()
             await this.props.onAddOrder(finalOrder)
             socketService.emit('on-reserve-order', finalOrder.host)
             setTimeout(() => {
-                this.props.history.push('/trip')
+                this.props.history.push('/')
+                this.props.onSetMsg({ type: 'success', txt: 'Order Sent!' })
             }, 2000);
 
         }
-
-
-        // })
-        const finalOrder = this.createFinalOrder()
-        await this.props.onAddOrder(finalOrder)
-        debugger
-        socketService.emit('on-reserve-order', finalOrder.host)
-        setTimeout(() => {
-            this.props.onSetMsg({ type: 'success', txt: 'Order Sent!' })            
-            this.props.history.push('/')
-        }, 2500);
 
     }
 

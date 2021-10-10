@@ -10,8 +10,13 @@
   > .full {
     grid-column: 1 / -1;
   }
-
-  @include for-mobile-layout {
+  @include for-mobile-layout{
+    grid-template-columns:
+      minmax(auto, 1fr)
+      minmax(auto, $mobile-breakpoint)
+      minmax(auto, 1fr);
+  }
+  @include for-narrow-layout {
     grid-template-columns:
       minmax(2rem, 1fr)
       minmax(auto, $mobile-breakpoint)
@@ -43,6 +48,13 @@
 
   > .full {
     grid-column: 1 / -1;
+  }
+
+  @include for-mobile-layout{
+    grid-template-columns:
+      minmax(auto, 1fr)
+      minmax(auto, $mobile-breakpoint)
+      minmax(auto, 1fr);
   }
   @include for-narrow-layout {
     grid-template-columns:

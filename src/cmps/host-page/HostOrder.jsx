@@ -43,14 +43,17 @@ class _HostOrder extends Component {
         const { isOnType } = this.state.sortType
         const { orders } = this.props
         if (!orders.length) return (
-            <div className="flex align-center justify-center full">
-                <Loader
-                    type="ThreeDots"
-                    color='#FF385C'
-                    height={100}
-                    width={100}
-                />
+            <div className="orders-blank flex align-center justify-center">
+                <h1>There are no incoming orders</h1>
             </div>
+            // <div className="flex align-center justify-center full">
+            //     <Loader
+            //         type="ThreeDots"
+            //         color='#FF385C'
+            //         height={100}
+            //         width={100}
+            //     />
+            // </div>
         )
         return (
             <table className='host-list'>

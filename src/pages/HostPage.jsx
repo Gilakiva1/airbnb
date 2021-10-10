@@ -16,7 +16,7 @@ class _HostPage extends Component {
     state = {
         asset: [],
         component: {
-            isAddasset: false,
+            isAddAsset: false,
             isMyAsset: true,
             isOrders: false,
             isRates: false
@@ -79,7 +79,6 @@ class _HostPage extends Component {
 
         hostDetails.price = Math.floor(hostDetails.price / 30)
         hostDetails.rate = (rate / assets.length).toFixed(1)
-
 
         this.setState({ hostDetails })
     }

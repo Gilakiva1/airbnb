@@ -36,37 +36,34 @@
         }
     }
     tbody {
-        .buyer{
-            img{
+        .buyer {
+            img {
                 height: 50px;
                 width: 50px;
                 border-radius: 50%;
             }
         }
-        .action{
-            button{
-
+        .action {
+            button {
                 padding: 10px;
                 width: 100px;
-                border:none;
+                border: none;
                 border-radius: 4px;
                 background-color: $clr3;
                 color: #fff;
-                &:hover{
-
+                &:hover {
                 }
             }
         }
-        .action-edit{
-            button{
+        .action-edit {
+            button {
                 padding: 10px;
                 width: 65px;
-                border:none;
+                border: none;
                 border-radius: 4px;
                 background-color: $clr3;
                 color: #fff;
-                &:hover{
-                    
+                &:hover {
                 }
             }
         }
@@ -110,7 +107,9 @@
         }
     }
 }
-.stay-details-container{
+.stay-details-container {
     margin-top: 35px;
 }
-
+.orders-blank {
+    height: 100px;
+}

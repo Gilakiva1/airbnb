@@ -109,6 +109,11 @@ class _StayList extends React.Component {
         return stays
     }
 
+    capitalizeFirstLetter = (string) => {
+        if (string) return string.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
+        return 'popular cities'
+    }
+
     render() {
         const stays = this.getStaysForDisplay()
         const { orderParams, displayReviews } = this.state
@@ -125,9 +130,9 @@ class _StayList extends React.Component {
             </div>
         )
         return (
-            <div className="list-container">
-                <h1 className="count-stays airbnb-book fs14 fh18 fw-unset">{stays?.length} stays </h1>
-                <h1 className="city-name">Stays in {orderParams.address}</h1>
+            <>
+                <h1 className="count-stays airbnb-book fs14 fh18 fw-unset">{stays?.length} Stays </h1>
+                <h1 className="city-name">Stays in {this.capitalizeFirstLetter(orderParams.address)}</h1>
                 <div className="list-filter">
                     <StayFilter stays={this.props.stays} minPrice={this.minPrice}
                         setCheckedPropertyType={this.setCheckedPropertyType}
@@ -139,7 +144,7 @@ class _StayList extends React.Component {
                 <div className="stay-list">
                     {stays?.map((stay, idx) => (< StayPreview key={stay._id} stay={stay} orderParams={orderParams} />))}
                 </div>
-            </div>
+            </>
 
         )
     }

@@ -125,7 +125,7 @@ export class _SearchBar extends React.Component {
   }
 
   getDateValue = (date) => {
-    if (new Date(date).toLocaleString('en-IL', { month: 'short', day: 'numeric' }) === 'Invalid Date') return 'Add Dates'
+    if (new Date(date).toLocaleString('en-IL', { month: 'short', day: 'numeric' }) === 'Invalid Date') return 'Add dates'
     else return new Date(date).toLocaleString('en-IL', { month: 'short', day: 'numeric' })
   }
 
@@ -163,7 +163,7 @@ export class _SearchBar extends React.Component {
           <div className="flex column margin-top20">
             <form className="search-bar-container flex" onClick={this.preventPropagation} onSubmit={this.onSubmit}>
               <div className="input-container flex column" onClick={() => this.activeInput('location',this.inputRef.current)} >
-                <span>Location:</span>
+                <span>Location</span>
                 <input
                   ref={this.inputRef}
                   type="search"
@@ -178,7 +178,7 @@ export class _SearchBar extends React.Component {
               </div>
               <div className="seperation-line-vertical"></div>
               <div className="input-container flex column" onClick={() => this.activeInput('date')}>
-                <span>Check in:</span>
+                <span>Check in</span>
                 <input
                   type="text"
                   placeholder="Add dates"
@@ -192,7 +192,7 @@ export class _SearchBar extends React.Component {
               <div className="seperation-line-vertical"></div>
               <div className="input-container flex column"
                 onClick={() => this.activeInput('date')}>
-                <span>Check out:</span>
+                <span>Check out</span>
                 <input
                   type="text"
                   placeholder="Add dates"
@@ -208,13 +208,13 @@ export class _SearchBar extends React.Component {
               <div className="input-container flex column"
                 onClick={() => this.activeInput('guest')}
               >
-                <span>Guests:</span>
+                <span>Guests</span>
                 <input
                   type="text"
                   placeholder="Add guests"
                   autoComplete="off"
                   name="guests"
-                  placeholder={'guests:' + this.getTotalGuests()}
+                  placeholder={'Guests:' + this.getTotalGuests()}
                   disabled
                   onChange={this.handleChange}
                 />

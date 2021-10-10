@@ -43,7 +43,7 @@ class _StayDetails extends Component {
     }
 
     loadStay = async () => {
-        
+
         const id = this.props.match.params.stayId;
         const searchParams = new URLSearchParams(this.props.location.search);
         try {
@@ -99,19 +99,19 @@ class _StayDetails extends Component {
         return (
             <>
                 <section className="stay-details-container">
-                    <h1>{stay.name}</h1>
+                    <h1 className=" fs28 fh32 medium fw-unset">{stay.name}</h1>
                     <div className="flex space-between">
                         <div className="review-address-container flex">
-                            <div className="flex gap5">
+                            <div className="flex gap5 align-center">
                                 {<FontAwesomeIcon className='star-icon' icon={faStar} />}
-                                <span>{stay.rating}</span><span></span>
-                                ({reviews} reviews) ·<span> </span>
+                                <span className=" fs16 fh20 book fw-unset">{stay.rating}</span><span></span>
+                                <span className=" fs16 fh20 book fw-unset">({reviews} reviews)</span> ·<span> </span>
                             </div>
-                            <div>{stay.loc.address}</div>
+                            <div className="fs16 fh20 book fw-unset">{stay.loc.address}</div>
                         </div>
-                        <div className="flex gap10">
-                            <HeartSvg /> <span className="details-save-share fs14 fh18 medium">Save</span>
-                            <ShareSvg /> <span className="details-save-share fs14 fh18 medium">Share</span>
+                        <div className="flex gap20">
+                            <span className="flex gap5"> <ShareSvg /><span className="details-save-share fw-unset fs16 fh18 medium">Share</span></span>
+                            <span className="flex gap5"><HeartSvg /><span className="details-save-share fw-unset fs16 fh18 medium">Save</span></span>
                         </div>
                     </div>
                     <div className="stay-details-grid ">{stay.imgUrls.slice(0, 5).map((img, idx) => {

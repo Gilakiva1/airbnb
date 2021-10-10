@@ -35,6 +35,8 @@ class _AppHeader extends React.Component {
         window.addEventListener('resize', this.onResizeScreen)
         socketService.setup()
         socketService.on('on-new-order', () => {
+            console.log('hello');
+            debugger
             this.props.onSetMsg({ type: 'new-order', txt: 'New order recived!' })
         })
     }
@@ -141,7 +143,6 @@ class _AppHeader extends React.Component {
     render() {
         const { scrollLoc, isEnter, isShowMenu, isLogIn, isClearSearchBar, isHosting, screenWidth } = this.state
         const { pathname } = this.props.history.location
-        console.log(this.props);
         const { user } = this.props
         if (screenWidth > 550) {
 
@@ -149,7 +150,7 @@ class _AppHeader extends React.Component {
                 <header className={`
                 ${scrollLoc > 40 ? 'white shadow' : ''}
                 ${pathname === '/' || pathname == '/stay' || pathname === '/host' || pathname === '/trip' ? 'fixed home main-container-home' : 'sticky-color main-container'}
-                ${pathname === '/host' ? 'relative' : ''}
+                ${pathname === '/host' ? 'relative padding' : ''}
                 ${pathname !== '/' ? 'shadow' : ''} header-container `}>
                     <div className="header-func flex">
                         <div className="logo-container flex align-center pointer" onClick={this.backToHome}>
@@ -157,7 +158,7 @@ class _AppHeader extends React.Component {
                             <h3 className={`logo-txt fs22 medium ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-pink'}`}>Home Away</h3>
                         </div>
                         <nav className="nav-header">
-                            <div className="nav-header flex align-center">
+                            <div className="nav-header flex gap5 align-center">
                                 <NavLink onClick={this.hideHost} className={`link-host border-round fs14 medium  ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-black hover-bcg'}`} to={`/stay`} >Explore</NavLink>
                                 {pathname !== '/host' && <NavLink onClick={this.onToggleUser} className={`link-host border-round fs14 medium  ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-black hover-bcg'}`} to={isHosting ? '/' : '/host'} >become a host</NavLink>}
                                 <div className="menu-container border-round">

@@ -36,7 +36,6 @@ class _StayDetails extends Component {
 
         await this.loadStay()
         console.log(this.state.stay.host);
-        debugger
         const host = await userService.getById(this.state.stay.host)
         console.log('host', host);
         this.setState({ host, reviews, beds, baths })

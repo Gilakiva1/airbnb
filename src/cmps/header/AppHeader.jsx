@@ -2,8 +2,6 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { NavLink } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { LogoSvg } from "../svgs/LogoSvg"
 import { SearchBar } from "./SearchBar";
 import { MiniSearchBar } from './MiniSearchBar';
@@ -14,6 +12,7 @@ import user1 from '../../assets/img/profiles/user1.png'
 import { socketService } from '../../services/socket.service';
 import { onSetMsg, onLogout } from '../../store/user.action'
 import { Link } from 'react-router-dom'
+import { HamburgerMenu } from '../svgs/HamburgerMenu';
 
 
 class _AppHeader extends React.Component {
@@ -154,7 +153,7 @@ class _AppHeader extends React.Component {
                                     <div className="menu-container">
                                         <button onClick={this.onToggoleMenu} className="menu-btn border-round flex align-center">
                                             <div className="menu-details flex align-center">
-                                                <FontAwesomeIcon className="hamburger-menu" icon={faBars} />
+                                                <HamburgerMenu/>
                                                 <img src={this.getUserImg() || user1} alt="" className="user-img border-round" />
                                             </div>
                                         </button>

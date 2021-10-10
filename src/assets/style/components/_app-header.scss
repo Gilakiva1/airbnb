@@ -11,7 +11,7 @@
     justify-content: space-between;
     align-items: center;
     position: relative;
-    margin-top: 10px;
+    margin-top: 18.5px;
 
     .link-host {
       text-decoration: none;
@@ -40,7 +40,9 @@
         .menu-btn {
           border: none;
           background: $clr4;
-          padding: 10px 20px;
+          width: 85px;
+          height: 46px;
+          padding: 5px 5px 5px 12px;
           border-radius: 3em;
           border: 1px solid #dad4d4;
 
@@ -51,7 +53,9 @@
         }
       }
       .user-img {
-        width: rem(30px);
+        width: rem(35px);
+        margin-left: 13px;
+        margin-top: 1px;
       }
     }
 

@@ -50,7 +50,7 @@ export class StayFilter extends Component {
             <section className="filter-container flex gap10 ">
                 <div className="price-container ">
                     <button className="hover-grey" onClick={this.toggelPriceFilter}>{this.props.minPrice()}</button>
-                    {isPrice && <PriceFilter stays={stays} onSavePrice={this.props.onSavePrice} />}
+                    {isPrice && <PriceFilter stays={stays} onSavePrice={this.props.onSavePrice} onCloseFilters={this.onCloseFilters} />}
                 </div>
 
                 <div className="type-container ">
@@ -65,7 +65,7 @@ export class StayFilter extends Component {
                         />
                     }
                 </div>
-                
+
                 <div className="amenities-container-filter ">
                     <button className="hover-grey" onClick={this.toggelAmenitiesFilter}>Amenities</button>
                     {isAmenities &&

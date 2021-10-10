@@ -74,7 +74,8 @@ export default function PriceFilter(props) {
       </div>
       <div className="btn-inputs flex white space-between">
         <button className="btn" onClick={() => { props.onSavePrice([0, 500]) }}>Clear</button>
-        <button className="btn" onClick={() => { props.onSavePrice(price) }}>Save</button>
+        <button className="btn" onClick={() => { props.onSavePrice(price) 
+        props.onCloseFilters()}}>Save</button>
       </div>
     </div >
   );

@@ -58,18 +58,7 @@ class _AppHeader extends React.Component {
     onResizeScreen = ({ target }) => {
         this.setState(prevState => ({ ...prevState, screenWidth: target.innerWidth }));
     }
-    // onLogout = async () => {
-    //     this.onCloseMenu()
-    //     let { isLogIn } = this.state
-    //     await this.props.onLogout()
-    // }
-    // onLogin = async () => {
-    //     this.onCloseMenu()
-    //     let { isLogIn } = this.state
-    //     await this.props.onLogout()
-    //     this.setState({ isLogIn: !isLogIn })
-
-    // }
+   
     onToggleLogin = async () => {
         this.onCloseMenu()
         this.setState({ isLogIn: !this.state.isLogIn })
@@ -159,7 +148,7 @@ class _AppHeader extends React.Component {
                         <nav className="nav-header">
                             <div className="nav-header flex gap5 align-center">
                                 <NavLink onClick={this.hideHost} className={`link-host border-round fs14 medium  ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-black hover-bcg'}`} to={`/stay`} >Explore</NavLink>
-                                {pathname !== '/host' && <NavLink onClick={this.onToggleUser} className={`link-host border-round fs14 medium  ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-black hover-bcg'}`} to={isHosting ? '/' : '/host'} >become a host</NavLink>}
+                                {pathname !== '/host' && <NavLink onClick={this.onToggleUser} className={`link-host border-round fs14 medium  ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-black hover-bcg'}`} to={isHosting ? '/' : '/host'} >Become a host</NavLink>}
                                 <div className="menu-container border-round">
                                     <div className="menu-container">
                                         <button onClick={this.onToggoleMenu} className="menu-btn border-round flex align-center">

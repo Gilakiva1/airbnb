@@ -67,7 +67,7 @@ class _AppFooter extends React.Component {
                     color='#FF385C'
                     height={100}
                     width={100}
-                /> 
+                />
             </div>
         )
         if (screenWidth > 550) {
@@ -134,10 +134,23 @@ class _AppFooter extends React.Component {
         } else {
             return (
                 <footer className="main-footer-mobile main-container-home">
-                    <div className="seperation-line last"></div>
-                    <div className="flex justify-center">
-                        <p className="fs16 fh20 book">© 2021 Home away, Inc.</p>
-                    </div>
+                    <nav className="mobile-container">
+                        <div className="explore">
+                            <Link to="/stay"></Link>
+                        </div>
+                        <div className="wish-list">
+                            <Link to="/stay"></Link>
+                        </div>
+                        <div className="inbox">
+                            <Link to="/"></Link>
+                        </div>
+                        <div className="trip">
+                            <Link to="/trip"></Link>
+                        </div>
+                        <div className="profile">
+                            <Link to="/"></Link>
+                        </div>
+                    </nav>
                 </footer>
             )
         }

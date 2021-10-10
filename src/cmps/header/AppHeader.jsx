@@ -13,6 +13,7 @@ import { userService } from '../../services/user.service';
 import user1 from '../../assets/img/profiles/user1.png'
 import { socketService } from '../../services/socket.service';
 import { onSetMsg, onLogout } from '../../store/user.action'
+import { Link } from 'react-router-dom'
 
 
 class _AppHeader extends React.Component {
@@ -37,7 +38,7 @@ class _AppHeader extends React.Component {
         socketService.on('on-new-order', () => {
             this.props.onSetMsg({ type: 'new-order', txt: 'New order recived!' })
         })
-        if (this.props.location.pathname==='/') this.setState({isEnter: true})
+        if (this.props.location.pathname === '/') this.setState({ isEnter: true })
     }
 
     componentDidUpdate() {
@@ -169,7 +170,11 @@ class _AppHeader extends React.Component {
                 </header>
             )
         } else {
-            return <h1></h1>
+            return (
+                <div></div>
+                // < MobileSearchBar/>
+            )
+
         }
 
     }

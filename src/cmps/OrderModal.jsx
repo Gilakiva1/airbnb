@@ -156,11 +156,10 @@ export class _OrderModal extends React.Component {
         const { isReserve } = this.state
         if (!isReserve) {
             this.setState({ isReserve: true, isPickingGuests: false, isPickingDates: false })
-            return
+            return   
         } else {
             const finalOrder = this.createFinalOrder()
             await this.props.onAddOrder(finalOrder)
-            debugger
             socketService.emit('on-reserve-order', finalOrder.host)
             setTimeout(() => {
                 this.props.history.push('/')

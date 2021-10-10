@@ -21,7 +21,7 @@ export function onSetMsg(msg) {
         dispatch({ type: 'SET_MSG', msg })
         setTimeout(() => {
             dispatch({ type: 'SET_MSG', msg: null })
-        }, 4000)
+        }, 12000)
     }
 }
 

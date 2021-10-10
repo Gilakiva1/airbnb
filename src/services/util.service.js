@@ -77,8 +77,16 @@ function delay(ms = 1500) {
         setTimeout(resolve, ms)
     })
 }
-function makeQueryParams(criteria) {
-    let queryString = Object.entries(criteria).reduce((acc, [key, value], idx, arr) => {
+
+
+
+
+
+
+
+
+function makeQueryParams(order) {
+    let queryString = Object.entries(order).reduce((acc, [key, value], idx, arr) => {
         if (typeof value === 'object') {
             acc += Object.entries(value).reduce((acc, [key, value], idx, arr) => {
                 acc += key + '=' + value
@@ -105,7 +113,7 @@ function getQueryParams(params) {
         } else {
             newParams[key] = value
         }
-    } 
+    }
     return newParams
 
 }

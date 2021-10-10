@@ -90,7 +90,6 @@ class _StayList extends React.Component {
         this.props.onSetStays(stays)
     }
 
-
     getStaysForDisplay = () => {
         let { stays } = this.props
         if (!stays.length) return

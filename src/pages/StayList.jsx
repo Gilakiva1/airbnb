@@ -32,7 +32,7 @@ class _StayList extends React.Component {
     }
 
     setCheckedPropertyType = (propertyTypes, property) => {
-        console.log('propertyTypes',propertyTypes,'property',property);
+        console.log('propertyTypes', propertyTypes, 'property', property);
         const key = property === 'types' ? 'propertyTypes' : property
         this.setState({ filterBy: { ...this.state.filterBy, [key]: propertyTypes } })
     }
@@ -95,13 +95,13 @@ class _StayList extends React.Component {
         if (!stays.length) return
         const { propertyTypes, price, amenities } = this.state.filterBy
         console.log(propertyTypes);
-        const types = propertyTypes.filter(type=>type.isChecked)
-        const currAmenities = amenities.filter(type=>type.isChecked)
+        const types = propertyTypes.filter(type => type.isChecked)
+        const currAmenities = amenities.filter(type => type.isChecked)
         stays = stays.filter(stay => {
             const type = stay.type[0].toUpperCase() + stay.type.substring(1)
 
             return types.length ? propertyTypes.some(currType => currType.isChecked && currType.name === type) : true &&
-            currAmenities.length ? this.checkAmenities(amenities, stay.amenities) : true &&
+                currAmenities.length ? this.checkAmenities(amenities, stay.amenities) : true &&
                 (stay.price >= price.minPrice) &&
             (stay.price <= price.maxPrice)
         })
@@ -113,7 +113,7 @@ class _StayList extends React.Component {
         const stays = this.getStaysForDisplay()
         const { orderParams, displayReviews } = this.state
         const { propertyTypes, amenities } = this.state.filterBy
-        console.log('propertyTypes',propertyTypes,'amenities',amenities);
+        console.log('propertyTypes', propertyTypes, 'amenities', amenities);
         if (!orderParams) return (
             <div className="flex align-center justify-center list-loader">
                 <Loader
@@ -125,7 +125,7 @@ class _StayList extends React.Component {
             </div>
         )
         return (
-            <>
+            <div className="list-container">
                 <h1 className="count-stays airbnb-book fs14 fh18 fw-unset">{stays?.length} stays </h1>
                 <h1 className="city-name">Stays in {orderParams.address}</h1>
                 <div className="list-filter">
@@ -139,7 +139,8 @@ class _StayList extends React.Component {
                 <div className="stay-list">
                     {stays?.map((stay, idx) => (< StayPreview key={stay._id} stay={stay} orderParams={orderParams} />))}
                 </div>
-            </>
+            </div>
+
         )
     }
 }

@@ -67,23 +67,23 @@ class _AppFooter extends React.Component {
                     color='#FF385C'
                     height={100}
                     width={100}
-                />
+                /> 
             </div>
         )
         if (screenWidth > 550) {
             return (
                 <div className="footer-container full">
-                    <footer className={`main-footer ${pathname === '/' || pathname === '/host' || pathname === '/stay'||pathname==='/trip' ? 'main-container-home' : 'main-container'} `}>
+                    <footer className={`main-footer ${pathname === '/' || pathname === '/host' || pathname === '/stay' || pathname === '/trip' ? 'main-container-home' : 'main-container'} `}>
                         <h2 className="footer-header fs30 fh40 bold">Explore the world</h2>
                         <div className="links-container flex ">
                             <div className="flex column space-between gap25">
                                 <h3 className="footer-list-header fs22 fh26 book">Top rated</h3>
-                                {staysTopRated.map(stay => {
-                                    return <div key={stay._id} className="flex column gap5" >
+                                {staysTopRated.map(stay => (
+                                    <div key={stay._id} className="flex column gap5" >
                                         <Link to={`/stay/${stay._id}?${makeQueryParams(`${stay.loc.city}`)}`}> <div className="medium">{stay.name}</div>
                                             <span>{stay.loc.address}</span></Link>
                                     </div>
-                                })}
+                                ))}
                             </div>
                             <div className="flex column space-between ">
                                 <h3 className="footer-list-mid-header fs22 fh26 book">Most visited cities</h3>
@@ -116,12 +116,12 @@ class _AppFooter extends React.Component {
                             </div>
                             <div className="flex column space-between fh23">
                                 <h3 className="footer-list-header fs22 fh26 book">Nearby</h3>
-                                {staysNearby.map(stay => {
-                                    return <div className="flex column gap5" >
+                                {staysNearby.map((stay, idx) => (
+                                    <div key={idx} className="flex column gap5" >
                                         <Link to={`/stay/${stay._id}?${makeQueryParams(`${stay.loc.city}`)}`}> <div className="medium">{stay.name}</div>
                                             <span>{stay.loc.address}</span> </Link>
                                     </div>
-                                })}
+                                ))}
                             </div>
                         </div>
                         <div className="seperation-line last"></div>

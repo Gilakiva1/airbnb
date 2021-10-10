@@ -8,7 +8,6 @@ import { utilService } from "../services/util.service";
 import { onSetOrder } from '../store/order.action';
 import { withRouter } from 'react-router'
 import { connect } from "react-redux";
-import { AppFooter } from "../cmps/footer/AppFooter";
 
 
 
@@ -47,7 +46,7 @@ export class _HomePage extends React.Component {
                 <div className="hero-logo full relative">
                     {screenWidth > 550 &&
                         <div className="btn-flex-container fh20  absolute flex align-center column">
-                            <h1 className="fs18">Not sure where to go? Perfect.</h1>
+                            <h1 className="fs20 fh22 medium fw-unset">Not sure where to go? Perfect.</h1>
                             <Link to="/stay" className="btn-flex"><span style={{ '-webkit-background-clip': 'text' }}>I'm flexiable</span></Link>
                         </div>
                     }

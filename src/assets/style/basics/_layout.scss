@@ -2,7 +2,7 @@
   display: grid;
   column-gap: 1.6rem;
   grid-template-columns: 1fr;
-
+ 
   > * {
     grid-column: 2;
   }
@@ -11,13 +11,13 @@
     grid-column: 1 / -1;
   }
 
-  @include for-narrow-layout {
+  @include for-mobile-layout {
     grid-template-columns:
       minmax(2rem, 1fr)
       minmax(auto, $mobile-breakpoint)
       minmax(2rem, 1fr);
   }
-
+   
   @include for-normal-layout {
     grid-template-columns:
       minmax(2rem, 1fr)

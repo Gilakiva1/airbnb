@@ -195,9 +195,7 @@ class _StayDetails extends Component {
                         <p className="fs16 fh20 book">Response time: within an hour</p>
                     </div>
                     <button className="contact-host fs16 fh20 medium">Contact host</button>
-                    <div className="seperation-line"></div>
                 </section >
-
             </>
         )
     }

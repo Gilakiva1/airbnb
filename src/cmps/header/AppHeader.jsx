@@ -72,15 +72,18 @@ class _AppHeader extends React.Component {
 
     // }
     onToggleLogin = async () => {
-        this.setState({ isLogIn: !this.state.isLogIn }, () => {
-            this.onCloseMenu()
-        })
+        this.onCloseMenu()
+        this.setState({ isLogIn: !this.state.isLogIn })
     }
     onLogout = async () => {
-        await this.props.onLogout()
-        await this.props.history.push('/')
         this.onCloseMenu()
+        this.props.onLogout()
     }
+
+    onCloseLogin = () => {
+        this.setState({ isLogIn: false })
+    }
+
 
     onToggleHeader = (ev) => {
         const { pathname } = this.props.history.location
@@ -140,7 +143,6 @@ class _AppHeader extends React.Component {
     render() {
         const { scrollLoc, isEnter, isShowMenu, isLogIn, isClearSearchBar, isHosting, screenWidth } = this.state
         const { pathname } = this.props.history.location
-        console.log(this.props);
         const { user } = this.props
         if (screenWidth > 550) {
 
@@ -171,13 +173,11 @@ class _AppHeader extends React.Component {
                                 </div>
                             </div>
                             {isShowMenu && <MenuBar onLogout={this.onLogout} user={user} isLogIn={isLogIn} onToggleLogin={this.onToggleLogin} onCloseMenu={this.onCloseMenu} />}
-                            {isLogIn && <LogIn onToggleLogin={this.onToggleLogin} />}
+                            {isLogIn && <LogIn onToggleLogin={this.onToggleLogin} onCloseLogin={this.onCloseLogin} />}
                         </nav>
                     </div>
                     {pathname !== '/host' && < MiniSearchBar toggleSearchBar={this.toggleSearchBar} animateClassName={isEnter ? '' : 'scale-up-top-mini-search-bar'} />}
-                    {/* {pathname !== '/' && !isMiniSearchClicked && <MiniSearchBar toggleSearchBar={this.toggleSearchBar} animateClassName={isEnter ? '' : 'scale-up-top-mini-search-bar'} />} */}
                     <SearchBar setClearSearchBar={this.setClearSearchBar} isClearSearchBar={isClearSearchBar} closeSearchBarInputs={this.closeSearchBarInputs} toggleSearchBar={this.toggleSearchBar} animateClassName={isEnter ? 'scale-up-top-search-bar' : ''} />
-                    {/* {pathname !== '/' && isMiniSearchClicked && <SearchBar toggleSearchBar={this.toggleSearchBar} animateClassName={isEnter ? 'scale-up-top-search-bar' : ''} />} */}
                 </header>
             )
         } else {

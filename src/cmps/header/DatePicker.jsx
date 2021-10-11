@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file\
-import { Calendar } from 'react-date-range';
-import { addDays } from 'date-fns';
 
 export const DatePicker = ({ order, handlePickingDates, preventPropagation, className = '' }) => {
     

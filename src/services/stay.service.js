@@ -6,7 +6,7 @@ export const stayService = {
 
 };
 
-function query(filterBy={}) {
+function query(filterBy = {}) {
 
   const queryString = (!filterBy) ? '' : '?' + utilService.makeQueryParams(filterBy)
   return httpService.get(`stay${queryString}`)

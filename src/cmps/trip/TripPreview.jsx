@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom"
 import { utilService } from "../../services/util.service"
 export function TripPreview({ order, onSetOrder, onRemoveOrder }) {

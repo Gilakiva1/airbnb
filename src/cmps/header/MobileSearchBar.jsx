@@ -3,9 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { SearchMini } from '../svgs/SearchMini'
 import { utilService } from '../../services/util.service'
-import { GuestsPicking } from './GuestsPicking.jsx'
 import { onSetOrder } from '../../store/order.action';
-import { Search } from '../svgs/Search.jsx'
 import { LocationPicking } from './LocationPicking.jsx'
 
 

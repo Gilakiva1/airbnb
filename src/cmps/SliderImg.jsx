@@ -1,4 +1,3 @@
-
 import React, { Component } from "react";
 import Slider from "react-slick";
 import { Like } from '../cmps/svgs/Like.jsx'

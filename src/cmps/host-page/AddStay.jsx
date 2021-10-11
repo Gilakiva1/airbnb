@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 
 import { addAsset, loadAssets } from '../../store/host.action'
 import { CloudService } from '../../services/cloudinary-service'
-import reactDom from 'react-dom'
 
 class _AddStay extends Component {
 

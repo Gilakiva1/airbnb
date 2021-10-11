@@ -6,7 +6,6 @@ import { utilService } from '../services/util.service';
 import { GuestsPicking } from './header/GuestsPicking';
 import { DatePicker } from './header/DatePicker';
 import { withRouter } from 'react-router';
-import { OrderMsg } from './OrderMsg';
 import { onAddOrder, onUpdateOrder, onSetOrder } from '../store/order.action';
 import { onSetMsg } from '../store/user.action'
 import { socketService } from '../services/socket.service';

@@ -11,5 +11,3 @@ export function LocationPicking({ links, onImgClick,screenWidth}) {
             </div>
         )
     } 
-
-    

@@ -12,9 +12,9 @@ export class LabelFilter extends Component {
         this.checkTypeExists()
     }
 
-componentDidUpdate(prevProps, prevState) {
-    if(prevProps.currFilter!==this.props.currFilter) this.checkTypeExists()
-}
+    componentDidUpdate(prevProps, prevState) {
+        if(prevProps.currFilter!==this.props.currFilter) this.checkTypeExists()
+    }
 
 
     checkTypeExists = () => {

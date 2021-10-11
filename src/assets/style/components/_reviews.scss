@@ -9,6 +9,10 @@
 }
 
 .reviews-points-container {
+    @media (max-width: 965px){
+        display: flex;
+        flex-direction: column;
+    }
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     column-gap: 110px;
@@ -41,6 +45,10 @@
     column-gap: 175px;
     row-gap: 45px;
     margin-top: 40px;
+    @media(max-width: 965px){
+        display: flex;
+        flex-direction: column;
+    }
 
     p {
         margin: 0;

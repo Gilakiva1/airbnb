@@ -120,7 +120,7 @@ class _StayDetails extends Component {
                             </div>
                             <div className="fs16 fh20 book fw-unset">{stay.loc.address}</div>
                         </div>
-                        <div className="flex gap20 margin-top20">
+                        <div className="flex justify-end gap20 margin-top20">
                             <span className="flex gap5"> <ShareSvg /><span className="details-save-share fw-unset fs16 fh18 medium">Share</span></span>
                             <span className="flex gap5"><HeartSvg /><span className="details-save-share fw-unset fs16 fh18 medium">Save</span></span>
                         </div>

@@ -22,7 +22,7 @@ class _App extends React.Component {
     render() {
         const { pathname } = this.props.history.location
 
-        return (
+        return ( 
             < >
                 <AppHeader />
                 <main className={`${pathname === '/' || pathname === '/stay' || pathname === '/host' || pathname === '/trip' ? 'main-container-home' : 'main-container'}`}>

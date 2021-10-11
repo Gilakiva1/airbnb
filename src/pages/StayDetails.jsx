@@ -133,9 +133,9 @@ class _StayDetails extends Component {
                     }
                     <div>
 
-                    {screenWidth < 750 && <SimpleSlider stay={stay} property='preview' />}
+                        {screenWidth < 750 && <SimpleSlider stay={stay} property='preview' />}
                     </div>
-                    
+
                     <div className="details-main-container  flex space-between  ">
                         <div className="details-info flex column ">
                             <div className="flex space-between">
@@ -145,15 +145,15 @@ class _StayDetails extends Component {
                                 </div>
                                 <div ><img className="user-profile-img" src={host.imgUrl} alt="" /></div>
                             </div>
-                            {/* <div className="seperation-line"></div> */}
+                            <div className="seperation-line"></div>
                             <div className="tag-container flex column">
                                 {stay.tags.map((tag, idx) => (
                                     <Tags key={idx} tag={tag} type={stay.type} />
                                 ))}
                             </div>
-                            {/* <div className="seperation-line"></div> */}
+                            <div className="seperation-line"></div>
                             <div className="description">{stay.description}</div>
-                            {/* <div className="seperation-line"></div> */}
+                            <div className="seperation-line"></div>
                             <div className="amenities flex column">
                                 <h2 className="middle-header">Amenities</h2>
                                 <div className="amenities-container">
@@ -162,7 +162,7 @@ class _StayDetails extends Component {
                                     })}
                                 </div>
                             </div>
-                            {/* <div className="seperation-line"></div> */}
+                            <div className="seperation-line"></div>
                             <div >
                                 <h2>Select check-in date</h2>
                                 <p className="fade-font">Add your travel dates for exact pricing</p>
@@ -172,25 +172,26 @@ class _StayDetails extends Component {
                                         handlePickingDates={this.handlePickingDates} />
                                 </div>
                             </div>
-                            {/* <div className="seperation-line big"></div> */}
-                            <div className="details-reviews-header medium fh26 flex gap5">
-                                {<FontAwesomeIcon className="star-icon" icon={faStar} />}
-                                {stay.rating}
-                                <span>·</span>{utilService.getRandomIntInclusive(30, 500)} reviews
-                            </div>
+
                         </div >
-                      <OrderModal stay={stay} order={currOrder} />
+                        <OrderModal stay={stay} order={currOrder} />
                     </div >
+                    <div className="seperation-line big"></div>
+                    <div className="details-reviews-header medium fh26 flex gap5">
+                        {<FontAwesomeIcon className="star-icon" icon={faStar} />}
+                        {stay.rating}
+                        <span>·</span>{utilService.getRandomIntInclusive(30, 500)} reviews
+                    </div>
                     <ReviewPoints reviews={stay.reviews} />
                     <ReviewList reviews={stay.reviews} />
 
-                    {/* <div className="seperation-line"></div> */}
+                    <div className="seperation-line"></div>
                     <h2>Where you'll be</h2>
                     <p>{stay.loc.address}</p>
                     <div className="map-container relative">
                         <MapDetails lat={stay.loc.lat} lng={stay.loc.lng} />
                     </div>
-                    {/* <div className="seperation-line"></div> */}
+                    <div className="seperation-line"></div>
                     <div className="user-header flex  gap10">
                         <img className="user-details-profile-img" src={host.imgUrl} alt="" />
                         <div className="user-profile-name-date flex column">

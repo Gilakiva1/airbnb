@@ -3,9 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { utilService } from '../services/util.service.js';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 
-
-
-// import { GuestsPicking } from "./header/GuestsPicking"
 export class ReserveModal extends React.Component {
 
     state = {

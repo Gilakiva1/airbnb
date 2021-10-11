@@ -2,7 +2,6 @@ import { storageService } from './async-storage.service';
 import { userService } from './user.service';
 import { httpService } from './http.service';
 import { utilService } from './util.service';
-// import { utilService } from './util.service';
 export const stayService = {
   query,
   getById,
@@ -25,8 +24,6 @@ async function getById(stayId) {
   } catch (err) {
     throw err
   }
-  // const stay = await storageService.get(STORAGE_KEY, stayId);
-  // return stay
 }
 
 function remove(stayId) {
@@ -37,7 +34,6 @@ function save(stay) {
   if (stay._id) {
     return storageService.put(STORAGE_KEY, stay);
   } else {
-    // stay.owner = userService.getLoggedinUser();
     return storageService.post(STORAGE_KEY, stay);
   }
 }

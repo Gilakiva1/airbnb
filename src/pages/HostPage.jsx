@@ -38,8 +38,8 @@ class _HostPage extends Component {
     async componentDidMount() {
         if (!userService.getLoggedinUser()) {
             return this.props.history.push('/')
-        }
-        await this.props.loadAssets(this.props.user._id) // for develop right now user has assets
+        } 
+        await this.props.loadAssets(this.props.user._id) 
         const filter = {
             type: 'host',
             _id: this.props.user._id

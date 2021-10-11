@@ -34,7 +34,6 @@
     }
     .active {
         span {
-            // box-shadow: 0px 1px 0px;
             text-decoration: underline;
         }
     }
@@ -47,11 +46,7 @@
             padding: 10px 20px;
             width: rem(350px);
             height: rem(150px);
-
-
-            // .host-avg-rate {
-            //     align-self:center ;
-            // }
+            
             .img {
                 width: 3rem;
             }

@@ -36,7 +36,6 @@ class _HostOrder extends Component {
         order.status = value;
         await this.props.onUpdateStatusOrder(order)
         this.props.onCalcDetails()
-        console.log('da vaue',value,'orderr',order);
         if (value==='Approved')  socketService.emit('on-approve-order', order.buyer._id)
     }
 
@@ -48,14 +47,7 @@ class _HostOrder extends Component {
             <div className="orders-blank flex align-center justify-center">
                 <h1>There are no incoming orders</h1>
             </div>
-            // <div className="flex align-center justify-center full">
-            //     <Loader
-            //         type="ThreeDots"
-            //         color='#FF385C'
-            //         height={100}
-            //         width={100}
-            //     />
-            // </div>
+
         )
         return (
             <table className='host-list'>

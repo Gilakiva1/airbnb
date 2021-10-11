@@ -24,15 +24,13 @@ class _App extends React.Component {
 
         return (
             < >
-
-                {/* <AppHeader /> */}
+                <AppHeader />
                 <main className={`${pathname === '/' || pathname === '/stay' || pathname === '/host' || pathname === '/trip' ? 'main-container-home' : 'main-container'}`}>
                     <Switch>
                         {routes.map(route => <Route key={route.path} exact component={route.component} path={route.path} />)}
                     </Switch>
                 </main>
-                <UserMsg />
-                {/* <AppFooter /> */}
+                <AppFooter />
             </>
         )
     }

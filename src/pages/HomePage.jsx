@@ -43,7 +43,7 @@ export class _HomePage extends React.Component {
         return (
             <>
                 <div className="hero-logo full relative">
-                    {screenWidth > 550 &&
+                    {screenWidth > 800 &&
                         <div className="btn-flex-container fh20  absolute flex align-center column">
                             <h1 className="fs18">Not sure where to go? Perfect.</h1>
                             <Link to="/stay" className="btn-flex"><span style={{ 'WebkitBackgroundClip': 'text' }}>I'm flexible</span></Link>

@@ -185,13 +185,17 @@ class _AppHeader extends React.Component {
                 </header>
             )
         } else {
-            return < MobileSearchBar />
+            return (
+                <>
+                    {pathname === '/' && <MobileSearchBar screenWidth={screenWidth} />}
 
-
+                </>
+            )
         }
-
     }
+
 }
+
 const mapStateToProps = state => {
     return {
         user: state.userReducer.loggedInUser

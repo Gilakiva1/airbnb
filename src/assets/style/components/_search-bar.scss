@@ -128,13 +128,24 @@
 
 .picking-location-container {
     position: absolute;
-    top: 42px;
-    right: 352px;
-    width: 250px;
+    left: 0;
+    top: 80px;
     border-radius: 30px;
-    padding: 10px;
+
+    @include for-mobile-layout {
+        background: white;
+        z-index: 10;
+        width: 100vw;
+        height: 75vh;
+        top: 140px;
+    }
 
     .popular-location-list {
+        @include for-mobile-layout {
+            height: 100%;
+            justify-content: space-between;
+        }
+        padding: 10px;
         background-color: rgb(255, 255, 255);
         .popular-img {
             width: 40px;

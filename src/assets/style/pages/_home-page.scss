@@ -7,7 +7,7 @@
         transform: translate(-50%, 0%);
         line-height: 60px;
         .btn-flex {
-            padding: 22px 56px ;
+            padding: 22px 56px;
             text-align: center;
             text-decoration: none;
             border-color: black;
@@ -22,17 +22,16 @@
             border-radius: 54px;
             border-width: 1px;
             transition: box-shadow 0.2s ease-out, -ms-transform 0.2s ease-out, -webkit-transform 0.2s ease-out,
-            transform 0.2s ease-out;
+                transform 0.2s ease-out;
             box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.12);
             background-color: #ffffff;
             & span {
-                
                 background-clip: text;
                 -webkit-text-fill-color: transparent;
                 background: linear-gradient(90deg, #6f019c 0%, #c6017e 135.12%);
             }
             &:hover {
-                box-shadow:0px 6px 16px rgba(0, 0, 0 , 0.24);
+                box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.24);
             }
         }
     }
@@ -44,10 +43,14 @@
     }
     .popular-img-list {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
         grid-template-rows: repeat(2, 1fr);
         row-gap: rem(20px);
         margin-block-end: rem(70px);
+
+        @include for-mobile-layout{
+            column-gap: 35px;
+        }
 
         .stay-container {
             margin-inline-start: 0.625rem;
@@ -59,18 +62,27 @@
             cursor: pointer;
         }
 
-
         .popular-txt {
             margin-inline-start: rem(10px);
             line-height: rem(24px);
+            @include for-mobile-layout {
+                margin: 0;
+                align-items: center;
+                justify-content: center;
+            }
+
             .country {
                 font-weight: 500;
             }
         }
 
-        @include for-wide-layout {
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(2, 1fr);
+        @include for-mobile-layout {
+            .popular-list {
+                
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
         }
     }
     .labels-img-list {

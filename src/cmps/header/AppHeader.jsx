@@ -14,7 +14,7 @@ import { onSetMsg, onLogout } from '../../store/user.action'
 import { MobileSearchBar } from './MobileSearchBar'
 import { Link } from 'react-router-dom'
 import { HamburgerMenu } from '../svgs/HamburgerMenu';
-
+import {onAddNotification} from '../../store/user.action'
 
 class _AppHeader extends React.Component {
 
@@ -36,7 +36,7 @@ class _AppHeader extends React.Component {
         window.addEventListener('resize', this.onResizeScreen)
         socketService.setup()
         socketService.on('on-new-order', () => {
-            this.props.onSetMsg({ type: 'new-order', txt: 'New order recived!' })
+           this.props.onAddNotification()
         })
         if (this.props.location.pathname === '/') this.setState({ isEnter: true })
     }
@@ -153,6 +153,7 @@ class _AppHeader extends React.Component {
                                 <div className="menu-container border-round">
                                     <div className="menu-container">
                                         <button onClick={this.onToggoleMenu} className="menu-btn border-round flex align-center">
+                                            {user && user.notifications!==0 && <div className="notification flex justify-center align-center">{user.notifications}</div>}
                                             <div className="menu-details flex align-center">
                                                 <HamburgerMenu/>
                                                 <img src={this.getUserImg() || user1} alt="" className="user-img border-round" />
@@ -186,7 +187,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
     onSetMsg,
-    onLogout
+    onLogout,
+    onAddNotification
 }
 
 export const AppHeader = connect(mapStateToProps, mapDispatchToProps)(withRouter(_AppHeader))

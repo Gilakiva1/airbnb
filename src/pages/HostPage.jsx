@@ -17,8 +17,8 @@ class _HostPage extends Component {
         asset: [],
         component: {
             isAddAsset: false,
-            isMyAsset: true,
-            isOrders: false,
+            isMyAsset: false,
+            isOrders: true,
             isRates: false
         },
         currAsset: '',

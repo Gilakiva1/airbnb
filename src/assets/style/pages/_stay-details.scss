@@ -6,6 +6,7 @@
         font-size: rem(22px);
     }
 
+
     .review-address-container {
         font-size: rem(14px);
         color: $clr1;
@@ -31,6 +32,7 @@
     .stay-details-grid {
         margin-top: rem(27px);
         margin-bottom: rem(52px);
+
         display: grid;
         grid-template: 1fr 1fr /2fr 1fr 1fr;
         gap: rem(10px);
@@ -77,7 +79,11 @@
     }
 }
 .details-info {
-    width: rem(650px);
+    display: flex;
+    // flex: 4 1;
+    flex-basis: 50%;
+    // width: rem(650px);
+    flex-shrink: 3;
 }
 
 .tag-container {
@@ -157,4 +163,29 @@
 .map-container {
     width: 100%;
     height: 300px;
+}
+
+.details-main-container {
+    @media (max-width: 965px){
+        flex-direction: column-reverse;
+        .order-modal{
+            width: 100%;
+            position: relative;
+            margin-left:0;
+            top: 0;
+            .check-out{
+                flex: 1;
+            }
+            .check-in{
+                flex: 1;
+            }
+        }
+        
+    } 
+    .stay-details-container{
+        padding: 0 50px;
+    }
+}
+.slider-details{
+    width: 100%;
 }

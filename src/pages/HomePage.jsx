@@ -41,7 +41,6 @@ export class _HomePage extends React.Component {
         const { screenWidth } = this.state
 
         return (
-
             <>
                 <div className="hero-logo full relative">
                     {screenWidth > 800 &&

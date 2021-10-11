@@ -17,6 +17,7 @@ import { MapDetails } from '../cmps/stay-details/MapDetails.jsx';
 import { IdentityVerified } from '../cmps/svgs/IdentityVerified.jsx';
 import { userService } from '../services/user.service.js';
 import Loader from "react-loader-spinner";
+import { SimpleSlider } from '../cmps/SliderImg.jsx';
 
 
 class _StayDetails extends Component {
@@ -26,10 +27,12 @@ class _StayDetails extends Component {
         host: null,
         reviews: 0,
         beds: 0,
-        baths: 0
+        baths: 0,
+        screenWidth: window.innerWidth
     };
 
     async componentDidMount() {
+        window.addEventListener('resize', this.onResizeScreen)
         const reviews = utilService.getRandomIntInclusive(30, 500)
         const beds = utilService.getRandomIntInclusive(2, 6)
         const baths = utilService.getRandomIntInclusive(1, 5)
@@ -41,6 +44,16 @@ class _StayDetails extends Component {
         this.setState({ host, reviews, beds, baths })
 
     }
+
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.onResizeScreen)
+    }
+    onResizeScreen = ({ target }) => {
+        this.setState(prevState => ({ ...prevState, screenWidth: target.innerWidth }));
+    }
+
+
 
     loadStay = async () => {
 
@@ -83,10 +96,8 @@ class _StayDetails extends Component {
 
 
     render() {
-        const { stay, host, reviews, baths, beds } = this.state
+        const { stay, host, reviews, baths, beds, screenWidth } = this.state
         const { currOrder } = this.props
-
-
         if (!stay || !currOrder || !host) return (
             <div className="flex align-center justify-center full">
                 <Loader
@@ -98,7 +109,7 @@ class _StayDetails extends Component {
             </div>)
         return (
             <>
-                <section className="stay-details-container">
+                <section className="stay-details-container ">
                     <h1 className=" fs28 fh32 medium fw-unset">{stay.name}</h1>
                     <div className="flex space-between">
                         <div className="review-address-container flex">
@@ -114,11 +125,19 @@ class _StayDetails extends Component {
                             <span className="flex gap5"><HeartSvg /><span className="details-save-share fw-unset fs16 fh18 medium">Save</span></span>
                         </div>
                     </div>
-                    <div className="stay-details-grid ">{stay.imgUrls.slice(0, 5).map((img, idx) => {
-                        return <div className={`grid-img${idx} pointer`} key={idx}><img className={`img${idx}`} src={img} alt="" /></div>
-                    })}</div>
-                    <div className="details-main-container flex space-between ">
-                        <div className="details-info flex column">
+                    {
+                        screenWidth >= 750 &&
+                        < div className="stay-details-grid ">{stay.imgUrls.slice(0, 5).map((img, idx) => {
+                            return <div className={`grid-img${idx} pointer`} key={idx}><img className={`img${idx}`} src={img} alt="" /></div>
+                        })}</div>
+                    }
+                    <div>
+
+                    {screenWidth < 750 && <SimpleSlider stay={stay} property='preview' />}
+                    </div>
+                    
+                    <div className="details-main-container  flex space-between  ">
+                        <div className="details-info flex column ">
                             <div className="flex space-between">
                                 <div className=" flex column space-between">
                                     <h2>Entire {stay.type} hosted by {host.fullname}</h2>
@@ -126,15 +145,15 @@ class _StayDetails extends Component {
                                 </div>
                                 <div ><img className="user-profile-img" src={host.imgUrl} alt="" /></div>
                             </div>
-                            <div className="seperation-line"></div>
+                            {/* <div className="seperation-line"></div> */}
                             <div className="tag-container flex column">
                                 {stay.tags.map((tag, idx) => (
                                     <Tags key={idx} tag={tag} type={stay.type} />
                                 ))}
                             </div>
-                            <div className="seperation-line"></div>
+                            {/* <div className="seperation-line"></div> */}
                             <div className="description">{stay.description}</div>
-                            <div className="seperation-line"></div>
+                            {/* <div className="seperation-line"></div> */}
                             <div className="amenities flex column">
                                 <h2 className="middle-header">Amenities</h2>
                                 <div className="amenities-container">
@@ -143,7 +162,7 @@ class _StayDetails extends Component {
                                     })}
                                 </div>
                             </div>
-                            <div className="seperation-line"></div>
+                            {/* <div className="seperation-line"></div> */}
                             <div >
                                 <h2>Select check-in date</h2>
                                 <p className="fade-font">Add your travel dates for exact pricing</p>
@@ -153,25 +172,25 @@ class _StayDetails extends Component {
                                         handlePickingDates={this.handlePickingDates} />
                                 </div>
                             </div>
-                            <div className="seperation-line big"></div>
+                            {/* <div className="seperation-line big"></div> */}
                             <div className="details-reviews-header medium fh26 flex gap5">
                                 {<FontAwesomeIcon className="star-icon" icon={faStar} />}
                                 {stay.rating}
                                 <span>·</span>{utilService.getRandomIntInclusive(30, 500)} reviews
                             </div>
                         </div >
-                        <OrderModal stay={stay} order={currOrder} />
+                      <OrderModal stay={stay} order={currOrder} />
                     </div >
                     <ReviewPoints reviews={stay.reviews} />
                     <ReviewList reviews={stay.reviews} />
 
-                    <div className="seperation-line"></div>
+                    {/* <div className="seperation-line"></div> */}
                     <h2>Where you'll be</h2>
                     <p>{stay.loc.address}</p>
                     <div className="map-container relative">
                         <MapDetails lat={stay.loc.lat} lng={stay.loc.lng} />
                     </div>
-                    <div className="seperation-line"></div>
+                    {/* <div className="seperation-line"></div> */}
                     <div className="user-header flex  gap10">
                         <img className="user-details-profile-img" src={host.imgUrl} alt="" />
                         <div className="user-profile-name-date flex column">

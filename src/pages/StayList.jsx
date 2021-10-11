@@ -19,6 +19,7 @@ class _StayList extends React.Component {
             amenities: []
         },
         isOpenFilter: false,
+        screenWidth: window.innerWidth
         // reviewsDisplay
 
     }
@@ -130,21 +131,23 @@ class _StayList extends React.Component {
             </div>
         )
         return (
-            <>
-                <h1 className="count-stays airbnb-book fs14 fh18 fw-unset">{stays?.length} Stays </h1>
-                <h1 className="city-name">Stays in {this.capitalizeFirstLetter(orderParams.address)}</h1>
-                <div className="list-filter">
-                    <StayFilter stays={this.props.stays} minPrice={this.minPrice}
-                        setCheckedPropertyType={this.setCheckedPropertyType}
-                        onSavePrice={this.onSavePrice}
-                        currTypes={propertyTypes}
-                        currAmenities={amenities}
-                    />
+           
+                <div className="list-container">
+                    <h1 className="count-stays airbnb-book fs14 fh18 fw-unset">{stays?.length} Stays </h1>
+                    <h1 className="city-name">Stays in {this.capitalizeFirstLetter(orderParams.address)}</h1>
+                    <div className="list-filter">
+                        <StayFilter stays={this.props.stays} minPrice={this.minPrice}
+                            setCheckedPropertyType={this.setCheckedPropertyType}
+                            onSavePrice={this.onSavePrice}
+                            currTypes={propertyTypes}
+                            currAmenities={amenities}
+                        />
+                    </div>
+                    <div className="stay-list">
+                        {stays?.map((stay, idx) => (< StayPreview key={stay._id} stay={stay} orderParams={orderParams} />))}
+                    </div>
                 </div>
-                <div className="stay-list">
-                    {stays?.map((stay, idx) => (< StayPreview key={stay._id} stay={stay} orderParams={orderParams} />))}
-                </div>
-            </>
+           
 
         )
     }

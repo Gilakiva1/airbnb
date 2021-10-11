@@ -5,7 +5,6 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { utilService } from '../services/util.service';
 import { GuestsPicking } from './header/GuestsPicking';
 import { DatePicker } from './header/DatePicker';
-import { stayService } from '../services/stay.service';
 import { withRouter } from 'react-router';
 import { OrderMsg } from './OrderMsg';
 import { onAddOrder, onUpdateOrder, onSetOrder } from '../store/order.action';
@@ -87,7 +86,7 @@ export class _OrderModal extends React.Component {
     getTotalGuests = () => {
         if (this.props.currOrder.guests) {
             let { adult, child, infant } = this.props.currOrder.guests
-            var guests = `guests:${adult + child + infant}`
+            var guests = `Guests: ${adult + child + infant}`
             return guests
         } else {
             return 0
@@ -157,11 +156,10 @@ export class _OrderModal extends React.Component {
         const { isReserve } = this.state
         if (!isReserve) {
             this.setState({ isReserve: true, isPickingGuests: false, isPickingDates: false })
-            return
+            return   
         } else {
             const finalOrder = this.createFinalOrder()
             await this.props.onAddOrder(finalOrder)
-            debugger
             socketService.emit('on-reserve-order', finalOrder.host)
             setTimeout(() => {
                 this.props.history.push('/')
@@ -215,7 +213,7 @@ export class _OrderModal extends React.Component {
                             </div>
                             <div className="check-out"
                                 onClick={() => this.activeInput('date')}>
-                                <span className="date-label fs10 bold ">CHEACKOUT:</span>
+                                <span className="date-label fs10 bold ">CHECK-OUT:</span>
                                 <input
                                     className="light fs14"
                                     type="text"

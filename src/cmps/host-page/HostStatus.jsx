@@ -24,7 +24,7 @@ export function HostStatus({ price, rate, status, activeGuests }) {
             <div className="card-container rate round-edge">
                 <div className="flex high justify-end">
                     <div className="flex space-between column">
-                        <h1 className="wide book fw-unset clr1 ">Total Rate</h1>
+                        <h1 className="wide book fw-unset clr1 ">Avg Rate</h1>
                         <div className="flex align-center gap10 justify-center align-center">
                             <FontAwesomeIcon className="icon star-red" icon={faStar} />
                             <span className="fs32 flex justify-center clr2">{rate || 0}</span>

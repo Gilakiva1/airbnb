@@ -17,8 +17,8 @@ class _HostPage extends Component {
         asset: [],
         component: {
             isAddAsset: false,
-            isMyAsset: true,
-            isOrders: false,
+            isMyAsset: false,
+            isOrders: true,
             isRates: false
         },
         currAsset: '',
@@ -61,7 +61,15 @@ class _HostPage extends Component {
             activeGuests: []
         }
 
-        if (!orders.length) return
+        let rate = assets.reduce((acc, asset) => {
+            return acc += asset.rating
+        }, 0)
+        hostDetails.rate = (rate / assets.length).toFixed(1)
+
+        if (!orders.length) return this.setState({ hostDetails })
+    
+        
+
 
         orders.reduce((hostDetails, order) => {
             hostDetails.price += order.price
@@ -72,13 +80,6 @@ class _HostPage extends Component {
             return hostDetails
         }, hostDetails)
 
-
-        let rate = assets.reduce((acc, asset) => {
-            return acc += asset.rating
-        }, 0)
-
-        hostDetails.price = Math.floor(hostDetails.price / 30)
-        hostDetails.rate = (rate / assets.length).toFixed(1)
 
         this.setState({ hostDetails })
     }

@@ -68,9 +68,9 @@ class _HostOrder extends Component {
                         <th>Actions</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody>  
                     {
-                        orders.map((order, idx) => <HostOrderPreview key={idx} updateStatusOrder={this.updateStatusOrder} milisecToDate={this.milisecToDate} order={order} />)
+                        orders.reverse().map((order, idx) => <HostOrderPreview key={idx} updateStatusOrder={this.updateStatusOrder} milisecToDate={this.milisecToDate} order={order} />)
                     }
                 </tbody>
             </table>

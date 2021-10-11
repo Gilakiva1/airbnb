@@ -2,8 +2,6 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { NavLink } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { LogoSvg } from "../svgs/LogoSvg"
 import { SearchBar } from "./SearchBar";
 import { MiniSearchBar } from './MiniSearchBar';
@@ -13,6 +11,9 @@ import { userService } from '../../services/user.service';
 import user1 from '../../assets/img/profiles/user1.png'
 import { socketService } from '../../services/socket.service';
 import { onSetMsg, onLogout } from '../../store/user.action'
+import { MobileSearchBar } from './MobileSearchBar'
+import { Link } from 'react-router-dom'
+import { HamburgerMenu } from '../svgs/HamburgerMenu';
 
 
 class _AppHeader extends React.Component {
@@ -25,7 +26,7 @@ class _AppHeader extends React.Component {
         closeSearchBarInputs: false,
         isClearSearchBar: false,
         isHosting: false,
-        screenWidth: 600
+        screenWidth: window.innerWidth
     }
 
     componentDidMount() {
@@ -37,7 +38,7 @@ class _AppHeader extends React.Component {
         socketService.on('on-new-order', () => {
             this.props.onSetMsg({ type: 'new-order', txt: 'New order recived!' })
         })
-        if (this.props.location.pathname==='/') this.setState({isEnter: true})
+        if (this.props.location.pathname === '/') this.setState({ isEnter: true })
     }
 
     componentDidUpdate() {
@@ -58,18 +59,7 @@ class _AppHeader extends React.Component {
     onResizeScreen = ({ target }) => {
         this.setState(prevState => ({ ...prevState, screenWidth: target.innerWidth }));
     }
-    // onLogout = async () => {
-    //     this.onCloseMenu()
-    //     let { isLogIn } = this.state
-    //     await this.props.onLogout()
-    // }
-    // onLogin = async () => {
-    //     this.onCloseMenu()
-    //     let { isLogIn } = this.state
-    //     await this.props.onLogout()
-    //     this.setState({ isLogIn: !isLogIn })
-
-    // }
+   
     onToggleLogin = async () => {
         this.onCloseMenu()
         this.setState({ isLogIn: !this.state.isLogIn })
@@ -159,12 +149,12 @@ class _AppHeader extends React.Component {
                         <nav className="nav-header">
                             <div className="nav-header flex gap5 align-center">
                                 <NavLink onClick={this.hideHost} className={`link-host border-round fs14 medium  ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-black hover-bcg'}`} to={`/stay`} >Explore</NavLink>
-                                {pathname !== '/host' && <NavLink onClick={this.onToggleUser} className={`link-host border-round fs14 medium  ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-black hover-bcg'}`} to={isHosting ? '/' : '/host'} >become a host</NavLink>}
+                                {pathname !== '/host' && <NavLink onClick={this.onToggleUser} className={`link-host border-round fs14 medium  ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-black hover-bcg'}`} to={isHosting ? '/' : '/host'} >Become a host</NavLink>}
                                 <div className="menu-container border-round">
                                     <div className="menu-container">
                                         <button onClick={this.onToggoleMenu} className="menu-btn border-round flex align-center">
                                             <div className="menu-details flex align-center">
-                                                <FontAwesomeIcon className="hamburger-menu" icon={faBars} />
+                                                <HamburgerMenu/>
                                                 <img src={this.getUserImg() || user1} alt="" className="user-img border-round" />
                                             </div>
                                         </button>
@@ -180,7 +170,9 @@ class _AppHeader extends React.Component {
                 </header>
             )
         } else {
-            return <h1></h1>
+            return < MobileSearchBar />
+
+
         }
 
     }

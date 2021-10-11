@@ -27,11 +27,17 @@ class _MiniSearchBar extends React.Component {
         this.props.toggleSearchBar('on')
     }
 
+    capitalizeFirstLetter = (string) => {
+        if (string) return string.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
+        return null
+    }
+
+
     render() {
         const { animateClassName, order } = this.props
         if (this.props.location.pathname === '/stay' && order) return (
             <div className={`mini-search-bar flex space-between ${animateClassName}`} onClick={this.onSearchBarClicked}>
-                <span className="fs14 fh18 medium fw-unset">{order.address || 'Location'}</span>
+                <span className="fs14 fh18 medium fw-unset">{this.capitalizeFirstLetter(order.address) || 'Location'}</span>
                 <div className="seperation-line-vertical"></div>
                 {order.checkOut && <span className="fs14 fh18 medium fw-unset">{this.getDateValue(order.checkIn)} - {this.getDateValue(order.checkOut)}</span>}
                 {!order.checkOut && <span className="fs14 fh18 book fw-unset">Add dates</span>}

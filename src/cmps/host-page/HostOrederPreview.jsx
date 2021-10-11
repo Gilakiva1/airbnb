@@ -4,7 +4,6 @@
 export function HostOrderPreview({ order, milisecToDate, updateStatusOrder,  }) {
 
     return (
-        // <img src={order.imgUrls[0]} />
         <tr key={order._id}>
             <td className='buyer bold flex'><img src={order.buyer.imgUrl} /> {order.buyer.fullname}</td>
             <td>{order.stay.name}</td>

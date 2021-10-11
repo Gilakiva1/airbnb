@@ -3,9 +3,6 @@ import { Link } from "react-router-dom"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 const _UserMsg = ({ msg }) => {
-    console.log('msg', msg);
-
-
     const msgForDispaly =
         <div className={`user-msg ${msg?.type || ''}`}>
             <div className="user-info wide flex space-between align-center">

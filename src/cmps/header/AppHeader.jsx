@@ -147,7 +147,6 @@ class _AppHeader extends React.Component {
         const { scrollLoc, isEnter, isShowMenu, isLogIn, isClearSearchBar, isHosting, screenWidth } = this.state
         const { pathname } = this.props.history.location
         const { user } = this.props
-        console.log(window.innerWidth);
         if (screenWidth > 500) {
 
             return (

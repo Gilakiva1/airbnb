@@ -41,12 +41,10 @@ async function login(userCred) {
   } catch (err) {
     throw err
   }
-  // socketService.emit('set-user-socket', user._id);
 }
 async function signup(userCred) {
   try {
     const user = await httpService.post('auth/signup', userCred)
-    // socketService.emit('set-user-socket', user._id);
     return _saveLocalUser(user);
   } catch (err) {
     throw err
@@ -54,7 +52,6 @@ async function signup(userCred) {
 }
 async function logout() {
   sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER);
-  // socketService.emit('unset-user-socket');
   return await httpService.post('auth/logout')
 }
 

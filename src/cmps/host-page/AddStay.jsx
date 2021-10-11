@@ -176,7 +176,6 @@ class _AddStay extends Component {
                                     <input onChange={this.onUploadImg} className={`img${idx}`} type='file' accept='img/*' className='img-upload-btn' id='imgUpload' />
                                     Upload Image
                                 </label>
-                                {console.log(src)}
                                 {src && <img src={src} alt='add image' />}
                             </div>
                         ))

@@ -10,7 +10,7 @@ function save(order) {
     if (order._id) {
         return httpService.put('order', order);
     } else {
-        delete order._id // needs to change !
+        delete order._id 
         return httpService.post('order', order)
     }
 }

@@ -1,6 +1,5 @@
 import { orderService } from '../services/order.service'
 
-
 export function onLoadOrders(filterBy) {
     try {
         return async dispatch => {
@@ -73,41 +72,3 @@ export function onRemoveOrder(orderId) {
     }
 
 }
-
-
-
-
-
-// export function onLoadOrder() {
-//     return async dispatch => {
-//         try {
-//             const order = await orderService.query()
-//             console.log('order', order);
-//             dispatch({ type: 'SET_ORDER', order })
-//             return order
-//         } catch (err) {
-//             console.log('err', err);
-//             throw err
-//         }
-//     }
-
-// }
-// export function onReserveOrder(stay, order) {
-//     return async (dispatch) => {
-//         try {
-//             const stays = await stayService.placeOrder(stay, order);
-//             dispatch({ type: 'SET_STAYS', stays });
-//         } catch (err) {
-//             console.log(err, 'error is');
-//         }
-//     };
-// }
-
-
-
-// export function sendOrderDetails(order) {
-//     console.log('orderDetails', order);
-//     return async dispatch => {
-//         dispatch({ type: 'SET_ORDER', order })
-//     }
-// }

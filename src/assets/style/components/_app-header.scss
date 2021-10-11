@@ -46,7 +46,6 @@
           padding: 5px 5px 5px 12px;
           border-radius: 3em;
           border: 1px solid #dad4d4;
-
           .notification {
             width: 20px;
             height: 20px;
@@ -72,18 +71,17 @@
         border-radius: 50%;
         margin-right: 5px;
       }
+      
       .user-img {
         width: rem(35px);
         margin-left: 13px;
         margin-top: 1px;
       }
     }
-
     .logo-img {
       width: rem(50px);
       height: rem(50px);
     }
-
     .header-search {
       height: 40px;
       visibility: hidden;
@@ -92,7 +90,6 @@
   .logo-pink {
     fill: $clr3;
   }
-
   .logo-white {
     fill: $clr4;
   }
@@ -110,9 +107,7 @@
     position: absolute;
     width: rem(240px);
   }
-  // .txt-black {
-  //   color: $clr1;
-  // }
+
 }
 
 .link {

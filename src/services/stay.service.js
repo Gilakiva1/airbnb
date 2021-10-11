@@ -23,7 +23,6 @@ async function getById(stayId) {
   } catch (err) {
     throw err
   }
-
 }
 
 function remove(stayId) {
@@ -34,7 +33,6 @@ function save(stay) {
   if (stay._id) {
     return storageService.put(STORAGE_KEY, stay);
   } else {
-    // stay.owner = userService.getLoggedinUser();
     return storageService.post(STORAGE_KEY, stay);
   }
 }

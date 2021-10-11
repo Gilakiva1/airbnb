@@ -63,7 +63,6 @@ export class _OrderModal extends React.Component {
         isPickingGuests = false
         isPickingDates = false
         this.setState(prevState => ({ ...prevState, isPickingGuests, isPickingDates }))
-        // this.setState({ isPickingGuests, isPickingDates, isReserve })
     }
 
     activeInput = (input) => {
@@ -163,7 +162,7 @@ export class _OrderModal extends React.Component {
             socketService.emit('on-reserve-order', finalOrder.host)
             this.setState({ isReserve: false })
             this.props.onSetMsg({ type: 'success', txt: 'Order Sent!' })
-            
+
         }
     }
 

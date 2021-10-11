@@ -27,7 +27,7 @@ class _MobileSearchBar extends Component {
         dateFormat: null,
         tempName: false
     }
-    
+
     inputRef = React.createRef(null)
 
     componentDidMount() {
@@ -45,21 +45,18 @@ class _MobileSearchBar extends Component {
     }
 
     onImgClick = () => {
-        console.log('hi');
     }
     onSearchBarClicked = (ev) => {
         ev.stopPropagation()
         this.setState({ isSearchClicked: true })
     }
 
-    
     onLocationClick = async (order) => {
         const queryString = utilService.makeQueryParams(order)
         await this.props.onSetOrder(order)
         this.props.history.push(`/stay?${queryString}`)
     }
     handleChange = (ev) => {
-        console.log(ev);
         const { criteria } = this.state
         const field = ev.target.name
         const value = ev.target.value

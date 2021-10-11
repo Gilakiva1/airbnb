@@ -11,8 +11,6 @@ export class StayFilter extends Component {
     }
 
     onCloseFilters = () => {
-        console.log('close ');
-
         this.setState({ isPrice: false, isPropertyType: false, isAmenities: false })
     }
 

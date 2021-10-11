@@ -5,7 +5,6 @@ import { HostOrder } from "../cmps/host-page/HostOrder";
 import { SideNav } from '../cmps/host-page/SideNav';
 import { loadAssets } from '../store/host.action.js';
 import { AddStay } from '../cmps/host-page/AddStay';
-import { CardList } from '../cmps/host-page/CardList'
 import { onLoadOrders } from "../store/order.action";
 import { HostStatus } from "../cmps/host-page/HostStatus";
 import { RateHost } from "../cmps/host-page/rateHost";

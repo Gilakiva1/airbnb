@@ -11,15 +11,4 @@ export function LocationPicking({ links, onImgClick,screenWidth}) {
             </div>
         )
     } 
-    // else {
-        // return (
-
-        //     <div className="mobile-popular-container">
-        //         <h3>Popular destinations:</h3>
-        //         <ul className="mobile-list flex column">
-        //             {links.map((location, idx) => <PopularImgPreview onImgClick={onImgClick} key={idx} link={location} idx={idx} />)}
-        //         </ul>
-        //     </div>
-        // )
-
     

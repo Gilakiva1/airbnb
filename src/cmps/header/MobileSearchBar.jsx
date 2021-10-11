@@ -3,9 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { SearchMini } from '../svgs/SearchMini'
 import { utilService } from '../../services/util.service'
-import { GuestsPicking } from './GuestsPicking.jsx'
 import { onSetOrder } from '../../store/order.action';
-import { Search } from '../svgs/Search.jsx'
 import { LocationPicking } from './LocationPicking.jsx'
 
 
@@ -54,13 +52,7 @@ class _MobileSearchBar extends Component {
         this.setState({ isSearchClicked: true })
     }
 
-    // closeInputs = () => {
-    //     let { isPickingGuests, isPickingDates, isPickingLocation } = this.state
-    //     isPickingGuests = false
-    //     isPickingDates = false
-    //     isPickingLocation = false
-    //     this.setState({ isPickingGuests, isPickingDates, isPickingLocation })
-    // }
+    
     onLocationClick = async (order) => {
         const queryString = utilService.makeQueryParams(order)
         await this.props.onSetOrder(order)

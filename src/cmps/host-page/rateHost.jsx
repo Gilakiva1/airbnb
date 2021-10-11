@@ -1,7 +1,5 @@
-
 import React from 'react';
-import { Doughnut, Pie } from 'react-chartjs-2';
-import { connect } from 'react-redux'
+import {  Pie } from 'react-chartjs-2';
 
 
 

@@ -5,7 +5,7 @@ import { withRouter } from 'react-router'
 import { DatePicker } from './DatePicker.jsx'
 import { utilService } from '../../services/util.service'
 import { GuestsPicking } from './GuestsPicking.jsx'
-import { onSetOrder } from '../../store/order.action';
+import { onSetOrder } from '../../store/order.action'
 import { Search } from '../svgs/Search.jsx'
 import { LocationPicking } from './LocationPicking.jsx'
 

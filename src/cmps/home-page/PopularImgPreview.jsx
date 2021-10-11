@@ -1,7 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
 import { withRouter } from "react-router";
-import { utilService } from "../../services/util.service"
 import { onSetOrder } from '../../store/order.action'
 
 

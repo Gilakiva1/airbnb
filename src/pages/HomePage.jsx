@@ -10,7 +10,6 @@ import { withRouter } from 'react-router'
 import { connect } from "react-redux";
 
 
-
 export class _HomePage extends React.Component {
     state = {
         popularImgs: '',

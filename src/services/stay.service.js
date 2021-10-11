@@ -1,8 +1,6 @@
 import { storageService } from './async-storage.service';
-import { userService } from './user.service';
 import { httpService } from './http.service';
 import { utilService } from './util.service';
-// import { utilService } from './util.service';
 export const stayService = {
   query,
   getById,
@@ -13,7 +11,7 @@ export const stayService = {
 
 const STORAGE_KEY = 'stayDB';
 
-function query(filterBy={}) {
+function query(filterBy = {}) {
 
   const queryString = (!filterBy) ? '' : '?' + utilService.makeQueryParams(filterBy)
   return httpService.get(`stay${queryString}`)
@@ -25,8 +23,7 @@ async function getById(stayId) {
   } catch (err) {
     throw err
   }
-  // const stay = await storageService.get(STORAGE_KEY, stayId);
-  // return stay
+
 }
 
 function remove(stayId) {

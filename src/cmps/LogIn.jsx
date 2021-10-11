@@ -2,9 +2,7 @@ import { TextField } from "@material-ui/core";
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-import { userService } from "../services/user.service"
 import { onAddUser, onSetUser } from "../store/user.action"
-import user1 from "../assets/img/profiles/user1.png"
 export class _LogIn extends React.Component {
 
   state = {

@@ -1,5 +1,4 @@
 import { orderService } from '../services/order.service'
-import { stayService } from '../services/stay.service';
 
 
 export function onLoadOrders(filterBy) {

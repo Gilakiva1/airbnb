@@ -10,7 +10,7 @@ class _AppFooter extends React.Component {
     state = {
         staysTopRated: [],
         staysNearby: [],
-        screenWidth: 600
+        screenWidth: window.innerWidth
     }
 
     async componentDidMount() {
@@ -70,7 +70,7 @@ class _AppFooter extends React.Component {
                 />
             </div>
         )
-        if (screenWidth > 550) {
+        if (screenWidth > 450) {
             return (
                 <div className="footer-container full">
                     <footer className={`main-footer ${pathname === '/' || pathname === '/host' || pathname === '/stay' || pathname === '/trip' ? 'main-container-home' : 'main-container'} `}>

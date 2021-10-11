@@ -111,8 +111,8 @@ class _StayDetails extends Component {
             <>
                 <section className="stay-details-container ">
                     <h1 className=" fs28 fh32 medium fw-unset">{stay.name}</h1>
-                    <div className="flex space-between">
-                        <div className="review-address-container flex">
+                    <div className="flex space-between column">
+                        <div className="review-address-container flex ">
                             <div className="flex gap5 align-center">
                                 {<FontAwesomeIcon className='star-icon' icon={faStar} />}
                                 <span className=" fs16 fh20 book fw-unset">{stay.rating}</span><span></span>
@@ -120,7 +120,7 @@ class _StayDetails extends Component {
                             </div>
                             <div className="fs16 fh20 book fw-unset">{stay.loc.address}</div>
                         </div>
-                        <div className="flex gap20">
+                        <div className="flex gap20 margin-top20">
                             <span className="flex gap5"> <ShareSvg /><span className="details-save-share fw-unset fs16 fh18 medium">Share</span></span>
                             <span className="flex gap5"><HeartSvg /><span className="details-save-share fw-unset fs16 fh18 medium">Save</span></span>
                         </div>
@@ -131,9 +131,9 @@ class _StayDetails extends Component {
                             return <div className={`grid-img${idx} pointer`} key={idx}><img className={`img${idx}`} src={img} alt="" /></div>
                         })}</div>
                     }
-                    <div>
+                    <div className="margin25">
 
-                    {screenWidth < 750 && <SimpleSlider className="full" stay={stay} property='details' />}
+                    {screenWidth < 750 && <SimpleSlider  stay={stay} property='details' />}
                     </div>
 
                     <div className="details-main-container  flex space-between  ">

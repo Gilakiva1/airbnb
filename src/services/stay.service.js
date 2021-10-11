@@ -1,4 +1,3 @@
-import { userService } from './user.service';
 import { httpService } from './http.service';
 import { utilService } from './util.service';
 export const stayService = {
@@ -6,8 +5,6 @@ export const stayService = {
   getById,
 
 };
-
-const STORAGE_KEY = 'stayDB';
 
 function query(filterBy={}) {
 

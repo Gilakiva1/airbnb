@@ -25,12 +25,12 @@ class _HostPage extends Component {
         hostDetails: {
             price: 0,
             rate: 0,
+            activeGuests: 0,
             status: {
                 Approved: 0,
                 Pending: 0,
                 Declined: 0
             },
-            activeGuests: []
         }
 
     }
@@ -58,7 +58,7 @@ class _HostPage extends Component {
                 Pending: 0,
                 Declined: 0
             },
-            activeGuests: []
+            activeGuests: 0
         }
 
         let rate = assets.reduce((acc, asset) => {
@@ -67,27 +67,18 @@ class _HostPage extends Component {
         hostDetails.rate = (rate / assets.length).toFixed(1)
 
         if (!orders.length) return this.setState({ hostDetails })
-    
-        
-
 
         orders.reduce((hostDetails, order) => {
             hostDetails.price += order.price
-            hostDetails.status[order.status] += 1
+            hostDetails.status[order.status]++
             if (order.status === 'Approved') {
-                hostDetails.activeGuests.push(order.buyer.imgUrl)
+                hostDetails.activeGuests++
             }
             return hostDetails
         }, hostDetails)
 
-
         this.setState({ hostDetails })
     }
-    onCalcStatus = () => {
-
-    }
-
-
     toggleComponent = (property, currAsset = '') => {
         this.setState({ component: property, currAsset })
     }

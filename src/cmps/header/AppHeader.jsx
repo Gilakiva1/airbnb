@@ -60,7 +60,7 @@ class _AppHeader extends React.Component {
     onResizeScreen = ({ target }) => {
         this.setState(prevState => ({ ...prevState, screenWidth: target.innerWidth }));
     }
-   
+
     onToggleLogin = async () => {
         this.onCloseMenu()
         this.setState({ isLogIn: !this.state.isLogIn })
@@ -171,13 +171,17 @@ class _AppHeader extends React.Component {
                 </header>
             )
         } else {
-            return < MobileSearchBar />
+            return (
+                <>
+                    {pathname === '/' && <MobileSearchBar screenWidth={screenWidth} />}
 
-
+                </>
+            )
         }
-
     }
+
 }
+
 const mapStateToProps = state => {
     return {
         user: state.userReducer.loggedInUser

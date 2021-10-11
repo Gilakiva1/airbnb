@@ -5,16 +5,12 @@ export function HostStatus({ price, rate, status, activeGuests }) {
     return (
         <div className="cards-container flex space-between ">
             <div className="card-container guests round-edge">
-                <div className=" high justify-end " >
+                <div className=" high flex column space-between justify-end " >
                     <div className="space-between column">
-                        <h1 className="wide book fw-unset clr1 justify-end">Active Guests</h1>
+                        <h1 className="wide book flex fw-unset clr1 justify-end">Active Guests</h1>
                     </div>
                     <div className="img-guest-container relative flex justify-end">
-                        {activeGuests.map((guest, idx) => (
-                            <div key={idx} className={`img guest-${idx} ${idx > 0 ? 'absolute ' : ''}flex justify-center`}>
-                                <img src={guest} className="border-circle" />
-                            </div>
-                        ))}
+                        <span className="active-guests fs32 ">{activeGuests}</span>
                     </div>
                 </div>
                 <div className="icon-container flex align-center justify-center guests">
@@ -39,7 +35,7 @@ export function HostStatus({ price, rate, status, activeGuests }) {
                 <div className="flex high justify-end " >
                     <div className="flex space-between column">
                         <h1 className="wide book fw-unset clr1 ">Month Revenue</h1>
-                        <span className="fs32 flex justify-end clr2">${price}</span>
+                        <span className="fs32 flex justify-end clr2">${price.toLocaleString('en-IL')}</span>
                     </div>
                 </div>
                 <div className="icon-container flex align-center justify-center dollar">

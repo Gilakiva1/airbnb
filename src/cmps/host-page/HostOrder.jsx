@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { onLoadOrders, onUpdateStatusOrder } from '../../store/order.action'
 import { HostOrderPreview } from './HostOrederPreview'
 import Loader from "react-loader-spinner";
+import { socketService } from '../../services/socket.service';
 
 class _HostOrder extends Component {
 
@@ -35,7 +36,8 @@ class _HostOrder extends Component {
         order.status = value;
         await this.props.onUpdateStatusOrder(order)
         this.props.onCalcDetails()
-
+        console.log('da vaue',value,'orderr',order);
+        if (value==='Approved')  socketService.emit('on-approve-order', order.buyer._id)
     }
 
     render() {

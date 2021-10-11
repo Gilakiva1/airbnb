@@ -12,6 +12,7 @@ import { onSetMsg } from '../store/user.action'
 import { socketService } from '../services/socket.service';
 import { FinalPrice } from './FinalPrice';
 import Loader from "react-loader-spinner";
+import { UserMsg } from './UserMsg';
 
 
 export class _OrderModal extends React.Component {
@@ -156,15 +157,14 @@ export class _OrderModal extends React.Component {
         const { isReserve } = this.state
         if (!isReserve) {
             this.setState({ isReserve: true, isPickingGuests: false, isPickingDates: false })
-            return   
+            return
         } else {
             const finalOrder = this.createFinalOrder()
             await this.props.onAddOrder(finalOrder)
             socketService.emit('on-reserve-order', finalOrder.host)
-            setTimeout(() => {
-                this.props.history.push('/')
-                this.props.onSetMsg({ type: 'success', txt: 'Order Sent!' })
-            }, 1500);
+            this.setState({ isReserve: false })
+            this.props.onSetMsg({ type: 'success', txt: 'Order Sent!' })
+            
         }
     }
 
@@ -235,14 +235,13 @@ export class _OrderModal extends React.Component {
                     </div>
                     <div className="flex column">
                         {!isReserve && <button onMouseMove={this.onSetColor} ref={this.inputRef} className="confirm-order fs16" type="button" onClick={this.onSubmit}><span>Check availability</span></button>}
-                        {isReserve &&
-                            <button onMouseMove={this.onSetColor} ref={this.inputRef} className="confirm-order fs16 medium" onClick={this.onSubmit}>Reserve</button>}
+                        {isReserve && <button onMouseMove={this.onSetColor} ref={this.inputRef} className="confirm-order fs16 medium" onClick={this.onSubmit}>Reserve</button>}
                     </div>
                     <div className={`${isPickingGuests ? '' : 'none'}`}> {isPickingGuests && <GuestsPicking handleGuestsChanege={this.handleGuestsChanege} />} </div>
                     <div className={isPickingDates ? '' : 'none'}> {isPickingDates && <DatePicker order={currOrder} preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />} </div>
                     <div className={isReserve ? '' : 'none'}> {isReserve && <FinalPrice order={currOrder} stay={stay} />} </div>
+                    <UserMsg animateClassName={isFinalReserve ? 'slide-in-bottom' : ''} />
                 </form >
-                {isFinalReserve && <OrderMsg animateClassName={isFinalReserve ? 'slide-in-bottom' : ''} />}
             </div >
         )
     }

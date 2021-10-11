@@ -133,9 +133,9 @@ class _StayDetails extends Component {
                     }
                     <div>
 
-                    {screenWidth < 750 && <SimpleSlider className="full" stay={stay} property='preview' property='details' />}
+                    {screenWidth < 750 && <SimpleSlider className="full" stay={stay} property='details' />}
                     </div>
-                    
+
                     <div className="details-main-container  flex space-between  ">
                         <div className="details-info flex column ">
                             <div className="flex space-between">
@@ -172,15 +172,15 @@ class _StayDetails extends Component {
                                         handlePickingDates={this.handlePickingDates} />
                                 </div>
                             </div>
-                            <div className="seperation-line"></div>
-                            <div className="details-reviews-header medium fh26 flex gap5">
-                                {<FontAwesomeIcon className="star-icon" icon={faStar} />}
-                                {stay.rating}
-                                <span>·</span>{utilService.getRandomIntInclusive(30, 500)} reviews
-                            </div>
                         </div >
-                      <OrderModal stay={stay} order={currOrder} />
+                        <OrderModal stay={stay} order={currOrder} />
                     </div >
+                    <div className="seperation-line"></div>
+                    <div className="details-reviews-header medium fh26 flex gap5">
+                        {<FontAwesomeIcon className="star-icon" icon={faStar} />}
+                        {stay.rating}
+                        <span>·</span>{utilService.getRandomIntInclusive(30, 500)} reviews
+                    </div>
                     <ReviewPoints reviews={stay.reviews} />
                     <ReviewList reviews={stay.reviews} />
 

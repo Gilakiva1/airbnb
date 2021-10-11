@@ -16,13 +16,11 @@
         }
         th {
             color: $clr1;
-
+            padding: 8px 16px;
             text-align: left;
             font-size: rem(14px);
             line-height: rem(16px);
             font-family: airbnb-cereal-bold;
-
-            padding: 8px;
             color: #717171;
             text-transform: uppercase;
             white-space: nowrap;
@@ -81,10 +79,7 @@
             td {
                 font-size: rem(14px);
                 line-height: rem(18px);
-                padding-left: 8px;
-                padding-right: 8px;
-                padding-top: 16px;
-                padding-bottom: 16px;
+                padding: 8px 16px;
                 flex: auto;
 
                 &:first-child {

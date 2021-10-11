@@ -11,10 +11,9 @@ import { userService } from '../../services/user.service';
 import user1 from '../../assets/img/profiles/user1.png'
 import { socketService } from '../../services/socket.service';
 import { onSetMsg, onLogout } from '../../store/user.action'
-import { MobileSearchBar } from './MobileSearchBar'
-import { Link } from 'react-router-dom'
+import { MobileSearchBar } from './MobileSearchBar';
 import { HamburgerMenu } from '../svgs/HamburgerMenu';
-import {onAddNotification} from '../../store/user.action'
+import { onAddNotification } from '../../store/user.action'
 
 class _AppHeader extends React.Component {
 
@@ -36,7 +35,10 @@ class _AppHeader extends React.Component {
         window.addEventListener('resize', this.onResizeScreen)
         socketService.setup()
         socketService.on('on-new-order', () => {
-           this.props.onAddNotification()
+            this.props.onAddNotification('orders')
+        })
+        socketService.on('on-approved-trip', () => {
+            this.props.onAddNotification('trips')
         })
         if (this.props.location.pathname === '/') this.setState({ isEnter: true })
     }
@@ -59,7 +61,7 @@ class _AppHeader extends React.Component {
     onResizeScreen = ({ target }) => {
         this.setState(prevState => ({ ...prevState, screenWidth: target.innerWidth }));
     }
-   
+
     onToggleLogin = async () => {
         this.onCloseMenu()
         this.setState({ isLogIn: !this.state.isLogIn })
@@ -128,6 +130,18 @@ class _AppHeader extends React.Component {
         this.setState({ isHosting: false })
     }
 
+    checkForNotifications = () => {
+        const { user } = this.props
+        if (!user) return false
+        if (!user.notifications.trips && !user.notifications.orders) return false
+        return true
+    }
+
+    getNotificationSum = () => {
+        const { notifications } = this.props.user
+        return +notifications.orders + +notifications.trips
+    }
+
 
     render() {
         const { scrollLoc, isEnter, isShowMenu, isLogIn, isClearSearchBar, isHosting, screenWidth } = this.state
@@ -153,9 +167,9 @@ class _AppHeader extends React.Component {
                                 <div className="menu-container border-round">
                                     <div className="menu-container">
                                         <button onClick={this.onToggoleMenu} className="menu-btn border-round flex align-center">
-                                            {user && user.notifications!==0 && <div className="notification flex justify-center align-center">{user.notifications}</div>}
+                                            {this.checkForNotifications() && <div className="notification flex justify-center align-center">{this.getNotificationSum()}</div>}
                                             <div className="menu-details flex align-center">
-                                                <HamburgerMenu/>
+                                                <HamburgerMenu />
                                                 <img src={this.getUserImg() || user1} alt="" className="user-img border-round" />
                                             </div>
                                         </button>

@@ -5,7 +5,7 @@ const initialState = {
     users: [],
     loggedInUser: checkLoggedinUser(),
     msg: null,
-    notifications: userService.getLoggedinUser()?.notifications || 0
+    notifications: userService.getLoggedinUser()?.notifications || {'trips':0,'orders':0}
 }
 
 
@@ -22,10 +22,8 @@ export function userReducer(state = initialState, action) {
         case 'UPDATE_USER':
             console.log('updatingg', action.user);
             return { ...state, loggedInUser: action.user }
-        case 'ADD_NOTIFICATION':
-            return { ...state, notifications: state.notifications + 1 }
-        case 'CLEAR_NOTIFICATION':
-            return { ...state, notifications: 0 }
+        case 'UPDATE_NOTIFICATION':
+            return { ...state, notifications: action.notifications }
         case 'SET_MSG':
             return { ...state, msg: action.msg }
         default: return { ...state }

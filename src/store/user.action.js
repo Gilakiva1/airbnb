@@ -7,7 +7,6 @@ export function onAddUser(userDetails) {
             const user = await userService.signup(userDetails)
             socketService.emit('on-login', user._id)
             dispatch({ type: 'ADD_USER', user })
-            // return user
         }
     } catch (err) {
         console.log('err', err);
@@ -43,7 +42,6 @@ export function onLogout() {
         return async dispatch => {
             await userService.logout()
             dispatch({ type: 'SET_USER', user: null })
-            // socketService.emit('on-logout', user._id)
         }
     } catch (err) {
         console.log('err', err);
@@ -51,13 +49,14 @@ export function onLogout() {
     }
 }
 
-export function onAddNotification() {
+export function onAddNotification(notiType) {
     try {
         return async dispatch => {
             const user = await userService.getLoggedinUser()
-            user.notifications++
+            user.notifications[notiType]++
            await userService.update(user)
-            dispatch({ type: 'ADD_NOTIFICATION' })
+           const notifications = user.notifications
+            dispatch({ type: 'UPDATE_NOTIFICATION', notifications  })
             dispatch({ type: 'UPDATE_USER', user })
         }
     } catch (err) {
@@ -65,14 +64,14 @@ export function onAddNotification() {
         throw err
     }
 }
-export function onClearNotification() {
+export function onClearNotification(notiType) {
     try {
         return async dispatch => {
             const user = await userService.getLoggedinUser()
-            user.notifications = 0
-            console.log(user);
+            user.notifications[notiType] = 0
             await userService.update(user)
-            dispatch({ type: 'CLEAR_NOTIFICATION' })
+           const notifications = user.notifications
+            dispatch({ type: 'UPDATE_NOTIFICATION', notifications  })
             dispatch({ type: 'UPDATE_USER', user })
         }
     } catch (err) {

@@ -52,9 +52,9 @@
 
   @include for-mobile-layout{
     grid-template-columns:
-      minmax(auto, 1fr)
-      minmax(auto, $mobile-breakpoint)
-      minmax(auto, 1fr);
+      minmax(0, 1fr)
+      minmax(2rem, $mobile-breakpoint)
+      minmax(0, 1fr);
   }
   @include for-narrow-layout {
     grid-template-columns:

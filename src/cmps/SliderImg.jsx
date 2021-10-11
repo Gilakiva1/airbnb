@@ -15,7 +15,7 @@ export class SimpleSlider extends Component {
     }
 
     render() {
-        const { stay, slidesToShow, slidesToScroll } = this.props
+        const { stay,property } = this.props
         const { isLike } = this.state
         
         const settings = {
@@ -29,7 +29,8 @@ export class SimpleSlider extends Component {
         };
         return (
             <>
-                <button onClick={this.likeStay} className={`like-tag ${isLike ? 'like' : ''}`}> <Like /> </button>
+            {property==='preview'&&
+                <button onClick={this.likeStay} className={`like-tag ${isLike ? 'like' : ''}`}> <Like /> </button>}
                 <Slider className='slider-img' {...settings}>
                     {stay.imgUrls.slice(0, 5).map((stayImg, idx) => (
                         <img key={idx} className="stay-img" src={stayImg} alt="" />

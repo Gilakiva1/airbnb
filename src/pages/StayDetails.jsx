@@ -133,7 +133,7 @@ class _StayDetails extends Component {
                     }
                     <div>
 
-                    {screenWidth < 750 && <SimpleSlider stay={stay} property='preview' />}
+                    {screenWidth < 750 && <SimpleSlider className="full" stay={stay} property='preview' property='details' />}
                     </div>
                     
                     <div className="details-main-container  flex space-between  ">
@@ -145,15 +145,15 @@ class _StayDetails extends Component {
                                 </div>
                                 <div ><img className="user-profile-img" src={host.imgUrl} alt="" /></div>
                             </div>
-                            {/* <div className="seperation-line"></div> */}
+                            <div className="seperation-line"></div>
                             <div className="tag-container flex column">
                                 {stay.tags.map((tag, idx) => (
                                     <Tags key={idx} tag={tag} type={stay.type} />
                                 ))}
                             </div>
-                            {/* <div className="seperation-line"></div> */}
+                            <div className="seperation-line"></div>
                             <div className="description">{stay.description}</div>
-                            {/* <div className="seperation-line"></div> */}
+                            <div className="seperation-line"></div>
                             <div className="amenities flex column">
                                 <h2 className="middle-header">Amenities</h2>
                                 <div className="amenities-container">
@@ -162,7 +162,7 @@ class _StayDetails extends Component {
                                     })}
                                 </div>
                             </div>
-                            {/* <div className="seperation-line"></div> */}
+                            <div className="seperation-line"></div>
                             <div >
                                 <h2>Select check-in date</h2>
                                 <p className="fade-font">Add your travel dates for exact pricing</p>
@@ -172,7 +172,7 @@ class _StayDetails extends Component {
                                         handlePickingDates={this.handlePickingDates} />
                                 </div>
                             </div>
-                            {/* <div className="seperation-line big"></div> */}
+                            <div className="seperation-line"></div>
                             <div className="details-reviews-header medium fh26 flex gap5">
                                 {<FontAwesomeIcon className="star-icon" icon={faStar} />}
                                 {stay.rating}
@@ -184,13 +184,13 @@ class _StayDetails extends Component {
                     <ReviewPoints reviews={stay.reviews} />
                     <ReviewList reviews={stay.reviews} />
 
-                    {/* <div className="seperation-line"></div> */}
+                    <div className="seperation-line"></div>
                     <h2>Where you'll be</h2>
                     <p>{stay.loc.address}</p>
                     <div className="map-container relative">
                         <MapDetails lat={stay.loc.lat} lng={stay.loc.lng} />
                     </div>
-                    {/* <div className="seperation-line"></div> */}
+                    <div className="seperation-line"></div>
                     <div className="user-header flex  gap10">
                         <img className="user-details-profile-img" src={host.imgUrl} alt="" />
                         <div className="user-profile-name-date flex column">

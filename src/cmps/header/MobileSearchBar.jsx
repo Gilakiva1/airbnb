@@ -74,7 +74,7 @@ class _MobileSearchBar extends Component {
     }
 
     render() {
-        const { isSearchClicked, isPickingGuests, isPickingDates, isPickingLocation } = this.state
+        const { isSearchClicked } = this.state
         const { screenWidth } = this.props
         return (
             <header className="main-container-home">

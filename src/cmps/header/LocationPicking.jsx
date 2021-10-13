@@ -10,4 +10,5 @@ export function LocationPicking({ links, onImgClick,screenWidth}) {
                 {links.map((location, idx) => <PopularImgPreview onImgClick={onImgClick} key={idx} link={location} idx={idx} />)}
             </div>
         )
+        
     } 

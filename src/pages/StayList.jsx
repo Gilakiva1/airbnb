@@ -43,6 +43,7 @@ class _StayList extends React.Component {
         this.setState(({ filterBy: { ...this.state.filterBy, price: filterPrice } }))
     }
     
+    
     minPrice = () => {
         const { minPrice, maxPrice } = this.state.filterBy.price
         if (minPrice === -Infinity && (maxPrice === Infinity || maxPrice === 500)) {

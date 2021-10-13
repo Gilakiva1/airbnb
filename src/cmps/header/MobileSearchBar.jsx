@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { SearchMini } from '../svgs/SearchMini'
 import { utilService } from '../../services/util.service'
-import { onSetOrder } from '../../store/order.action';
+import { onSetOrder, onTogglePage } from '../../store/order.action';
 import { LocationPicking } from './LocationPicking.jsx'
 
 
@@ -44,12 +44,22 @@ class _MobileSearchBar extends Component {
         this.setState({ isSearchClicked: false })
     }
 
-    onImgClick = () => {
-    }
-    onSearchBarClicked = (ev) => {
+
+    onSearchBarClicked = async (ev) => {
         ev.stopPropagation()
-        this.setState({ isSearchClicked: true })
+        const { isSearchClicked, isPickingLocation } = this.state
+
+        if (!isSearchClicked) {
+            this.props.onTogglePage()
+            this.setState({ isSearchClicked: true, isPickingLocation: true }, () => {
+                this.inputRef.current.focus()
+            })
+        } else if (isPickingLocation) {
+            this.inputRef.current.focus()
+        }
     }
+
+
 
     onLocationClick = async (order) => {
         const queryString = utilService.makeQueryParams(order)
@@ -64,7 +74,7 @@ class _MobileSearchBar extends Component {
     }
 
     render() {
-        const { isSearchClicked, address } = this.state
+        const { isSearchClicked, isPickingGuests, isPickingDates, isPickingLocation } = this.state
         const { screenWidth } = this.props
         return (
             <header className="main-container-home">
@@ -74,8 +84,10 @@ class _MobileSearchBar extends Component {
                     <div className="mobile-search-bar relative ">
                         <div className="flex align-center space-between">
                             {isSearchClicked &&
-                                <form action="" className="mobile-search">
-                                    <input ref={this.inputRef} className="input-container" type="text" placeholder="Where are you going?" name="address" autoComplete="off" onChange={this.handleChange} />
+                                <form className="mobile-search">
+                                    {isPickingLocation && <input ref={this.inputRef} className="input-container" type="text" placeholder="Where are you going?" name="location" autoComplete="off" onChange={this.handleChange} />}
+                                    {isPickingDates && <input ref={this.inputRef} className="input-container" type="text" placeholder="pick your dates!" name="date" autoComplete="off" onChange={this.handleChange} />}
+                                    {/* {isPickingGuests && <input ref={this.inputRef} className="input-container" type="text" placeholder="Where are you going?" name="address" autoComplete="off" onChange={this.handleChange} />} */}
                                 </form>}
                             {!isSearchClicked && <span className="fs14 fh18 medium fw-unset">Start your search</span>}
                             <button className="search-bar-submit-mini flex ">{<SearchMini />}</button>
@@ -92,11 +104,14 @@ class _MobileSearchBar extends Component {
         )
     }
 }
-function mapStateToProps(state) {
-    return state
+function mapStateToProps({ orderReducer }) {
+    return {
+        isMobileSearch: orderReducer.isMobileSearch
+    }
 }
 const mapDispatchToProps = {
-    onSetOrder
+    onSetOrder,
+    onTogglePage
 
 }
 

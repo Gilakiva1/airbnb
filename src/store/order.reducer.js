@@ -1,6 +1,7 @@
 const initialState = {
     orders: [],
-    currOrder: null
+    currOrder: null,
+    isMobileSearch: false
 }
 
 export function orderReducer(state = initialState, action) {
@@ -21,7 +22,9 @@ export function orderReducer(state = initialState, action) {
         case 'REMOVE_ORDER': {
             orders = state.orders.filter(order => order._id !== action.orderId)
             return { ...state, orders }
-
+        }
+        case 'TOGGLE_PAGE': {
+            return { ...state, isMobileSearch: !state.isMobileSearch }
         }
         default: return { ...state }
     }

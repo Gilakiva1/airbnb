@@ -5,9 +5,10 @@ import imgHero from '../assets/img/hero-cut.jpg'
 import { PopularImgList } from "../cmps/home-page/PopularImgList";
 import { LabelsImgList } from "../cmps/home-page/LabelsImgList"
 import { utilService } from "../services/util.service";
-import { onSetOrder } from '../store/order.action';
+import { onSetOrder, onTogglePage } from '../store/order.action';
 import { withRouter } from 'react-router'
 import { connect } from "react-redux";
+import { is } from "date-fns/locale";
 
 
 export class _HomePage extends React.Component {
@@ -24,9 +25,14 @@ export class _HomePage extends React.Component {
         window.removeEventListener('resize', this.onResizeScreen)
     }
     onResizeScreen = ({ target }) => {
-        this.setState(prevState => ({ ...prevState, screenWidth: target.innerWidth }));
+        this.setState(prevState => ({ ...prevState, screenWidth: target.innerWidth }), () => {
+
+            if (this.state.screenWidth > 460) {
+                this.props.onTogglePage()
+            }
+        });
     }
-  
+
 
     onImgClick = async (order) => {
         const queryString = utilService.makeQueryParams(order)
@@ -38,7 +44,7 @@ export class _HomePage extends React.Component {
 
     render() {
         const { screenWidth } = this.state
-
+        const { isMobileSearch } = this.props
         return (
             <>
                 <div className="hero-logo full relative">
@@ -50,7 +56,7 @@ export class _HomePage extends React.Component {
                     }
                     <img src={imgHero} />
                 </div >
-                <section className="home-page">
+                {(!isMobileSearch || screenWidth > 460) && <section className="home-page">
                     <h1 className="title-popular fs32 fh52 fw-unset bold">Popular Destinations</h1>
                     <PopularImgList onImgClick={this.onImgClick} links={utilService.HomePageImgPopular()} />
                     <h1 className="title-label fs32 fh52 fw-unset bold">Live Anywhere</h1>
@@ -65,7 +71,7 @@ export class _HomePage extends React.Component {
                             </div>
                         </div>
                     </Link>
-                </section>
+                </section>}
             </>
         )
 
@@ -75,10 +81,12 @@ export class _HomePage extends React.Component {
 function mapStateToProps(state) {
     return {
         currOrder: state.orderReducer.currOrder,
+        isMobileSearch: state.orderReducer.isMobileSearch
     }
 }
 const mapDispatchToProps = {
-    onSetOrder
+    onSetOrder,
+    onTogglePage
 }
 
 export const HomePage = connect(mapStateToProps, mapDispatchToProps)(withRouter(_HomePage))

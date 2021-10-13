@@ -1,6 +1,6 @@
 const initialState = {
   stays: [],
-
+  isMobileSearch: false
 };
 
 export function stayReducer(state = initialState, action) {

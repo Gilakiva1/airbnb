@@ -5,7 +5,8 @@ const initialState = {
     users: [],
     loggedInUser: checkLoggedinUser(),
     msg: null,
-    notifications: userService.getLoggedinUser()?.notifications || {'trips':0,'orders':0}
+    notifications: userService.getLoggedinUser()?.notifications || { 'trips': 0, 'orders': 0 },
+    
 }
 
 

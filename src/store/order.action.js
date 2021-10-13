@@ -35,10 +35,10 @@ export function onUpdateOrder(order) {
     }
 }
 
-export  function onUpdateStatusOrder(order) {
+export function onUpdateStatusOrder(order) {
     try {
         return async dispatch => {
-             await orderService.save(order)
+            await orderService.save(order)
             dispatch({ type: 'UPDATE_STATUS_ORDER', order })
         }
     } catch (err) {
@@ -69,6 +69,15 @@ export function onRemoveOrder(orderId) {
             throw err
         }
 
+    }
+}
+export function onTogglePage() {
+    return async dispatch => {
+        try {
+            dispatch({ type: 'TOGGLE_PAGE' })
+        } catch (err) {
+            console.log('err', err);
+        }
     }
 
 }

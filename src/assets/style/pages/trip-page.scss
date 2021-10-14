@@ -10,6 +10,10 @@
     .trip-img {
         width: rem(380px);
         height: rem(150px);
+
+        @include for-mobile-layout {
+            width: 100%;
+        }
     }
     .trip-list {
         display: flex;
@@ -22,6 +26,11 @@
 
     .trip-preview {
         box-shadow: 0 6px 16px 2px #d8d8d8;
+
+        @include for-mobile-layout {
+            width: 100%;
+            margin-right: 20px;
+        }
     }
     .txt-trip {
         margin-top: 124px;

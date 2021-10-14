@@ -7,6 +7,7 @@ export function onAddUser(userDetails) {
             const user = await userService.signup(userDetails)
             socketService.emit('on-login', user._id)
             dispatch({ type: 'ADD_USER', user })
+            dispatch({ type: 'SET_USER', user })
         }
     } catch (err) {
         console.log('err', err);

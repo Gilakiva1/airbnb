@@ -4,7 +4,9 @@ import { withRouter } from 'react-router'
 import { SearchMini } from '../svgs/SearchMini'
 import { utilService } from '../../services/util.service'
 import { onSetOrder, onTogglePage } from '../../store/order.action';
-import { LocationPicking } from './LocationPicking.jsx'
+import { MobileLocationForm } from '../home-page/MobileLocationForm'
+import { MobileDateForm } from '../home-page/MobileDateForm'
+import { MobileGuestsForm } from '../home-page/MobileGuestsForm'
 
 
 class _MobileSearchBar extends Component {
@@ -40,66 +42,118 @@ class _MobileSearchBar extends Component {
         window.removeEventListener('click', this.closeInputs)
     }
 
-    closeInputs = () => {
-        this.setState({ isSearchClicked: false })
-    }
-
-
     onSearchBarClicked = async (ev) => {
         ev.stopPropagation()
-        const { isSearchClicked, isPickingLocation } = this.state
-
-        if (!isSearchClicked) {
-            this.props.onTogglePage()
-            this.setState({ isSearchClicked: true, isPickingLocation: true }, () => {
-                this.inputRef.current.focus()
-            })
-        } else if (isPickingLocation) {
+        this.props.onTogglePage()
+        this.setState({ isPickingLocation: true, isSearchClicked: true }, () => {
             this.inputRef.current.focus()
-        }
+        })
     }
 
+    onToggleInputs = () => {
+        const { isPickingLocation, isPickingDates } = this.state
+        if (!isPickingLocation) return
+        this.setState({ isPickingDates: true, isPickingLocation: false })
+    }
 
+    handleChange = ({ target }) => {
+        const { criteria } = this.state
+        this.setState({ criteria: { ...criteria, [target.name]: target.value } })
+    }
+
+    handlePickingDates = (start, end) => {
+        let { criteria } = this.state
+        let { checkIn, checkOut } = criteria
+        checkIn = start
+        if (end) checkOut = end
+        this.setState({ criteria: { ...criteria, checkIn, checkOut }, dateFormat: { start, end } })
+    }
+
+    handleGuestsChanege = (field, value) => {
+        let { criteria } = this.state
+        let { guests } = criteria
+        this.setState({ criteria: { ...criteria, guests: { ...guests, [field]: value } } })
+    }
 
     onLocationClick = async (order) => {
         const queryString = utilService.makeQueryParams(order)
         await this.props.onSetOrder(order)
         this.props.history.push(`/stay?${queryString}`)
     }
-    handleChange = (ev) => {
-        const { criteria } = this.state
-        const field = ev.target.name
-        const value = ev.target.value
-        this.setState({ criteria: { ...criteria, [field]: value } })
+    // handleChange = (ev) => {
+    //     const { criteria } = this.state
+    //     const field = ev.target.name
+    //     const value = ev.target.value
+    //     this.setState({ criteria: { ...criteria, [field]: value } })
+    // }
+    preventPropagation = event => {
+        event.stopPropagation()
+    }
+
+    onChangeform = (ev, diff) => {
+        switch (diff) {
+            case 'date': this.setState({ isPickingLocation: false, isPickingDates: true })
+                break;
+            case 'guest': this.setState({ isPickingDates: false, isPickingGuests: true })
+                break;
+            case 'order': this.onSubmit()
+
+            default:
+                break;
+        }
+        ev.preventDefault()
+        console.log('hi');
+    }
+    onSubmit = async (ev) => {
+        ev.preventDefault()
+        const { criteria, dateFormat } = this.state
+        if (dateFormat) {
+            criteria.checkIn = Date.parse(dateFormat.start)
+            criteria.checkOut = Date.parse(dateFormat.end)
+        }
+        const queryString = utilService.makeQueryParams(criteria)
+        await this.props.onSetOrder(criteria)
+        this.props.history.push(`/stay?${queryString}`)
+
+    }
+
+    onGoBack = (diff) => {
+        switch (diff) {
+            case 'home': this.setState({ isPickingLocation: false }, () => { this.props.onTogglePage() })
+                break;
+            case 'location': this.setState({ isPickingDates: false, isPickingLocation: true })
+                break;
+            default:
+                break;
+        }
     }
 
     render() {
-        const { isSearchClicked } = this.state
+        const { isPickingLocation, isPickingDates, isPickingGuests, isSearchClicked } = this.state
+        const { address, checkIn, checkOut } = this.state.criteria
         const { screenWidth } = this.props
         return (
             <header className="main-container-home">
 
-                {/* {isSearchClicked && <div className="screen"></div>} */}
-                <div className={`mobile-header-container pointer`} onClick={this.onSearchBarClicked}>
-                    <div className="mobile-search-bar relative ">
-                        <div className="flex align-center space-between">
-                            {isSearchClicked &&
-                                <form className="mobile-search">
-                                    {isPickingLocation && <input ref={this.inputRef} className="input-container" type="text" placeholder="Where are you going?" name="location" autoComplete="off" onChange={this.handleChange} />}
-                                    {isPickingDates && <input ref={this.inputRef} className="input-container" type="text" placeholder="pick your dates!" name="date" autoComplete="off" onChange={this.handleChange} />}
-                                    {/* {isPickingGuests && <input ref={this.inputRef} className="input-container" type="text" placeholder="Where are you going?" name="address" autoComplete="off" onChange={this.handleChange} />} */}
-                                </form>}
-                            {!isSearchClicked && <span className="fs14 fh18 medium fw-unset">Start your search</span>}
-                            <button className="search-bar-submit-mini flex ">{<SearchMini />}</button>
+                {!isSearchClicked &&
+                    <div className={`mobile-header-container pointer`} onClick={this.onSearchBarClicked}>
+                        <div className="mobile-search-bar relative ">
+                            <div className="flex align-center space-between">
+                                <span className="fs14 fh18 medium fw-unset">Start your search</span>
+                                <button className="search-bar-submit-mini flex "><SearchMini /></button>
+                            </div>
                         </div>
-
-                    </div>
-                </div >
-                {isSearchClicked &&
-                    <div className="picking-location-container">
-                        <LocationPicking screenWidth={screenWidth} onImgClick={this.onLocationClick} links={utilService.HomePageImgPopular()} />
-                    </div>
+                    </div >
                 }
+                <div className={`${isPickingLocation ? 'show' : ''} picking-location-container`} >
+                    <MobileLocationForm onChangeForm={this.onChangeform} onImgClick={this.onLocationClick} links={utilService.HomePageImgPopular()} value={address} ref={this.inputRef} onGoBack={this.onGoBack} onChange={this.handleChange} />
+                </div>
+                <div className={`${isPickingDates ? 'show' : ''} picking-dates-container`} >
+                    <MobileDateForm onChangeForm={this.onChangeform} checkIn={checkIn} checkOut={checkOut} onGoBack={this.onGoBack} handlePickingDates={this.handlePickingDates} />
+                </div>
+                <div className={`${isPickingGuests ? 'show' : ''} picking-guest-container`} >
+                    <MobileGuestsForm onChangeForm={this.onChangeform} onGoBack={this.onGoBack} handleGuestsChanege={this.handleGuestsChanege} />
+                </div>
             </header >
         )
     }

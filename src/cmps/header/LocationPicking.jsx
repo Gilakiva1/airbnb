@@ -1,7 +1,7 @@
 import React from 'react'
 import { PopularImgPreview } from '../home-page/PopularImgPreview'
 
-export function LocationPicking({ links, onImgClick,screenWidth}) {
+export function LocationPicking({ links, onImgClick}) {
 
         return (
             <div className="popular-location-list flex column gap10 round-edge">

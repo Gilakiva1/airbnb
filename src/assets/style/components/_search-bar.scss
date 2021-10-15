@@ -118,12 +118,46 @@
     right: 0px;
     width: rem(385px);
     height: rem(240px);
+    @include for-mobile-layout {
+        background: white;
+        z-index: 10;
+        width: 100vw;
+        height: 100vh;
+        right: 0;
+        opacity: 0;
+        pointer-events: none;
+        &.show {
+            opacity: 1;
+            transition: 0.3s;
+            top: 0;
+            pointer-events: initial;
+            border-radius: initial;
+        }
+    }
 }
 
 .picking-dates-container {
     position: absolute;
     top: 80px;
     right: 325px;
+
+    @include for-mobile-layout {
+        background: white;
+        z-index: 10;
+        width: 100vw;
+        height: 100vh;
+        right: 0;
+        opacity: 0;
+        pointer-events: none;
+
+        &.show {
+            opacity: 1;
+            transition: 0.3s;
+            top: 0;
+            pointer-events: initial;
+            border-radius: initial;
+        }
+    }
 }
 
 .picking-location-container {
@@ -136,16 +170,26 @@
         background: white;
         z-index: 10;
         width: 100vw;
-        height: 75vh;
+        height: 100vh;
         top: 140px;
+        opacity: 0;
+        padding: 0px 30px;
+        pointer-events: none;
+
+        &.show {
+            opacity: 1;
+            transition: 0.3s;
+            top: 0;
+            pointer-events: initial;
+            border-radius: initial;
+        }
     }
 
     .popular-location-list {
         @include for-mobile-layout {
             height: 100%;
-            justify-content: space-between;
+            gap: 20px;
         }
-        padding: 10px;
         background-color: rgb(255, 255, 255);
         .popular-img {
             width: 40px;

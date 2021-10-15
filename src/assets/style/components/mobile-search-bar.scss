@@ -4,7 +4,7 @@
     margin-right: -50%;
     transform: translate(-50%, -50%);
     position: absolute;
-    z-index: 10;
+    z-index: 15;
 }
 
 .mobile-search-bar {
@@ -34,17 +34,17 @@
     span {
         color: $clr2;
     }
-    .search-bar-submit-mini {
-        right: 10px;
-        top: 10px;
-        justify-content: center;
-        align-items: center;
-        background-color: $clr3;
-        color: rgb(235, 235, 235);
-        border-radius: 50%;
-        width: rem(30px);
-        height: rem(30px);
-        border: none;
-    }
 }
-
+.search-bar-submit-mini {
+    right: 10px;
+    top: 10px;
+    justify-content: center;
+    align-items: center;
+    background-color: $clr3;
+    color: rgb(235, 235, 235);
+    border-radius: 50%;
+    width: rem(30px);
+    height: rem(30px);
+    border: none;
+  
+}

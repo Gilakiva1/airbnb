@@ -105,11 +105,11 @@ export class _LogIn extends React.Component {
                 name='fullname'
                 onChange={this.handleChange}
               />}
-              <p>New to Homeaway? <span onClick={this.toggleSignup}>Sign up!</span></p>
+              {!isSignup && <p>New to Homeaway? <span onClick={this.toggleSignup}>Sign up!</span></p>}
             </div>
             <button ref={this.inputRef} onMouseMove={this.onSetColor} className="continue-btn fs16 fh20 medium ">Continue</button>
           </div>
-          <button onClick={()=>this.props.onCloseLogin()} className="login-close-btn fs22 fh26 bold">X</button>
+          <button onClick={() => this.props.onCloseLogin()} className="login-close-btn fs22 fh26 bold">X</button>
         </form>
       </section>
     )

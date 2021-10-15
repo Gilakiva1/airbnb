@@ -18,8 +18,6 @@ export function userReducer(state = initialState, action) {
             return { ...state, loggedInUser: action.user }
         case 'ADD_USER':
             return { ...state, users: [...state.users, action.user] }
-        case 'ADD_USER':
-            return { ...state, users: [...state.users, action.user] }
         case 'UPDATE_USER':
             return { ...state, loggedInUser: action.user }
         case 'UPDATE_NOTIFICATION':

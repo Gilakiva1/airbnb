@@ -1,43 +1,26 @@
 import { DatePicker } from "../header/DatePicker";
-export const MobileDateForm = ({ onChangeForm, onGoBack, handlePickingDates, onClearInputs, checkIn, checkOut, preventPropagation }) => {
-    return (
-        <form action="" onSubmit={(ev) => onChangeForm(ev, 'guest')}>
-            <div className="margin40 flex gap10">
-                <button onClick={() => onGoBack('home')}></button>
-            </div>
-            <DatePicker order={{}} preventPropagation={preventPropagation} handlePickingDates={handlePickingDates} />
-            <div className="btn flex space-between">
-                <button onClick={onClearInputs}>clear</button>
-                <button type="submit" onClick={onChangeForm}>next</button>
-            </div>
-        </form>
-    )
+import { MobileGoBack } from "../svgs/MobileGoBack"
+
+export const MobileDateForm = ({ onChangeForm, handlePickingDates, getDateValue, onClearInputs, checkIn, checkOut, preventPropagation }) => {
+  return (
+    <>
+      <div className="margin40 flex align-center">
+        <div onClick={() => onChangeForm('location')}><MobileGoBack /></div>
+        <div className="date-inputs fh26 flex column">
+          <span className="text-align">when you will be there?</span>
+          <div className="flex">
+            <input className="wide light fs14 input-first clr1" type="text" value={checkIn} name="checkIn" value={getDateValue(checkIn)} autoComplete="off" disabled />-
+            <input className="wide light fs14 input-seconde clr1" type="text" value={checkOut} name="checkOut" value={getDateValue(checkOut)} autoComplete="off" disabled />
+          </div>
+        </div>
+      </div>
+      <DatePicker order={{}} preventPropagation={preventPropagation} handlePickingDates={handlePickingDates} />
+      <div className="btn flex space-between">
+        <button onClick={() =>onClearInputs('date')}>clear</button>
+        <button type="submit" onClick={() => onChangeForm('guest')}>next</button>
+      </div>
+    </>
+  )
 
 }
 
-{/* <div className="input-container flex column" onClick={() => this.activeInput('date')}>
-                <span>Check in</span>
-                <input
-                  type="text"
-                  placeholder="Add dates"
-                  name="checkIn"
-                  value={this.getDateValue(checkIn)}
-                  autoComplete="off"
-                  disabled
-                  onChange={this.handleChange}
-                />
-              </div>
-              <div className="seperation-line-vertical"></div>
-              <div className="input-container flex column"
-                onClick={() => this.activeInput('date')}>
-                <span>Check out</span>
-                <input
-                  type="text"
-                  placeholder="Add dates"
-                  autoComplete="off"
-                  name="checkOut"
-                  value={this.getDateValue(checkOut)}
-                  disabled
-                  onChange={this.handleChange}
-
-                /> */}

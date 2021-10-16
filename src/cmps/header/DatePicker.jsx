@@ -26,6 +26,7 @@ export const DatePicker = ({ order, handlePickingDates, preventPropagation, clas
                 moveRangeOnFirstSelection={false}
                 ranges={dateState}
                 
+                
             />
         </div>
     )

@@ -1,15 +1,16 @@
 import { GuestsPicking } from "../header/GuestsPicking"
-export const MobileGuestsForm = ({ onChangeForm, onGoBack, onClearInputs, handleGuestsChanege }) => {
+import { MobileGoBack } from "../svgs/MobileGoBack"
+export const MobileGuestsForm = ({ onChangeForm, onClearInputs, handleGuestsChanege }) => {
     return (
-        <form action="" onSubmit={(ev) => onChangeForm(ev, 'order')}>
+        <>
             <div className="margin40 flex gap10">
-                <button onClick={() => onGoBack('home')}></button>
+                <div onClick={() => onChangeForm('date')}><MobileGoBack /></div>
             </div>
             <GuestsPicking handleGuestsChanege={handleGuestsChanege} />
             <div className="btn flex space-between">
-                <button onClick={onClearInputs}>clear</button>
-                <button type="submit" onClick={onChangeForm}>next</button>
+                <button onClick={() => onClearInputs('guest')}>clear</button>
+                <button type="submit" onClick={() => onChangeForm('order')}>Search</button>
             </div>
-        </form>
+        </>
     )
 }

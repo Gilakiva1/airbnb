@@ -119,6 +119,7 @@
     width: rem(385px);
     height: rem(240px);
     @include for-mobile-layout {
+        padding: 0px 1rem;
         background: white;
         z-index: 10;
         width: 100vw;
@@ -142,6 +143,7 @@
     right: 325px;
 
     @include for-mobile-layout {
+        padding: 0px 1rem;
         background: white;
         z-index: 10;
         width: 100vw;
@@ -158,6 +160,16 @@
             border-radius: initial;
         }
     }
+    input {
+        background: inherit;
+        border: none;
+    }
+    .input-first{
+        text-align: end;
+    }
+    .input-seconde{
+        text-align: start;
+    }
 }
 
 .picking-location-container {
@@ -173,7 +185,7 @@
         height: 100vh;
         top: 140px;
         opacity: 0;
-        padding: 0px 30px;
+        padding: 0px 1rem;
         pointer-events: none;
 
         &.show {
@@ -183,11 +195,19 @@
             pointer-events: initial;
             border-radius: initial;
         }
+        input {
+            border: none;
+            padding: 13px 2px;
+            border-radius: 2em;
+            padding-inline-start: 13px;
+        }
+        .input-container {
+            margin: 30px 0px 15px 0px;
+        }
     }
 
     .popular-location-list {
         @include for-mobile-layout {
-            height: 100%;
             gap: 20px;
         }
         background-color: rgb(255, 255, 255);
@@ -206,4 +226,14 @@
             }
         }
     }
+}
+button {
+    border-radius: 30px;
+    color: rgb(34, 34, 34);
+    padding: 8px 16px;
+    font-size: rem(12px);
+    line-height: rem(16px);
+    background-color: #fff;
+    border: 1px solid rgb(176, 176, 176);
+    text-align: center;
 }

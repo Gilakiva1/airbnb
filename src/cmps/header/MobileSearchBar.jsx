@@ -173,12 +173,16 @@ class _MobileSearchBar extends Component {
                         checkIn={checkIn}
                         checkOut={checkOut}
                         handlePickingDates={this.handlePickingDates}
+                        getDateValue={this.getDateValue}
                         onClearInputs={this.onClearInputs} />
+
                 </div>
                 <div className={`${isPickingGuests ? 'show' : ''} picking-guest-container`} >
                     <MobileGuestsForm
+                        order={this.state.criteria}
                         onChangeForm={this.onChangeform}
                         handleGuestsChanege={this.handleGuestsChanege}
+                        getDateValue={this.getDateValue}
                         onClearInputs={this.onClearInputs} />
                 </div>
             </header >

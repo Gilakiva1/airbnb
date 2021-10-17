@@ -4,9 +4,8 @@ import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file\
 
 export const DatePicker = ({ order, handlePickingDates, preventPropagation, className = '' }) => {
-    
+
     const [dateState, setDateState] = useState([
- 
         {
             startDate: order.checkIn ? new Date(order.checkIn) : new Date(),
             endDate: order.checkOut ? new Date(order.checkOut) : null,
@@ -16,18 +15,19 @@ export const DatePicker = ({ order, handlePickingDates, preventPropagation, clas
     useEffect(() => {
         handlePickingDates(dateState[0].startDate, dateState[0].endDate)
     }, [dateState])
+    // useEffect(() => {
+    //     handlePickingDates(new Date(), dateState[0].endDate)
+    // }, [dateState])
 
-
-    return (
-        <div className={`${className} wide`} onClick={preventPropagation}>
-            <DateRange
-                editableDateInputs={true}
-                onChange={item => setDateState([item.selection])}
-                moveRangeOnFirstSelection={false}
-                ranges={dateState}
-                
-                
-            />
-        </div>
-    )
-}
+        return (
+            <div className={`${className} wide`} onClick={preventPropagation}>
+                <DateRange
+                    editableDateInputs={true}
+                    onChange={item => setDateState([item.selection])}
+                    moveRangeOnFirstSelection={false}
+                    ranges={dateState}
+                />
+                {/* <button onClick={() => setDateState()}>clear</button> */}
+            </div>
+        )
+    }

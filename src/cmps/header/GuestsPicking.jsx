@@ -76,17 +76,22 @@ export class _GuestsPicking extends React.Component {
     preventPropagation = event => {
         event.stopPropagation()
     }
+    onClearInputs = () => {
+        this.setState({ adult: 0, child: 0, infant: 0 }, () => {
+            this.props.onClearInputs('guest')
+        })
+    }
     render() {
         const { adult, child, infant } = this.state
         if (adult === null) return (
             <div className="flex align-center justify-center full">
-            <Loader
-                type="ThreeDots"
-                color='#FF385C'
-                height={100}
-                width={100}
-            />
-        </div>
+                <Loader
+                    type="ThreeDots"
+                    color='#FF385C'
+                    height={100}
+                    width={100}
+                />
+            </div>
         )
         return (
             <section className="guests-container flex column" onClick={this.preventPropagation} >
@@ -123,6 +128,7 @@ export class _GuestsPicking extends React.Component {
                         <button onClick={(event) => this.updateCount(event, 'add infant')} className="btn-counter flex"><span><Plus /></span></button>
                     </div>
                 </div>
+                <button className="btn-clear" onClick={this.onClearInputs}>clear</button>
             </section>
         )
     }

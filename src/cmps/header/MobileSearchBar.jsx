@@ -98,7 +98,6 @@ class _MobileSearchBar extends Component {
         const queryString = utilService.makeQueryParams(criteria)
         await this.props.onSetOrder(criteria)
         this.props.history.push(`/stay?${queryString}`)
-
     }
     onLocationSubmit = async (order) => {
         const queryString = utilService.makeQueryParams(order)
@@ -133,9 +132,9 @@ class _MobileSearchBar extends Component {
         switch (diff) {
             case 'location': this.setState({ criteria: { ...criteria, address: '' } })
                 break;
-            case 'date': this.setState({ criteria: { ...criteria, checkIn: '', checkOut: '' } })
+            case 'date': this.setState({ criteria: { ...criteria, checkIn: '', checkOut: '' }, dateFormat: null })
                 break;
-            case 'guest': this.setState({ criteria: { ...criteria, adult: 0, child: 0, infant: 0 } })
+            case 'guest': this.setState({ criteria: { ...criteria, guests: { adult: 0, child: 0, infant: 0 } } })
                 break;
         }
     }
@@ -178,7 +177,6 @@ class _MobileSearchBar extends Component {
                 </div>
                 <div className={`${isPickingGuests ? 'show' : ''} picking-guest-container`} >
                     <MobileGuestsForm
-                        adult={}
                         onChangeForm={this.onChangeform}
                         handleGuestsChanege={this.handleGuestsChanege}
                         onClearInputs={this.onClearInputs} />

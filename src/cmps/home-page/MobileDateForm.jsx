@@ -16,7 +16,7 @@ export const MobileDateForm = ({ onChangeForm, handlePickingDates, getDateValue,
       </div>
       <DatePicker order={{}} preventPropagation={preventPropagation} handlePickingDates={handlePickingDates} />
       <div className="btn flex space-between">
-        <button onClick={() =>onClearInputs('date')}>clear</button>
+        <button onClick={() => onClearInputs('date')}>clear</button>
         <button type="submit" onClick={() => onChangeForm('guest')}>next</button>
       </div>
     </>

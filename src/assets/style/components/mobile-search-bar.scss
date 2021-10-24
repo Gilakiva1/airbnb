@@ -46,6 +46,15 @@
   width: rem(30px);
   height: rem(30px);
   border: none;
+  .icon {
+    display: block;
+    fill: none;
+    height: 14px;
+    width: 14px;
+    stroke: white;
+    stroke-width: 4;
+    overflow: visible;
+  }
 }
 .btn-clear {
   position: absolute;

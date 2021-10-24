@@ -31,15 +31,7 @@ class _MobileSearchBar extends Component {
 
     inputRef = React.createRef(null)
 
-    componentDidMount() {
-        window.addEventListener('click', this.closeInputs)
-        if (this.props.history.location.pathname === '/') {
-            this.props.onSetOrder(null)
-        }
-    }
-    componentWillUnmount() {
-        window.removeEventListener('click', this.closeInputs)
-    }
+
 
     handleChange = ({ target }) => {
         const { criteria } = this.state
@@ -142,7 +134,6 @@ class _MobileSearchBar extends Component {
     render() {
         const { isPickingLocation, isPickingDates, isPickingGuests, isSearchClicked } = this.state
         const { address, checkIn, checkOut } = this.state.criteria
-        const { adult, child, infant } = this.state.criteria.guests
         return (
             <header className="main-container-home">
 

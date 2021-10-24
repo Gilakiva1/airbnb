@@ -48,7 +48,7 @@
         row-gap: rem(20px);
         margin-block-end: rem(70px);
 
-        @include for-mobile-layout{
+        @include for-mobile-layout {
             column-gap: 35px;
         }
 
@@ -78,7 +78,6 @@
 
         @include for-mobile-layout {
             .popular-list {
-                
                 flex-direction: column;
                 align-items: center;
                 text-align: center;
@@ -107,6 +106,13 @@
         position: relative;
         display: block;
 
+        @include for-mobile-layout {
+            height: 450px;
+            img {
+                object-position: -516px 136px;
+            }
+        }
+
         .host-info {
             height: 100%;
             padding: 0px 80px;
@@ -115,9 +121,21 @@
             align-items: center;
             top: 0;
 
+            @include for-mobile-layout {
+                padding: 5px;
+                height: initial;
+                background: $clr2;
+                text-align: center;
+                border-radius: 10px 10px 0px 0px;
+            }
+
             .info-first {
                 font-size: rem(48px);
                 line-height: 4.875rem;
+                @include for-mobile-layout {
+                    font-size: 2rem;
+                    line-height: 2.875rem;
+                }
             }
             .info-secdone {
                 line-height: rem(15px);

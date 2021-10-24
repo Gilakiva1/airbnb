@@ -8,7 +8,6 @@ import { utilService } from "../services/util.service";
 import { onSetOrder, onTogglePage } from '../store/order.action';
 import { withRouter } from 'react-router'
 import { connect } from "react-redux";
-import { is } from "date-fns/locale";
 
 
 export class _HomePage extends React.Component {
@@ -27,9 +26,10 @@ export class _HomePage extends React.Component {
     onResizeScreen = ({ target }) => {
         this.setState(prevState => ({ ...prevState, screenWidth: target.innerWidth }), () => {
 
-            if (this.state.screenWidth > 460) {
-                this.props.onTogglePage()
-            }
+            // if (this.state.screenWidth === 460) {
+            //     console.log(this.state.screenWidth);
+            //     this.props.onTogglePage()
+            // }
         });
     }
 

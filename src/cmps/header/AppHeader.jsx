@@ -14,6 +14,7 @@ import { onSetMsg, onLogout } from '../../store/user.action'
 import { MobileSearchBar } from './MobileSearchBar';
 import { HamburgerMenu } from '../svgs/HamburgerMenu';
 import { onAddNotification } from '../../store/user.action'
+import { MobileNavBar } from '../../cmps/header/MobileNavBar'
 
 class _AppHeader extends React.Component {
 
@@ -188,6 +189,7 @@ class _AppHeader extends React.Component {
             return (
                 <>
                     {pathname === '/' && <MobileSearchBar screenWidth={screenWidth} />}
+                    <MobileNavBar />
 
                 </>
             )

@@ -5,9 +5,9 @@ export const MobileGuestsForm = ({ onChangeForm, onClearInputs, handleGuestsChan
     const checkIn = getDateValue(order.checkIn)
     const checkOut = getDateValue(order.checkOut)
     return (
-        <>
+        <form onSubmit={(event) => { onChangeForm(event, 'order') }}>
             <div className="margin40 flex gap10">
-                <div onClick={() => onChangeForm('date')}><MobileGoBack /></div>
+                <div onClick={(event) => onChangeForm(event, 'date')}><MobileGoBack /></div>
                 <div className="order-container wide fh22">
                     {order.address &&
                         <div className="address flex justify-center">
@@ -26,8 +26,8 @@ export const MobileGuestsForm = ({ onChangeForm, onClearInputs, handleGuestsChan
             </div>
             <GuestsPicking handleGuestsChanege={handleGuestsChanege} onClearInputs={onClearInputs} />
             <div className="btn flex justify-end">
-                <button className="btn-search book" type="submit" onClick={() => onChangeForm('order')}>Search</button>
+                <button className="btn-search book" type="submit" onClick={(event) => onChangeForm(event, 'order')}>Search</button>
             </div>
-        </>
+        </form>
     )
 }

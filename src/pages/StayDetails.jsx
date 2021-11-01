@@ -32,6 +32,8 @@ class _StayDetails extends Component {
     };
 
     async componentDidMount() {
+        console.log('details',this.props);
+
         window.addEventListener('resize', this.onResizeScreen)
         const reviews = utilService.getRandomIntInclusive(30, 500)
         const beds = utilService.getRandomIntInclusive(2, 6)
@@ -40,6 +42,7 @@ class _StayDetails extends Component {
         await this.loadStay()
         const host = await userService.getById(this.state.stay.host)
         this.setState({ host, reviews, beds, baths })
+
 
     }
 

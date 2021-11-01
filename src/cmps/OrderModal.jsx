@@ -47,15 +47,17 @@ export class _OrderModal extends React.Component {
         this.inputRef.current.style.setProperty('--mouse-y', y)
     }
 
-    handleChange = (ev) => {
-        ev.preventDefault()
-        const { currOrder } = this.props
-        const orderCopy = { ...currOrder }
-        const field = ev.target.name
-        const value = ev.target.value
-        orderCopy[field] = value
-        this.props.onUpdateOrder(orderCopy)
-    }
+    // handleChange = (ev) => {
+    //     debugger
+    //     ev.preventDefault()
+    //     const { currOrder } = this.props
+    //     const orderCopy = { ...currOrder }
+    //     const field = ev.target.name
+    //     const value = ev.target.value
+    //     console.log(orderCopy);
+    //     orderCopy[field] = value
+    //     this.props.onUpdateOrder(orderCopy)
+    // }
 
     closeInputs = () => {
         let { isPickingGuests, isPickingDates, isReserve } = this.state
@@ -208,7 +210,6 @@ export class _OrderModal extends React.Component {
                                     value={new Date(currOrder.checkIn).toLocaleString('en-IL', { month: 'short', day: 'numeric' }) || ''}
                                     disabled
                                     style={{ outline: 'none' }}
-                                    onChange={this.handleChange}
                                     onClick={() => this.activeInput('date')}
                                 />
                             </div>
@@ -223,7 +224,6 @@ export class _OrderModal extends React.Component {
                                     value={new Date(currOrder.checkOut).toLocaleString('en-IL', { month: 'short', day: 'numeric' }) || ''}
                                     disabled
                                     style={{ outline: 'none' }}
-                                    onChange={this.handleChange}
                                 />
                             </div>
                         </div>

@@ -26,13 +26,8 @@ export class _HomePage extends React.Component {
     onResizeScreen = ({ target }) => {
         this.setState(prevState => ({ ...prevState, screenWidth: target.innerWidth }), () => {
 
-            // if (this.state.screenWidth === 460) {
-            //     console.log(this.state.screenWidth);
-            //     this.props.onTogglePage()
-            // }
         });
     }
-
 
     onImgClick = async (order) => {
         const queryString = utilService.makeQueryParams(order)
@@ -67,7 +62,7 @@ export class _HomePage extends React.Component {
                             <div className="host-info flex column justify-center align-center">
                                 <h1 className="info-first wide">Try hosting</h1>
                                 <p className="info-seconde">Earn extra income and unlock new opportunities by sharing your space.</p>
-                                <button className="host-btn flex round-edge">Learn more</button>
+                                    <button className="host-btn flex round-edge">Learn more</button>
                             </div>
                         </div>
                     </Link>

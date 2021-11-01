@@ -14,11 +14,8 @@ class _TripPage extends React.Component {
 
     }
     componentDidMount() {
-        const filter = {
-            type: 'user',
-            _id: this.props.user._id
-        }
-        this.onLoadOrders(filter)
+        const filter = { type: 'user', _id: this.props.user?._id }
+        if (this.props.user) this.onLoadOrders(filter)
     }
 
     onLoadOrders = async (filter) => {
@@ -48,15 +45,15 @@ class _TripPage extends React.Component {
     render() {
         const { isUpcoming, isOrders, isPast } = this.state
         const { orders } = this.props
-        if (!orders) return(
+        if (!orders) return (
             <div className="flex align-center justify-center full">
-            <Loader
-                type="ThreeDots"
-                color='#FF385C'
-                height={100}
-                width={100}
-            />
-        </div>
+                <Loader
+                    type="ThreeDots"
+                    color='#FF385C'
+                    height={100}
+                    width={100}
+                />
+            </div>
         )
         return (
             <section className="trip-container" >

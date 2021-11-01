@@ -5,20 +5,27 @@ import { Plus } from "../svgs/Plus"
 import { Minus } from "../svgs/Minus"
 import Loader from "react-loader-spinner";
 
+
 export class _GuestsPicking extends React.Component {
 
     state = {
         adult: null,
         child: 0,
-        infant: 0
+        infant: 0,
+        screenWidth: window.innerWidth
+
     }
 
     componentDidMount() {
+        window.addEventListener('resize', this.onResizeScreen)
         if (!this.props.order) {
             this.setState({ adult: 0 })
             return
         }
         this.setState(this.props.currOrder.guests)
+    }
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.onResizeScreen)
     }
 
 
@@ -82,7 +89,7 @@ export class _GuestsPicking extends React.Component {
         })
     }
     render() {
-        const { adult, child, infant } = this.state
+        const { adult, child, infant, screenWidth } = this.state
         if (adult === null) return (
             <div className="flex align-center justify-center full">
                 <Loader
@@ -128,7 +135,7 @@ export class _GuestsPicking extends React.Component {
                         <button onClick={(event) => this.updateCount(event, 'add infant')} className="btn-counter flex"><span><Plus /></span></button>
                     </div>
                 </div>
-                <button className="btn-clear" onClick={this.onClearInputs}>clear</button>
+                {screenWidth < 450 && <button className="btn-clear" onClick={this.onClearInputs}>clear</button>}
             </section>
         )
     }

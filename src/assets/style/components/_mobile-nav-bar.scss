@@ -1,17 +1,18 @@
 .mobile-main-nav {
-  position: fixed;
-  z-index: 20;
-  bottom: 0;
-  height: 80px;
-  background: white;
-  width: 100%;
-  .icon {
-    stroke: $clr3;
-    width: 18px;
-    height: 18px;
-    stroke-width: 3px;
-    &.heart {
-      fill: white;
+    box-shadow: 0 1px 12px rgba(0, 0, 0, 0.08);
+    position: fixed;
+    z-index: 20;
+    bottom: 0;
+    height: 80px;
+    background: white;
+    width: 100%;
+    .icon {
+        stroke: $clr3;
+        width: 18px;
+        height: 18px;
+        stroke-width: 3px;
+        &.heart {
+            fill: white;
+        }
     }
-  }
 }

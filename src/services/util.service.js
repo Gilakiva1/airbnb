@@ -20,8 +20,10 @@ export const utilService = {
     makeQueryParams,
     HomePageImgPopular,
     HomePageImgLabels,
-    getQueryParams
+    getQueryParams,
+    makeEmptyOrder
 }
+
 function HomePageImgPopular() {
 
     return [
@@ -35,6 +37,7 @@ function HomePageImgPopular() {
         { city: 'Hong Kong', country: 'China', img: imgHongKong }
     ]
 }
+
 function HomePageImgLabels() {
     return [
         { value: 'outdoor', label: 'Outdoor getaways', img: imgOutdoor },
@@ -78,6 +81,19 @@ function delay(ms = 1500) {
     })
 }
 
+function makeEmptyOrder() {
+    return {
+        address: '',
+        checkIn: '',
+        checkOut: '',
+        guests: {
+            adult: 0,
+            child: 0,
+            infant: 0
+
+        }
+    }
+}
 
 
 
@@ -117,5 +133,3 @@ function getQueryParams(params) {
     return newParams
 
 }
-
-

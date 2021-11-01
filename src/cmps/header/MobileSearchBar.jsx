@@ -31,15 +31,7 @@ class _MobileSearchBar extends Component {
 
     inputRef = React.createRef(null)
 
-    componentDidMount() {
-        window.addEventListener('click', this.closeInputs)
-        if (this.props.history.location.pathname === '/') {
-            this.props.onSetOrder(null)
-        }
-    }
-    componentWillUnmount() {
-        window.removeEventListener('click', this.closeInputs)
-    }
+
 
     handleChange = ({ target }) => {
         const { criteria } = this.state
@@ -60,7 +52,8 @@ class _MobileSearchBar extends Component {
         this.setState({ criteria: { ...criteria, guests: { ...guests, [field]: value } } })
     }
 
-    onChangeform = (diff) => {
+    onChangeform = (ev, diff) => {
+        ev.preventDefault()
         switch (diff) {
             case 'location': this.onLocationClick()
                 break
@@ -142,16 +135,15 @@ class _MobileSearchBar extends Component {
     render() {
         const { isPickingLocation, isPickingDates, isPickingGuests, isSearchClicked } = this.state
         const { address, checkIn, checkOut } = this.state.criteria
-        const { adult, child, infant } = this.state.criteria.guests
         return (
             <header className="main-container-home">
 
                 {!isSearchClicked &&
-                    <div className={`mobile-header-container pointer`} onClick={() => this.onChangeform('location')}>
+                    <div className={`mobile-header-container pointer`} onClick={(ev) => this.onChangeform(ev, 'location')}>
                         <div className="mobile-search-bar relative ">
                             <div className="flex align-center space-between">
                                 <span className="fs14 fh18 medium fw-unset">Start your search</span>
-                                <button className="search-bar-submit-mini flex "><SearchMini /></button>
+                                <button className="search-bar-submit-mini flex "><SearchMini className="icon" /></button>
                             </div>
                         </div>
                     </div >

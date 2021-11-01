@@ -218,6 +218,14 @@
 .pointer {
   cursor: pointer;
 }
+.heart-svg {
+  display: block;
+  fill: none;
+  height: 16px;
+  width: 16px;
+  stroke: currentcolor;
+  stroke-width: 2;
+}
 
 .seperation-line {
   margin-top: 40px;

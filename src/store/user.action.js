@@ -55,9 +55,9 @@ export function onAddNotification(notiType) {
         return async dispatch => {
             const user = await userService.getLoggedinUser()
             user.notifications[notiType]++
-           await userService.update(user)
-           const notifications = user.notifications
-            dispatch({ type: 'UPDATE_NOTIFICATION', notifications  })
+                await userService.update(user)
+            const notifications = user.notifications
+            dispatch({ type: 'UPDATE_NOTIFICATION', notifications })
             dispatch({ type: 'UPDATE_USER', user })
         }
     } catch (err) {
@@ -69,10 +69,11 @@ export function onClearNotification(notiType) {
     try {
         return async dispatch => {
             const user = await userService.getLoggedinUser()
+            if (!user) return
             user.notifications[notiType] = 0
             await userService.update(user)
-           const notifications = user.notifications
-            dispatch({ type: 'UPDATE_NOTIFICATION', notifications  })
+            const notifications = user.notifications
+            dispatch({ type: 'UPDATE_NOTIFICATION', notifications })
             dispatch({ type: 'UPDATE_USER', user })
         }
     } catch (err) {

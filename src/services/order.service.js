@@ -9,11 +9,13 @@ function save(order) {
     if (order._id) {
         return httpService.put('order', order);
     } else {
-        delete order._id 
+        delete order._id
         return httpService.post('order', order)
     }
 }
+
 function query(filterBy) {
+    console.log(filterBy);
     const { _id, type } = filterBy
     if (type === 'user') {
         return httpService.get(`order?user=${_id}`);
@@ -21,9 +23,7 @@ function query(filterBy) {
         return httpService.get(`order?host=${_id}`);
     }
 }
+
 function remove(orderId) {
     return httpService.delete(`order/${orderId}`)
 }
-
-
-

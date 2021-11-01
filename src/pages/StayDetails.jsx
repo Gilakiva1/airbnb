@@ -32,6 +32,8 @@ class _StayDetails extends Component {
     };
 
     async componentDidMount() {
+        console.log('details',this.props);
+
         window.addEventListener('resize', this.onResizeScreen)
         const reviews = utilService.getRandomIntInclusive(30, 500)
         const beds = utilService.getRandomIntInclusive(2, 6)
@@ -40,6 +42,7 @@ class _StayDetails extends Component {
         await this.loadStay()
         const host = await userService.getById(this.state.stay.host)
         this.setState({ host, reviews, beds, baths })
+
 
     }
 
@@ -120,7 +123,7 @@ class _StayDetails extends Component {
                         </div>
                         <div className="flex justify-end gap20 margin-top20">
                             <span className="flex gap5"> <ShareSvg /><span className="details-save-share fw-unset fs16 fh18 medium">Share</span></span>
-                            <span className="flex gap5"><HeartSvg /><span className="details-save-share fw-unset fs16 fh18 medium">Save</span></span>
+                            <span className="flex gap5"><HeartSvg className="heart-svg" /><span className="details-save-share fw-unset fs16 fh18 medium">Save</span></span>
                         </div>
                     </div>
                     {

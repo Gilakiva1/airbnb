@@ -23,10 +23,10 @@ class _StayList extends React.Component {
 
     }
 
-    async componentDidMount() {
+    componentDidMount() {
         const searchParams = new URLSearchParams(this.props.location.search);
         const getParms = utilService.getQueryParams(searchParams)
-        this.onRandomPhotos(getParms)
+        this.onLoadStays(getParms)
         this.setState({ orderParams: getParms })
     }
 
@@ -67,7 +67,7 @@ class _StayList extends React.Component {
         }
         return true
     }
-    onRandomPhotos = async (params) => {
+    onLoadStays = async (params) => {
         await this.props.loadStays(params)
         const { stays } = this.props
         stays.map(stay => {
@@ -82,6 +82,7 @@ class _StayList extends React.Component {
 
     getStaysForDisplay = () => {
         let { stays } = this.props
+        console.log(stays);
         if (!stays.length) return
         const { propertyTypes, price, amenities } = this.state.filterBy
         const types = propertyTypes.filter(type => type.isChecked)

@@ -10,10 +10,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 class _App extends React.Component {
 
-    componentDidMount() {
 
-        console.log('porps from app', this.props);
-    }
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.location.pathname !== this.props.location.pathname) {
@@ -28,7 +25,7 @@ class _App extends React.Component {
         return (
             < >
                 <AppHeader />
-                <main className={` ${pathname.includes('/stay/') ? 'main-container' : 'main-container-home'}`}>
+                <main className={` ${pathname.includes('/stay/') ? 'main-container' : 'main-container-home '}overflow-hidden`}>
                     <Switch>
                         {routes.map(route => <Route key={route.path} exact component={route.component} path={route.path} />)}
                     </Switch>

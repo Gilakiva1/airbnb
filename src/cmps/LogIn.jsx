@@ -60,6 +60,7 @@ export class _LogIn extends React.Component {
       if (isSignup) {
         await this.props.onAddUser(credentials)
       } else {
+        console.log();
         await this.props.onSetUser(credentials)
       }
       this.props.onToggleLogin()
@@ -74,7 +75,7 @@ export class _LogIn extends React.Component {
     const { isSignup, msg } = this.state
     return (
       <section>
-        <div className="screen"></div>
+        <div onClick={() => this.props.onCloseLogin()} className="screen"></div>
         <form className={`login-form flex column align-center`} onClick={(ev) => ev.stopPropagation()} onSubmit={this.onSubmit}>
           <p className="login-header fs16 fh20 bold">Log in or sign up</p>
           <div className="seperation-line-login "></div>

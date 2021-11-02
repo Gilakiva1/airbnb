@@ -43,15 +43,13 @@ class _AppHeader extends React.Component {
         socketService.on('on-approved-trip', () => {
             this.props.onAddNotification('trips')
         })
-        console.log('log',this.state.scrollLoc);
+        console.log('log', this.state.scrollLoc);
         if (this.props.location.pathname === '/' && this.state.scrollLoc > 40) this.setState({ isEnter: false })
     }
 
     componentDidUpdate() {
 
         const { isEnter, scrollLoc } = this.state
-        // console.log('loc', scrollLoc);
-        // console.log('loc', window.scrollY);
         if (isEnter && this.props.history.location.pathname !== '/' && !scrollLoc) {
             this.setState({ isEnter: false })
         }
@@ -84,7 +82,7 @@ class _AppHeader extends React.Component {
 
 
     onToggleHeader = (ev) => {
-        
+
         const className = this.onSetCurrHeaderClass()
         const { pathname } = this.props.history.location
         const scrollLocaion = ev.path[1].pageYOffset
@@ -104,6 +102,20 @@ class _AppHeader extends React.Component {
             })
         } else {
             document.documentElement.scrollTop = 0
+        }
+    }
+    onChanegPage = (diff) => {
+        switch (diff) {
+            case 'home': this.backToHome()
+                break;
+            case 'explore': this.onExplore()
+                break;
+            case 'wish-list': this.onWishList()
+                break;
+            case 'trip': this.onTrip()
+                break;
+            case 'user': this.onProfile()
+                break;
         }
     }
 
@@ -174,6 +186,13 @@ class _AppHeader extends React.Component {
         await this.props.onSetOrder(order)
         this.props.history.push(`/stay?${queryString}`)
     }
+    onTrip = () => {
+        this.props.history.push('/trip')
+    }
+    onProfile = () => {
+        this.setState({ isLogIn: !this.state.isLogIn })
+
+    }
 
     render() {
         const { scrollLoc, isEnter, isShowMenu, isLogIn, isClearSearchBar, isHosting, screenWidth } = this.state
@@ -215,8 +234,7 @@ class _AppHeader extends React.Component {
             return (
                 <>
                     {pathname === '/' && <MobileSearchBar screenWidth={screenWidth} />}
-                    <MobileNavBar onExplore={this.onExplore} backToHome={this.backToHome} />
-
+                    <MobileNavBar onChanegPage={this.onChanegPage} isLogIn={isLogIn} />
                 </>
             )
         }

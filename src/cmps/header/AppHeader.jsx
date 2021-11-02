@@ -32,7 +32,6 @@ class _AppHeader extends React.Component {
     }
 
     componentDidMount() {
-        console.log('header', this.props);
         window.addEventListener('scroll', this.onToggleHeader)
         window.addEventListener('click', this.onCloseMenu)
         window.addEventListener('resize', this.onResizeScreen)
@@ -43,7 +42,6 @@ class _AppHeader extends React.Component {
         socketService.on('on-approved-trip', () => {
             this.props.onAddNotification('trips')
         })
-        console.log('log', this.state.scrollLoc);
         if (this.props.location.pathname === '/' && this.state.scrollLoc > 40) this.setState({ isEnter: false })
     }
 
@@ -63,7 +61,6 @@ class _AppHeader extends React.Component {
         window.removeEventListener('resize', this.onResizeScreen)
     }
     onResizeScreen = ({ target }) => {
-
         this.setState(prevState => ({ ...prevState, screenWidth: target.innerWidth }));
     }
 
@@ -86,7 +83,7 @@ class _AppHeader extends React.Component {
         const className = this.onSetCurrHeaderClass()
         const { pathname } = this.props.history.location
         const scrollLocaion = ev.path[1].pageYOffset
-
+        if (this.state.isShowMenu) this.onCloseMenu()
         if (scrollLocaion < 40 && pathname === '/') {
             this.setState({ isEnter: true })
         } else {
@@ -168,8 +165,6 @@ class _AppHeader extends React.Component {
         let className = 'header-container';
         const { pathname } = this.props.history.location;
         const { scrollLoc } = this.state
-        console.log(scrollLoc);
-        console.log(pathname);
         if (scrollLoc >= 40) className += ' white shadow'
         if (pathname === '/' || pathname === '/stay' || pathname === '/host' || pathname === '/trip') {
             className += ' fixed home main-container-home'

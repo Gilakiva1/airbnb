@@ -8,6 +8,17 @@
     outline: 1px solid black;
     z-index: 201;
     border-radius: 30px;
+    @include for-mobile-layout {
+        width: 330px;
+        border-radius: 8px;
+        p {
+            margin: 0;
+            text-align: center;
+        }
+        input {
+            padding: 9.5px 14px;
+        }
+    }
     span {
         color: cornflowerblue;
         cursor: pointer;
@@ -15,20 +26,33 @@
     .login-header {
         margin-top: 25px;
         margin-bottom: 0;
+        @include for-mobile-layout {
+            margin-top: 17px;
+        }
     }
     .seperation-line-login {
         margin-top: 20px;
         margin-bottom: 20px;
         border-top: 1px solid rgba(131, 126, 126, 0.5);
         width: inherit;
+        @include for-mobile-layout {
+            margin-bottom: 5px;
+            margin-top: 5px;
+        }
     }
     .login-welcome {
         align-self: flex-start;
         margin-bottom: 25px;
+        @include for-mobile-layout {
+            text-align: center;
+        }
     }
     .login-main-container {
         width: 100%;
         padding: 24px;
+        @include for-mobile-layout {
+            padding: 15px;
+        }
     }
     .login-input-continer {
         width: 100%;
@@ -54,6 +78,11 @@
         background-color: transparent;
         border: none;
         cursor: pointer;
+        @include for-mobile-layout {
+            right: 0;
+            padding: 3px 9px;
+            top: 5px;
+        }
     }
 }
 

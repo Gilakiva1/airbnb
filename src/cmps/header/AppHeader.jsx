@@ -79,7 +79,6 @@ class _AppHeader extends React.Component {
 
 
     onToggleHeader = (ev) => {
-
         const className = this.onSetCurrHeaderClass()
         const { pathname } = this.props.history.location
         const scrollLocaion = ev.path[1].pageYOffset
@@ -185,8 +184,7 @@ class _AppHeader extends React.Component {
         this.props.history.push('/trip')
     }
     onProfile = () => {
-        this.setState({ isLogIn: !this.state.isLogIn })
-
+        this.onToggleLogin()
     }
 
     render() {
@@ -230,6 +228,7 @@ class _AppHeader extends React.Component {
                 <>
                     {pathname === '/' && <MobileSearchBar screenWidth={screenWidth} />}
                     <MobileNavBar onChanegPage={this.onChanegPage} isLogIn={isLogIn} />
+                    {isLogIn && <LogIn onToggleLogin={this.onToggleLogin} onCloseLogin={this.onCloseLogin} />}
                 </>
             )
         }

@@ -10,7 +10,7 @@ export function HostStatus({ price, rate, status, activeGuests }) {
                         <h1 className="wide book flex fw-unset clr1 justify-end">Active Guests</h1>
                     </div>
                     <div className="img-guest-container relative flex justify-end">
-                        <span className="active-guests fs32 ">{activeGuests}</span>
+                        <span className="active-guests fs32 card-num ">{activeGuests}</span>
                     </div>
                 </div>
                 <div className="icon-container flex align-center justify-center guests">
@@ -23,7 +23,7 @@ export function HostStatus({ price, rate, status, activeGuests }) {
                         <h1 className="wide book fw-unset clr1 ">Avg Rate</h1>
                         <div className="flex align-center gap10 justify-center align-center">
                             <FontAwesomeIcon className="icon star-red" icon={faStar} />
-                            <span className="fs32 flex justify-center clr2">{+rate || 0}</span>
+                            <span className="fs32 flex justify-center clr2 card-num">{+rate || 0}</span>
                         </div>
                     </div>
                 </div>
@@ -35,7 +35,7 @@ export function HostStatus({ price, rate, status, activeGuests }) {
                 <div className="flex high justify-end " >
                     <div className="flex space-between column">
                         <h1 className="wide book fw-unset clr1 ">Month Revenue</h1>
-                        <span className="fs32 flex justify-end clr2">${price.toLocaleString('en-IL')}</span>
+                        <span className="fs32 flex justify-end clr2 card-num">${price.toLocaleString('en-IL')}</span>
                     </div>
                 </div>
                 <div className="icon-container flex align-center justify-center dollar">
@@ -43,7 +43,7 @@ export function HostStatus({ price, rate, status, activeGuests }) {
                 </div>
             </div>
             <div className="card-container status round-edge">
-                <div className="flex high column space-between  " >
+                <div className="flex high column space-between" >
                     <div className="flex space-between column">
                         <h1 className="wide book flex  justify-end fw-unset clr1 ">Status</h1>
                     </div>

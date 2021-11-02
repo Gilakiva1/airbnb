@@ -50,7 +50,7 @@ class _MiniSearchBar extends React.Component {
             return (
                 <div className={`mini-search-bar flex space-between ${animateClassName}`} onClick={this.onSearchBarClicked}>
                     <span className="fs14 fh18 medium fw-unset">Start your search</span>
-                    <button className="search-bar-submit-mini flex ">{<SearchMini/>}</button>
+                    <button className="search-bar-submit-mini flex ">{<SearchMini className='icon' />}</button>
                 </div>
             )
     }

@@ -43,15 +43,12 @@ class _AppHeader extends React.Component {
         socketService.on('on-approved-trip', () => {
             this.props.onAddNotification('trips')
         })
-        console.log('log',this.state.scrollLoc);
         if (this.props.location.pathname === '/' && this.state.scrollLoc > 40) this.setState({ isEnter: false })
     }
 
     componentDidUpdate() {
 
         const { isEnter, scrollLoc } = this.state
-        // console.log('loc', scrollLoc);
-        // console.log('loc', window.scrollY);
         if (isEnter && this.props.history.location.pathname !== '/' && !scrollLoc) {
             this.setState({ isEnter: false })
         }
@@ -66,7 +63,7 @@ class _AppHeader extends React.Component {
     }
     onResizeScreen = ({ target }) => {
 
-        this.setState(prevState => ({ ...prevState, screenWidth: target.innerWidth }));
+        this.setState(prevState => ({ ...prevState, screenWidth: target.innerWidth }))
     }
 
     onToggleLogin = async () => {

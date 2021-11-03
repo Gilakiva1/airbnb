@@ -49,7 +49,6 @@ export class _LogIn extends React.Component {
 
 
   onSubmit = async (ev) => {
-    //login and signup works !
     ev.preventDefault()
     const { credentials, isSignup } = this.state
     const { username, password } = this.state.credentials

@@ -46,6 +46,12 @@
             padding: 10px 20px;
             width: rem(350px);
             height: rem(150px);
+
+             @include for-mobile-layout {
+                padding: 2.5px 5px;
+                width: rem(87.5px);
+                height: rem(37.5px);
+            }
             
             .img {
                 width: 3rem;
@@ -60,6 +66,12 @@
             border-radius: 5px;
             box-shadow: 0 0 3px;
             color: white;
+
+            
+            @include for-mobile-layout {
+                height: rem(15px);
+                width: rem(15px);
+            }
 
             &.star {
                 background: linear-gradient(60deg, #ffa726, #fb8c00);

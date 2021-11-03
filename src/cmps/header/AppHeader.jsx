@@ -61,7 +61,8 @@ class _AppHeader extends React.Component {
         window.removeEventListener('resize', this.onResizeScreen)
     }
     onResizeScreen = ({ target }) => {
-        this.setState(prevState => ({ ...prevState, screenWidth: target.innerWidth }));
+
+        this.setState(prevState => ({ ...prevState, screenWidth: target.innerWidth }))
     }
 
     onToggleLogin = async () => {

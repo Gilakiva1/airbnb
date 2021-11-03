@@ -96,7 +96,7 @@ function makeEmptyOrder() {
 }
 
 
-
+// http://localhost:3000/#/stay?address=tel%20aviv&checkIn=1636322400000&checkOut=1636495200000&adult=2&child=0&infant=0
 
 
 
@@ -104,11 +104,7 @@ function makeEmptyOrder() {
 function makeQueryParams(order) {
     let queryString = Object.entries(order).reduce((acc, [key, value], idx, arr) => {
         if (typeof value === 'object') {
-            acc += Object.entries(value).reduce((acc, [key, value], idx, arr) => {
-                acc += key + '=' + value
-                if (idx < arr.length - 1) acc += '&'
-                return acc
-            }, '')
+            acc += makeQueryParams(value)
         } else {
             acc += key + '=' + value
         }

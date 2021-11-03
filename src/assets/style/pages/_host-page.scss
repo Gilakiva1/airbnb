@@ -47,12 +47,25 @@
             width: rem(350px);
             height: rem(150px);
 
-             @include for-mobile-layout {
+            @include for-mobile-layout {
                 padding: 2.5px 5px;
                 width: rem(87.5px);
                 height: rem(37.5px);
+
+                .card-num {
+                    font-size: 10px;
+                }
+
+                h1 {
+                    font-size: rem(8px);
+                }
+
+                h3 {
+                    font-size: rem(5px);
+
+                }
             }
-            
+
             .img {
                 width: 3rem;
             }
@@ -67,10 +80,16 @@
             box-shadow: 0 0 3px;
             color: white;
 
-            
             @include for-mobile-layout {
-                height: rem(15px);
-                width: rem(15px);
+                height: rem(13px);
+                width: rem(13px);
+                top: 1px;
+                left: 2px;
+
+                .icon {
+                    height: rem(10px);
+                    width: rem(10px);
+                }
             }
 
             &.star {
@@ -92,6 +111,11 @@
         }
         .star-red {
             color: $clr3;
+
+            @include for-mobile-layout {
+                height: rem(10px);
+                width: rem(10px);
+            }
         }
 
         h1 {
@@ -114,4 +138,5 @@
             background: linear-gradient(to right, rgba(237, 80, 150, 0.55), rgba(251, 4, 37, 0.55));
         }
     }
+
 }

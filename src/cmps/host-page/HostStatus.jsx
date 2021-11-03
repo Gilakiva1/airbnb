@@ -10,7 +10,7 @@ export function HostStatus({ price, rate, status, activeGuests }) {
                         <h1 className="wide book flex fw-unset clr1 justify-end">Active Guests</h1>
                     </div>
                     <div className="img-guest-container relative flex justify-end">
-                        <span className="active-guests fs32 card-num ">{activeGuests}</span>
+                        <span className="active-guests fs32 card-num">{activeGuests}</span>
                     </div>
                 </div>
                 <div className="icon-container flex align-center justify-center guests">

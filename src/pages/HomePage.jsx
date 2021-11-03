@@ -53,7 +53,19 @@ export class _HomePage extends React.Component {
                 </div >
                 {(!isMobileSearch || screenWidth > 460) && <section className="home-page">
                     <h1 className="title-popular fs32 fh52 fw-unset bold">Popular Destinations</h1>
+<<<<<<< HEAD
                     <PopularImgList onImgClick={this.onImgClick} links={utilService.HomePageImgPopular()} />
+=======
+                    {
+                        screenWidth > 600 ? <PopularImgList onImgClick={this.onImgClick} links={utilService.HomePageImgPopular()} /> : <MultipleRows onImgClick={this.onImgClick} links={utilService.HomePageImgPopular()} />
+
+                    }
+
+
+
+
+
+>>>>>>> bbf4ecfd304b83a4ae8bbade17b0fb9812160285
                     <h1 className="title-label fs32 fh52 fw-unset bold">Live Anywhere</h1>
                     <LabelsImgList links={utilService.HomePageImgLabels()} />
                     <Link to='/host'>

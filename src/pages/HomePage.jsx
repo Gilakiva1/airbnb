@@ -59,6 +59,10 @@ export class _HomePage extends React.Component {
 
                     }
 
+
+
+
+
                     <h1 className="title-label fs32 fh52 fw-unset bold">Live Anywhere</h1>
                     <LabelsImgList links={utilService.HomePageImgLabels()} />
                     <Link to='/host'>

@@ -8,7 +8,6 @@ import { utilService } from "../services/util.service";
 import { onSetOrder, onTogglePage } from '../store/order.action';
 import { withRouter } from 'react-router'
 import { connect } from "react-redux";
-import MultipleRows from "../cmps/home-page/MultipleRows";
 
 
 export class _HomePage extends React.Component {
@@ -54,11 +53,7 @@ export class _HomePage extends React.Component {
                 </div >
                 {(!isMobileSearch || screenWidth > 460) && <section className="home-page">
                     <h1 className="title-popular fs32 fh52 fw-unset bold">Popular Destinations</h1>
-                    {
-                        screenWidth > 600 ? <PopularImgList onImgClick={this.onImgClick} links={utilService.HomePageImgPopular()} /> : <MultipleRows onImgClick={this.onImgClick} links={utilService.HomePageImgPopular()} />
-
-                    }
-
+                    <PopularImgList onImgClick={this.onImgClick} links={utilService.HomePageImgPopular()} />
                     <h1 className="title-label fs32 fh52 fw-unset bold">Live Anywhere</h1>
                     <LabelsImgList links={utilService.HomePageImgLabels()} />
                     <Link to='/host'>
@@ -67,7 +62,7 @@ export class _HomePage extends React.Component {
                             <div className="host-info flex column justify-center align-center">
                                 <h1 className="info-first wide">Try hosting</h1>
                                 <p className="info-seconde">Earn extra income and unlock new opportunities by sharing your space.</p>
-                                <button className="host-btn flex round-edge">Learn more</button>
+                                    <button className="host-btn flex round-edge">Learn more</button>
                             </div>
                         </div>
                     </Link>

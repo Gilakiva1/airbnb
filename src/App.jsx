@@ -18,7 +18,6 @@ class _App extends React.Component {
         }
     }
 
-
     render() {
         const { pathname } = this.props.history.location
 

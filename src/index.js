@@ -5,13 +5,11 @@ import { store } from './store/store';
 import { HashRouter as Router } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 import { App } from './App';
-import ScrollToTop from './cmps/ScrollToTop';
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <Router>
-      {/* <ScrollToTop/> */}
         <App />
       </Router>
     </Provider>  

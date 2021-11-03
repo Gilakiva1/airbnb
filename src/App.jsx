@@ -24,7 +24,7 @@ class _App extends React.Component {
         return (
             < >
                 <AppHeader />
-                <main className={` ${pathname.includes('/stay/') ? 'main-container' : 'main-container-home '}overflow-hidden`}>
+                <main className={` ${pathname.includes('/stay/') ? 'main-container' : 'main-container-home '}`}>
                     <Switch>
                         {routes.map(route => <Route key={route.path} exact component={route.component} path={route.path} />)}
                     </Switch>

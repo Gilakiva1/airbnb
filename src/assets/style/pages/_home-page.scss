@@ -37,6 +37,11 @@
 }
 
 .home-page {
+    .slick-track {
+        @include for-mobile-layout {
+            // height: 140px;
+        }
+    }
     .title-popular {
         margin-block-end: rem(30px);
     }

@@ -24,7 +24,8 @@ class _AppHeader extends React.Component {
         scrollLoc: window.scrollY,
         isEnter: false,
         isShowMenu: false,
-        isLogIn: false,
+        isNewRoute: false,
+        isLogin: false,
         closeSearchBarInputs: false,
         isClearSearchBar: false,
         isHosting: false,
@@ -44,21 +45,15 @@ class _AppHeader extends React.Component {
         socketService.on('on-approved-trip', () => {
             this.props.onAddNotification('trips')
         })
-        console.log('hi');
         if (pathname === '/' && this.state.scrollLoc < 40) this.setState({ isEnter: true })
         if (pathname === '/trip') this.setState({ isEnter: false })
     }
 
-    componentDidUpdate() {
-        console.log('upateee???');
-        const className = this.onSetCurrHeaderClass()
-        const { isEnter, scrollLoc } = this.state
+    componentDidUpdate(prevProps) {
         const { pathname } = this.props.history.location
-        if (isEnter && pathname !== '/' && !scrollLoc) {
-            this.setState({ isEnter: false, className, scrollLoc })
-        }
-        if (!isEnter && pathname === '/' && window.scrollY < 40) {
-            this.setState({ isEnter: true, className, scrollLoc })
+        if (prevProps.location.pathname !== pathname) {
+            this.setState({ isEnter: false })
+            if (pathname === '/') this.setState({ isEnter: true })
         }
     }
     componentWillUnmount() {
@@ -72,7 +67,7 @@ class _AppHeader extends React.Component {
 
     onToggleLogin = async () => {
         this.onCloseMenu()
-        this.setState({ isLogIn: !this.state.isLogIn })
+        this.setState({ isLogin: !this.state.isLogin })
     }
     onLogout = async () => {
         this.onCloseMenu()
@@ -80,21 +75,20 @@ class _AppHeader extends React.Component {
     }
 
     onCloseLogin = () => {
-        this.setState({ isLogIn: false })
+        this.setState({ isLogin: false })
     }
 
 
     onToggleHeader = (ev) => {
-        const className = this.onSetCurrHeaderClass()
+        
+        console.log('active');
         const { pathname } = this.props.history.location
-        const scrollLoc = ev.path[1].pageYOffset
+        const scrollLoc = window.scrollY
         if (this.state.isShowMenu) this.onCloseMenu()
         if (scrollLoc < 40 && pathname === '/') {
-            this.setState({ isEnter: true, scrollLoc, className })
-            console.log('func acticate');
+            this.setState({ isEnter: true, scrollLoc })
         } else {
-            this.setState({ isEnter: false, scrollLoc, className })
-            console.log('func acticate');
+            this.setState({ isEnter: false, scrollLoc })
         }
     }
 
@@ -140,8 +134,6 @@ class _AppHeader extends React.Component {
 
     toggleSearchBar = () => {
         let { scrollLoc } = this.state
-        scrollLoc = 40
-        console.log('search clicked');
         this.setState({ scrollLoc, isEnter: true })
     }
 
@@ -167,12 +159,11 @@ class _AppHeader extends React.Component {
         return +notifications.orders + +notifications.trips
     }
     onSetCurrHeaderClass = () => {
-        let className = 'header-container shadow';
+        let className = 'header-container shadow white';
         const { pathname } = this.props.history.location;
         const { scrollLoc, isEnter } = this.state
-        if (scrollLoc < 40 && pathname === '/') className += ' no-shadow'
-        if (scrollLoc >= 40) className += ' white'
-        if (isEnter) className += ' header-height'
+        if (scrollLoc < 40 && pathname === '/') className += ' no-color'
+        if (isEnter) className += ' header-height '
         if (pathname === '/host') className += ' relative padding'
         if (pathname === '/' || pathname === '/stay' || pathname === '/host' || pathname === '/trip') {
             className += ' fixed home main-container-home '
@@ -193,9 +184,12 @@ class _AppHeader extends React.Component {
     onProfile = () => {
         this.onToggleLogin()
     }
+    handleUserLogin = () => {
+        this.props.user ? this.onLogout() : this.onChanegPage('user')
+    }
 
     render() {
-        const { scrollLoc, isEnter, isShowMenu, isLogIn, isClearSearchBar, isHosting, screenWidth } = this.state
+        const { scrollLoc, isEnter, isShowMenu, isLogin, isClearSearchBar, isHosting, screenWidth } = this.state
         const { pathname } = this.props.history.location
         const { user } = this.props
         if (screenWidth > 500) {
@@ -222,8 +216,8 @@ class _AppHeader extends React.Component {
                                     </div>
                                 </div>
                             </div>
-                            {isShowMenu && <MenuBar onLogout={this.onLogout} user={user} isLogIn={isLogIn} onToggleLogin={this.onToggleLogin} onCloseMenu={this.onCloseMenu} />}
-                            {isLogIn && <LogIn onToggleLogin={this.onToggleLogin} onCloseLogin={this.onCloseLogin} />}
+                            {isShowMenu && <MenuBar onLogout={this.onLogout} user={user} isLogin={isLogin} onToggleLogin={this.onToggleLogin} onCloseMenu={this.onCloseMenu} />}
+                            {isLogin && <LogIn onToggleLogin={this.onToggleLogin} onCloseLogin={this.onCloseLogin} />}
                         </nav>
                     </div>
                     {pathname !== '/host' && < MiniSearchBar toggleSearchBar={this.toggleSearchBar} animateClassName={isEnter ? '' : 'scale-up-top-mini-search-bar'} />}
@@ -234,8 +228,8 @@ class _AppHeader extends React.Component {
             return (
                 <>
                     {pathname === '/' && <MobileSearchBar screenWidth={screenWidth} />}
-                    <MobileNavBar onChanegPage={this.onChanegPage} isLogIn={isLogIn} />
-                    {isLogIn && <LogIn onToggleLogin={this.onToggleLogin} onCloseLogin={this.onCloseLogin} />}
+                    <MobileNavBar onChanegPage={this.onChanegPage} user={user} handleUserLogin={this.handleUserLogin} />
+                    {isLogin && <LogIn onToggleLogin={this.onToggleLogin} onCloseLogin={this.onCloseLogin} />}
                 </>
             )
         }
@@ -245,9 +239,9 @@ class _AppHeader extends React.Component {
 
 
 
-const mapStateToProps = state => {
+const mapStateToProps = ({ userReducer }) => {
     return {
-        user: state.userReducer.loggedInUser
+        user: userReducer.loggedInUser
     }
 
 }

@@ -147,7 +147,7 @@ export class _OrderModal extends React.Component {
         ev.preventDefault()
         const { user, order } = this.props
         if (!user) {
-            this.props.onSetMsg({ type: 'error', txt: 'Please Sign up/log in to continue' })
+            this.props.onSetMsg({ type: 'error-login', txt: 'Please Sign up/log in to continue' })
             return
         }
         if (!order.checkOut || !order.guests) {

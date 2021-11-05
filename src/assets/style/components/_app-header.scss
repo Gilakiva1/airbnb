@@ -4,13 +4,16 @@
     z-index: 15;
     .btn-logo {
         background: inherit;
-        padding: 0px 10px 0px 0px;
+        padding-right: 10px;
     }
     .header-func {
         justify-content: space-between;
         align-items: center;
         position: relative;
         margin-top: 18.5px;
+        &.mrg-header {
+            margin: 0;
+        }
         .link-host {
             text-decoration: none;
             margin-inline-end: 5px;
@@ -100,6 +103,21 @@
         position: absolute;
         width: rem(240px);
     }
+    &.shadow {
+        box-shadow: 0 1px 12px rgba(0, 0, 0, 0.08);
+    }
+    &.relative {
+        position: relative;
+    }
+    &.padding {
+        padding-bottom: 17px;
+    }
+    &.header-height {
+        height: 180px;
+    }
+    &.no-shadow {
+        box-shadow: initial;
+    }
 }
 
 .link {
@@ -114,14 +132,12 @@
     }
 }
 
-.shadow {
-    box-shadow: 0 1px 12px rgba(0, 0, 0, 0.08);
-}
-
-.relative {
-    position: relative;
-}
-
-.padding {
-    padding-bottom: 17px;
-}
+// .shadow {
+//     box-shadow: 0 1px 12px rgba(0, 0, 0, 0.08);
+// }
+// .relative {
+//     position: relative;
+// }
+// .padding {
+//     padding-bottom: 17px;
+// }

@@ -2,6 +2,7 @@ import { TextField } from "@material-ui/core";
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
+import { userService } from "../services/user.service";
 import { onAddUser, onSetUser } from "../store/user.action"
 export class _LogIn extends React.Component {
 
@@ -48,6 +49,7 @@ export class _LogIn extends React.Component {
   }
 
 
+
   onSubmit = async (ev) => {
     ev.preventDefault()
     const { credentials, isSignup } = this.state
@@ -60,15 +62,17 @@ export class _LogIn extends React.Component {
       if (isSignup) {
         await this.props.onAddUser(credentials)
       } else {
-        console.log();
         await this.props.onSetUser(credentials)
       }
       this.props.onToggleLogin()
-
     } catch (err) {
       this.setState({ msg: 'Invalid username | password' })
     }
-
+  }
+  onLoginDemoUser = async () => {
+    const DemoUser = userService.getDemoUser()
+    await this.props.onSetUser(DemoUser)
+    this.props.onToggleLogin()
   }
 
   render() {
@@ -105,13 +109,18 @@ export class _LogIn extends React.Component {
                 name='fullname'
                 onChange={this.handleChange}
               />}
-              {!isSignup && <p>New to Homeaway? <span onClick={this.toggleSignup}>Sign up!</span></p>}
+              {!isSignup && <div className="fh32">
+                <p>New to Homeaway? <span onClick={this.toggleSignup}>Sign up!</span></p>
+
+                <p>Or Login with <span></span> <span className="text-align" onClick={this.onLoginDemoUser}>  Demo-User</span> </p>
+              </div>
+              }
             </div>
             <button ref={this.inputRef} onMouseMove={this.onSetColor} className="continue-btn fs16 fh20 medium ">Continue</button>
           </div>
           <button onClick={() => this.props.onCloseLogin()} className="login-close-btn fs22 fh26 bold">X</button>
         </form>
-      </section>
+      </section >
     )
   }
 }

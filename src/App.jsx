@@ -10,7 +10,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 class _App extends React.Component {
 
-
+    
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.location.pathname !== this.props.location.pathname) {

@@ -37,11 +37,6 @@
 }
 
 .home-page {
-    .slick-track {
-        @include for-mobile-layout {
-            // height: 140px;
-        }
-    }
     .title-popular {
         margin-block-end: rem(30px);
     }
@@ -74,11 +69,12 @@
                 font-weight: 500;
             }
         }
-        @include for-mobile-layout {
-            .popular-list {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
+    }
+    @include for-mobile-layout {
+        .popular-list {
+            gap: 10px;
+            & .popular-txt {
+                gap: 5px;
             }
         }
     }
@@ -87,6 +83,9 @@
         gap: rem(10px);
         grid-template-columns: repeat(4, 1fr);
         margin-block-start: rem(30px);
+        @include for-mobile-layout {
+            margin-bottom: 100px;
+        }
         .label-txt {
             padding-block-start: rem(10px);
             font-size: rem(18px);
@@ -102,6 +101,7 @@
         position: relative;
         display: block;
         @include for-mobile-layout {
+            bottom: 50px;
             height: 450px;
             img {
                 object-position: -516px 136px;
@@ -115,6 +115,7 @@
             align-items: center;
             top: 0;
             @include for-mobile-layout {
+                width: 100%;
                 padding: 5px;
                 height: initial;
                 background: $clr2;
@@ -129,8 +130,12 @@
                     line-height: 2.875rem;
                 }
             }
-            .info-secdone {
+            .info-seconde {
                 line-height: rem(15px);
+                @include for-mobile-layout {
+                    max-width: 37ch;
+                    line-height: 20px;
+                }
             }
         }
         .host-btn {
@@ -142,6 +147,24 @@
                 align-self: unset;
             }
         }
+    }
+    @include for-mobile-layout {
+        .slick-slider {
+            width: 586px;
+            height: 140px;
+            padding-inline-start: 10px;
+        }
+        .slick-slide {
+            >div {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    }
+    & .pad-home {
+        padding: 0px 10px;
+        margin-top: 10px;
     }
 }
 

@@ -3,14 +3,12 @@
         width: 100%;
         height: 100%;
     }
-
     img {
         border-radius: 13px 13px 0px 0px;
     }
     .trip-img {
         width: rem(380px);
         height: rem(150px);
-
         @include for-mobile-layout {
             width: 100%;
         }
@@ -19,14 +17,13 @@
         display: flex;
         flex-wrap: wrap;
         gap: 40px;
+        padding-bottom: 20px;
     }
     .trip-details {
         padding: 10px 20px;
     }
-
     .trip-preview {
         box-shadow: 0 6px 16px 2px #d8d8d8;
-
         @include for-mobile-layout {
             width: 100%;
             margin-right: 20px;
@@ -37,9 +34,6 @@
         margin-bottom: 13px;
     }
     .btn-menu {
-        .active {
-            box-shadow: 0px 1px 0px;
-        }
         margin-top: 10px;
         margin-bottom: 10px;
         border-bottom: 1px solid rgba(131, 126, 126, 0.5);
@@ -48,6 +42,10 @@
             background: none;
             border: none;
             padding: 10px 20px;
+            &.active {
+                border-radius: initial;
+                border-bottom: 1px solid black;
+            }
             &:hover {
                 transition: 0.4s;
                 background-color: #f1f1f1;
@@ -62,7 +60,6 @@
         justify-content: space-between;
         margin-top: 20px;
         .btn-trip {
-            
             border-radius: 30px;
             cursor: pointer;
             color: #222222;

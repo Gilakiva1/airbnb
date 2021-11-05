@@ -36,7 +36,7 @@ class _HostOrder extends Component {
         order.status = value;
         await this.props.onUpdateStatusOrder(order)
         this.props.onCalcDetails()
-        if (value==='Approved')  socketService.emit('on-approve-order', order.buyer._id)
+        if (value === 'Approved') socketService.emit('on-approve-order', order.buyer._id)
     }
 
     render() {
@@ -62,7 +62,7 @@ class _HostOrder extends Component {
                         <th>Actions</th>
                     </tr>
                 </thead>
-                <tbody>  
+                <tbody>
                     {
                         orders.reverse().map((order, idx) => <HostOrderPreview key={idx} updateStatusOrder={this.updateStatusOrder} milisecToDate={this.milisecToDate} order={order} />)
                     }

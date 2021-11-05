@@ -122,10 +122,10 @@ export class RateHost extends React.Component {
                                 <img src={asset.imgUrls[0]} />
                             </div>
 
-                            <div className="flex column gap10">
+                            <div className=" flex column gap10">
 
-                                <h3 className="book fw-unset fs16">{asset.name}</h3>
-                                <h3 className="book fw-unset fs16">{asset.loc.address}</h3>
+                                <h3 className="book fw-unset fs16 asset-header">{asset.name}</h3>
+                                <h3 className="book fw-unset fs16 asset-header">{asset.loc.address}</h3>
                             </div>
 
                         </div>

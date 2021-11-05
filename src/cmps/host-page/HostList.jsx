@@ -82,6 +82,7 @@ export class HostList extends Component {
             <table className="host-list">
                 <thead>
                     <tr>
+                        <th></th>
                         <th>Name</th>
                         <th className={`sort ${isOnType ? 'black' : ''}`} onClick={this.toggleSortType}>Type</th>
                         <th>Address</th>

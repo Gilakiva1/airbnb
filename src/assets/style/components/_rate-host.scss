@@ -15,10 +15,18 @@
             height: 100px;
             border-radius: 10px;
             object-fit: cover;
-        }
-        h1 {
-            
 
+            @include for-mobile-layout {
+                width: 40px;
+                height: 40px;
+            }
         }
+        
+    }
+}
+@include for-mobile-layout {
+    .asset-header{
+        font-size: 8px;
+        line-height: 10px;
     }
 }

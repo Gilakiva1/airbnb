@@ -3,7 +3,8 @@
 export function HostAssetPreview(props) {
     return (
         <tr>
-            <td className="bold flex"><img src={props.asset.imgUrls[0]} />{props.asset.name}</td>
+            <td><img src={props.asset.imgUrls[0]}/></td>
+            <td className="bold flex">{props.asset.name}</td>
             <td>{props.asset.type}</td>
             <td>{props.asset.loc.address}</td>
             <td><span className="fs18">${props.asset.price.toLocaleString('en-IL')}</span></td>

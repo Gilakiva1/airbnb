@@ -2,7 +2,7 @@ import { Component } from "react";
 import { connect } from 'react-redux'
 import { HostList } from "../cmps/host-page/HostList";
 import { HostOrder } from "../cmps/host-page/HostOrder";
-import { SideNav } from '../cmps/host-page/SideNav';
+import { TopNav } from '../cmps/host-page/TopNav';
 import { loadAssets } from '../store/host.action.js';
 import { AddStay } from '../cmps/host-page/AddStay';
 import { onLoadOrders } from "../store/order.action";
@@ -99,7 +99,7 @@ class _HostPage extends Component {
                 <div className="host-container">
 
                     <nav className="nav-bar flex justify-center">
-                        <SideNav isAddAsset={isAddAsset} isMyAsset={isMyAsset} isOrders={isOrders} isRates={isRates} toggleComponent={this.toggleComponent} />
+                        <TopNav isAddAsset={isAddAsset} isMyAsset={isMyAsset} isOrders={isOrders} isRates={isRates} toggleComponent={this.toggleComponent} />
                     </nav>
                     <HostStatus price={price} rate={rate} status={status} activeGuests={activeGuests} />
                     {(user || assets.length || isAddAsset) && <div className="stay-details-container">

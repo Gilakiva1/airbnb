@@ -108,7 +108,7 @@ export class _SearchBar extends React.Component {
 
   }
 
-  activeInput = (input,loc) => {
+  activeInput = (input, loc) => {
     this.closeInputs()
     switch (input) {
       case 'guest':
@@ -150,19 +150,19 @@ export class _SearchBar extends React.Component {
     const queryString = utilService.makeQueryParams(order)
     await this.props.onSetOrder(order)
     this.props.history.push(`/stay?${queryString}`)
-}
+  }
 
   render() {
     const { isPickingGuests, isPickingDates, isPickingLocation, criteria } = this.state
-    const { animateClassName } = this.props
+    const { animateClassName, isEnter } = this.props
     const { checkIn, checkOut, address } = criteria
-    if (this.props.location.pathname==='/host') return null
+    if (this.props.location.pathname === '/host') return null
     return (
       <section className={`flex column align-center search-bar-main-container ${animateClassName}`}>
         <div>
           <div className="flex column margin-top20">
-            <form className="search-bar-container flex" onClick={this.preventPropagation} onSubmit={this.onSubmit}>
-              <div className="input-container flex column" onClick={() => this.activeInput('location',this.inputRef.current)} >
+            <form className={`${isEnter ? 'enter-postion' : ''} search-bar-container flex`} onClick={this.preventPropagation} onSubmit={this.onSubmit}>
+              <div className="input-container flex column" onClick={() => this.activeInput('location', this.inputRef.current)} >
                 <span>Location</span>
                 <input
                   ref={this.inputRef}
@@ -220,9 +220,9 @@ export class _SearchBar extends React.Component {
                 />
               </div>
               <button className="search-bar-submit flex ">{<Search style={{ height: '20px', width: '20px' }} />}</button>
-            <div className={isPickingGuests ? "picking-guest-container" : "none"}> {isPickingGuests && <GuestsPicking handleGuestsChanege={this.handleGuestsChanege} />} </div>
-            <div className={isPickingDates ? "picking-dates-container" : "none"}> {isPickingDates && <DatePicker order={{}} preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />} </div>
-            <div className={isPickingLocation ? "picking-location-container" : "none"}> {isPickingLocation && <LocationPicking  onImgClick={this.onLocationClick} links={utilService.HomePageImgPopular()} />} </div>
+              <div className={isPickingGuests ? "picking-guest-container" : "none"}> {isPickingGuests && <GuestsPicking handleGuestsChanege={this.handleGuestsChanege} />} </div>
+              <div className={isPickingDates ? "picking-dates-container" : "none"}> {isPickingDates && <DatePicker order={{}} preventPropagation={this.preventPropagation} handlePickingDates={this.handlePickingDates} />} </div>
+              <div className={isPickingLocation ? "picking-location-container" : "none"}> {isPickingLocation && <LocationPicking onImgClick={this.onLocationClick} links={utilService.HomePageImgPopular()} />} </div>
             </form>
           </div>
         </div>

@@ -15,7 +15,6 @@ function save(order) {
 }
 
 function query(filterBy) {
-    console.log(filterBy);
     const { _id, type } = filterBy
     if (type === 'user') {
         return httpService.get(`order?user=${_id}`);

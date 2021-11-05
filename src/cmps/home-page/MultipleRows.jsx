@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
 
-export  class MultipleRows extends Component {
+export class MultipleRows extends Component {
     render() {
         const settings = {
             className: "center",
@@ -16,13 +16,14 @@ export  class MultipleRows extends Component {
         };
 
         const { links, onImgClick } = this.props
+
         return (
 
             <Slider {...settings}>
                 {
                     links.map((link, idx) => (
                         <>
-                            <div className="popular-list flex" >
+                            <div key={idx} className="popular-list flex" onClick={() => onImgClick({ address: link.city })} >
                                 <img className={`popular-img round-edge link-${idx}`} src={link.img} alt="" />
                                 <div className="popular-txt fs16  flex column justify-center wide ">
                                     <h3 className="city">{link.city}</h3>

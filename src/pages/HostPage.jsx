@@ -35,16 +35,13 @@ class _HostPage extends Component {
     }
 
     async componentDidMount() {
-        if (!userService.getLoggedinUser()) {
-            return this.props.history.push('/')
-        } 
-        await this.props.loadAssets(this.props.user._id) 
-        const filter = {
-            type: 'host',
-            _id: this.props.user._id
+        if (this.props.user) {
+
+            await this.props.loadAssets(this.props.user._id)
+            const filter = { type: 'host', _id: this.props.user._id }
+            await this.props.onLoadOrders(filter)
+            this.onCalcDetails()
         }
-        await this.props.onLoadOrders(filter)
-        this.onCalcDetails()
     }
 
     onCalcDetails = () => {
@@ -64,6 +61,7 @@ class _HostPage extends Component {
             return acc += asset.rating
         }, 0)
         hostDetails.rate = (rate / assets.length).toFixed(1)
+
 
         if (!orders.length) return this.setState({ hostDetails })
 
@@ -86,6 +84,7 @@ class _HostPage extends Component {
         const { user, assets } = this.props
         const { price, rate, status, activeGuests } = this.state.hostDetails
         const { isAddAsset, isMyAsset, isOrders, isRates } = this.state.component
+
         if (!assets) return (<div className="flex align-center justify-center full">
             <Loader
                 type="ThreeDots"
@@ -96,25 +95,23 @@ class _HostPage extends Component {
         </div>)
 
         return (
-            <div className="host-page">
+            <div className={`${!user && !isAddAsset ? 'host-height' : ''} host-page`}>
                 <div className="host-container">
 
                     <nav className="nav-bar flex justify-center">
                         <SideNav isAddAsset={isAddAsset} isMyAsset={isMyAsset} isOrders={isOrders} isRates={isRates} toggleComponent={this.toggleComponent} />
                     </nav>
                     <HostStatus price={price} rate={rate} status={status} activeGuests={activeGuests} />
-                    {assets.length &&
-                        <div className="stay-details-container">
-                            <div className="stay-details">
-                                {isAddAsset && <AddStay host={user} currAsset={this.state.currAsset} />}
-                                {isMyAsset && <HostList toggleComponent={this.toggleComponent} assets={assets} />}
-                                {isOrders && <HostOrder onCalcDetails={this.onCalcDetails} />}
-                                {isRates && <RateHost assets={assets} />}
-                            </div>
-                        </div>}
+                    {(user || assets.length || isAddAsset) && <div className="stay-details-container">
+                        <div className="stay-details">
+                            {isAddAsset && <AddStay host={user} currAsset={this.state.currAsset} />}
+                            {isMyAsset && assets.length && < HostList toggleComponent={this.toggleComponent} assets={assets} />}
+                            {isOrders && assets.length && <HostOrder onCalcDetails={this.onCalcDetails} />}
+                            {isRates && assets.length && < RateHost assets={assets} />}
+                        </div>
+                    </div>}
                     {!assets.length &&
                         <div className="create-asset">
-                            <h1>need to add func !</h1>
                         </div>
                     }
 

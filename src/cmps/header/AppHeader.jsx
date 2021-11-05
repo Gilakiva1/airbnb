@@ -22,7 +22,7 @@ class _AppHeader extends React.Component {
 
     state = {
         scrollLoc: window.scrollY,
-        isEnter: true,
+        isEnter: false,
         isShowMenu: false,
         isLogIn: false,
         closeSearchBarInputs: false,
@@ -32,6 +32,8 @@ class _AppHeader extends React.Component {
     }
 
     componentDidMount() {
+        const { pathname } = this.props.history.location
+
         window.addEventListener('scroll', this.onToggleHeader)
         window.addEventListener('click', this.onCloseMenu)
         window.addEventListener('resize', this.onResizeScreen)
@@ -42,17 +44,21 @@ class _AppHeader extends React.Component {
         socketService.on('on-approved-trip', () => {
             this.props.onAddNotification('trips')
         })
-        if (this.props.location.pathname === '/' && this.state.scrollLoc > 40) this.setState({ isEnter: false })
+        console.log('hi');
+        if (pathname === '/' && this.state.scrollLoc < 40) this.setState({ isEnter: true })
+        if (pathname === '/trip') this.setState({ isEnter: false })
     }
 
     componentDidUpdate() {
-
+        console.log('upateee???');
+        const className = this.onSetCurrHeaderClass()
         const { isEnter, scrollLoc } = this.state
-        if (isEnter && this.props.history.location.pathname !== '/' && !scrollLoc) {
-            this.setState({ isEnter: false })
+        const { pathname } = this.props.history.location
+        if (isEnter && pathname !== '/' && !scrollLoc) {
+            this.setState({ isEnter: false, className, scrollLoc })
         }
-        if (!isEnter && this.props.history.location.pathname === '/' && window.scrollY < 40) {
-            this.setState(prevState => ({ ...prevState, isEnter: true }))
+        if (!isEnter && pathname === '/' && window.scrollY < 40) {
+            this.setState({ isEnter: true, className, scrollLoc })
         }
     }
     componentWillUnmount() {
@@ -61,7 +67,6 @@ class _AppHeader extends React.Component {
         window.removeEventListener('resize', this.onResizeScreen)
     }
     onResizeScreen = ({ target }) => {
-
         this.setState(prevState => ({ ...prevState, screenWidth: target.innerWidth }))
     }
 
@@ -82,14 +87,15 @@ class _AppHeader extends React.Component {
     onToggleHeader = (ev) => {
         const className = this.onSetCurrHeaderClass()
         const { pathname } = this.props.history.location
-        const scrollLocaion = ev.path[1].pageYOffset
+        const scrollLoc = ev.path[1].pageYOffset
         if (this.state.isShowMenu) this.onCloseMenu()
-        if (scrollLocaion < 40 && pathname === '/') {
-            this.setState({ isEnter: true })
+        if (scrollLoc < 40 && pathname === '/') {
+            this.setState({ isEnter: true, scrollLoc, className })
+            console.log('func acticate');
         } else {
-            this.setState({ isEnter: false })
+            this.setState({ isEnter: false, scrollLoc, className })
+            console.log('func acticate');
         }
-        this.setState({ scrollLoc: scrollLocaion, className })
     }
 
     backToHome = () => {
@@ -132,12 +138,11 @@ class _AppHeader extends React.Component {
         } else return null
     }
 
-    toggleSearchBar = (action) => {
+    toggleSearchBar = () => {
         let { scrollLoc } = this.state
         scrollLoc = 40
-        if (action === 'on') {
-            this.setState({ scrollLoc, isEnter: true })
-        }
+        console.log('search clicked');
+        this.setState({ scrollLoc, isEnter: true })
     }
 
     setClearSearchBar = () => {
@@ -162,17 +167,18 @@ class _AppHeader extends React.Component {
         return +notifications.orders + +notifications.trips
     }
     onSetCurrHeaderClass = () => {
-        let className = 'header-container';
+        let className = 'header-container shadow';
         const { pathname } = this.props.history.location;
-        const { scrollLoc } = this.state
-        if (scrollLoc >= 40) className += ' white shadow'
+        const { scrollLoc, isEnter } = this.state
+        if (scrollLoc < 40 && pathname === '/') className += ' no-shadow'
+        if (scrollLoc >= 40) className += ' white'
+        if (isEnter) className += ' header-height'
+        if (pathname === '/host') className += ' relative padding'
         if (pathname === '/' || pathname === '/stay' || pathname === '/host' || pathname === '/trip') {
-            className += ' fixed home main-container-home'
+            className += ' fixed home main-container-home '
         } else {
             className += ' sticky-color main-container'
         }
-        if (pathname === '/host') className += ' relative padding'
-        if (pathname !== '/') className += ' shadow'
         return className
     }
     onExplore = async () => {
@@ -195,7 +201,7 @@ class _AppHeader extends React.Component {
         if (screenWidth > 500) {
             return (
                 <header className={this.onSetCurrHeaderClass()}>
-                    <div className="header-func flex">
+                    <div className={`${isEnter ? 'mrg-header' : ''} header-func flex`}>
                         <div className="logo-container flex align-center pointer" onClick={this.backToHome}>
                             <button className="btn-logo border-none"><LogoSvg className={`${(pathname === '/' && scrollLoc >= 40) || pathname !== '/' ? 'logo-pink' : 'logo-white'} `} /></button>
                             <h3 className={`logo-txt fs22 medium ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-pink'}`}>Home Away</h3>
@@ -221,8 +227,8 @@ class _AppHeader extends React.Component {
                         </nav>
                     </div>
                     {pathname !== '/host' && < MiniSearchBar toggleSearchBar={this.toggleSearchBar} animateClassName={isEnter ? '' : 'scale-up-top-mini-search-bar'} />}
-                    <SearchBar setClearSearchBar={this.setClearSearchBar} isClearSearchBar={isClearSearchBar} closeSearchBarInputs={this.closeSearchBarInputs} toggleSearchBar={this.toggleSearchBar} animateClassName={isEnter ? 'scale-up-top-search-bar' : ''} />
-                </header>
+                    <SearchBar isEnter={isEnter} setClearSearchBar={this.setClearSearchBar} isClearSearchBar={isClearSearchBar} closeSearchBarInputs={this.closeSearchBarInputs} toggleSearchBar={this.toggleSearchBar} animateClassName={isEnter ? 'scale-up-top-search-bar' : ''} />
+                </header >
             )
         } else {
             return (

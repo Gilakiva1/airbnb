@@ -24,7 +24,7 @@ class _MiniSearchBar extends React.Component {
     }
 
     onSearchBarClicked = () => {
-        this.props.toggleSearchBar('on')
+        this.props.toggleSearchBar()
     }
 
     capitalizeFirstLetter = (string) => {
@@ -34,8 +34,8 @@ class _MiniSearchBar extends React.Component {
 
 
     render() {
-        const { animateClassName, order } = this.props
-        if (this.props.location.pathname === '/stay' && order) return (
+        const { animateClassName, order, pathname } = this.props
+        if (pathname === '/stay' && order) return (
             <div className={`mini-search-bar flex space-between ${animateClassName}`} onClick={this.onSearchBarClicked}>
                 <span className="fs14 fh18 medium fw-unset">{this.capitalizeFirstLetter(order.address) || 'Location'}</span>
                 <div className="seperation-line-vertical"></div>

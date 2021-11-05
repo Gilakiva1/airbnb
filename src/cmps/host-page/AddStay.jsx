@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 
 import { addAsset, loadAssets } from '../../store/host.action'
 import { CloudService } from '../../services/cloudinary-service'
+import { onSetMsg } from '../../store/user.action'
+import { UserMsg } from '../UserMsg'
 
 class _AddStay extends Component {
 
@@ -24,35 +26,30 @@ class _AddStay extends Component {
             },
             amenities: [],
             tags: [],
-            host: {
-                _id: this.props.host._id,
-                fullname: this.props.host.fullname,
-                imgUrl: this.props.host.imgUrl
-            },
+            host: null,
             description: '',
             reviews: [],
             likedByUserIds: [],
-
-
         },
         propertyType: ['Villa', 'Studio', 'Apartment', 'Room in hotel', 'House'],
         amenitiesType: ['TV', 'Wifi', 'Air conditioning', 'Smoking allowed', 'Pets allowed', 'Cooking basics', 'Kitchen', 'Washer', 'Dryer', 'Hair dryer', 'Crib'],
         tagType: ['entire to yourself', 'enhanced clean', 'self check-in', 'free cancellation'],
-        isEdit: false
+        isHostPage: true
     }
 
     inputRef = React.createRef(null)
 
     componentDidMount() {
-        if (this.props.currAsset) {
-            this.editAsset()
+        const { user, currAsset } = this.props
 
-        }
+        if (user) this.setState({ asset: { ...this.state.asset, host: { _id: user._id, fullname: user.fullname, imgUrl: user.imgUrl } } })
+
+        if (currAsset) this.editAsset()
+
     }
-    editAsset = () => {
-        this.setState({ asset: this.props.currAsset, isEdit: true }, () => {
-        })
 
+    editAsset = () => {
+        this.setState({ asset: this.props.currAsset, isEdit: true }, () => { })
     }
 
     onUploadImg = async (ev) => {
@@ -130,12 +127,19 @@ class _AddStay extends Component {
         const { asset } = this.state
         const { amenities, tags } = asset
         let { imgUrls } = asset
+        if (!this.props.user) {
+            console.log('ok');
+            this.props.onSetMsg({ type: 'error', txt: 'Please Sign up/log in to continue' })
+            return
+        }
+
         imgUrls = imgUrls.filter(img => img !== '')
 
         if (imgUrls.length === 5 && amenities && tags) {
             await this.props.addAsset(asset)
             await this.props.loadAssets(this.props.host._id)
         }
+
 
     }
 
@@ -148,8 +152,9 @@ class _AddStay extends Component {
 
 
     render() {
-        const { asset } = this.state
+        const { asset, isHostPage } = this.state
         const { imgUrls } = asset
+
         const { propertyType, amenitiesType, tagType, isEdit } = this.state
         return (
             <section className='add-stay-continer'>
@@ -210,12 +215,12 @@ class _AddStay extends Component {
                         <div className="flex column gap5 wrap">
                             <span className="fs20 medium fw-unset ">Amenities</span>
                             {amenitiesType.map((amenitie, idx) => (
-                                    <label style={{ width: '200px' }} key={idx}>
-                                        <input type="checkbox" name={amenitie} value={amenitie}
-                                            onChange={this.saveCheckedAmenities} checked={this.isChecked('amenities', amenitie)}
-                                        />
-                                        {amenitie}
-                                    </label>
+                                <label style={{ width: '200px' }} key={idx}>
+                                    <input type="checkbox" name={amenitie} value={amenitie}
+                                        onChange={this.saveCheckedAmenities} checked={this.isChecked('amenities', amenitie)}
+                                    />
+                                    {amenitie}
+                                </label>
                             ))}
                         </div>
                         <div className="flex column gap5 wrap">
@@ -244,7 +249,9 @@ class _AddStay extends Component {
                         ></textarea>
                     </div>
                     <button onMouseMove={this.onSetColor} ref={this.inputRef} className="add-stay-save " onClick={this.onAddStay}>Save</button>
+                    <UserMsg isHostPage={isHostPage} />
                 </form>
+
             </section>
         )
     }
@@ -253,10 +260,12 @@ class _AddStay extends Component {
 function mapStateToProps(state) {
     return {
         stays: state.stayReducer.stays,
+        user: state.userReducer.loggedInUser
     }
 }
 const mapDispatchToProps = {
     addAsset,
-    loadAssets
+    loadAssets,
+    onSetMsg
 }
 export const AddStay = connect(mapStateToProps, mapDispatchToProps)(_AddStay)

@@ -87,7 +87,7 @@ class _AppFooter extends React.Component {
                             </div>
                             <div className="flex column space-between ">
                                 <h3 className="footer-list-mid-header fs22 fh26 book">Most visited cities</h3>
-                                <div className="flex high column space-between">
+                                <div className="flex high column gap10">
                                     <div className="flex column gap5" >
                                         <Link to={`/stay?${makeQueryParams('Bangkok')}`}><div className="medium">Bangkok</div>
                                             <span>Thailand</span></Link>
@@ -115,7 +115,7 @@ class _AppFooter extends React.Component {
                                 </div>
                             </div>
                             <div className="flex column space-between fh23">
-                                <h3 className="footer-list-header fs22 fh26 book">Nearby</h3>
+                                <h3 className="footer-list-header fs22 fh26 book end">Nearby</h3>
                                 {staysNearby.map((stay, idx) => (
                                     <div key={idx} className="flex column gap5" >
                                         <Link to={`/stay/${stay._id}?${makeQueryParams(`${stay.loc.city}`)}`}> <div className="medium">{stay.name}</div>

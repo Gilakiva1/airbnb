@@ -54,7 +54,7 @@ button {
 }
 
 .user-msg {
-    pointer-events: none;
+    // pointer-events: none;
     position: absolute;
     bottom: -120px;
     left: 50%;
@@ -81,6 +81,10 @@ button {
         opacity: 1;
         background: linear-gradient(to bottom, rgba(249, 38, 1, 0.5), rgba(255, 0, 34, 0.5));
     }
+    &.error-login {
+        opacity: 1;
+        background: linear-gradient(to bottom, rgba(249, 38, 1, 0.5), rgba(255, 0, 34, 0.5));
+    }
     &.new-order {
         color: white;
         background: linear-gradient(to bottom, rgba(114, 223, 125, 0.9), rgba(180, 232, 176, 0.9));
@@ -92,6 +96,12 @@ button {
         & .icon-order-sent {
             color: green;
         }
+    }
+    &.host-msg {
+        bottom: 6px;
+        left: 230px;
+        height: 53px;
+        transform: translate(0px, 0px);
     }
 }
 

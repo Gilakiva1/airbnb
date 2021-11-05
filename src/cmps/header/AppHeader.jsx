@@ -44,13 +44,11 @@ class _AppHeader extends React.Component {
         socketService.on('on-approved-trip', () => {
             this.props.onAddNotification('trips')
         })
-        console.log('hi');
         if (pathname === '/' && this.state.scrollLoc < 40) this.setState({ isEnter: true })
         if (pathname === '/trip') this.setState({ isEnter: false })
     }
 
     componentDidUpdate() {
-        console.log('upateee???');
         const className = this.onSetCurrHeaderClass()
         const { isEnter, scrollLoc } = this.state
         const { pathname } = this.props.history.location
@@ -91,10 +89,8 @@ class _AppHeader extends React.Component {
         if (this.state.isShowMenu) this.onCloseMenu()
         if (scrollLoc < 40 && pathname === '/') {
             this.setState({ isEnter: true, scrollLoc, className })
-            console.log('func acticate');
         } else {
             this.setState({ isEnter: false, scrollLoc, className })
-            console.log('func acticate');
         }
     }
 
@@ -139,9 +135,9 @@ class _AppHeader extends React.Component {
     }
 
     toggleSearchBar = () => {
+        console.log('what whstar');
         let { scrollLoc } = this.state
         scrollLoc = 40
-        console.log('search clicked');
         this.setState({ scrollLoc, isEnter: true })
     }
 
@@ -175,7 +171,7 @@ class _AppHeader extends React.Component {
         if (isEnter) className += ' header-height'
         if (pathname === '/host') className += ' relative padding'
         if (pathname === '/' || pathname === '/stay' || pathname === '/host' || pathname === '/trip') {
-            className += ' fixed home main-container-home '
+            className += ' fixed home main-container-home'
         } else {
             className += ' sticky-color main-container'
         }

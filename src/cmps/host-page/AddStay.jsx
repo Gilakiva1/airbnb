@@ -128,7 +128,6 @@ class _AddStay extends Component {
         const { amenities, tags } = asset
         let { imgUrls } = asset
         if (!this.props.user) {
-            console.log('ok');
             this.props.onSetMsg({ type: 'error', txt: 'Please Sign up/log in to continue' })
             return
         }

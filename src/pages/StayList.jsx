@@ -82,7 +82,6 @@ class _StayList extends React.Component {
 
     getStaysForDisplay = () => {
         let { stays } = this.props
-        console.log(stays);
         if (!stays.length) return
         const { propertyTypes, price, amenities } = this.state.filterBy
         const types = propertyTypes.filter(type => type.isChecked)

@@ -47,18 +47,6 @@ export class _OrderModal extends React.Component {
         this.inputRef.current.style.setProperty('--mouse-y', y)
     }
 
-    // handleChange = (ev) => {
-    //     debugger
-    //     ev.preventDefault()
-    //     const { currOrder } = this.props
-    //     const orderCopy = { ...currOrder }
-    //     const field = ev.target.name
-    //     const value = ev.target.value
-    //     console.log(orderCopy);
-    //     orderCopy[field] = value
-    //     this.props.onUpdateOrder(orderCopy)
-    // }
-
     closeInputs = () => {
         let { isPickingGuests, isPickingDates, isReserve } = this.state
         if (!isPickingGuests && !isPickingDates) return

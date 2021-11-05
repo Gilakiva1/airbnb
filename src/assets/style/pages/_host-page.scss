@@ -6,6 +6,10 @@
         .stay-details-container {
             box-shadow: 0 6px 16px -2px #d8d8d8;
             padding: 10px 20px;
+
+            @include for-mobile-layout {
+                padding: 2px 4px;
+            }
         }
     }
 
@@ -14,6 +18,14 @@
             padding: 17px;
         }
         gap: 20px;
+
+        @include for-mobile-layout {
+        gap: 50px;
+        white-space: nowrap;
+        button {
+            padding: 0px;
+        }
+        }
     }
     .nav-bar {
         z-index: 30;
@@ -29,6 +41,15 @@
             &:hover {
                 transition: 0.4s;
                 background-color: #f1f1f1;
+            }
+        }
+
+        @include for-mobile-layout {
+            top: 8vh;
+            left: 43vw;
+            span {
+                font-size: em(10px);
+                line-height: em(12px);
             }
         }
     }
@@ -61,8 +82,7 @@
                 }
 
                 h3 {
-                    font-size: rem(5px);
-
+                    font-size: rem(4px);
                 }
             }
 
@@ -127,6 +147,10 @@
         .bcg {
             padding: 3px 7px;
             border-radius: 5px;
+
+            @include for-mobile-layout {
+                padding: 1px 2px;
+            }
         }
         .green {
             background: linear-gradient(to right, rgba(95, 227, 143, 0.55), rgba(164, 255, 207, 0.55));
@@ -138,5 +162,4 @@
             background: linear-gradient(to right, rgba(237, 80, 150, 0.55), rgba(251, 4, 37, 0.55));
         }
     }
-
 }

@@ -1,11 +1,10 @@
 
 
 
-export function HostOrderPreview({ order, milisecToDate, updateStatusOrder,  }) {
-
+export function HostOrderPreview({ order, milisecToDate, updateStatusOrder, }) {
     return (
         <tr key={order._id}>
-            <td className='buyer bold flex'><img src={order.buyer.imgUrl} /> {order.buyer.fullname}</td>
+            <td className='buyer bold flex'>{window.innerWidth > 460 && <img src={order.buyer.imgUrl} />} {order.buyer.fullname}</td>
             <td>{order.stay.name}</td>
             <td>{milisecToDate('checkIn', order)}</td>
             <td>{milisecToDate('checkOut', order)}</td>

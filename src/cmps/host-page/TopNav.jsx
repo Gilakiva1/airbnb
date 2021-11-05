@@ -1,6 +1,6 @@
 
 
-export function SideNav({ toggleComponent, isAddAsset, isMyAsset, isOrders, isRates }) {
+export function TopNav({ toggleComponent, isAddAsset, isMyAsset, isOrders, isRates }) {
     return (
         <div className="side-nav flex ">
 

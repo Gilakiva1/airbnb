@@ -50,7 +50,7 @@ class _HostOrder extends Component {
 
         )
         return (
-            <table className='host-list'>
+            <table className='host-list order-table'>
                 <thead>
                     <tr>
                         <th>Guest Name</th>

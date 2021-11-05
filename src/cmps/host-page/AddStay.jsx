@@ -155,7 +155,7 @@ class _AddStay extends Component {
             <section className='add-stay-continer'>
                 <form >
                     <h1>Start hosting at your place!</h1>
-                    <div className="flex gap30 align-center">
+                    <div className="inputs-containers flex gap30 align-center">
                         <label className="flex column wrap">
                             Asset Name
                             <input onChange={this.handleChange} name='name' type='text' value={asset.name} />
@@ -181,7 +181,7 @@ class _AddStay extends Component {
                         ))
                         }
                     </div>
-                    <div className="flex gap30 align-center">
+                    <div className="inputs-containers flex gap30 align-center">
                         <label className="flex column" >
                             Capacity
                             <input onChange={this.handleChange} value={asset.capacity} name='capacity' type='number' />

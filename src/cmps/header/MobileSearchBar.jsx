@@ -136,7 +136,7 @@ class _MobileSearchBar extends Component {
         const { isPickingLocation, isPickingDates, isPickingGuests, isSearchClicked } = this.state
         const { address, checkIn, checkOut } = this.state.criteria
         return (
-            <header className="main-container-home">
+            <section className="main-container-home">
 
                 {!isSearchClicked &&
                     <div className={`mobile-header-container pointer`} onClick={(ev) => this.onChangeform(ev, 'location')}>
@@ -177,7 +177,7 @@ class _MobileSearchBar extends Component {
                         getDateValue={this.getDateValue}
                         onClearInputs={this.onClearInputs} />
                 </div>
-            </header >
+            </section>
         )
     }
 }

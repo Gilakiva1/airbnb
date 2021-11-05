@@ -78,10 +78,8 @@ class _AppHeader extends React.Component {
         this.setState({ isLogin: false })
     }
 
-
     onToggleHeader = (ev) => {
-        
-        console.log('active');
+
         const { pathname } = this.props.history.location
         const scrollLoc = window.scrollY
         if (this.state.isShowMenu) this.onCloseMenu()
@@ -107,7 +105,7 @@ class _AppHeader extends React.Component {
                 break;
             case 'explore': this.onExplore()
                 break;
-            case 'wish-list': this.onWishList()
+            case 'host': this.onHost()
                 break;
             case 'trip': this.onTrip()
                 break;
@@ -184,6 +182,9 @@ class _AppHeader extends React.Component {
     onProfile = () => {
         this.onToggleLogin()
     }
+    onHost = () => {
+        this.props.history.push('/host')
+    }
     handleUserLogin = () => {
         this.props.user ? this.onLogout() : this.onChanegPage('user')
     }
@@ -192,7 +193,7 @@ class _AppHeader extends React.Component {
         const { scrollLoc, isEnter, isShowMenu, isLogin, isClearSearchBar, isHosting, screenWidth } = this.state
         const { pathname } = this.props.history.location
         const { user } = this.props
-        if (screenWidth > 500) {
+        if (screenWidth > 460) {
             return (
                 <header className={this.onSetCurrHeaderClass()}>
                     <div className={`${isEnter ? 'mrg-header' : ''} header-func flex`}>
@@ -227,6 +228,12 @@ class _AppHeader extends React.Component {
         } else {
             return (
                 <>
+                    <header>
+                        <div className="logo-container-mobile justify-center flex align-center pointer " onClick={this.backToHome}>
+                            <button className="btn-mobile border-none"><LogoSvg className={`${(pathname === '/' && scrollLoc >= 40) || pathname !== '/' ? 'logo-pink' : 'logo-white'} `} /></button>
+                            <h3 className={`logo-txt fs22 medium ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-pink'}`}>Home Away</h3>
+                        </div>
+                    </header>
                     {pathname === '/' && <MobileSearchBar screenWidth={screenWidth} />}
                     <MobileNavBar onChanegPage={this.onChanegPage} user={user} handleUserLogin={this.handleUserLogin} />
                     {isLogin && <LogIn onToggleLogin={this.onToggleLogin} onCloseLogin={this.onCloseLogin} />}

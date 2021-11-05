@@ -115,8 +115,9 @@
     &.header-height {
         height: 180px;
     }
-    &.no-shadow {
+    &.no-color {
         box-shadow: initial;
+        background: initial;
     }
 }
 

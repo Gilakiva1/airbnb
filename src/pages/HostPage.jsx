@@ -35,12 +35,16 @@ class _HostPage extends Component {
     }
 
     async componentDidMount() {
-        if (this.props.user) {
+        const { assets } = this.props
 
+        if (this.props.user) {
             await this.props.loadAssets(this.props.user._id)
             const filter = { type: 'host', _id: this.props.user._id }
             await this.props.onLoadOrders(filter)
             this.onCalcDetails()
+        }
+        if (!assets.length) {
+            this.setState({ component: { ...this.state.component, isOrders: false, isAddAsset: true } })
         }
     }
 

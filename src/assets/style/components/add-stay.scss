@@ -6,7 +6,6 @@
         grid-template: 1fr 1fr /2fr 1fr 1fr;
         gap: rem(10px);
         justify-items: center;
-
         .upload-img {
             position: absolute;
             z-index: 15;
@@ -19,7 +18,6 @@
             color: white;
             opacity: 0;
         }
-
         div:not(:first-child) {
             height: 175px;
 
@@ -30,9 +28,8 @@
         .grid-img {
             width: 100%;
             background-color: #fff;
-
             img {
-                z-index: 10;
+                z-index: 15;
             }
             &:hover {
                 filter: brightness(0.85);
@@ -42,12 +39,10 @@
                 }
             }
         }
-
         input {
             font-family: airbnb-cereal-book;
             font-size: 1rem;
         }
-
         .grid-img0 {
             border-radius: 5px 0 0 5px;
             grid-row: 1/-1;
@@ -83,7 +78,6 @@
                 border-radius: 0 0 8px 0;
             }
         }
-
         @include for-mobile-layout {
             font-size: 12px;
             text-align: center;
@@ -99,7 +93,6 @@
     .img4 {
         border-radius: 0 0 10px 0;
     }
-
     input[type="file"] {
         display: none;
     }
@@ -120,12 +113,10 @@
             border: 1px solid #000000;
         }
     }
-
     textarea {
         resize: none;
         padding: 30 px;
     }
-
     .add-stay-save {
         margin-top: 10px;
         width: 200px;
@@ -133,29 +124,19 @@
         border-radius: 8px;
         border: none;
         color: $clr4;
-        background-image: radial-gradient(
-            circle at center,
-            #ff385c 0%,
-            #e61e4d 27.5%,
-            #e31c5f 40%,
-            #d70466 57.5%,
-            #bd1e59 75%,
-            #bd1e59 100%
-        );
+        background-image: radial-gradient( circle at center, #ff385c 0%, #e61e4d 27.5%, #e31c5f 40%, #d70466 57.5%, #bd1e59 75%, #bd1e59 100%);
         background-position: calc((100 - var(--mouse-x, 0)) * 1%) calc((100 - var(--mouse-y, 0)) * 1%);
         background-size: 150% 150%;
         & span:hover {
             text-decoration: underline;
         }
     }
-
     @include for-mobile-layout {
         .inputs-containers {
             flex-direction: column;
             align-items: flex-start;
             gap: 20px;
         }
-
         .add-stay-save {
             margin-bottom: 30px;
         }

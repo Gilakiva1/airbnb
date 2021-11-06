@@ -159,16 +159,18 @@
                 display: flex;
                 flex-direction: column;
                 gap: 15px;
+                &>div {
+                    width: 100% !important;
+                }
             }
         }
+        & .pad-home {
+            padding: 0px 10px;
+            margin-top: 10px;
+        }
     }
-    & .pad-home {
-        padding: 0px 10px;
-        margin-top: 10px;
+    a {
+        text-decoration: none;
+        color: black;
     }
-}
-
-a {
-    text-decoration: none;
-    color: black;
 }

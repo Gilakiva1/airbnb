@@ -2,7 +2,6 @@
     font-size: 16px;
     border-collapse: collapse;
     width: 100%;
-
     thead {
         .sort {
             cursor: pointer;
@@ -60,8 +59,7 @@
                 border-radius: 4px;
                 background-color: $clr3;
                 color: #fff;
-                &:hover {
-                }
+                &:hover {}
                 @include for-mobile-layout {
                     width: 30px;
                     font-size: em(14px);
@@ -97,44 +95,37 @@
             border-top: 1px solid #f7f7f7;
             background: #f7f7f7;
             box-shadow: #ffffff 0px -3px 0;
-
             td {
                 font-size: em(14px);
                 line-height: em(18px);
                 padding: 8px 16px;
                 flex: auto;
             }
-
             @include for-mobile-layout {
                 td {
                     padding: 2px 4px;
                 }
-
                 &:first-child {
                     align-items: center;
                     flex: 1;
                 }
-
                 img {
                     width: 92px;
                     height: 70px;
                     border-radius: 4px;
                     object-fit: cover;
                 }
-
                 @include for-mobile-layout {
                     img {
                         width: 46px;
                         height: 35px;
                         margin-right: 5px;
                     }
-
                     span {
                         font-size: em(14px);
                         line-height: em(18px);
                     }
                 }
-
                 &:nth-child(2) {
                     color: #484848;
                 }
@@ -146,10 +137,15 @@
         line-height: 10px;
     }
 }
+
 .stay-details-container {
     margin-top: 35px;
     padding: 0 5px;
+    @include for-mobile-layout {
+        margin-top: 50px;
+    }
 }
+
 .orders-blank {
     height: 100px;
 }

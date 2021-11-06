@@ -6,7 +6,7 @@ export class MultipleRows extends Component {
         const settings = {
             className: "center",
             centerMode: false,
-            infinite: false,
+            infinite: true,
             centerPadding: "60px",
             slidesToShow: 2,
             speed: 500,

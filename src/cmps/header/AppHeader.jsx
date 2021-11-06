@@ -21,10 +21,11 @@ import { utilService } from '../../services/util.service';
 class _AppHeader extends React.Component {
 
     state = {
-        scrollLoc: window.scrollY,
+        scrollLoc: 0,
         isEnter: false,
         isShowMenu: false,
-        isLogIn: false,
+        isNewRoute: false,
+        isLogin: false,
         closeSearchBarInputs: false,
         isClearSearchBar: false,
         isHosting: false,
@@ -48,15 +49,11 @@ class _AppHeader extends React.Component {
         if (pathname === '/trip') this.setState({ isEnter: false })
     }
 
-    componentDidUpdate() {
-        const className = this.onSetCurrHeaderClass()
-        const { isEnter, scrollLoc } = this.state
+    componentDidUpdate(prevProps) {
         const { pathname } = this.props.history.location
-        if (isEnter && pathname !== '/' && !scrollLoc) {
-            this.setState({ isEnter: false, className, scrollLoc })
-        }
-        if (!isEnter && pathname === '/' && window.scrollY < 40) {
-            this.setState({ isEnter: true, className, scrollLoc })
+        if (prevProps.location.pathname !== pathname) {
+            this.setState({ isEnter: false })
+            if (pathname === '/') this.setState({ isEnter: true })
         }
     }
     componentWillUnmount() {
@@ -68,29 +65,27 @@ class _AppHeader extends React.Component {
         this.setState(prevState => ({ ...prevState, screenWidth: target.innerWidth }))
     }
 
-    onToggleLogin = async () => {
+    onToggleLogin = () => {
         this.onCloseMenu()
-        this.setState({ isLogIn: !this.state.isLogIn })
+        this.setState({ isLogin: !this.state.isLogin })
     }
-    onLogout = async () => {
+    onLogout = () => {
         this.onCloseMenu()
         this.props.onLogout()
     }
 
     onCloseLogin = () => {
-        this.setState({ isLogIn: false })
+        this.setState({ isLogin: false })
     }
 
-
     onToggleHeader = (ev) => {
-        const className = this.onSetCurrHeaderClass()
         const { pathname } = this.props.history.location
-        const scrollLoc = ev.path[1].pageYOffset
+        const scrollLoc = window.scrollY
         if (this.state.isShowMenu) this.onCloseMenu()
         if (scrollLoc < 40 && pathname === '/') {
-            this.setState({ isEnter: true, scrollLoc, className })
+            this.setState({ isEnter: true, scrollLoc })
         } else {
-            this.setState({ isEnter: false, scrollLoc, className })
+            this.setState({ isEnter: false, scrollLoc })
         }
     }
 
@@ -109,7 +104,7 @@ class _AppHeader extends React.Component {
                 break;
             case 'explore': this.onExplore()
                 break;
-            case 'wish-list': this.onWishList()
+            case 'host': this.onHost()
                 break;
             case 'trip': this.onTrip()
                 break;
@@ -134,11 +129,8 @@ class _AppHeader extends React.Component {
         } else return null
     }
 
-    toggleSearchBar = () => {
-        console.log('what whstar');
-        let { scrollLoc } = this.state
-        scrollLoc = 40
-        this.setState({ scrollLoc, isEnter: true })
+    toggleSearchBar = (ev) => {
+        this.setState({ isEnter: true })
     }
 
     setClearSearchBar = () => {
@@ -163,12 +155,11 @@ class _AppHeader extends React.Component {
         return +notifications.orders + +notifications.trips
     }
     onSetCurrHeaderClass = () => {
-        let className = 'header-container shadow';
+        let className = 'header-container shadow white';
         const { pathname } = this.props.history.location;
         const { scrollLoc, isEnter } = this.state
-        if (scrollLoc < 40 && pathname === '/') className += ' no-shadow'
-        if (scrollLoc >= 40) className += ' white'
-        if (isEnter) className += ' header-height'
+        if (scrollLoc < 40 && pathname === '/') className += ' no-color'
+        if (isEnter) className += ' header-height '
         if (pathname === '/host') className += ' relative padding'
         if (pathname === '/' || pathname === '/stay' || pathname === '/host' || pathname === '/trip') {
             className += ' fixed home main-container-home'
@@ -189,12 +180,18 @@ class _AppHeader extends React.Component {
     onProfile = () => {
         this.onToggleLogin()
     }
+    onHost = () => {
+        this.props.history.push('/host')
+    }
+    handleUserLogin = () => {
+        this.props.user ? this.onLogout() : this.onChanegPage('user')
+    }
 
     render() {
-        const { scrollLoc, isEnter, isShowMenu, isLogIn, isClearSearchBar, isHosting, screenWidth } = this.state
+        const { scrollLoc, isEnter, isShowMenu, isLogin, isClearSearchBar, isHosting, screenWidth } = this.state
         const { pathname } = this.props.history.location
         const { user } = this.props
-        if (screenWidth > 500) {
+        if (screenWidth > 460) {
             return (
                 <header className={this.onSetCurrHeaderClass()}>
                     <div className={`${isEnter ? 'mrg-header' : ''} header-func flex`}>
@@ -218,8 +215,8 @@ class _AppHeader extends React.Component {
                                     </div>
                                 </div>
                             </div>
-                            {isShowMenu && <MenuBar onLogout={this.onLogout} user={user} isLogIn={isLogIn} onToggleLogin={this.onToggleLogin} onCloseMenu={this.onCloseMenu} />}
-                            {isLogIn && <LogIn onToggleLogin={this.onToggleLogin} onCloseLogin={this.onCloseLogin} />}
+                            {isShowMenu && <MenuBar onLogout={this.onLogout} user={user} isLogin={isLogin} onToggleLogin={this.onToggleLogin} onCloseMenu={this.onCloseMenu} />}
+                            {isLogin && <LogIn onToggleLogin={this.onToggleLogin} onCloseLogin={this.onCloseLogin} />}
                         </nav>
                     </div>
                     {pathname !== '/host' && < MiniSearchBar toggleSearchBar={this.toggleSearchBar} animateClassName={isEnter ? '' : 'scale-up-top-mini-search-bar'} />}
@@ -229,9 +226,15 @@ class _AppHeader extends React.Component {
         } else {
             return (
                 <>
+                    <header>
+                        <div className="logo-container-mobile justify-center flex align-center pointer " onClick={this.backToHome}>
+                            <button className="btn-mobile border-none"><LogoSvg className={`${(pathname === '/' && scrollLoc >= 40) || pathname !== '/' ? 'logo-pink' : 'logo-white'} `} /></button>
+                            <h3 className={`logo-txt fs22 medium ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-pink'}`}>Home Away</h3>
+                        </div>
+                    </header>
                     {pathname === '/' && <MobileSearchBar screenWidth={screenWidth} />}
-                    <MobileNavBar onChanegPage={this.onChanegPage} isLogIn={isLogIn} />
-                    {isLogIn && <LogIn onToggleLogin={this.onToggleLogin} onCloseLogin={this.onCloseLogin} />}
+                    <MobileNavBar onChanegPage={this.onChanegPage} user={user} handleUserLogin={this.handleUserLogin} />
+                    {isLogin && <LogIn onToggleLogin={this.onToggleLogin} onCloseLogin={this.onCloseLogin} />}
                 </>
             )
         }
@@ -241,9 +244,9 @@ class _AppHeader extends React.Component {
 
 
 
-const mapStateToProps = state => {
+const mapStateToProps = ({ userReducer }) => {
     return {
-        user: state.userReducer.loggedInUser
+        user: userReducer.loggedInUser
     }
 
 }

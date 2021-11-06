@@ -115,8 +115,9 @@
     &.header-height {
         height: 180px;
     }
-    &.no-shadow {
+    &.no-color {
         box-shadow: initial;
+        background: initial;
     }
 }
 
@@ -132,12 +133,15 @@
     }
 }
 
-// .shadow {
-//     box-shadow: 0 1px 12px rgba(0, 0, 0, 0.08);
-// }
-// .relative {
-//     position: relative;
-// }
-// .padding {
-//     padding-bottom: 17px;
-// }
+.logo-container-mobile {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    z-index: 20;
+    width: 100%;
+    background: inherit;
+    .btn-mobile {
+        padding: unset;
+        background: inherit;
+    }
+}

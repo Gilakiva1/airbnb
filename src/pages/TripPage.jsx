@@ -64,7 +64,7 @@ class _TripPage extends React.Component {
                         <button onClick={() => { this.toggleTripStatus('past') }} className={`${isPast ? 'active' : ''} btn-trip  fs16 pointer past medium clr5`}>Past</button>
                     </div>
                     <div className="trip-hero">
-                        {!orders.length || isPast && < TripHero className="trip-hero" />}
+                        {(!orders.length || isPast) && < TripHero className="trip-hero" />}
                     </div>
                     {orders.length && !isPast && < TripList orders={orders} onSetOrder={this.onSetOrder} onRemoveOrder={this.onRemoveOrder} />}
 

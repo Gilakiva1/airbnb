@@ -22,15 +22,15 @@ export class MultipleRows extends Component {
             <Slider {...settings}>
                 {
                     links.map((link, idx) => (
-                        <>
-                            <div key={idx} className="popular-list flex" onClick={() => onImgClick({ address: link.city })} >
+                        <div key={idx}>
+                            <div className="popular-list flex" onClick={() => onImgClick({ address: link.city })} >
                                 <img className={`popular-img round-edge link-${idx}`} src={link.img} alt="" />
                                 <div className="popular-txt fs16  flex column justify-center wide ">
                                     <h3 className="city">{link.city}</h3>
                                     <h4 className="country">{link.country}</h4>
                                 </div>
                             </div>
-                        </>
+                        </div>
                     ))
                 }
 

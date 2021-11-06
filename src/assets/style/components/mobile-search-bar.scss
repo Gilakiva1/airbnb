@@ -5,7 +5,9 @@
     transform: translate(-50%, -50%);
     position: absolute;
     z-index: 15;
-    // for
+    @include for-mobile-layout {
+        transform: translate(-50%, 0);
+    }
 }
 
 .mobile-search-bar {

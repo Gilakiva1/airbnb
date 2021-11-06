@@ -5,6 +5,9 @@
     .btn-logo {
         background: inherit;
         padding-right: 10px;
+        @include for-narrow-layout {
+            padding: 0px;
+        }
     }
     .header-func {
         justify-content: space-between;
@@ -17,15 +20,19 @@
         .link-host {
             text-decoration: none;
             margin-inline-end: 5px;
-            padding: rem(12px);
             text-align: center;
-            padding: 17px;
             &:hover {
                 background-color: rgba(255, 255, 255, 0.15);
                 transition: 0.4s;
             }
             &.hover-bcg:hover {
                 background: rgb(247, 247, 247);
+            }
+            @include for-narrow-layout {
+                padding: 17px 3px;
+            }
+            @include for-normal-layout {
+                padding: 17px;
             }
         }
         .nav-header {
@@ -134,12 +141,15 @@
 }
 
 .logo-container-mobile {
+    padding-top: 10px;
     display: flex;
     justify-content: center;
-    position: absolute;
     z-index: 20;
     width: 100%;
     background: inherit;
+    .logo-mobile {
+        fill: $clr3;
+    }
     .btn-mobile {
         padding: unset;
         background: inherit;

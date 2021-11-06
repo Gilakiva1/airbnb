@@ -23,8 +23,8 @@ class _MiniSearchBar extends React.Component {
         else return new Date(date).toLocaleString('en-IL', { month: 'short', day: 'numeric' })
     }
 
-    onSearchBarClicked = () => {
-        this.props.toggleSearchBar()
+    onSearchBarClicked = (ev) => {
+        this.props.toggleSearchBar(ev)
     }
 
     capitalizeFirstLetter = (string) => {

@@ -32,7 +32,6 @@ class _StayDetails extends Component {
     };
 
     async componentDidMount() {
-        console.log('details',this.props);
 
         window.addEventListener('resize', this.onResizeScreen)
         const reviews = utilService.getRandomIntInclusive(30, 500)

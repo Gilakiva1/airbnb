@@ -21,7 +21,7 @@ import { utilService } from '../../services/util.service';
 class _AppHeader extends React.Component {
 
     state = {
-        scrollLoc: window.scrollY,
+        scrollLoc: 0,
         isEnter: false,
         isShowMenu: false,
         isNewRoute: false,
@@ -65,11 +65,11 @@ class _AppHeader extends React.Component {
         this.setState(prevState => ({ ...prevState, screenWidth: target.innerWidth }))
     }
 
-    onToggleLogin = async () => {
+    onToggleLogin = () => {
         this.onCloseMenu()
         this.setState({ isLogin: !this.state.isLogin })
     }
-    onLogout = async () => {
+    onLogout = () => {
         this.onCloseMenu()
         this.props.onLogout()
     }
@@ -79,7 +79,6 @@ class _AppHeader extends React.Component {
     }
 
     onToggleHeader = (ev) => {
-
         const { pathname } = this.props.history.location
         const scrollLoc = window.scrollY
         if (this.state.isShowMenu) this.onCloseMenu()
@@ -130,8 +129,7 @@ class _AppHeader extends React.Component {
         } else return null
     }
 
-    toggleSearchBar = () => {
-
+    toggleSearchBar = (ev) => {
         this.setState({ isEnter: true })
     }
 
@@ -164,7 +162,7 @@ class _AppHeader extends React.Component {
         if (isEnter) className += ' header-height '
         if (pathname === '/host') className += ' relative padding'
         if (pathname === '/' || pathname === '/stay' || pathname === '/host' || pathname === '/trip') {
-            className += ' fixed home main-container-home '
+            className += ' fixed home main-container-home'
         } else {
             className += ' sticky-color main-container'
         }
@@ -204,8 +202,8 @@ class _AppHeader extends React.Component {
                         <nav className="nav-header">
                             <div className="nav-header flex gap5 align-center">
                                 <div>
-                                <NavLink onClick={this.hideHost} className={`link-host border-round fs14 medium  ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-black hover-bcg'}`} to={`/stay`} >Explore</NavLink>
-                                {(pathname !== '/host' || screenWidth > 670) && <NavLink onClick={this.onToggleUser} className={`link-host border-round fs14 medium  ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-black hover-bcg'}`} to={isHosting ? '/' : '/host'} >Become a host</NavLink>}
+                                    <NavLink onClick={this.hideHost} className={`link-host border-round fs14 medium  ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-black hover-bcg'}`} to={`/stay`} >Explore</NavLink>
+                                    {(pathname !== '/host' || screenWidth > 670) && <NavLink onClick={this.onToggleUser} className={`link-host border-round fs14 medium  ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-black hover-bcg'}`} to={isHosting ? '/' : '/host'} >Become a host</NavLink>}
 
                                 </div>
                                 <div className="menu-container border-round">

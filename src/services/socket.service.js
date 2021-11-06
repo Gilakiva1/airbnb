@@ -83,7 +83,6 @@ function createSocketService() {
 
 
 socketService.on(SOCKET_EVENT_REVIEW_ABOUT_YOU, review => {
-  console.log('Review about me!', review);
 
 })
 

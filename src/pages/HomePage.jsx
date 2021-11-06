@@ -31,8 +31,6 @@ export class _HomePage extends React.Component {
     }
 
     onImgClick = async (order) => {
-        console.log(order);
-        console.log('hi');
         const queryString = utilService.makeQueryParams(order)
         await this.props.onSetOrder(order)
         this.props.history.push(`/stay?${queryString}`)

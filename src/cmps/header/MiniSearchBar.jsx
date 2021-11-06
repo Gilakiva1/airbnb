@@ -34,7 +34,8 @@ class _MiniSearchBar extends React.Component {
 
 
     render() {
-        const { animateClassName, order, pathname } = this.props
+        const { animateClassName, order, pathname, screenWidth } = this.props
+
         if (pathname === '/stay' && order) return (
             <div className={`mini-search-bar flex space-between ${animateClassName}`} onClick={this.onSearchBarClicked}>
                 <span className="fs14 fh18 medium fw-unset">{this.capitalizeFirstLetter(order.address) || 'Location'}</span>
@@ -49,7 +50,7 @@ class _MiniSearchBar extends React.Component {
         else
             return (
                 <div className={`mini-search-bar flex space-between ${animateClassName}`} onClick={this.onSearchBarClicked}>
-                    <span className="fs14 fh18 medium fw-unset">Start your search</span>
+                    {screenWidth > 980 && <span className="fs14 fh18 medium fw-unset">Start your search</span>}
                     <button className="search-bar-submit-mini flex ">{<SearchMini className='icon' />}</button>
                 </div>
             )

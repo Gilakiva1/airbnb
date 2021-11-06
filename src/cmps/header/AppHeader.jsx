@@ -197,12 +197,15 @@ class _AppHeader extends React.Component {
                     <div className={`${isEnter ? 'mrg-header' : ''} header-func flex`}>
                         <div className="logo-container flex align-center pointer" onClick={this.backToHome}>
                             <button className="btn-logo border-none"><LogoSvg className={`${(pathname === '/' && scrollLoc >= 40) || pathname !== '/' ? 'logo-pink' : 'logo-white'} `} /></button>
-                            <h3 className={`logo-txt fs22 medium ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-pink'}`}>Home Away</h3>
+                            {screenWidth > 670 && <h3 className={`logo-txt fs22 medium ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-pink'}`}>Home Away</h3>}
                         </div>
                         <nav className="nav-header">
                             <div className="nav-header flex gap5 align-center">
-                                <NavLink onClick={this.hideHost} className={`link-host border-round fs14 medium  ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-black hover-bcg'}`} to={`/stay`} >Explore</NavLink>
-                                {pathname !== '/host' && <NavLink onClick={this.onToggleUser} className={`link-host border-round fs14 medium  ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-black hover-bcg'}`} to={isHosting ? '/' : '/host'} >Become a host</NavLink>}
+                                <div>
+                                    <NavLink onClick={this.hideHost} className={`link-host border-round fs14 medium  ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-black hover-bcg'}`} to={`/stay`} >Explore</NavLink>
+                                    {(pathname !== '/host' || screenWidth > 670) && <NavLink onClick={this.onToggleUser} className={`link-host border-round fs14 medium  ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-black hover-bcg'}`} to={isHosting ? '/' : '/host'} >Become a host</NavLink>}
+
+                                </div>
                                 <div className="menu-container border-round">
                                     <div className="menu-container">
                                         <button onClick={this.onToggoleMenu} className="menu-btn border-round flex align-center">
@@ -219,19 +222,19 @@ class _AppHeader extends React.Component {
                             {isLogin && <LogIn onToggleLogin={this.onToggleLogin} onCloseLogin={this.onCloseLogin} />}
                         </nav>
                     </div>
-                    {pathname !== '/host' && < MiniSearchBar toggleSearchBar={this.toggleSearchBar} animateClassName={isEnter ? '' : 'scale-up-top-mini-search-bar'} />}
+                    {pathname !== '/host' && < MiniSearchBar screenWidth={screenWidth} toggleSearchBar={this.toggleSearchBar} animateClassName={isEnter ? '' : 'scale-up-top-mini-search-bar'} />}
                     <SearchBar isEnter={isEnter} setClearSearchBar={this.setClearSearchBar} isClearSearchBar={isClearSearchBar} closeSearchBarInputs={this.closeSearchBarInputs} toggleSearchBar={this.toggleSearchBar} animateClassName={isEnter ? 'scale-up-top-search-bar' : ''} />
                 </header >
             )
         } else {
             return (
                 <>
-                    <header>
+                    {pathname !== '/' && <header>
                         <div className="logo-container-mobile justify-center flex align-center pointer " onClick={this.backToHome}>
-                            <button className="btn-mobile border-none"><LogoSvg className={`${(pathname === '/' && scrollLoc >= 40) || pathname !== '/' ? 'logo-pink' : 'logo-white'} `} /></button>
-                            <h3 className={`logo-txt fs22 medium ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-pink'}`}>Home Away</h3>
+                            <button className="btn-mobile border-none"><LogoSvg className="logo-mobile" /></button>
+                            <h3 className="clr3 fs22">Home Away</h3>
                         </div>
-                    </header>
+                    </header>}
                     {pathname === '/' && <MobileSearchBar screenWidth={screenWidth} />}
                     <MobileNavBar onChanegPage={this.onChanegPage} user={user} handleUserLogin={this.handleUserLogin} />
                     {isLogin && <LogIn onToggleLogin={this.onToggleLogin} onCloseLogin={this.onCloseLogin} />}

@@ -24,7 +24,21 @@
         top: 3.5%;
         left: 41%;
         height: 50px;
-        width: 300px;
+        @media (max-width: 1180px) {
+            left: 28%;
+        }
+        @include for-narrow-layout {
+            width: 55px;
+            top: 2.5%;
+            left: 25%;
+        }
+        @include for-normal-layout {
+            left: 35%;
+        }
+        @include for-wide-layout {
+            width: 300px;
+            left: 41%;
+        }
     }
     span {
         color: $clr2;

@@ -14,8 +14,8 @@ const _UserMsg = ({ msg, isHostPage }) => {
         </div>
     return (
         <>
-            <Link to="/trip" >{msgForDispaly}</Link>
-            {/* {msg.type === 'error-login' &&  } */}
+            {msg?.type === "new-order" && <Link to="/trip" >{msgForDispaly}</Link>}
+            {msg?.type === 'error-login' && msgForDispaly}
         </>
     )
 }

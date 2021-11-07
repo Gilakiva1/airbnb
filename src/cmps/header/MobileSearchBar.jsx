@@ -121,6 +121,7 @@ class _MobileSearchBar extends Component {
         else return new Date(date).toLocaleString('en-IL', { month: 'short', day: 'numeric' })
     }
     onClearInputs = (diff) => {
+        console.log('hhiiiiii');
         const { criteria } = this.state
         switch (diff) {
             case 'location': this.setState({ criteria: { ...criteria, address: '' } })
@@ -149,34 +150,38 @@ class _MobileSearchBar extends Component {
                         </div>
                     </div >
                 }
-                <div className={`${isPickingLocation ? 'show' : ''} picking-location-container`} >
-                    <MobileLocationForm
-                        onChangeForm={this.onChangeform}
-                        onImgClick={this.onLocationSubmit}
-                        links={utilService.HomePageImgPopular()}
-                        address={address}
-                        ref={this.inputRef}
-                        onChange={this.handleChange}
-                        onClearInputs={this.onClearInputs} />
-                </div>
-                <div className={`${isPickingDates ? 'show' : ''} picking-dates-container`} >
-                    <MobileDateForm
-                        onChangeForm={this.onChangeform}
-                        getDateValue={this.getDateValue}
-                        checkIn={checkIn}
-                        checkOut={checkOut}
-                        handlePickingDates={this.handlePickingDates}
-                        onClearInputs={this.onClearInputs} />
+                {
+                    <>
+                        <div className={`${isPickingLocation ? 'show' : ''} picking-location-container`} >
+                            <MobileLocationForm
+                                onChangeForm={this.onChangeform}
+                                onImgClick={this.onLocationSubmit}
+                                links={utilService.HomePageImgPopular()}
+                                address={address}
+                                ref={this.inputRef}
+                                onChange={this.handleChange}
+                                onClearInputs={this.onClearInputs} />
+                        </div>
+                        <div className={`${isPickingDates ? 'show' : ''} picking-dates-container`} >
+                            <MobileDateForm
+                                onChangeForm={this.onChangeform}
+                                getDateValue={this.getDateValue}
+                                checkIn={checkIn}
+                                checkOut={checkOut}
+                                handlePickingDates={this.handlePickingDates}
+                                onClearInputs={this.onClearInputs} />
 
-                </div>
-                <div className={`${isPickingGuests ? 'show' : ''} picking-guest-container`} >
-                    <MobileGuestsForm
-                        order={this.state.criteria}
-                        onChangeForm={this.onChangeform}
-                        handleGuestsChanege={this.handleGuestsChanege}
-                        getDateValue={this.getDateValue}
-                        onClearInputs={this.onClearInputs} />
-                </div>
+                        </div>
+                        <div className={`${isPickingGuests ? 'show' : ''} picking-guest-container`} >
+                            <MobileGuestsForm
+                                order={this.state.criteria}
+                                onChangeForm={this.onChangeform}
+                                handleGuestsChanege={this.handleGuestsChanege}
+                                getDateValue={this.getDateValue}
+                                onClearInputs={this.onClearInputs} />
+                        </div>
+                    </>
+                }
             </section>
         )
     }

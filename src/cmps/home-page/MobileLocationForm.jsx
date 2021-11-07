@@ -11,7 +11,7 @@ export const MobileLocationForm = React.forwardRef(({ onChangeForm, onImgClick, 
             </div>
             <LocationPicking onImgClick={onImgClick} links={links} />
             <div className="btn mrt20 flex space-between">
-                <button onClick={(ev) => onClearInputs('location')}>clear</button>
+                <button type="button" onClick={(ev) => onClearInputs('location')}>clear</button>
                 <button type="submit" onClick={(ev) => onChangeForm(ev, 'date')}>next</button>
             </div>
         </form>

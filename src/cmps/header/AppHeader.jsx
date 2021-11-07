@@ -15,7 +15,7 @@ import { MobileSearchBar } from './MobileSearchBar';
 import { HamburgerMenu } from '../svgs/HamburgerMenu';
 import { onAddNotification } from '../../store/user.action'
 import { MobileNavBar } from '../../cmps/header/MobileNavBar'
-import { onSetOrder } from '../../store/order.action';
+import { onSetOrder, onTogglePage } from '../../store/order.action';
 import { utilService } from '../../services/util.service';
 
 class _AppHeader extends React.Component {
@@ -90,12 +90,16 @@ class _AppHeader extends React.Component {
     }
 
     backToHome = () => {
-        if (this.props.history.location.pathname !== '/') {
+        const { location, history, isMobileSearch, onTogglePage } = this.props
+        if (location.pathname !== '/') {
             this.setState({ isClearSearchBar: true }, () => {
-                this.props.history.push('/')
+                history.push('/')
             })
         } else {
             document.documentElement.scrollTop = 0
+        }
+        if (isMobileSearch) {
+            onTogglePage()
         }
     }
     onChanegPage = (diff) => {
@@ -192,7 +196,7 @@ class _AppHeader extends React.Component {
     render() {
         const { scrollLoc, isEnter, isShowMenu, isLogin, isClearSearchBar, isHosting, screenWidth } = this.state
         const { pathname } = this.props.history.location
-        const { user } = this.props
+        const { user, isMobileSearch } = this.props
         if (screenWidth > 460) {
             return (
                 <header className={this.onSetCurrHeaderClass()}>
@@ -249,9 +253,10 @@ class _AppHeader extends React.Component {
 
 
 
-const mapStateToProps = ({ userReducer }) => {
+const mapStateToProps = ({ userReducer, orderReducer }) => {
     return {
-        user: userReducer.loggedInUser
+        user: userReducer.loggedInUser,
+        isMobileSearch: orderReducer.isMobileSearch
     }
 
 }
@@ -260,7 +265,8 @@ const mapDispatchToProps = {
     onSetMsg,
     onLogout,
     onAddNotification,
-    onSetOrder
+    onSetOrder,
+    onTogglePage
 }
 
 export const AppHeader = connect(mapStateToProps, mapDispatchToProps)(withRouter(_AppHeader))

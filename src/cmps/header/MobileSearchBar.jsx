@@ -121,7 +121,6 @@ class _MobileSearchBar extends Component {
         else return new Date(date).toLocaleString('en-IL', { month: 'short', day: 'numeric' })
     }
     onClearInputs = (diff) => {
-        console.log('hhiiiiii');
         const { criteria } = this.state
         switch (diff) {
             case 'location': this.setState({ criteria: { ...criteria, address: '' } })

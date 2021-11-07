@@ -20,6 +20,10 @@
         }
         div:not(:first-child) {
             height: 175px;
+
+            @include for-mobile-layout {
+                height: 82px;
+            }
         }
         .grid-img {
             width: 100%;
@@ -47,6 +51,9 @@
                 border-radius: 5px 0 0 5px;
             }
             height: 360px;
+            @include for-mobile-layout {
+                height: 174px;
+            }
         }
         .grid-img1 {
             grid-row: 1;

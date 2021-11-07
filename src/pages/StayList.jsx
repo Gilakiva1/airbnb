@@ -42,8 +42,8 @@ class _StayList extends React.Component {
         }
         this.setState(({ filterBy: { ...this.state.filterBy, price: filterPrice } }))
     }
-    
-    
+
+
     minPrice = () => {
         const { minPrice, maxPrice } = this.state.filterBy.price
         if (minPrice === -Infinity && (maxPrice === Infinity || maxPrice === 500)) {
@@ -105,7 +105,7 @@ class _StayList extends React.Component {
 
     render() {
         const stays = this.getStaysForDisplay()
-        const { orderParams, displayReviews } = this.state
+        const { orderParams } = this.state
         const { propertyTypes, amenities } = this.state.filterBy
         if (!orderParams) return (
             <div className="flex align-center justify-center list-loader">
@@ -118,23 +118,23 @@ class _StayList extends React.Component {
             </div>
         )
         return (
-           
-                <div className="list-container">
-                    <h1 className="count-stays airbnb-book fs14 fh18 fw-unset">{stays?.length} Stays </h1>
-                    <h1 className="city-name">Stays in {this.capitalizeFirstLetter(orderParams.address)}</h1>
-                    <div className="list-filter">
-                        <StayFilter stays={this.props.stays} minPrice={this.minPrice}
-                            setCheckedPropertyType={this.setCheckedPropertyType}
-                            onSavePrice={this.onSavePrice}
-                            currTypes={propertyTypes}
-                            currAmenities={amenities}
-                        />
-                    </div>
-                    <div className="stay-list">
-                        {stays?.map((stay, idx) => (< StayPreview key={stay._id} stay={stay} orderParams={orderParams} />))}
-                    </div>
+
+            <div className="list-container">
+                <h1 className="count-stays airbnb-book fs14 fh18 fw-unset">{stays?.length} Stays </h1>
+                <h1 className="city-name">Stays in {this.capitalizeFirstLetter(orderParams.address)}</h1>
+                <div className="list-filter">
+                    <StayFilter stays={this.props.stays} minPrice={this.minPrice}
+                        setCheckedPropertyType={this.setCheckedPropertyType}
+                        onSavePrice={this.onSavePrice}
+                        currTypes={propertyTypes}
+                        currAmenities={amenities}
+                    />
                 </div>
-           
+                <div className="stay-list">
+                    {stays?.map((stay, idx) => (< StayPreview key={stay._id} stay={stay} orderParams={orderParams} />))}
+                </div>
+            </div>
+
 
         )
     }

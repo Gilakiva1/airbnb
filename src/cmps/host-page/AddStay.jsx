@@ -177,10 +177,10 @@ class _AddStay extends Component {
                         {imgUrls.map((src, idx) => (
                             <div key={idx} className={`grid-img grid-img${idx} medium pointer flex justify-center align-center relative`}>
                                 <label className={`upload-img pointer wide high flex justify-center align-center absolute ${isEdit ? 'f-white' : 'f-black'} `}>
-                                    <input onChange={this.onUploadImg} className={`img${idx}`} type='file' accept='img/*' className='img-upload-btn' id='imgUpload' />
+                                    <input onChange={this.onUploadImg} className={`img-upload-btn img${idx}`} type='file' accept='img/*' />
                                     Upload Image
                                 </label>
-                                {src && <img src={src} alt='add image' />}
+                                {src && <img src={src} alt="" />}
                             </div>
                         ))
                         }

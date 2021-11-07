@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faUser, faPlane } from '@fortawesome/free-solid-svg-icons';
 import { HeartSvg } from "../../assets/img/stay-details/HeartSvg";
 export function MobileNavBar({ onChanegPage, user, handleUserLogin }) {
-    console.log(user);
     return <nav className="mobile-main-nav main-container">
         <section className="nav-bar wide high flex align-center space-between">
             <div onClick={() => onChanegPage('home')} className="home flex align-center column fh26">

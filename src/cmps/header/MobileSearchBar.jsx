@@ -129,6 +129,7 @@ class _MobileSearchBar extends Component {
                 break;
             case 'guest': this.setState({ criteria: { ...criteria, guests: { adult: 0, child: 0, infant: 0 } } })
                 break;
+            default:
         }
     }
 
@@ -165,7 +166,6 @@ class _MobileSearchBar extends Component {
                         checkIn={checkIn}
                         checkOut={checkOut}
                         handlePickingDates={this.handlePickingDates}
-                        getDateValue={this.getDateValue}
                         onClearInputs={this.onClearInputs} />
 
                 </div>

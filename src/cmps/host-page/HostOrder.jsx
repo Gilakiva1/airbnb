@@ -2,7 +2,6 @@ import { Component } from 'react';
 import { connect } from 'react-redux'
 import { onLoadOrders, onUpdateStatusOrder } from '../../store/order.action'
 import { HostOrderPreview } from './HostOrederPreview'
-import Loader from "react-loader-spinner";
 import { socketService } from '../../services/socket.service';
 
 class _HostOrder extends Component {
@@ -40,8 +39,6 @@ class _HostOrder extends Component {
     }
 
     render() {
-        const { isOnPrice } = this.state.sortPrice
-        const { isOnType } = this.state.sortType
         const { orders } = this.props
         if (!orders.length) return (
             <div className="orders-blank flex align-center justify-center">

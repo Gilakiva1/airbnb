@@ -110,6 +110,8 @@ class _AppHeader extends React.Component {
                 break;
             case 'user': this.onProfile()
                 break;
+            default: this.backToHome()
+
         }
     }
 

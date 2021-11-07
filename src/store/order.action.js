@@ -60,7 +60,7 @@ export function onSetOrder(order) {
 }
 
 export function onRemoveOrder(orderId) {
-    return async (dispatch) => {
+    return async(dispatch) => {
         try {
             await orderService.remove(orderId)
             dispatch({ type: 'REMOVE_ORDER', orderId })

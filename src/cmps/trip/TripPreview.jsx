@@ -14,7 +14,7 @@ export function TripPreview({ order, onSetOrder, onRemoveOrder }) {
 
         <li className={`trip-preview ${order._id}`}>
             <Link onClick={() => onSetOrder(order)} to={`/stay/${stayId}?${queryString}`}><div className="trip-img">
-                <img src={order.img} /></div>
+                <img src={order.img} alt="" /></div>
             </Link>
             <div className="trip-details fh32 ">
                 <div className="dates flex gap5">

@@ -48,7 +48,7 @@ export class _OrderModal extends React.Component {
     }
 
     closeInputs = () => {
-        let { isPickingGuests, isPickingDates, isReserve } = this.state
+        let { isPickingGuests, isPickingDates } = this.state
         if (!isPickingGuests && !isPickingDates) return
         isPickingGuests = false
         isPickingDates = false
@@ -57,7 +57,6 @@ export class _OrderModal extends React.Component {
 
     activeInput = (input) => {
         this.closeInputs()
-        const { isReserve } = this.state
         switch (input) {
             case 'guest':
                 this.setState({ isPickingGuests: true, isReserve: false })
@@ -65,6 +64,7 @@ export class _OrderModal extends React.Component {
             case 'date':
                 this.setState({ isPickingDates: true, isReserve: false })
                 break;
+            default: 
         }
     }
 

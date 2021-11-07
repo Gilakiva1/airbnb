@@ -1,5 +1,5 @@
 import React from 'react';
-import {  Pie } from 'react-chartjs-2';
+import { Pie } from 'react-chartjs-2';
 
 
 
@@ -98,6 +98,7 @@ export class RateHost extends React.Component {
                 case 5:
                     temp.fiveStar += 1
                     break;
+                default:
             }
         }
         return temp
@@ -119,11 +120,9 @@ export class RateHost extends React.Component {
                     {assets.map((asset, idx) => (
                         <div key={idx} className="stay-statistic flex pointer gap10" onClick={() => { this.currAssent(idx) }}>
                             <div>
-                                <img src={asset.imgUrls[0]} />
+                                <img src={asset.imgUrls[0]} alt="" />
                             </div>
-
                             <div className=" flex column gap10">
-
                                 <h3 className="book fw-unset fs16 asset-header">{asset.name}</h3>
                                 <h3 className="book fw-unset fs16 asset-header">{asset.loc.address}</h3>
                             </div>

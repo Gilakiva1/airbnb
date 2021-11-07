@@ -50,7 +50,7 @@ export class _HomePage extends React.Component {
                             <Link to="/stay" className="btn-flex"><span style={{ 'WebkitBackgroundClip': 'text' }}>I'm flexible</span></Link>
                         </div>
                     }
-                    <img src={imgHero} />
+                    <img src={imgHero} alt="" />
                 </div >
                 {(!isMobileSearch || screenWidth > 460) && <section className={`${screenWidth < 460 ? " overflow-hidden full" : ''} home-page `} >
                     <h1 className={`${screenWidth < 460 ? "pad-home" : ''} title-popular fs32 fh52 fw-unset bold`}>Popular Destinations</h1>
@@ -63,7 +63,7 @@ export class _HomePage extends React.Component {
                         <LabelsImgList links={utilService.HomePageImgLabels()} />
                         <Link to='/host'>
                             <div className="host-container ">
-                                <img className="round-edge" src={imgHost} />
+                                <img className="round-edge" src={imgHost} alt="" />
                                 <div className="host-info flex column justify-center align-center">
                                     <h1 className="info-first wide">Try hosting</h1>
                                     <p className="info-seconde">Earn extra income and unlock new opportunities by sharing your space.</p>

@@ -9,7 +9,6 @@ import { onLoadOrders } from "../store/order.action";
 import { HostStatus } from "../cmps/host-page/HostStatus";
 import { RateHost } from "../cmps/host-page/rateHost";
 import Loader from "react-loader-spinner";
-import { userService } from "../services/user.service";
 
 class _HostPage extends Component {
     state = {

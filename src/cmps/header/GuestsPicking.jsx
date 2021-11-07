@@ -75,6 +75,7 @@ export class _GuestsPicking extends React.Component {
                     value = infant - 1
                 }
                 break;
+            default:
         }
         this.setState({ [field]: value })
         this.props.handleGuestsChanege(field, value)

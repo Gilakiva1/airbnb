@@ -43,7 +43,7 @@ class _TripPage extends React.Component {
     }
 
     render() {
-        const { isUpcoming, isOrders, isPast } = this.state
+        const { isUpcoming, isPast } = this.state
         const { orders } = this.props
         if (!orders) return (
             <div className="flex align-center justify-center full">

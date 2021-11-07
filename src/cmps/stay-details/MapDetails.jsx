@@ -1,12 +1,12 @@
 import React from 'react';
-import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
+import { Map,  Marker, GoogleApiWrapper } from 'google-maps-react';
 
 class _Map extends React.Component {
 
   state = {
     width: '100%',
     height: '300px',
-  
+
   }
 
   render() {
@@ -31,5 +31,5 @@ class _Map extends React.Component {
 }
 
 
-export const MapDetails = GoogleApiWrapper({ apiKey: ('AIzaSyAFXMKnLTzbGyLpnKlxj9YiyhMkMs4nf0M') })(_Map)
+export const MapDetails = GoogleApiWrapper({ apiKey: ('AIzaSyBWY-vmGWLAbqqbJ6uQwlw6G1FPxlH_5Ms') })(_Map)
 

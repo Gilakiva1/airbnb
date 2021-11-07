@@ -121,6 +121,7 @@ export class _SearchBar extends React.Component {
         loc.focus()
         this.setState({ isPickingLocation: true })
         break;
+      default:
     }
   }
 
@@ -165,7 +166,6 @@ export class _SearchBar extends React.Component {
               <div className="input-container flex column" onClick={() => this.activeInput('location', this.inputRef.current)} >
                 <span>Location</span>
                 <input
-                  ref={this.inputRef}
                   type="search"
                   placeholder="Where are you going?"
                   name="address"
@@ -211,7 +211,6 @@ export class _SearchBar extends React.Component {
                 <span>Guests</span>
                 <input
                   type="text"
-                  placeholder="Add guests"
                   autoComplete="off"
                   name="guests"
                   placeholder={'Guests:' + this.getTotalGuests()}

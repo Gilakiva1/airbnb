@@ -113,7 +113,7 @@ class _StayDetails extends Component {
                     <h1 className=" fs28 fh32 medium fw-unset">{stay.name}</h1>
                     <div className="flex space-between column">
                         <div className="review-address-container flex ">
-                            <div className="flex gap5 align-center">
+                            <div className="flex gap5 align-center nowrap">
                                 {<FontAwesomeIcon className='star-icon' icon={faStar} />}
                                 <span className=" fs16 fh20 book fw-unset">{stay.rating}</span><span></span>
                                 <span className=" fs16 fh20 book fw-unset">({reviews} reviews)</span> ·<span> </span>

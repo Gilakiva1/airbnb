@@ -80,10 +80,12 @@ button {
     &.error {
         opacity: 1;
         background: linear-gradient(to bottom, rgba(249, 38, 1, 0.5), rgba(255, 0, 34, 0.5));
-    }
-    &.error-login {
-        opacity: 1;
-        background: linear-gradient(to bottom, rgba(249, 38, 1, 0.5), rgba(255, 0, 34, 0.5));
+        & .icon-order-error {
+            color: black;
+        }
+        @include for-mobile-layout {
+            background-color: #dc83a4;
+        }
     }
     &.new-order {
         color: white;
@@ -102,6 +104,11 @@ button {
         left: 230px;
         height: 53px;
         transform: translate(0px, 0px);
+        @include for-mobile-layout {
+            background-color: #dc83a4;
+            bottom: 100px;
+            left: 20px;
+        }
     }
 }
 

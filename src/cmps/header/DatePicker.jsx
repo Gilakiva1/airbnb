@@ -15,19 +15,16 @@ export const DatePicker = ({ order, handlePickingDates, preventPropagation, clas
     useEffect(() => {
         handlePickingDates(dateState[0].startDate, dateState[0].endDate)
     }, [dateState])
-    // useEffect(() => {
-    //     handlePickingDates(new Date(), dateState[0].endDate)
-    // }, [dateState])
 
-        return (
-            <div className={`${className} wide`} onClick={preventPropagation}>
-                <DateRange
-                    editableDateInputs={true}
-                    onChange={item => setDateState([item.selection])}
-                    moveRangeOnFirstSelection={false}
-                    ranges={dateState}
-                />
-                {/* <button onClick={() => setDateState()}>clear</button> */}
-            </div>
-        )
-    }
+
+    return (
+        <div className={`${className} wide`} onClick={preventPropagation}>
+            <DateRange
+                editableDateInputs={true}
+                onChange={item => setDateState([item.selection])}
+                moveRangeOnFirstSelection={false}
+                ranges={dateState}
+            />
+        </div>
+    )
+}

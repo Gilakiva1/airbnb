@@ -24,9 +24,19 @@ class _StayList extends React.Component {
     }
 
     componentDidMount() {
+        this.onLoadinitalStays()
+
+    }
+    componentDidUpdate(prevProps) {
+        if (prevProps.location.search !== this.props.location.search) {
+            this.onLoadinitalStays()
+        }
+    }
+    onLoadinitalStays = () => {
         const searchParams = new URLSearchParams(this.props.location.search);
         const getParms = utilService.getQueryParams(searchParams)
         this.onLoadStays(getParms)
+        this.props.onSetOrder(getParms)
         this.setState({ orderParams: getParms })
     }
 

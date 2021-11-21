@@ -51,7 +51,7 @@ class _AppHeader extends React.Component {
 
     componentDidUpdate(prevProps) {
         const { pathname } = this.props.history.location
-        if (prevProps.location.pathname !== pathname) {
+        if (prevProps.location.pathname !== pathname || prevProps.location.search != this.props.location.search) {
             this.setState({ isEnter: false })
             if (pathname === '/') this.setState({ isEnter: true })
         }
@@ -196,20 +196,20 @@ class _AppHeader extends React.Component {
     render() {
         const { scrollLoc, isEnter, isShowMenu, isLogin, isClearSearchBar, isHosting, screenWidth } = this.state
         const { pathname } = this.props.history.location
-        const { user, isMobileSearch } = this.props
+        const { user } = this.props
         if (screenWidth > 460) {
             return (
                 <header className={this.onSetCurrHeaderClass()}>
                     <div className={`${isEnter ? 'mrg-header' : ''} header-func flex`}>
                         <div className="logo-container flex align-center pointer" onClick={this.backToHome}>
                             <button className="btn-logo border-none"><LogoSvg className={`${(pathname === '/' && scrollLoc >= 40) || pathname !== '/' ? 'logo-pink' : 'logo-white'} `} /></button>
-                            {screenWidth > 670 && <h3 className={`logo-txt fs22 medium ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-pink'}`}>Home Away</h3>}
+                            {screenWidth > 720 && <h3 className={`logo-txt fs22 medium ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-pink'}`}>Home Away</h3>}
                         </div>
                         <nav className="nav-header">
                             <div className="nav-header flex gap5 align-center">
                                 <div>
-                                    <NavLink onClick={this.hideHost} className={`link-host border-round fs14 medium  ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-black hover-bcg'}`} to={`/stay`} >Explore</NavLink>
-                                    {(pathname !== '/host' || screenWidth > 670) && <NavLink onClick={this.onToggleUser} className={`link-host border-round fs14 medium  ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-black hover-bcg'}`} to={isHosting ? '/' : '/host'} >Become a host</NavLink>}
+                                    {screenWidth > 1000 && <NavLink onClick={this.hideHost} className={`link-host border-round fs14 medium  ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-black hover-bcg'}`} to={`/stay`} >Explore</NavLink>}
+                                    {(pathname !== '/host' && screenWidth > 1000) && <NavLink onClick={this.onToggleUser} className={`link-host border-round fs14 medium  ${pathname === '/' && scrollLoc < 40 ? 'txt-white' : 'txt-black hover-bcg'}`} to={isHosting ? '/' : '/host'} >Become a host</NavLink>}
 
                                 </div>
                                 <div className="menu-container border-round">
@@ -253,10 +253,10 @@ class _AppHeader extends React.Component {
 
 
 
-const mapStateToProps = ({ userReducer, orderReducer }) => {
+const mapStateToProps = ({ userReducer }) => {
     return {
         user: userReducer.loggedInUser,
-        isMobileSearch: orderReducer.isMobileSearch
+
     }
 
 }

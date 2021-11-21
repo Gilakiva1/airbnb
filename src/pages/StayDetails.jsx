@@ -56,7 +56,6 @@ class _StayDetails extends Component {
 
 
     loadStay = async () => {
-
         const id = this.props.match.params.stayId;
         const searchParams = new URLSearchParams(this.props.location.search);
         try {
@@ -133,7 +132,7 @@ class _StayDetails extends Component {
                     }
                     <div className="margin25">
 
-                    {screenWidth < 750 && <SimpleSlider  stay={stay} property='details' />}
+                        {screenWidth < 750 && <SimpleSlider stay={stay} property='details' />}
                     </div>
 
                     <div className="details-main-container  flex space-between  ">
@@ -221,10 +220,10 @@ class _StayDetails extends Component {
 }
 
 
-function mapStateToProps(state) {
+function mapStateToProps({ stayReducer, orderReducer }) {
     return {
-        stays: state.stayReducer.stays,
-        currOrder: state.orderReducer.currOrder
+        stays: stayReducer.stays,
+        currOrder: orderReducer.currOrder
     }
 }
 const mapDispatchToProps = {

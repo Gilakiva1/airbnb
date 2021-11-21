@@ -1,16 +1,14 @@
 .guests-container {
     padding: 16px 32px;
     margin-top: 20px;
-    max-width: 385px;
+    // max-width: 385px;
     height: 240px;
     border-radius: 30px;
     background-color: rgb(255, 255, 255);
-
-    @include for-mobile-layout{
+    @include for-mobile-layout {
         padding: initial;
         position: relative;
     }
-
     .guest-card {
         justify-content: space-between;
         align-items: center;
@@ -25,20 +23,18 @@
             height: rem(32px);
             justify-content: center;
             align-items: center;
-            &:hover{
+            &:hover {
                 color: $clr5;
             }
         }
         .fade {
             opacity: 0.35;
         }
-
         .counter-container {
             align-items: center;
             gap: 5px;
         }
     }
-
     .guest-card:not(:first-child) {
         border-top: 1px solid rgba(128, 128, 128, 0.514);
     }

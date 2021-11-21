@@ -64,7 +64,7 @@ export class _OrderModal extends React.Component {
             case 'date':
                 this.setState({ isPickingDates: true, isReserve: false })
                 break;
-            default: 
+            default:
         }
     }
 
@@ -162,6 +162,7 @@ export class _OrderModal extends React.Component {
     render() {
         const { isPickingDates, isPickingGuests, isFinalReserve, isReserve, reviewsNumber } = this.state
         const { stay, currOrder } = this.props
+
         if (!currOrder) return (
             <div className="flex align-center justify-center order-modal">
                 <Loader

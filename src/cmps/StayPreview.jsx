@@ -10,7 +10,7 @@ export function StayPreview({ stay, orderParams, idx }) {
     return (
         <Link className="link-detail" to={`/stay/${stay._id}?${queryString}`}>
             <div className="stay-container">
-                <SimpleSlider stay={stay} property='preview'/>
+                <SimpleSlider stay={stay} property='preview' />
                 <div className="flex column mrt10">
                     <div className="flex space-between">
                         <h2 className="fs14 fh18 airbnb-book fw-unset mrb2"> {<FontAwesomeIcon className='star-icon clr3' icon={faStar} />} <span className="clr2">{stay.rating}</span>

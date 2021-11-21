@@ -109,6 +109,10 @@
         line-height: 40px;
         position: absolute;
         width: rem(240px);
+        & .link:hover {
+            background-color: rgba(93, 85, 85, 0.15);
+            transition: 0.4s;
+        }
     }
     &.shadow {
         box-shadow: 0 1px 12px rgba(0, 0, 0, 0.08);
@@ -134,10 +138,6 @@
     padding: 0px 10px;
     cursor: pointer;
     font-size: 14px;
-    &:hover {
-        background-color: rgba(93, 85, 85, 0.15);
-        transition: 0.4s;
-    }
 }
 
 .logo-container-mobile {

@@ -14,12 +14,12 @@ function _MenuBar({ onCloseMenu, onToggleLogin, onLogout, user, onClearNotificat
         <div onClick={(ev) => { ev.stopPropagation() }} className="menu-dropdown white round-edge flex column ">
             {!user && <h1 onClick={onToggleLogin} className="link Log Out">Log In</h1>}
             {user && <h1 onClick={onLogout} className="link Log Out">Log Out</h1>}
-            <Link onClick={() => onNotificationsClick('trips')} to="/trip"><div className="flex space-between align-center">
-                <h1 className="link wide medium light txt-trip" >My trips</h1>
+            <Link onClick={() => onNotificationsClick('trips')} to="/trip"><div className="flex space-between align-center link">
+                <h1 className="fw-unset wide medium light txt-trip" >My trips</h1>
                 {user && user.notifications.trips !== 0 && <div className="menu-notification fs13 flex justify-center align-center">{user.notifications.trips}</div>}
             </div></Link>
-            <Link onClick={() => onNotificationsClick('orders')} to="/host"> <div className="flex space-between align-center">
-                <h1 className="link wide">Manage listing</h1>
+            <Link onClick={() => onNotificationsClick('orders')} to="/host"> <div className="flex space-between align-center link">
+                <h1 className="fw-unset wide">Manage listing</h1>
                 {user && user.notifications.orders !== 0 && <div className="menu-notification fs13 flex justify-center align-center">{user.notifications.orders}</div>}
             </div></Link>
             <h1 onClick={onCloseMenu} className="link Messeges">Messeges</h1>

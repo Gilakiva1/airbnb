@@ -29,12 +29,12 @@ class _HostPage extends Component {
                 Pending: 0,
                 Declined: 0
             },
-        }
-
+        },
+        screenWidth: window.innerWidth
     }
 
     async componentDidMount() {
-        const { assets } = this.props
+        window.addEventListener('resize', this.onResizeScreen)
 
         if (this.props.user) {
             await this.props.loadAssets(this.props.user._id)
@@ -42,9 +42,12 @@ class _HostPage extends Component {
             await this.props.onLoadOrders(filter)
             this.onCalcDetails()
         }
-        if (!assets.length) {
+        if (!this.props.assets.length) {
             this.setState({ component: { ...this.state.component, isOrders: false, isAddAsset: true } })
         }
+    }
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.onResizeScreen)
     }
 
     onCalcDetails = () => {
@@ -82,6 +85,9 @@ class _HostPage extends Component {
     toggleComponent = (property, currAsset = '') => {
         this.setState({ component: property, currAsset })
     }
+    onResizeScreen = ({ target }) => {
+        this.setState(prevState => ({ ...prevState, screenWidth: target.innerWidth }))
+    }
     render() {
 
         const { user, assets } = this.props
@@ -104,12 +110,12 @@ class _HostPage extends Component {
                     <nav className="nav-bar flex justify-center">
                         <TopNav isAddAsset={isAddAsset} isMyAsset={isMyAsset} isOrders={isOrders} isRates={isRates} toggleComponent={this.toggleComponent} />
                     </nav>
-                    <HostStatus price={price} rate={rate} status={status} activeGuests={activeGuests} />
+                    <HostStatus screenWidth={this.state.screenWidth} price={price} rate={rate} status={status} activeGuests={activeGuests} />
                     {(user || assets.length || isAddAsset) && <div className="stay-details-container">
                         <div className="stay-details">
                             {isAddAsset && <AddStay host={user} currAsset={this.state.currAsset} />}
-                            {isMyAsset && assets.length && < HostList toggleComponent={this.toggleComponent} assets={assets} />}
-                            {isOrders && assets.length && <HostOrder onCalcDetails={this.onCalcDetails} />}
+                            {isMyAsset && assets.length && < HostList screenWidth={this.state.screenWidth} toggleComponent={this.toggleComponent} assets={assets} />}
+                            {isOrders && assets.length && <HostOrder screenWidth={this.state.screenWidth} onCalcDetails={this.onCalcDetails} />}
                             {isRates && assets.length && < RateHost assets={assets} />}
                         </div>
                     </div>}

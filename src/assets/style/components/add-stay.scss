@@ -7,8 +7,11 @@
         gap: rem(10px);
         justify-items: center;
         .upload-img {
+            @include for-narrow-layout {
+                text-align: center;
+            }
             position: absolute;
-            z-index: 15;
+            z-index: 10;
             background: aliceblue;
         }
         .f-black {
@@ -20,7 +23,6 @@
         }
         div:not(:first-child) {
             height: 175px;
-
             @include for-mobile-layout {
                 height: 82px;
             }
@@ -131,14 +133,18 @@
             text-decoration: underline;
         }
     }
-    @include for-mobile-layout {
-        .inputs-containers {
+    .inputs-containers {
+        @include for-mobile-layout {
             flex-direction: column;
             align-items: flex-start;
             gap: 20px;
-        }
-        .add-stay-save {
             margin-bottom: 30px;
+        }
+        @include for-narrow-layout {
+            flex-direction: column;
+        }
+        @include for-wide-layout {
+            flex-direction: row;
         }
     }
 }

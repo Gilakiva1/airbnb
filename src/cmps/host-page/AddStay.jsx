@@ -137,6 +137,9 @@ class _AddStay extends Component {
         if (imgUrls.length === 5 && amenities && tags) {
             await this.props.addAsset(asset)
             await this.props.loadAssets(this.props.host._id)
+        } else {
+            this.props.onSetMsg({ type: 'error', txt: 'Please fill all fields' })
+
         }
 
 

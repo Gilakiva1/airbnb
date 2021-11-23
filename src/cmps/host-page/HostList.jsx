@@ -82,7 +82,7 @@ export class HostList extends Component {
             <table className="host-list">
                 <thead>
                     <tr>
-                        <th></th>
+                        {this.props.screenWidth > 460 && <th></th>}
                         <th>Name</th>
                         <th className={`sort ${isOnType ? 'black' : ''}`} onClick={this.toggleSortType}>Type</th>
                         <th>Address</th>
@@ -92,10 +92,10 @@ export class HostList extends Component {
                 </thead>
                 <tbody>
                     {assets.map((asset, idx) => (
-                        <HostAssetPreview toggleComponent={this.props.toggleComponent} key={idx} asset={asset} />
+                        <HostAssetPreview screenWidth={this.props.screenWidth} toggleComponent={this.props.toggleComponent} key={idx} asset={asset} />
                     ))}
                 </tbody>
-            </table>
+            </table >
         )
     }
 }

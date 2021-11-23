@@ -51,7 +51,7 @@ class _AppHeader extends React.Component {
 
     componentDidUpdate(prevProps) {
         const { pathname } = this.props.history.location
-        if (prevProps.location.pathname !== pathname || prevProps.location.search != this.props.location.search) {
+        if (prevProps.location.pathname !== pathname || prevProps.location.search !== this.props.location.search) {
             this.setState({ isEnter: false })
             if (pathname === '/') this.setState({ isEnter: true })
         }

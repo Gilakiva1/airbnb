@@ -138,6 +138,9 @@ class _AddStay extends Component {
             
             await this.props.addAsset(asset)
             await this.props.loadAssets(this.props.host._id)
+        } else {
+            this.props.onSetMsg({ type: 'error', txt: 'Please fill all fields' })
+
         }
 
 

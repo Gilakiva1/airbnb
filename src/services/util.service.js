@@ -122,8 +122,11 @@ function getQueryParams(params) {
         }
         if (key === 'adult' || key === 'child' || key === 'infant') {
             newParams.guests[key] = +value
+        } else if (key === 'checkIn' || key === 'checkOut') {
+            newParams[key] = +value
         } else {
             newParams[key] = value
+
         }
     }
     return newParams

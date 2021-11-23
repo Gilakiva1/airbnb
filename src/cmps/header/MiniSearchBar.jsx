@@ -11,16 +11,18 @@ class _MiniSearchBar extends React.Component {
     }
 
     getTotalGuests = () => {
-        const { order } = this.props
-        if (!order.guests) return null
-        let { adult, child, infant } = order.guests
+        const { currOrder } = this.props
+        if (!currOrder.guests) return null
+        let { adult, child, infant } = currOrder?.guests
         if (!(adult + child + infant)) return null
         return adult + child + infant
     }
 
-    getDateValue = (date) => {
-        if (new Date(date).toLocaleString('en-IL', { month: 'short', day: 'numeric' }) === 'Invalid Date') return 'Add Dates'
-        else return new Date(date).toLocaleString('en-IL', { month: 'short', day: 'numeric' })
+    getDateValue = (checkIn, checkOut) => {
+        const calcDate = new Date(+checkIn).toLocaleString('en-IL', { month: 'short', day: 'numeric' }) + '-' +
+            new Date(+checkOut).toLocaleString('en-IL', { month: 'short', day: 'numeric' })
+        return calcDate
+
     }
 
     onSearchBarClicked = (ev) => {
@@ -34,14 +36,14 @@ class _MiniSearchBar extends React.Component {
 
 
     render() {
-        const { animateClassName, order, pathname, screenWidth } = this.props
-
-        if (pathname === '/stay' && order) return (
+        const { animateClassName, currOrder } = this.props
+        const { pathname } = this.props.history.location
+        if (pathname === '/stay' && currOrder) return (
             <div className={`mini-search-bar flex space-between ${animateClassName}`} onClick={this.onSearchBarClicked}>
-                <span className="fs14 fh18 medium fw-unset">{this.capitalizeFirstLetter(order.address) || 'Location'}</span>
+                <span className="fs14 fh18 medium fw-unset">{this.capitalizeFirstLetter(currOrder.address) || 'Location'}</span>
                 <div className="seperation-line-vertical"></div>
-                {order.checkOut && <span className="fs14 fh18 medium fw-unset">{this.getDateValue(order.checkIn)} - {this.getDateValue(order.checkOut)}</span>}
-                {!order.checkOut && <span className="fs14 fh18 book fw-unset">Add dates</span>}
+                {currOrder.checkOut && <span className="fs14 fh18 medium fw-unset">{this.getDateValue(currOrder.checkIn, currOrder.checkOut)}</span>}
+                {!currOrder.checkOut && <span className="fs14 fh18 book fw-unset">Add dates</span>}
                 <div className="seperation-line-vertical"></div>
                 {this.getTotalGuests() && <span className="fs14 fh18 medium fw-unset">Guests: {this.getTotalGuests()}</span>}
                 {!this.getTotalGuests() && <span className="fs14 fh18 book fw-unset">Add guests</span>}
@@ -50,16 +52,16 @@ class _MiniSearchBar extends React.Component {
         else
             return (
                 <div className={`mini-search-bar flex space-between ${animateClassName}`} onClick={this.onSearchBarClicked}>
-                    {screenWidth > 980 && <span className="fs14 fh18 medium fw-unset">Start your search</span>}
+                    <span className="fs14 fh18 medium fw-unset">Start your search</span>
                     <button className="search-bar-submit-mini flex ">{<SearchMini className='icon' />}</button>
                 </div>
             )
     }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps({ orderReducer }) {
     return {
-        order: state.orderReducer.currOrder
+        currOrder: orderReducer.currOrder
 
     }
 }

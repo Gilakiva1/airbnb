@@ -5,9 +5,9 @@
     transform: scale(3.28, 0.65) translate(3px, 84px);
     align-items: center;
     justify-content: center;
-    width: rem(290px);
     border-radius: 30px;
     padding: 10px;
+    width: 285px;
     padding-left: 20px;
     padding-right: 20px;
     box-shadow: inset #00000052 0px 0px 1px 1px;
@@ -24,20 +24,14 @@
         top: 3.5%;
         left: 41%;
         height: 50px;
-        @media (max-width: 1180px) {
-            left: 28%;
-        }
         @include for-narrow-layout {
-            width: 55px;
             top: 2.5%;
-            left: 25%;
         }
-        @include for-normal-layout {
+        @media (max-width: 1180px) {
             left: 35%;
         }
-        @include for-wide-layout {
-            width: 300px;
-            left: 41%;
+        @media (max-width: 720px) {
+            left: 24%;
         }
     }
     span {

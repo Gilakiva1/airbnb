@@ -75,12 +75,20 @@
     line-height: rem(36px);
 }
 
+.fh42 {
+    line-height: rem(42px);
+}
+
 .fh52 {
     line-height: rem(52px);
 }
 
 .text-align {
     text-align: center;
+}
+
+.text-right {
+    text-align: right;
 }
 
 .fw-unset {
@@ -116,6 +124,9 @@
     }
     &.align-center {
         align-items: center;
+    }
+    &.align-end {
+        align-items: flex-end;
     }
 }
 

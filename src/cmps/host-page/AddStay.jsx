@@ -135,6 +135,7 @@ class _AddStay extends Component {
         imgUrls = imgUrls.filter(img => img !== '')
 
         if (imgUrls.length === 5 && amenities && tags) {
+            
             await this.props.addAsset(asset)
             await this.props.loadAssets(this.props.host._id)
         } else {

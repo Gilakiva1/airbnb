@@ -40,9 +40,11 @@ class _AppHeader extends React.Component {
         window.addEventListener('resize', this.onResizeScreen)
         socketService.setup()
         socketService.on('on-new-order', () => {
+            console.log(`hello this is socket coming from service`)
             this.props.onAddNotification('orders')
         })
         socketService.on('on-approved-trip', () => {
+            console.log(`hello this is socket coming from service`)
             this.props.onAddNotification('trips')
         })
         if (pathname === '/' && this.state.scrollLoc < 40) this.setState({ isEnter: true })

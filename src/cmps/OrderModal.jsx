@@ -149,7 +149,6 @@ export class _OrderModal extends React.Component {
         } else {
             const finalOrder = this.createFinalOrder()
             await this.props.onAddOrder(finalOrder)
-            debugger
             socketService.emit('on-reserve-order', finalOrder.host)
             this.setState({ isReserve: false })
             this.props.onSetMsg({ type: 'success', txt: 'Order Sent!' })

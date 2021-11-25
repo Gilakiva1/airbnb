@@ -1,6 +1,6 @@
 import { GuestsPicking } from "../header/GuestsPicking"
 import { MobileGoBack } from "../svgs/MobileGoBack"
-export const MobileGuestsForm = ({ onChangeForm, onClearInputs, handleGuestsChanege, order, getDateValue }) => {
+export const MobileGuestsForm = ({ pathname, onChangeForm, onClearInputs, handleGuestsChanege, order, getDateValue }) => {
     const guests = order.guests.child + order.guests.infant + order.guests.adult
     const checkIn = getDateValue(order.checkIn)
     const checkOut = getDateValue(order.checkOut)
@@ -24,7 +24,7 @@ export const MobileGuestsForm = ({ onChangeForm, onClearInputs, handleGuestsChan
                     </div>
                 </div>
             </div>
-            <GuestsPicking handleGuestsChanege={handleGuestsChanege} onClearInputs={onClearInputs} />
+            <GuestsPicking pathname={pathname} handleGuestsChanege={handleGuestsChanege} onClearInputs={onClearInputs} />
             <div className="btn flex justify-end">
                 <button className="btn-search book" type="submit" onClick={(event) => onChangeForm(event, 'order')}>Search</button>
             </div>

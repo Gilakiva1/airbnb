@@ -9,7 +9,7 @@ export function HostOrderPreview({ order, milisecToDate, updateStatusOrder, scre
             <td>{milisecToDate('checkIn', order)}</td>
             <td>{milisecToDate('checkOut', order)}</td>
             <td>{order.status}</td>
-            <td>${order.price}</td>
+            {screenWidth > 460 && <td>${order.price}</td>}
             <td className='action'>
                 {order.status === 'Pending' && <button className="bold" onClick={() => { updateStatusOrder(order, 'Approved') }}>Approve</button>}
                 {order.status === 'Approved' && <button className="bold" onClick={() => { updateStatusOrder(order, 'Declined') }}>Decline</button>}

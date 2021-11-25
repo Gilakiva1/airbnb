@@ -136,6 +136,7 @@ class _MobileSearchBar extends Component {
     render() {
         const { isPickingLocation, isPickingDates, isPickingGuests, isSearchClicked } = this.state
         const { address, checkIn, checkOut } = this.state.criteria
+        const { pathname } = this.props.history.location
         return (
             <section className="main-container-home">
 
@@ -173,6 +174,7 @@ class _MobileSearchBar extends Component {
                         </div>
                         <div className={`${isPickingGuests ? 'show' : ''} picking-guest-container`} >
                             <MobileGuestsForm
+                                pathname={pathname}
                                 order={this.state.criteria}
                                 onChangeForm={this.onChangeform}
                                 handleGuestsChanege={this.handleGuestsChanege}

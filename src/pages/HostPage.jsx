@@ -104,7 +104,7 @@ class _HostPage extends Component {
         </div>)
 
         return (
-            <div className={`${!user && !isAddAsset ? 'host-height' : ''} host-page`}>
+            <div className={`${!user && !isAddAsset ? 'host-height' : ''} host-page ${isOrders ? 'mrg-btn' : ''}`}>
                 <div className="host-container">
 
                     <nav className="nav-bar flex justify-center">

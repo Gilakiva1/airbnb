@@ -39,7 +39,7 @@ class _HostOrder extends Component {
     }
 
     render() {
-        const { orders } = this.props
+        const { orders, screenWidth } = this.props
         if (!orders.length) return (
             <div className="orders-blank flex align-center justify-center">
                 <h1>There are no incoming orders</h1>
@@ -55,16 +55,15 @@ class _HostOrder extends Component {
                         <th>Check in</th>
                         <th>Check out</th>
                         <th>Status</th>
-                        <th>Price</th>
+                        {screenWidth > 460 && <th>Price</th>}
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {
-                        orders.reverse().map((order, idx) => <HostOrderPreview screenWidth={this.props.screenWidth} key={idx} updateStatusOrder={this.updateStatusOrder} milisecToDate={this.milisecToDate} order={order} />)
+                    {orders.reverse().map((order, idx) => <HostOrderPreview screenWidth={this.props.screenWidth} key={idx} updateStatusOrder={this.updateStatusOrder} milisecToDate={this.milisecToDate} order={order} />)
                     }
                 </tbody>
-            </table>
+            </table >
         )
     }
 }

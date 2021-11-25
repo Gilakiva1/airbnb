@@ -161,6 +161,9 @@
             background: linear-gradient(to right, rgba(237, 80, 150, 0.55), rgba(251, 4, 37, 0.55));
         }
     }
+    &.mrg-btn {
+        margin-bottom: 250px;
+    }
     &.host-height {
         height: 50vh;
     }

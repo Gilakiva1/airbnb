@@ -91,6 +91,7 @@ export class _GuestsPicking extends React.Component {
     }
     render() {
         const { adult, child, infant, screenWidth } = this.state
+        const { pathname } = this.props
         if (adult === null) return (
             <div className="flex align-center justify-center full">
                 <Loader
@@ -136,7 +137,7 @@ export class _GuestsPicking extends React.Component {
                         <button onClick={(event) => this.updateCount(event, 'add infant')} className="btn-counter flex"><span><Plus /></span></button>
                     </div>
                 </div>
-                {screenWidth < 450 && <button type="button" className="btn-clear" onClick={this.onClearInputs}>clear</button>}
+                {screenWidth < 450 && pathname === '/' && <button type="button" className="btn-clear" onClick={this.onClearInputs}>clear</button>}
             </section>
         )
     }

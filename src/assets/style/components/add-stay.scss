@@ -1,4 +1,9 @@
 .add-stay-continer {
+    @include for-mobile-layout {
+        form {
+            padding: 10px 20px;
+        }
+    }
     .add-stay-grid {
         margin-top: rem(27px);
         margin-bottom: rem(52px);

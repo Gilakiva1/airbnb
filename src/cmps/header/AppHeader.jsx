@@ -10,7 +10,7 @@ import { LogIn } from '../LogIn';
 import { userService } from '../../services/user.service';
 import user1 from '../../assets/img/profiles/user1.png'
 import { socketService } from '../../services/socket.service';
-import { onSetMsg, onLogout } from '../../store/user.action'
+import { onSetMsg, onLogout, onClearNotification } from '../../store/user.action'
 import { MobileSearchBar } from './MobileSearchBar';
 import { HamburgerMenu } from '../svgs/HamburgerMenu';
 import { onAddNotification } from '../../store/user.action'
@@ -182,13 +182,15 @@ class _AppHeader extends React.Component {
         await this.props.onSetOrder(order)
         this.props.history.push(`/stay?${queryString}`)
     }
-    onTrip = () => {
+    onTrip = async () => {
+        await this.props.onClearNotification('trips')
         this.props.history.push('/trip')
     }
     onProfile = () => {
         this.onToggleLogin()
     }
-    onHost = () => {
+    onHost = async () => {
+        await this.props.onClearNotification('orders')
         this.props.history.push('/host')
     }
     handleUserLogin = () => {
@@ -243,6 +245,7 @@ class _AppHeader extends React.Component {
                             <h3 className="clr3 fs22">Home Away</h3>
                         </div>
                     </header>}
+
                     {pathname === '/' && <MobileSearchBar screenWidth={screenWidth} />}
                     <MobileNavBar onChanegPage={this.onChanegPage} user={user} handleUserLogin={this.handleUserLogin} />
                     {isLogin && <LogIn onToggleLogin={this.onToggleLogin} onCloseLogin={this.onCloseLogin} />}
@@ -268,7 +271,8 @@ const mapDispatchToProps = {
     onLogout,
     onAddNotification,
     onSetOrder,
-    onTogglePage
+    onTogglePage,
+    onClearNotification
 }
 
 export const AppHeader = connect(mapStateToProps, mapDispatchToProps)(withRouter(_AppHeader))
